@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="98" height="18" viewBox="0 0 98 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Printing color ammount circles">
+<mask id="path-1-inside-1_1324_19412" fill="white">
+<path d="M0 0H98V18H0V0Z"/>
+</mask>
+<path d="M0 18H1V0H0H-1V18H0Z" fill="#D4D4D4" mask="url(#path-1-inside-1_1324_19412)"/>
+<circle id="Ellipse" cx="23" cy="9" r="9" fill="#8DC63F"/>
+<circle id="Ellipse_2" cx="45" cy="9" r="9" fill="#1F8CEB"/>
+<circle id="Ellipse_3" cx="67" cy="9" r="9" fill="#FFA500"/>
+<circle id="Ellipse_4" cx="89" cy="9" r="9" fill="#008080"/>
+</g>
+</svg>

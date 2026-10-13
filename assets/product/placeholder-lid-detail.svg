@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500">
+  <!-- placeholder product photo: replace with the real "Lid detail" shot -->
+  <rect width="500" height="500" fill="#f0f2f4"/>
+  <g fill="none" stroke="#c2ccd3" stroke-width="8" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="180" y="170" width="140" height="110" rx="12"/>
+    <path d="M190 268l40-44 30 30 22-20 30 34"/>
+  </g>
+  <circle cx="290" cy="200" r="11" fill="#c2ccd3"/>
+  <text x="250" y="326" text-anchor="middle" font-family="Nunito, Arial, sans-serif" font-size="22" font-weight="700" fill="#7a8a99">Lid detail</text>
+  <text x="250" y="356" text-anchor="middle" font-family="Nunito, Arial, sans-serif" font-size="15" fill="#9aa7b3">Placeholder image</text>
+</svg>

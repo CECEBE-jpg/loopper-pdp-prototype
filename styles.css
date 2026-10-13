@@ -1,0 +1,5479 @@
+/* ============================================================
+   Loopper PDP → Request flow — coded from Figma Dev Mode values
+   Frame: "Design v5" 531:12867 (1920px)
+   All transitions: SMART_ANIMATE / EASE_OUT / 0.3s  (from Figma reactions)
+   ============================================================ */
+
+:root {
+  --ink: #2c3e50;
+  --grey-text: #787575;
+  --grey-line: #cacaca;
+  --outline: #909090;
+  --badge: #497687;
+  --cyan: #00aed8;
+  --tab-active: #099bd3;
+  --orange: #fd7e14;
+  --green: #28a745;
+  --green-sale: #08a64a;
+  --green-star: #7cb518;
+  --red: #ea2023;
+  /* darker brand red for error text, icons and badges: 5.5:1 on white
+     (--red is 4.44:1, just under WCAG AA 4.5:1 for small text) */
+  --red-text: #d0191c;
+  --blue-value: #0e5cd0;
+  /* Figma blur 6.6 — the page-level export expressed this as filter:drop-shadow(3.3px),
+     which is half, because drop-shadow() takes a std-deviation. As box-shadow it's 6.6px. */
+  --card-shadow: 1px 1px 6.6px rgba(0, 0, 0, 0.17);
+  --motion: 0.3s ease-out;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Nunito", system-ui, sans-serif;
+  background: #fff;
+  color: var(--ink);
+  /* no overflow on body: it would pass to the whole viewport, and iOS Safari
+     then doesn't colour the area behind its bottom toolbar from the phone
+     buy bar. Sideways clipping lives on .stage (overflow-x: clip) instead. */
+}
+
+.stage {
+  margin: 0 auto;
+  overflow-x: clip; /* every width: nothing may leave a sideways scroll */
+}
+/* desktop / tablet (>= 768px): nothing may leave a sideways scroll */
+@media (width >= 768px) {
+  .stage {
+    overflow-x: clip;
+  }
+}
+/* Fluid desktop: the frame spans the viewport; the content column is the
+   design's 1590px, narrowed on smaller screens to keep a 10px gap either
+   side (see .container). Down to 768px the desktop layout holds; below
+   that the tablet / mobile layout takes over. */
+.frame {
+  width: 100%;
+  background: #fff;
+  padding-top: 0; /* the breadcrumb is in the flow of .container now */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transform-origin: top center;
+}
+
+img {
+  display: block;
+}
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* ===================== BREADCRUMB =====================
+   The top section's utilities / category / trust bars were replaced by the
+   navigation menu (nav.css / nav.js). The breadcrumb now lives inside the
+   content container, above the two columns (see .breadcrumb-bar below). */
+.bar-inner {
+  width: 100%;
+  max-width: min(1592px, 100% - 20px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.icon-22 {
+  width: 22px;
+  height: 22px;
+}
+
+/* 1592px content block → text starts aligned with the logo */
+/* styled like the mobile breadcrumb (786:15926): Regular, #7a8a99, the
+   current page a shade darker (.crumbs [aria-current] below); 16px on
+   desktop, the mobile block sets its own 12px */
+.breadcrumb-bar {
+  height: 52px;
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  font-size: 16px;
+  color: #7a8a99;
+}
+.breadcrumb-bar .bar-inner {
+  padding-right: 16px;
+  justify-content: flex-start;
+}
+
+/* ===================== LAYOUT ===================== */
+.container {
+  width: min(1590px, 100% - 20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 40px;
+}
+.main-grid {
+  display: flex;
+  /* review feedback: 24px felt cramped next to the airy header; grows to
+     48px on wide screens, never below 24 */
+  gap: clamp(24px, 3vw, 48px);
+  justify-content: center;
+  width: 100%;
+  align-items: flex-start;
+}
+/* Columns keep Figma's 654 / 743 at full size and shrink in that ratio
+   (flex-basis = design width) when the container is narrower than 1421px. */
+.col1 {
+  flex: 0 1 654px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 10px;
+  overflow: hidden;
+}
+.col2 {
+  flex: 0 1 743px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ===================== COLUMN 1 ===================== */
+.heading-title {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.heading-title h1 {
+  flex: 0 1 575px;
+  min-width: 0;
+  font-weight: 700;
+  font-size: 20px; /* user: 20 above 1040px, 19 from 1040 to the phone layout */
+  color: var(--ink);
+}
+@media (768px <= width <= 1040px) {
+  .heading-title h1 {
+    font-size: 19px;
+  }
+}
+.sku {
+  width: 55.165px;
+  font-weight: 400;
+  font-size: 13px;
+  color: #aab5be;
+}
+/* tablet and the 1024 tier: the item number stacks under the title (user) */
+@media (768px <= width < 1280px) {
+  .heading-title {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .heading-title h1 {
+    flex: none; /* the 575px basis would become a height in a column */
+  }
+  .sku {
+    width: auto;
+  }
+}
+
+.image-slider {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+}
+.product-image-container {
+  width: 100%;
+  aspect-ratio: 630/630;
+  background: #f2f2f2;
+  padding: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.fast-delivery {
+  position: absolute;
+  left: 11.5px;
+  top: 10px;
+  background: var(--ink);
+  border-radius: 9px;
+  padding: 5px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.fast-delivery span {
+  font-size: 12px;
+}
+.fast-delivery .fd-text {
+  color: #fff;
+  font-weight: 600;
+}
+
+.thumbnails {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+.thumb-track {
+  flex: 1 1 auto; /* full width now the strip arrow is gone */
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* nine views: the strip scrolls sideways (its arrows, trackpad, touch, or
+     by itself to keep the active thumbnail in view); 4px padding / -4px margin give
+     the thumbnails' focus ring room inside the clipped strip */
+  padding: 4px;
+  margin: -4px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+  position: relative;
+}
+.thumb-track::-webkit-scrollbar {
+  display: none;
+}
+.thumb {
+  /* square (user; design 91.7x79.4): the photos are square too */
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+  background: #f0f2f4;
+  border: 0.81px solid #e3e8ec;
+  border-radius: 4.861px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c2ccd3;
+  font-size: 8.912px;
+  transition:
+    border-color var(--motion),
+    border-width var(--motion);
+}
+.thumb.active {
+  border: 2.661px solid var(--grey-text);
+}
+/* strip scroll arrows + white edge fades: each side shows only while more
+   thumbnails sit beyond it (script.js toggles .can-prev / .can-next) */
+.thumbnails {
+  position: relative;
+}
+.thumbnails::before,
+.thumbnails::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 71px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--motion);
+}
+.thumbnails::before {
+  left: -1px;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0), #fff);
+}
+.thumbnails::after {
+  right: -1px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), #fff);
+}
+.thumbnails.can-prev::before,
+.thumbnails.can-next::after {
+  opacity: 1;
+}
+.thumb-scroll {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 32px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.thumb-scroll[hidden] {
+  display: none;
+}
+.thumb-scroll:hover {
+  background: #f0f2f4;
+}
+.thumb-scroll:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+.thumb-scroll img {
+  width: 9px;
+  height: 21px;
+}
+.thumb-scroll--prev {
+  left: 0;
+}
+.thumb-scroll--prev img {
+  transform: scaleX(-1);
+}
+.thumb-scroll--next {
+  right: 0;
+}
+/* tablet / phone widths and touch screens: no strip arrows at all (user);
+   the white edge fade stays as the "more" cue and the strip is swiped */
+@media (width < 1024px), (hover: none) {
+  .thumb-scroll {
+    display: none !important; /* beats the [hidden] toggling in script.js */
+  }
+}
+/* mouse: the arrows fade in only while the strip is hovered (or reached by
+   keyboard); the white edge fade stays as the always-visible "more" cue */
+@media (hover: hover) {
+  .thumb-scroll {
+    opacity: 0;
+    transition:
+      opacity var(--motion),
+      background-color var(--motion);
+  }
+  .thumbnails:hover .thumb-scroll,
+  .thumbnails:has(:focus-visible) .thumb-scroll {
+    opacity: 1;
+  }
+}
+
+.tab-list {
+  background: #f6f6f6;
+  border-radius: 10px;
+  padding: 10px 31px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.tab {
+  font-size: 14px;
+  line-height: 29.4px;
+  color: var(--ink);
+  cursor: pointer;
+}
+.tab.active {
+  font-weight: 700;
+  border-bottom: 3px solid var(--tab-active);
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.desc-body {
+  padding-top: 6px;
+}
+.desc-body p {
+  font-size: 14px;
+  line-height: 23.1px;
+  color: var(--ink);
+}
+.read-more {
+  font-weight: 800;
+  font-size: 13px;
+  text-decoration: underline;
+}
+.tags {
+  padding-top: 10px;
+  font-size: 13px;
+  color: var(--ink);
+}
+.spec-table {
+  padding-top: 18px;
+}
+.spec-row {
+  display: flex;
+  gap: 100px;
+  border-bottom: 1px solid var(--grey-line);
+}
+.spec-key {
+  width: 64px;
+  padding: 11.5px 0;
+  font-size: 14px;
+}
+.spec-val {
+  padding: 11.5px 0;
+  font-size: 14px;
+}
+
+/* --- Print options tab (1701:21141) ---------------------------------------
+   Row 1701:21408: three "print option card"s (1701:21441), gap 10.
+   Card: 206.667 wide, white, 1px #cdcdcd, radius 15, pb 17, column gap 10.
+   204.67 square image well, then a 181px title row (27px printing icon, Bold
+   14 name, 15.167 "?" information dot) and a colours row (18.167 icon, gap 5,
+   Medium 12). */
+.print-cards {
+  display: flex;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.print-card {
+  width: 206.667px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 17px;
+  background: #fff;
+  border: 1px solid #cdcdcd;
+  border-radius: 15px;
+}
+.print-card-media {
+  width: 204.67px;
+  height: 204.67px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: clip;
+  border-radius: 14px 14px 0 0;
+}
+.print-card-media img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 237/230;
+  object-fit: cover;
+}
+.print-card-title {
+  width: 181px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.print-card-icon {
+  flex-shrink: 0;
+}
+.print-card-name {
+  margin: 0;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 29.4px;
+  color: #000;
+  white-space: nowrap;
+}
+.print-card-colours {
+  width: 181px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  color: #000;
+}
+.print-card-colours img {
+  flex-shrink: 0;
+}
+/* information 1701:21427 — 15.167 white dot, 0.758 #949494 ring, Bold 10.6 */
+.info-dot {
+  position: relative;
+  flex-shrink: 0;
+  width: 15.167px;
+  height: 15.167px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 0.758px solid #949494;
+  border-radius: 50%;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 10.617px;
+  line-height: 1;
+  color: #767676;
+  cursor: help;
+}
+/* tooltip 1704:21693: #898989, radius 8, 162x34, Bold 12 white, drop shadow
+   0 4 4 25%. Sits directly above the dot, left edges aligned (+2px). */
+.info-tip {
+  position: absolute;
+  left: 2px;
+  bottom: calc(100% + 1px);
+  z-index: 3;
+  width: 162px;
+  height: 34px;
+  padding: 5px 6px;
+  display: flex;
+  align-items: center;
+  background: #898989;
+  border-radius: 8px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  font-weight: 700;
+  font-size: 12px;
+  color: #fff;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--motion);
+}
+/* :focus (not -visible) so a tap on touch screens shows it too */
+.info-dot:hover .info-tip,
+.info-dot:focus .info-tip {
+  opacity: 1;
+}
+
+/* ===================== PDP-BUTTON =====================
+   Rest + hover states recreated 1:1 from the Figma component variants.
+   ON_HOVER -> CHANGE_TO <hover variant>, SMART_ANIMATE / EASE_OUT / 0.3s
+
+   Orange (364x53): 497:10783 (filled)  ->  497:10782 / 497:10989 (outlined)
+   Green  (349x53): 539:16919 (outlined) -> 539:16953 / 539:16956 (filled)
+
+   Borders are drawn with an inset box-shadow, not `border`, so the padding box
+   never shifts and every child keeps Figma's own frame coordinates. */
+.cta-top {
+  width: 100%;
+  max-width: 738px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.cta-bottom {
+  width: 100%;
+  max-width: 713px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.pdp-btn {
+  position: relative;
+  height: 53px;
+  border-radius: 20px;
+  min-width: 0;
+  transition:
+    background-color var(--motion),
+    box-shadow var(--motion);
+}
+
+/* Every part is anchored to the button's vertical centre (y = 26.5 = 53/2) in
+   BOTH states, exactly as in Figma — only `left` and size animate, so nothing
+   ever drifts up or down during the transition. */
+.pdp-btn > * {
+  position: absolute;
+  top: 26.5px;
+  transform: translateY(-50%);
+  transition:
+    left var(--motion),
+    width var(--motion),
+    height var(--motion);
+}
+
+.pb-label {
+  transform: translate(-50%, -50%);
+  font-size: 22px;
+  line-height: 20px;
+  white-space: nowrap;
+  transition:
+    left var(--motion),
+    color var(--motion),
+    font-weight var(--motion),
+    font-variation-settings var(--motion);
+}
+.pb-label i {
+  font-style: italic;
+}
+
+/* icon / chevron: both assets stacked and cross-faded, like Smart Animate
+   interpolating between two different vector fills */
+.pb-icon img,
+.pb-chev img {
+  position: absolute;
+  transition: opacity var(--motion);
+}
+
+/* the icon fills its node exactly (Figma: inset-0 + size-full) */
+.pb-icon img {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* The chevron SVGs are exported with their 4px round-cap stroke bleeding
+   outside the node box — 9.63877x17 artwork for a 6x13 node, 11.6924x23.0001
+   for an 8x19 node. Figma therefore draws them with negative insets and
+   overflow visible. Reproducing those exact insets keeps the stroke weight and
+   cap geometry identical instead of squashing the artwork into the node, and
+   because they're percentages the artwork scales with the node as it animates. */
+.pb-chev {
+  overflow: visible;
+}
+/* exact exported artwork sizes, at Figma's negative offsets:
+   6x13 node -> 9.63877 x 17 at (-2, -2)  |  8x19 node -> 11.6924 x 23.0001 at (-2.00007, -2.00007) */
+.pb-chev .pb-rest {
+  left: -2px;
+  top: -2px;
+  width: 9.63877px;
+  height: 17px;
+}
+.pb-chev .pb-hov {
+  left: -2.00007px;
+  top: -2.00007px;
+  width: 11.6924px;
+  height: 23.0001px;
+}
+.pb-hov {
+  opacity: 0;
+}
+.pb-rest {
+  opacity: 1;
+}
+.pdp-btn:hover .pb-hov {
+  opacity: 1;
+}
+.pdp-btn:hover .pb-rest {
+  opacity: 0;
+}
+
+/* Fluid desktop: the buttons can now narrow below Figma's 364 / 349px, so
+   every child's Figma `left` is re-expressed from the button's centre —
+   calc(50% + (x - width/2)) — which gives the identical position at full
+   width and keeps the composition centred as the button shrinks. */
+
+/* ---------- Orange, filled -> outlined ---------- */
+.pdp-btn--orange {
+  flex: 0 1 364px;
+  background: var(--orange);
+  box-shadow: inset 0 0 0 4px rgba(253, 126, 20, 0);
+}
+.pdp-btn--orange .pb-label {
+  color: #fff;
+  font-weight: 700;
+}
+.pdp-btn--orange:hover {
+  background: rgba(253, 126, 20, 0);
+  box-shadow: inset 0 0 0 4px rgba(253, 126, 20, 1);
+}
+.pdp-btn--orange:hover .pb-label {
+  color: var(--orange);
+  font-weight: 800;
+}
+
+/* Motion borrowed from the green variant (539:16919 -> 539:16953).
+   The orange buttons keep Figma's own fill direction (filled -> outlined), but
+   every child now travels RIGHT on hover the way the green one's does, instead
+   of the orange variant's inward drift: label/icon +10px, chevron +26px. Each
+   hover offset below is the untouched Figma rest coordinate plus that delta, so
+   the rest state stays pixel-exact and only the hover target moved. */
+
+/* chevron: 6x13 -> 8x19, rest x + 26, centre stays on y=26.5 (rest 20+6.5, hover 17+9.5) */
+.pdp-btn--orange .pb-chev {
+  left: calc(50% + 102.82px);
+  width: 6px;
+  height: 13px;
+}
+.pdp-btn--quote .pb-chev {
+  left: calc(50% + 101.279px);
+}
+.pdp-btn--orange:hover .pb-chev {
+  width: 8px;
+  height: 19px;
+}
+.pdp-btn--design:hover .pb-chev {
+  left: calc(50% + 128.82px);
+}
+.pdp-btn--quote:hover .pb-chev {
+  left: calc(50% + 127.279px);
+}
+
+/* Design: label centre 192.82 -> 202.82 | icon 31.279x31, x 71.54 -> 81.54 */
+.pdp-btn--design .pb-label {
+  left: calc(50% + 10.8203px);
+}
+.pdp-btn--design:hover .pb-label {
+  left: calc(50% + 20.8203px);
+}
+.pdp-btn--design .pb-icon {
+  left: calc(50% - 110.459px);
+  width: 31.2795px;
+  height: 31px;
+}
+.pdp-btn--design:hover .pb-icon {
+  left: calc(50% - 100.459px);
+  width: 31.2795px;
+  height: 31px;
+}
+
+/* Quote: label centre 195.28 -> 205.28 | icon 36.198x37 @73.08 -> 30.328x31 @86.02.
+   The hover artwork is narrower, so its x is solved back from the centre
+   (91.18 + 10 - 30.3278/2) to give the same +10 shift the label gets. */
+.pdp-btn--quote .pb-label {
+  left: calc(50% + 13.2794px);
+}
+.pdp-btn--quote:hover .pb-label {
+  left: calc(50% + 23.2794px);
+}
+.pdp-btn--quote .pb-icon {
+  left: calc(50% - 108.918px);
+  width: 36.1977px;
+  height: 37px;
+}
+.pdp-btn--quote:hover .pb-icon {
+  left: calc(50% - 95.9832px);
+  width: 30.3278px;
+  height: 31px;
+}
+
+/* ---------- Green, outlined -> filled ---------- */
+.pdp-btn--outline {
+  flex: 0 1 349px;
+  background: rgba(40, 167, 69, 0);
+  box-shadow: inset 0 0 0 2px var(--green);
+}
+.pdp-btn--outline .pb-label {
+  left: calc(50% - 9.5px);
+  color: var(--green);
+  font-weight: 700;
+}
+.pdp-btn--outline:hover {
+  background: rgba(40, 167, 69, 1);
+}
+.pdp-btn--outline:hover .pb-label {
+  left: calc(50% + 0.5px);
+  color: #fff;
+}
+
+/* chevron: 6x13 @269 -> 8x19 @295, centre stays on y=26.5 */
+.pdp-btn--outline .pb-chev {
+  left: calc(50% + 94.5px);
+  width: 6px;
+  height: 13px;
+}
+.pdp-btn--outline:hover .pb-chev {
+  left: calc(50% + 120.5px);
+  width: 8px;
+  height: 19px;
+}
+
+/* ===================== CONFIGURATOR ===================== */
+.configurator-bg {
+  background: #f4f4f4;
+  border-radius: 10px;
+  padding: 20px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  width: 100%;
+}
+.configurator {
+  width: 100%;
+  max-width: 715px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.step {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: var(--card-shadow);
+  transition: box-shadow var(--motion);
+}
+/* collapsed: h-50 / px-16 py-10   |   open: auto height, pb-14 + card pt-10, gap 20 */
+.step-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 10px 16px;
+  height: 50px;
+  transition:
+    height var(--motion),
+    padding var(--motion);
+}
+.step[data-open="true"] .step-header {
+  height: auto;
+  padding: 10px 16px 14px;
+}
+.step-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.step-num {
+  width: 23px;
+  height: 23px;
+  border-radius: 69.697px;
+  background: var(--badge);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 16.727px;
+  color: #fff;
+  flex-shrink: 0;
+}
+/* Figma sizes each title box at 109px, which lines the chosen values up for
+   steps 1–4 but not step 5, whose "Choose quantity per color" renders 168px
+   wide. Every title now takes step 5's width so all five values start on the
+   same x — step 5's value stays put and the others move out to meet it. */
+.step-title {
+  width: 168px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.step-value {
+  margin-left: 20px;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--blue-value);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity var(--motion);
+}
+.step-value.filled {
+  opacity: 1;
+}
+
+/* Step 4 Chosen 527:11599 > Container 527:11603: the value row fills the
+   header and splits — quantity left, unit price right. Figma clears the
+   chevron by pr-20 + the button's gap-10 = 30; the header gap already gives
+   20, so the price adds the other 10. */
+.step[data-step="quantity"] .step-label {
+  flex: 1;
+  min-width: 0;
+}
+.step-price {
+  margin-left: auto;
+  padding-right: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--blue-value);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity var(--motion);
+}
+.step-price.filled {
+  opacity: 1;
+}
+
+/* Figma: 13x6 box > rotated 6x13 node > artwork overflowing at negative insets.
+   The SVG is 9.63877x17 (the 4px round-cap stroke bleeds outside the node), so
+   it must overflow at (-2,-2) rather than be squashed into 6x13.
+   rotate(90deg) = closed, rotate(-90deg) = open. */
+.chev {
+  width: 13px;
+  height: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.chev-node {
+  width: 6px;
+  height: 13px;
+  position: relative;
+  flex: none;
+  transform: rotate(90deg);
+  transition: transform var(--motion);
+}
+.step[data-open="true"] .chev-node {
+  transform: rotate(-90deg);
+}
+.chev-node img {
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  width: 9.63877px;
+  height: 17px;
+  max-width: none;
+}
+
+/* Accordion body — 0.3s ease-out, matching SMART_ANIMATE in the Figma reactions */
+.step-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--motion);
+}
+.step[data-open="true"] .step-panel {
+  grid-template-rows: 1fr;
+}
+/* card is `flex-col gap-10 px-16 pb-21`; the header supplies pt-10 + pb-14 */
+.step-panel-inner {
+  overflow: hidden;
+  min-height: 0;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.step[data-open="true"] .step-panel-inner {
+  padding-top: 10px;
+  padding-bottom: 21px;
+}
+
+/* --- swatches: "Color options" set 497:10805 -------------------------------
+   state=Default 497:10804 | state=hover 704:19286 | state=active 497:10803
+   hover  = ON_HOVER -> SMART_ANIMATE / EASE_OUT / 0.3s
+   active = ON_CLICK -> transition: null  ->  instant, no animation          */
+.swatch-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px 16px;
+}
+.swatch {
+  width: 92px;
+  height: 92px;
+  background: #fff;
+  border-radius: 12.064px;
+  border: 0.94px solid var(--outline);
+  padding: 4.825px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    border-width var(--motion),
+    border-color var(--motion),
+    padding var(--motion);
+}
+.swatch img {
+  width: 80.469px;
+  height: 80.469px;
+  object-fit: cover;
+  flex-shrink: 0;
+  transition:
+    width var(--motion),
+    height var(--motion);
+}
+/* hover-in eases in; hover-out keeps the file's EASE_OUT, since the timing
+   function on the :hover rule drives the enter and the base rule the exit */
+.swatch:hover {
+  border: 2px solid var(--cyan);
+  padding: 6.825px 2px;
+  transition-timing-function: ease-in;
+}
+.swatch.selected,
+.swatch.selected:hover {
+  border: 3.619px solid var(--cyan);
+  padding: 4.825px 0;
+  transition: none;
+}
+.swatch.selected img {
+  width: 82.349px;
+  height: 82.349px;
+  transition: none;
+}
+
+/* --- checkbox: set 527:12118 -----------------------------------------------
+   default 527:12116 = 21x21, 1px black border, radius 3
+   Active  527:12115 = 21x21, no border, full-bleed exported SVG
+   ON_CLICK -> transition: null -> instant                                    */
+.multi-select {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+}
+.checkbox {
+  width: 21px;
+  height: 21px;
+  flex-shrink: 0;
+  position: relative;
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 1px #000;
+}
+.checkbox img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+.checkbox.checked {
+  box-shadow: none;
+}
+.checkbox.checked img {
+  opacity: 1;
+}
+/* 110px box, but the inner container is flex-shrink:0 in Figma, so the label
+   runs on one line and overflows rather than wrapping */
+.multi-label {
+  cursor: pointer; /* toggles its checkbox (script.js) */
+  user-select: none;
+  width: 110px;
+  white-space: nowrap;
+  font-weight: 700;
+  font-size: 14px;
+  color: #000;
+}
+
+/* --- option rows (position / printing / quantity) --- */
+.option-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.option-list--printing {
+  gap: 16px;
+}
+/* "Printing in" group 617:9871 — heading + options, gap 15; options frame gap 16 */
+.printing-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.printing-q {
+  font-weight: 700;
+  font-size: 15px;
+  color: #000;
+}
+/* recommended group is gap 4 here (the position rows use 9) */
+.option-list--printing .recommended {
+  gap: 4px;
+}
+/* "I'll do this later" has no right-hand side, so it just left-aligns */
+.option-list--printing .opt-row--plain {
+  justify-content: flex-start;
+}
+
+/* Review feedback: rows at least 40px tall so they're easy to hit (Figma
+   draws them 32px). Content stays vertically centred in every state. */
+.opt-row,
+.qty-row {
+  width: 100%;
+  height: 40px;
+  background: #fff;
+  position: relative;
+  border: 0.776px solid var(--outline);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0.776px 15.776px;
+  transition:
+    border-color var(--motion),
+    border-width var(--motion),
+    background-color var(--motion),
+    padding var(--motion);
+}
+.option-list--printing .opt-row {
+  padding: 0.776px 21.776px;
+}
+.qty-row {
+  padding: 0.776px 10.776px;
+}
+
+/* --- Print position options, set 527:11823 --------------------------------
+   Default      bg #fff      border 0.776 #909090   px 15.776 / py 5.776
+   hover        bg #ebfaff   border 1     #00aed8   px 16     / py 6
+   Active       bg #fff      border 3.29  #00aed8   px 15     / py 5   + bold label
+   Row stays 683x32 in every state (border-box), so nothing reflows.        */
+.option-list--position .opt-row {
+  padding: 5.776px 15.776px;
+}
+.option-list--position .opt-row:hover {
+  background: #ebfaff;
+  border: 1px solid var(--cyan);
+  padding: 6px 16px;
+}
+.option-list--position .opt-row.selected,
+.option-list--position .opt-row.selected:hover {
+  background: #fff;
+  border: 3.29px solid var(--cyan);
+  padding: 5px 15px;
+}
+/* Active label goes Bold on every row, including the recommended one.
+   (The file leaves `rec - active` at Regular — deliberate deviation.) */
+.option-list--position .opt-row.selected .opt-name {
+  font-weight: 700;
+}
+
+.option-list--printing .opt-row:hover {
+  border-color: var(--cyan);
+  background: #ebfaff;
+}
+.option-list--printing .opt-row.selected {
+  border-color: var(--cyan);
+  border-width: 3.29px;
+  transition: none;
+}
+
+/* --- quantity options, set 529:12240 --------------------------------------
+   32px rows   rest   529:12239  bg #fff     border 0.776 #909090  px 10.776 / py 0.776
+               hover  704:19300  bg #ebfaff  border 2    #00aed8   px 12     / py 2
+               active 529:12238  bg #fff     border 3    #00aed8   px 10
+   40px custom rest   529:12445  grey outer + grey 139x32 input
+               hover  704:19311  grey outer unchanged; the INPUT turns
+                                 #ebfaff with a 2px #00aed8 border
+               active 529:12446  outer border 3 #00aed8; input back to grey   */
+.qty-row:not(.qty-row--custom):hover {
+  background: #ebfaff;
+  border: 2px solid var(--cyan);
+  padding: 2px 12px;
+}
+.qty-row:not(.qty-row--custom).selected,
+.qty-row:not(.qty-row--custom).selected:hover {
+  background: #fff;
+  border: 3px solid var(--cyan);
+  padding: 0 10px;
+  transition: none;
+}
+/* tiers under the selected print option's minimum order quantity
+   (script.js applyQtyMinimum): faded and not selectable, no hover */
+.qty-row.is-below-min {
+  opacity: 0.4;
+  pointer-events: none;
+}
+/* ON_CLICK -> CHANGE_TO Variant4, Animation: Instant -> no transition */
+.qty-row--custom.selected {
+  border: 3px solid var(--cyan);
+  padding: 0 10px;
+  transition: none;
+}
+
+.opt-name {
+  font-size: 14px;
+  color: #000;
+  white-space: nowrap;
+}
+.opt-name--16 {
+  font-size: 16px;
+}
+/* minimum order quantity note after a print option's name (step 3), only on
+   options that have one; stays regular weight when the row is selected */
+.opt-moq {
+  margin-left: 8px;
+  font-weight: 400;
+  font-size: 12px;
+  color: var(--grey-text);
+}
+.opt-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* "Recommended option": 405.219px group, gap 9, right-aligned */
+.opt-rec-group {
+  flex: 0 1 405.219px;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 9px;
+}
+.recommended {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--cyan);
+  line-height: 1;
+  white-space: nowrap;
+}
+.rec-icon {
+  width: 15.25px;
+  height: 15.25px;
+  border: 1.386px solid var(--cyan);
+  border-radius: 20.333px;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: border-color var(--motion);
+}
+.rec-icon img {
+  position: absolute;
+  transition: opacity var(--motion);
+}
+.rec-a,
+.rec-a-alt,
+.rec-a-white {
+  inset: 13.63% 15.26% 21.79% 25.05%;
+}
+.rec-b,
+.rec-b-alt,
+.rec-b-white {
+  inset: 50.79% 59.37% 13.67% 13.63%;
+}
+.rec-a-alt,
+.rec-b-alt {
+  opacity: 0;
+}
+/* white artwork for the mobile "Recommended option" band */
+.rec-icon .rec-a-white,
+.rec-icon .rec-b-white {
+  display: none;
+}
+.rec-text {
+  transition: color var(--motion);
+}
+
+/* while the preview overlay is open the rec accent shifts to #099bd3 */
+.opt-row:has(.view-link:hover) .rec-icon {
+  border-color: #099bd3;
+}
+.opt-row:has(.view-link:hover) .rec-text {
+  color: #099bd3;
+}
+.opt-row:has(.view-link:hover) .rec-a,
+.opt-row:has(.view-link:hover) .rec-b {
+  opacity: 0;
+}
+.opt-row:has(.view-link:hover) .rec-a-alt,
+.opt-row:has(.view-link:hover) .rec-b-alt {
+  opacity: 1;
+}
+
+.view-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 20.448px;
+  font-size: 14px;
+  text-decoration: underline;
+  flex-shrink: 0;
+}
+/* The frame is transform-scaled to fit the viewport, so this 1px rule paints
+   sub-pixel (~0.22px at the default fit). A scaled-down <img> at that width can
+   be dropped by the rasteriser outright, and each row state uses a different
+   padding (15.776 rest / 16 hover / 15 active), which lands the line on a
+   different sub-pixel offset per state — so it would survive in one state and
+   vanish in the next. Painting the same #D4D4D4 as a background means the box
+   is always filled (anti-aliased when scaled) instead of skipped, so the
+   divider is present in every state at every zoom. */
+.view-divider {
+  width: 1px;
+  height: 20.448px;
+  background: #d4d4d4;
+  flex-shrink: 0;
+}
+
+/* Print position overlay (687:12839) — opens on hovering "view".
+   Sits to the right of the configurator rather than over it: the row ends
+   15px inside the configurator, so left: 100% + 15 + 16 leaves a 16px gap.
+   Only 264px of the 1920 frame lies right of the configurator, so the card
+   is narrowed to 232px to stay inside it. Vertically centred on the row. */
+.pos-overlay {
+  position: absolute;
+  left: calc(100% + 31px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 232px;
+  background: #fff;
+  border: 1.16px solid #737373;
+  border-radius: 20.882px;
+  box-shadow: 0 4.64px 9.513px rgba(0, 0, 0, 0.25);
+  padding: 15.082px 17.402px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5;
+  transition: opacity var(--motion);
+}
+/* not enough room right of the configurator (fitFrame() sets the class):
+   the card sits above the hovered row instead, its right edge in line with
+   the row's "view" link, 12px clear of the row (user). A row too close to
+   the top of the screen gets it below instead (.pos-preview-below, set on
+   hover by script.js). */
+.frame.pos-preview-above .pos-overlay {
+  left: auto;
+  right: 0;
+  top: auto;
+  bottom: calc(100% + 12px);
+  transform: none;
+  z-index: 20; /* over the rows and steps it overlaps */
+}
+.frame.pos-preview-above .opt-row.pos-preview-below .pos-overlay {
+  top: calc(100% + 12px);
+  bottom: auto;
+}
+/* The preview is the product photo (in the chosen colour) with the print
+   area drawn on it — the same bottle as the page, not a stand-in. Areas are
+   measured on the 500px photo: the bottle is 489px for 270mm (≈1.81px/mm),
+   so 30x70mm ≈ 55x127px on the body. */
+.pos-shot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  container-type: inline-size;
+}
+.pos-shot-img {
+  display: block;
+  width: 100%;
+  height: auto; /* the height attribute would pin it */
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+.pos-area {
+  position: absolute;
+  /* the photo is square and as wide as .pos-shot, so 1cqi = 1% of it */
+  left: calc(var(--x) * 1cqi);
+  top: calc(var(--y) * 1cqi);
+  width: calc(var(--w) * 1cqi);
+  height: calc(var(--h) * 1cqi);
+  border: 1.5px dashed #e3262b;
+  border-radius: 3px;
+  background: rgba(227, 38, 43, 0.06);
+}
+.pos-shot[data-pos="Front"],
+.pos-shot[data-pos="Back"] {
+  --x: 44.5;
+  --y: 53.2;
+  --w: 11;
+  --h: 25.4;
+}
+.pos-shot[data-pos="Lid"] {
+  --x: 44.6;
+  --y: 3.6;
+  --w: 10.8;
+  --h: 9;
+}
+.pos-shot[data-pos="Full wrap"] {
+  --x: 37.2;
+  --y: 48;
+  --w: 25.6;
+  --h: 38;
+}
+.pos-label {
+  font-weight: 700;
+  font-size: max(12px, 5.2cqi);
+  color: #161616;
+  text-align: center;
+}
+/* the tap-to-close X only exists in the mobile / tablet overlay */
+.pos-overlay-close {
+  display: none;
+}
+.opt-row:has(.view-link:hover) .pos-overlay {
+  opacity: 1;
+}
+/* the accordion clips its body while animating; let the overlay escape once open */
+.step-panel-inner:has(.view-link:hover) {
+  overflow: visible;
+}
+
+/* Print position lightbox — "view" clicked on desktop. Full-screen
+   translucent black backdrop, preview card centred on top. */
+.pos-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 250; /* over the fixed header, nav drawer and phone buy bar */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: opacity var(--motion);
+}
+.pos-lightbox[hidden] {
+  display: none;
+}
+.pos-lightbox.open {
+  opacity: 1;
+}
+.pos-lightbox-card {
+  position: relative;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  /* sides 64px: the X (29px wide, 20px in from the edge) needs 49px + 15px
+     air, so the photo never runs under it (user) */
+  padding: 32px 64px 24px;
+  background: #fff;
+  border-radius: 20.882px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  max-height: 100%;
+}
+.pos-lightbox-shot {
+  /* the photo is 500px: shown at most at its own size so it stays sharp */
+  /* viewport units: a % would resolve against the shrink-to-fit card (0);
+     192 = the backdrop's 2 x 32px + the card's 2 x 64px */
+  width: min(62vh, 500px, 100vw - 192px);
+}
+.pos-lightbox-close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 29px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.pos-lightbox-close img {
+  display: block;
+}
+body.pos-lightbox-open {
+  overflow: hidden;
+}
+/* phones: the same preview, sized for the screen — 16px backdrop margin,
+   the card's top padding clears the X, the photo fills the card's width */
+@media (width < 768px) {
+  .pos-lightbox {
+    padding: 16px;
+  }
+  .pos-lightbox-card {
+    padding: 56px 20px 20px;
+  }
+  .pos-lightbox-shot {
+    width: min(500px, 100vw - 72px);
+  }
+}
+
+/* "Printing color ammount circles" set 617:9697 — two different shapes:
+
+   full color (617:9696)  98px wide, CSS left divider + 14px pad, one 18px
+                          multicolour ellipse PNG, auto height
+   1-4 colors             flat 98x18 artwork; the #D4D4D4 divider is baked
+                          into the SVG, so no CSS border or padding here     */
+.circles {
+  width: 98px;
+  border-left: 1px solid #d4d4d4;
+  padding-left: 14px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+.circles-art {
+  width: 98px;
+  height: 18px;
+  position: relative;
+  flex-shrink: 0;
+  display: block;
+}
+.circles-art img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+.ellipse {
+  width: 18px;
+  height: 18px;
+}
+
+/* --- quantity --- */
+.qty-left {
+  width: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+}
+.qty-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.qty-price {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 14px;
+}
+.save-badge {
+  background: var(--green-sale);
+  border-radius: 3.265px;
+  padding: 0.816px 4.898px;
+  font-weight: 600;
+  font-size: 11.428px;
+  color: #fff;
+  white-space: nowrap;
+}
+.qty-row--custom {
+  height: 40px;
+  cursor: default;
+}
+.qty-custom-label {
+  font-size: 14px;
+}
+.qty-custom-input {
+  width: 139px;
+  height: 32px;
+  border: 1px solid var(--outline);
+  border-radius: 7px;
+  text-align: center;
+  font-size: 14px;
+  font-family: inherit;
+  background: #fff;
+  transition:
+    background-color var(--motion),
+    border-color var(--motion),
+    border-width var(--motion);
+}
+/* Variant6: hovering the row highlights the input, not the row.
+   Suppressed once the row is active — Variant4 shows a grey input. */
+.qty-row--custom:not(.selected):hover .qty-custom-input,
+.qty-row--custom:not(.selected) .qty-custom-input:focus {
+  background: #ebfaff;
+  border: 2px solid var(--cyan);
+  outline: none;
+}
+.qty-row--custom.selected .qty-custom-input {
+  outline: none;
+}
+
+/* 1353:5937 — the minimum-order line under the custom-quantity row.
+   Nunito Italic Regular 12 on black, full width and centred under the
+   quantity list. */
+.qty-min-note {
+  width: 100%;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 12px;
+  color: #000;
+  text-align: center;
+}
+
+/* the print option's minimum order quantity, above the tier list */
+.qty-moq-note {
+  width: 100%;
+  margin: 0; /* the panel's own gap spaces it from the tiers */
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #ebfaff;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.qty-moq-note[hidden] {
+  display: none;
+}
+
+/* Error state — a custom quantity below the 25-piece minimum was committed.
+   Only the input goes red (a red border is the standard invalid-field cue and
+   inputs never get a "selected" outline); the row itself keeps its normal
+   border, since an outlined row reads as "chosen" in this configurator. The
+   note turns into a ⚠ message. Wins over hover/focus/selected. */
+.qty-row--custom.is-invalid .qty-custom-input,
+.qty-row--custom.is-invalid:hover .qty-custom-input,
+.qty-row--custom.is-invalid .qty-custom-input:focus {
+  background: #fdeced;
+  border: 2px solid var(--red-text);
+  color: var(--red-text);
+  outline: none;
+}
+.qty-min-note.is-error {
+  color: var(--red-text);
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Shared ⚠ icon for every error message (step headers, custom quantity
+   note, step 5 total, step 3 per-position line). Icon + wording carry the
+   meaning, so the error never relies on red alone. */
+.step-error::before,
+.qty-min-note.is-error::before,
+.per-color-hint.is-error::before,
+.field-error::before {
+  content: "";
+  display: inline-block;
+  width: 1.1em;
+  height: 1.1em;
+  margin-right: 0.35em;
+  vertical-align: -0.2em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23d0191c' d='M10.3 3.2a2 2 0 0 1 3.4 0l8.5 14.7A2 2 0 0 1 20.5 21h-17a2 2 0 0 1-1.7-3.1z'/%3E%3Cpath fill='%23fff' d='M11 8h2v6h-2zm0 8h2v2h-2z'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+/* step 3: the message line above an unfilled position's options */
+.field-error {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--red-text);
+  text-align: left;
+}
+
+/* --- Step 5 "Choose quantity per color", set 529:12566 --------------------
+   Open state 529:12580 > "input fields section" 687:15134.
+   Figma lays the fields out as a 682px row of two flex-1 cards with gap 10;
+   a grid with the same two tracks gives identical geometry while letting the
+   list run to as many colours as the shopper picked, instead of two.        */
+.per-color {
+  width: 100%;
+  max-width: 683px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+/* the mobile panel's heading (1460:7413); not part of the desktop design */
+.per-color-q {
+  display: none;
+}
+.per-color-grid {
+  width: 100%;
+  max-width: 682px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+/* input field 687:15148 */
+.per-color-field {
+  background: #f4f4f4;
+  border-radius: 10px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: clip;
+}
+.per-color-name {
+  flex: 0 1 170px;
+  min-width: 0;
+  font-weight: 700;
+  font-size: 14px;
+  color: #000;
+  text-align: left;
+  overflow-wrap: break-word;
+}
+.per-color-input {
+  width: 92px;
+  height: 36px;
+  background: #fff;
+  border: 1px solid #848484;
+  border-radius: 10px;
+  text-align: center;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 16px;
+  color: #000;
+  transition:
+    background-color var(--motion),
+    border-color var(--motion),
+    border-width var(--motion);
+}
+/* mirrors the custom-quantity input's focus treatment (Variant6) */
+.per-color-input:hover,
+.per-color-input:focus {
+  background: #ebfaff;
+  border: 2px solid var(--cyan);
+  outline: none;
+}
+/* 687:15186 — the running total. #0d61cf is the file's own literal here; it is
+   one step off --blue-value (#0e5cd0), which belongs to the header value slot. */
+.per-color-hint {
+  font-weight: 700;
+  font-size: 16px;
+  color: #000;
+  white-space: nowrap;
+}
+.per-color-hint b {
+  font-weight: 900;
+  color: #0d61cf;
+}
+
+/* Step error state (steps 3, 4, 5 — script.js validatePerPosition,
+   setCustomQtyError, validatePerColor). No outline on the card: an outlined
+   box means "selected" here, so errors use a red step number + ⚠ message
+   instead. Open or collapsed, the header swaps the chosen value for the
+   message, so the step is never flagged by the red number alone (colour-blind
+   users) even when the inline messages are scrolled out of view. */
+.step-error {
+  display: none;
+  margin-left: 20px;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--red-text);
+  white-space: nowrap;
+}
+.step.is-invalid .step-value,
+.step.is-invalid .step-price {
+  display: none;
+}
+.step.is-invalid .step-error {
+  display: inline;
+}
+.step.is-invalid .step-num {
+  background: var(--red-text);
+}
+/* step 5: only the empty input goes red, not its grey field card */
+.per-color-field.is-invalid .per-color-input,
+.per-color-field.is-invalid .per-color-input:hover,
+.per-color-field.is-invalid .per-color-input:focus {
+  background: #fff;
+  border: 2px solid var(--red-text);
+  outline: none;
+}
+.per-color-hint.is-error,
+.per-color-hint.is-error b {
+  color: var(--red-text);
+}
+
+/* --- Step 3 per-position mode, set 1884:9849 ------------------------------
+   With two or more print positions, step 3 turns into "Colours per print
+   position". Open 1884:9864: header pb-15, then one block per chosen
+   position — a grey "Back heading" card (1885:22185) followed by the step-3
+   option frame (1884:10961, gap 16) — every child spaced by the card's gap 10.
+   Chosen 1892:21553: "Back: Full colour   Front: 4 colours", gap 14.        */
+.step.is-per-position[data-open="true"] .step-header {
+  padding-bottom: 15px;
+}
+.step.is-per-position .printing-group,
+.step.is-per-position .multi-select {
+  display: none;
+}
+.per-position[hidden] {
+  display: none;
+}
+.per-position {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.per-position-heading {
+  background: #fafafa;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow: clip;
+}
+.per-position-title {
+  font-weight: 700;
+  font-size: 14px;
+  color: #161616;
+}
+.per-position-sub {
+  font-weight: 400;
+  font-size: 12px;
+  color: var(--grey-text);
+}
+/* error state: this position still has no colour option (validatePerPosition).
+   Heading box stays grey; only its title turns red, and a ⚠ .field-error line
+   is inserted between heading and options by script.js. */
+.per-position-heading.is-invalid .per-position-title {
+  color: var(--red-text);
+}
+/* step 3 (per position) and step 5 (per colour) recaps: one entry per span,
+   14px apart, no commas */
+.per-position-value + .per-position-value,
+.per-color-value + .per-color-value {
+  margin-left: 14px;
+}
+
+/* ===================== DELIVERY / PRICE / CART ===================== */
+.delivery-bar {
+  width: 100%;
+  max-width: 715px;
+  min-height: 43px; /* grows when the label wraps beside the one-line date */
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.delivery-left {
+  flex: 0 1 360px;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 16px;
+  color: #000;
+}
+.delivery-date {
+  font-weight: 700;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--badge);
+  /* the date always stays on one line (user); the label wraps instead */
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+/* desktop / tablet: label and date 14px (user) */
+@media (width >= 768px) {
+  .delivery-left,
+  .delivery-date {
+    font-size: 14px;
+  }
+}
+
+.price-block {
+  width: 100%;
+  max-width: 715px;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.price-label {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--ink);
+}
+.price-right {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 11px;
+}
+.price-row:nth-child(2) .price-right {
+  gap: 22px;
+}
+.discount-badge {
+  background: var(--red);
+  border-radius: 3px;
+  padding: 1px 5px;
+  font-weight: 700;
+  font-size: 11px;
+  color: #fff;
+}
+.price-old {
+  font-size: 14px;
+  color: var(--grey-text);
+  text-decoration: line-through;
+}
+.price-new {
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--ink);
+}
+.total-new {
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--ink);
+}
+.price-row--vat {
+  font-size: 14.37px;
+  color: var(--grey-text);
+  align-items: flex-start;
+}
+.price-row--vat .underline {
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.add-to-cart {
+  width: 100%;
+  max-width: 715px;
+  height: 53px;
+  background: var(--green);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 15px 14px 15px 6px;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 20px;
+  color: #fff;
+  transition:
+    filter var(--motion),
+    box-shadow var(--motion);
+}
+.add-to-cart:hover {
+  filter: brightness(0.93);
+  box-shadow: 0 4px 14px rgba(40, 167, 69, 0.35);
+}
+.cart-icons {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+}
+.cart-icon {
+  width: 34px;
+  height: 28px;
+}
+.cart-plus {
+  width: 10px;
+  height: 10px;
+}
+
+/* ===================== KIYOH + REVIEWS ===================== */
+.kiyoh-rating {
+  display: flex;
+  align-items: center;
+  font-size: 17.202px;
+}
+.stars-green {
+  color: var(--green-star);
+  font-size: 18.431px;
+  letter-spacing: 1.2287px;
+}
+.star-half {
+  color: var(--grey-text);
+}
+.kiyoh-label {
+  margin-left: 6px;
+}
+.kiyoh-label b {
+  font-weight: 700;
+  color: var(--ink);
+}
+.kiyoh-label .grey {
+  color: var(--grey-text);
+}
+
+.review-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 4px;
+}
+.review-card {
+  background: #f7f9fa;
+  border-radius: 6px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 6.9px;
+}
+.review-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+}
+.review-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ink);
+  min-width: 58px;
+}
+.review-stars {
+  font-size: 14px;
+  color: var(--green-star);
+}
+.review-stars .dim {
+  color: #cfd6db;
+}
+.review-body {
+  font-style: italic;
+  font-size: 14px;
+  line-height: 22.4px;
+  color: #5a6b7a;
+}
+.review-link {
+  font-size: 13px;
+  color: var(--grey-text);
+  cursor: pointer;
+}
+
+/* ===================== COMPARABLE PRODUCTS ===================== */
+/* Container 531:12868 (px-82) > 531:13024 (pt-50, gap-20): the section is
+   1426 wide inside the 1590 column, not full width. */
+.comparable {
+  width: 100%;
+  padding: 50px 82px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.comparable h2 {
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 30px;
+  color: var(--ink);
+  text-align: center;
+}
+.comparable-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+}
+/* Rectangle 531:13035 — white fade over the cut-off card. Figma pins it to the
+   track (right -8, bottom 0.8); it lives on the row instead so it stays put
+   while the track scrolls underneath. Track right edge = row right - arrow 14
+   - gap 14, so right -8 on the track is right 20 here. */
+.comparable-row::after {
+  content: "";
+  position: absolute;
+  right: 20px;
+  bottom: 0.8px;
+  width: 249px;
+  height: 451px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), #fff 80.052%);
+  pointer-events: none;
+  transition: opacity var(--motion);
+}
+/* scrolled to the last card: nothing is cut off any more */
+.comparable-row.at-end::after {
+  opacity: 0;
+}
+.card-track {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  position: relative;
+  scroll-behavior: smooth;
+  /* Figma shows no scrollbar (and it added ~15px under the cards); the
+     arrows are the affordance instead */
+  scrollbar-width: none;
+  /* every swipe, flick and key press comes to rest on a tile edge */
+  scroll-snap-type: x mandatory;
+  /* a sideways swipe past either end must not trigger browser back/forward */
+  overscroll-behavior-x: contain;
+}
+.card-track::-webkit-scrollbar {
+  display: none;
+}
+/* each tile sits in a slide wrapper so the slider can snap to and label it
+   without touching the tile itself */
+.card-track > .slide {
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+.card-track:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 4px;
+}
+/* mouse drag (desktop only; touch and trackpads scroll natively) */
+.card-track.is-draggable {
+  cursor: grab;
+}
+.card-track.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+  scroll-behavior: auto;
+}
+/* snapping is paused while dragging and while the release glides to a tile,
+   otherwise it would yank the track to the nearest edge mid-gesture */
+.card-track.is-dragging,
+.card-track.is-settling {
+  scroll-snap-type: none;
+}
+
+.card-arrow {
+  width: 14px;
+  height: 52px;
+  flex-shrink: 0;
+  display: block;
+  position: relative;
+  border-radius: 4px;
+  transition:
+    opacity var(--motion),
+    visibility 0s;
+}
+.card-arrow img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: filter var(--motion);
+}
+.card-arrow:hover img {
+  filter: brightness(0.6);
+}
+.card-arrow:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 4px;
+}
+/* The drawn chevron is 14px wide; the hit area is widened to 44px outward,
+   away from the tiles, so it's easy to hit without covering a tile. */
+.card-arrow::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+.card-arrow--next::before {
+  left: -4px;
+  right: -26px;
+}
+.card-arrow--prev::before {
+  left: -26px;
+  right: -4px;
+}
+/* no control where there's nowhere to go; it fades out, then leaves the
+   tab order and hit-testing once the fade has finished */
+.card-arrow:disabled {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--motion),
+    visibility 0s 0.3s;
+}
+/* prev mirrors next into the left gutter: track left - gap 14 - arrow 14 */
+.card-arrow--prev {
+  position: absolute;
+  left: -28px;
+  top: 50%;
+  margin-top: -26px;
+}
+.card-arrow--prev img {
+  transform: scaleX(-1);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-track {
+    scroll-behavior: auto;
+  }
+}
+
+.pcard {
+  width: 270px; /* user (design: 340) */
+  height: 451.404px;
+  flex-shrink: 0;
+  position: relative;
+  background: #fff;
+  border: 1.137px solid #e8edf1;
+  border-radius: 6.823px;
+  transition:
+    box-shadow var(--motion),
+    transform var(--motion);
+}
+.pcard:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+.pcard-img {
+  position: absolute;
+  left: 15.92px;
+  right: 16.3px;
+  top: 15.92px;
+  height: 172.843px;
+  background: #f0f2f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c2ccd3;
+  font-size: 12.508px;
+}
+/* four 11.371px #8a98a6 squares down the image's right edge (228:4853…4859):
+   Containers at top 6.51 + pt 1.137, stepping 19.33 */
+.pcard-thumbs {
+  position: absolute;
+  right: 8.16px;
+  top: 7.647px;
+  display: flex;
+  flex-direction: column;
+  gap: 7.959px;
+}
+.pcard-thumbs i {
+  display: block;
+  width: 11.371px;
+  height: 11.371px;
+  background: #8a98a6;
+}
+.pcard-pill {
+  position: absolute;
+  left: 7.96px;
+  top: 7.96px;
+  background: #fff;
+  border-radius: 4px;
+  padding: 3.411px 10.234px;
+  font-weight: 600;
+  font-size: 12.51px;
+  color: #000;
+}
+.pcard-title {
+  position: absolute;
+  left: 15.92px;
+  right: 16.3px;
+  top: 202.41px;
+  font-weight: 700;
+  font-size: 14.78px;
+  line-height: 20.696px;
+  color: var(--ink);
+  /* the 270px card fits two lines above the meta row; longer names end in … */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+.pcard-meta {
+  position: absolute;
+  left: 15.92px;
+  right: 16.3px;
+  top: 254.45px;
+  font-size: 13.65px;
+  line-height: 25.926px;
+  color: var(--ink);
+}
+.pcard-price {
+  position: absolute;
+  left: 15.92px;
+  right: 16.3px;
+  top: 316.07px;
+  font-weight: 800;
+  font-size: 17.06px;
+  color: var(--ink);
+}
+.pcard-allin {
+  position: absolute;
+  left: 15.92px;
+  right: 16.3px;
+  top: 338.82px;
+  font-size: 12.51px;
+  color: var(--grey-text);
+}
+.pcard-btn {
+  position: absolute;
+  left: 15.92px;
+  right: 16.3px;
+  top: 367.25px;
+  background: #064453;
+  border-radius: 5.686px;
+  padding: 11.371px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+  font-size: 15.124px;
+  color: #fff;
+  transition: filter var(--motion);
+}
+.pcard-btn:hover {
+  filter: brightness(1.25);
+}
+.pcard-delivery {
+  position: absolute;
+  left: 15.92px;
+  right: 16.3px;
+  top: 416.14px;
+  font-size: 12.51px;
+  color: var(--grey-text);
+}
+
+/* ===================== FOOTER =====================
+   footer 687:15227 — Main Footer Content 1920x474 on cyan, Bottom Brand Bar
+   1920x50 on white. Line-heights are the text boxes Figma reports (headings
+   25, links 20, sub-heading 22, 11px labels 15) so every row lands on the
+   same y as the file rather than on the browser's "normal". */
+.footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* Full-bleed bands. The frame now spans the viewport (fluid desktop), so
+   --bleed is unset (0) and these layers simply match their band; kept so a
+   band can still be pushed past its box if the frame is ever narrowed. */
+.footer-main,
+.brand-bar {
+  position: relative;
+}
+.footer-main::before,
+.brand-bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(-1 * var(--bleed, 0px));
+  right: calc(-1 * var(--bleed, 0px));
+  background: inherit;
+  box-shadow: inherit;
+  z-index: -1;
+}
+.footer-main {
+  width: 100%;
+  background: var(--cyan);
+  padding: 64px 80px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.footer-cols {
+  display: flex;
+  flex-wrap: wrap; /* narrower desktops: columns wrap instead of overflowing */
+  align-items: flex-start;
+  gap: 55px;
+}
+.footer-col {
+  width: 180px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.footer-col--general {
+  gap: 40px;
+}
+.footer-col--gifts {
+  width: 200px;
+}
+.footer-col--actions {
+  width: 320px;
+  gap: 32px;
+}
+.footer-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+/* groups nested in a column span it; a column that is itself a group keeps
+   its own fixed width above */
+.footer-col > .footer-group {
+  width: 100%;
+}
+.footer h3,
+.footer .footer-heading {
+  width: 100%;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 25px;
+  color: #fff;
+}
+.footer-col a {
+  width: 100%;
+  font-size: 14px;
+  line-height: 20px;
+  color: rgba(255, 255, 255, 0.88);
+  cursor: pointer;
+  text-decoration: none;
+}
+.footer-col a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+.footer-col p {
+  font-size: 14px;
+  line-height: 21px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Active In 687:15239 */
+.active-in h4,
+.active-in .footer-heading--sub {
+  width: 100%;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  color: #fff;
+}
+.flags,
+.flag-row {
+  display: flex;
+  gap: 8px;
+}
+.flags {
+  flex-direction: column;
+}
+/* 24x16, r2, clipped. Figma draws a frame's stroke above its children, so the
+   1px white/20% border is an overlay rather than a CSS border (which would
+   also shrink the stripes' box). Stripes are 5.3 tall or 8 wide, as in the file. */
+.flag {
+  width: 24px;
+  height: 16px;
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+.flag::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+.flag-nl {
+  background: linear-gradient(
+    #ae1c28 0 5.3px,
+    #fff 5.3px 10.6px,
+    #21468b 10.6px 15.9px,
+    transparent 15.9px
+  );
+}
+.flag-de {
+  background: linear-gradient(
+    #000 0 5.3px,
+    #f00 5.3px 10.6px,
+    #fc0 10.6px 15.9px,
+    transparent 15.9px
+  );
+}
+.flag-es {
+  background: linear-gradient(
+    #aa151b 0 5.3px,
+    #f1d511 5.3px 10.6px,
+    #aa151b 10.6px 15.9px,
+    transparent 15.9px
+  );
+}
+.flag-fr {
+  background: linear-gradient(
+    90deg,
+    #002395 0 8px,
+    #fff 8px 16px,
+    #ed2939 16px
+  );
+}
+.flag-it {
+  background: linear-gradient(
+    90deg,
+    #009246 0 8px,
+    #fff 8px 16px,
+    #f1d80f 16px
+  );
+}
+/* EU: 8px star centred (x 8, y 4) */
+.flag-eu {
+  background: #039;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flag-eu img {
+  display: block;
+  width: 8px;
+  height: 8px;
+}
+/* UK: one 24px line rotated 30deg inside a 20.785x12 box at the top-left —
+   a 2px white stroke with the 1px red one on top (687:15270/15271) */
+.flag-uk {
+  background: #00247d;
+}
+.uk-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20.785px;
+  height: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.uk-line > span {
+  position: relative;
+  flex: none;
+  width: 24px;
+  height: 0;
+  transform: rotate(30deg);
+}
+.uk-line img {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  width: 100%;
+}
+.uk-line--white img {
+  top: -2px;
+  height: 2px;
+}
+.uk-line--red img {
+  top: -1px;
+  height: 1px;
+}
+
+/* Contact 687:15302 (99x39) / Subscribe 687:15312 (96x41), #86c12b, r4 */
+.footer-btn {
+  flex-shrink: 0;
+  background: #86c12b;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 19px;
+  color: #fff;
+  white-space: nowrap;
+  transition: filter var(--motion);
+}
+.footer-btn:hover {
+  filter: brightness(0.92);
+}
+.footer-btn--contact {
+  padding: 10px 24px;
+}
+.footer-btn--subscribe {
+  padding: 11px 16px;
+}
+
+/* Newsletter Form 687:15307 — input flex-1 (216) + gap 8 + button 96 */
+.newsletter {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.email-input {
+  flex: 1;
+  min-width: 0;
+  background: #fff;
+  /* Figma's stroke doesn't add to the 39px box, so it is drawn inset */
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  line-height: 19px;
+  color: #888;
+}
+.asterisk {
+  width: 14px;
+  height: 14px;
+}
+
+/* Social Links 687:15314 — pt 8, gap 12, 32px tiles with a 1.5px white/80% outline */
+.socials {
+  display: flex;
+  gap: 12px;
+  padding-top: 8px;
+}
+.social {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--motion);
+}
+.social:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+.social img {
+  width: 18px;
+  height: 18px;
+}
+
+/* Bottom Brand Bar 687:15324 — 1920x50, top rule #e3e8ec kept inside the 50 */
+.brand-bar {
+  width: 100%;
+  height: 50px;
+  background: #fff;
+  box-shadow: inset 0 1px 0 #e3e8ec;
+  /* Figma's 313px sides leave a 1294px content row at 1920; narrower
+     desktops keep that row centred with at least 10px to the edges */
+  padding: 16px max(10px, (100% - 1294px) / 2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.payments {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+  font-size: 11px;
+  line-height: 15px;
+  white-space: nowrap;
+}
+.payments i {
+  width: 1px;
+  height: 14px;
+  background: #ccc;
+}
+.pay-sepa {
+  color: #1a2e40;
+}
+.pay-paypal {
+  color: #003087;
+}
+.pay-mastercard {
+  color: #eb001b;
+}
+.pay-visa {
+  color: #1a19f4;
+}
+.pay-amex,
+.pay-belfius {
+  color: #016fd0;
+}
+.pay-trustly {
+  color: #0599bf;
+}
+
+/* Trustpilot Widget 687:15339 — five 18px #00b67a tiles, 11px star, gap 3 */
+.trustpilot {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.tp-stars {
+  display: flex;
+  gap: 3px;
+}
+.tp-star {
+  width: 18px;
+  height: 18px;
+  border-radius: 2px;
+  background: #00b67a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tp-star img {
+  display: block;
+  width: 11px;
+  height: 11px;
+}
+.tp-text {
+  font-size: 13px;
+  line-height: 18px;
+  color: #1f2937;
+  white-space: nowrap;
+}
+.tp-text b {
+  font-weight: 700;
+}
+
+/* ===================== REQUEST FLOW OVERLAY (screen 2) ===================== */
+.request-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(44, 62, 80, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  /* closed = really gone (visibility hidden after the fade): an invisible
+     full-screen fixed layer above the phone buy bar stops iOS Safari from
+     colouring the area behind its bottom toolbar from the bar */
+  visibility: hidden;
+  transition:
+    opacity var(--motion),
+    visibility 0s linear 0.3s;
+  z-index: 50;
+}
+.request-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  transition:
+    opacity var(--motion),
+    visibility 0s linear 0s;
+}
+.request-modal {
+  width: 560px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px;
+  position: relative;
+  transform: translateY(12px);
+  transition: transform var(--motion);
+  max-height: 88vh;
+  overflow-y: auto;
+}
+.request-overlay.open .request-modal {
+  transform: translateY(0);
+}
+.request-close {
+  position: absolute;
+  right: 20px;
+  top: 16px;
+  font-size: 20px;
+  color: var(--grey-text);
+}
+.request-modal h2,
+.request-modal .request-title {
+  font-weight: 800;
+  font-size: 26px;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.request-sub {
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--grey-text);
+  margin-bottom: 20px;
+}
+.request-summary {
+  background: #f4f4f4;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.rs-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+.rs-line span:first-child {
+  color: var(--grey-text);
+}
+.rs-line span:last-child {
+  font-weight: 700;
+  color: var(--ink);
+}
+.request-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.rq-field label {
+  display: block;
+  font-weight: 700;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+.rq-input {
+  height: 40px;
+  border: 1px solid var(--grey-line);
+  border-radius: 6px;
+  background: #fff;
+}
+.request-submit {
+  width: 100%;
+  height: 53px;
+  background: var(--orange);
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 20px;
+  color: #fff;
+  transition: filter var(--motion);
+}
+.request-submit:hover {
+  filter: brightness(0.92);
+}
+
+/* SEO markup: real links/lists styled to match the original spans */
+.crumbs a {
+  color: inherit;
+  text-decoration: none;
+}
+.crumbs a:hover {
+  text-decoration: underline;
+}
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.crumbs li + li::before {
+  content: " / ";
+  white-space: pre;
+}
+.crumbs [aria-current] {
+  color: #5a6b7a;
+}
+/* the "…" that folds the trail exists for phones only */
+.crumbs-more {
+  display: none;
+}
+@media (width < 768px) {
+  .crumbs-more {
+    display: list-item;
+  }
+}
+
+/* live-page section headings rendered as tabs: keep the tab look */
+.tab-list-inner {
+  display: contents;
+}
+.tab-list a.tab {
+  text-decoration: none;
+}
+
+/* the tabs name each panel on screen (1701:21144 shows no heading under
+   them), so the panel headings stay in the markup for SEO / screen readers
+   but are visually hidden */
+.description .pdp-section-heading {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* section headings copied from the live PDP */
+.pdp-section-heading {
+  margin: 16px 0 4px;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 800;
+  color: var(--ink);
+  scroll-margin-top: 20px;
+}
+.pdp-section-heading--sub {
+  font-size: 15px;
+  margin-top: 8px;
+}
+.pdp-section-text {
+  font-size: 14px;
+  line-height: 23.1px;
+  color: var(--ink);
+  margin: 0;
+}
+.col2 > .pdp-section-heading {
+  margin: 0;
+}
+h3.pcard-title {
+  margin: 0;
+}
+
+/* LPPR-3153: card titles are real links, styled as before */
+.pcard-title a {
+  color: inherit;
+  text-decoration: none;
+}
+.pcard-title a:hover {
+  text-decoration: underline;
+}
+/* LPPR-3175: knowledge bank link beside the spec table */
+.kb-link {
+  margin-top: 14px;
+  padding: 12px 14px;
+  background: #f6f6f6;
+  border-radius: 10px;
+}
+.kb-link-title {
+  margin: 0 0 4px;
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--ink);
+}
+.kb-link a {
+  color: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* ============================================================
+   RESPONSIVE — tablet & mobile
+   Desktop (>= 768px, so tablets too) is fluid: the 1590px content column
+   narrows to keep a 10px gap either side, the two product columns shrink in
+   their 654 / 743 ratio, and fixed Figma widths inside them became
+   max-widths / flex-bases (review feedback: tablets get photo left,
+   configurator right). Below 768px the page reflows into the single-column
+   mobile design "mobile-pdp" 786:15285 (390px wide).
+   ============================================================ */
+
+/* mobile-only pieces stay out of the desktop layout */
+.m-buybar,
+.m-slide,
+.m-dots {
+  display: none;
+}
+.gallery-track {
+  display: contents;
+}
+
+@media (width < 768px) {
+  body {
+    /* the buy bar slides away once the footer comes up (script.js), so the
+       page needs no room for it at the end, only the home-indicator inset */
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .stage {
+    width: auto;
+  }
+  .frame {
+    width: 100%;
+    padding-top: 0;
+    align-items: stretch;
+  }
+
+  /* the navigation menu sits above; only the breadcrumb row is left here */
+  .breadcrumb-bar {
+    height: auto;
+    padding: 15px 16px 15px 7px; /* 15px top / bottom (user; was 5) */
+    font-weight: 400;
+    font-size: 12px;
+    color: #7a8a99;
+  }
+  .breadcrumb-bar .bar-inner {
+    max-width: none;
+    padding: 0;
+  }
+  .crumbs [aria-current] {
+    color: #5a6b7a;
+  }
+
+  /* ---------- one column: interleave col1 and col2 in the mobile order ---------- */
+  .container {
+    width: 100%;
+    gap: 0;
+    padding-bottom: 0;
+  }
+  .main-grid {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  .col1,
+  .col2 {
+    display: contents;
+  }
+  .image-slider {
+    order: 1;
+  }
+  .heading-title {
+    order: 2;
+  }
+  .configurator-bg {
+    order: 3;
+  }
+  .tab-list {
+    order: 4;
+  }
+  .description {
+    order: 5;
+  }
+  .col2 > .pdp-section-heading {
+    order: 6;
+  }
+  .kiyoh-rating {
+    order: 7;
+  }
+  .review-cards {
+    order: 8;
+  }
+  #review-dots {
+    order: 9;
+  }
+  /* the buy bar carries these CTAs below 768px */
+  .cta-top,
+  .add-to-cart,
+  .cta-bottom {
+    display: none;
+  }
+
+  /* ---------- image section (786:15988) ---------- */
+  .image-slider {
+    gap: 12px;
+    align-items: center;
+    margin: 5px 0 10px;
+  }
+  .thumbnails {
+    display: none;
+  }
+  .gallery-track {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    padding: 0 16px 0 5px;
+    scroll-padding-left: 5px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    position: relative;
+  }
+  .gallery-track::-webkit-scrollbar {
+    display: none;
+  }
+  .gallery-track > * {
+    flex: 0 0 347px;
+    width: 347px;
+    height: 347px;
+    scroll-snap-align: start;
+  }
+  .product-image-container {
+    aspect-ratio: auto;
+    background: #f0f2f4;
+    border: 1px solid #e3e8ec;
+  }
+  /* "Fast delivery" label: same as desktop (dark pill, SemiBold white) */
+  /* every slide in the mobile carousel gets the photo frame's light border */
+  .m-slide {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #e3e8ec;
+  }
+  .m-slide--photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  /* the expert / trusted banners as flat images, filling the slide */
+  .m-slide--banner img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* EN-UK Contact 786:16403 — fixed 347px artboard, Figma coordinates */
+  .expert-photo {
+    position: absolute;
+    left: -27.76px;
+    top: -13.88px;
+    width: 214.706px;
+    height: 214.706px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .expert-photo img {
+    position: absolute;
+    left: 8.05%;
+    top: -34.12%;
+    width: 161.41%;
+    height: 159.78%;
+    max-width: none;
+  }
+  .expert-photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      197.08deg,
+      rgba(0, 0, 0, 0) 60.99%,
+      #000 105.58%
+    );
+  }
+  .expert-chip {
+    position: absolute;
+    height: 40.365px;
+    padding: 6.307px 5.676px;
+    display: flex;
+    align-items: center;
+    gap: 6.307px;
+    background: #fff;
+    border-radius: 8.199px;
+    box-shadow: 0 1.735px 4.771px rgba(30, 127, 149, 0.3);
+    font-weight: 700;
+    font-size: 15.834px;
+    line-height: 1.063;
+    color: #026f97;
+    white-space: nowrap;
+  }
+  .expert-chip--products {
+    left: 156.15px;
+    top: 25.59px;
+  }
+  .expert-chip--designs {
+    left: 225.12px;
+    top: 84.58px;
+  }
+  .expert-chip--delivery {
+    left: 156.15px;
+    top: 143.57px;
+  }
+  .expert-chip--designs img {
+    width: 25.403px;
+    height: 22.119px;
+  }
+  .expert-chip--delivery img {
+    width: 36.03px;
+    height: 22.119px;
+  }
+  /* image 14 [Vectorized]: four vectors placed at the file's insets */
+  .chip-products-icon {
+    position: relative;
+    height: 100%;
+    aspect-ratio: 49.125 / 48;
+    overflow: hidden;
+  }
+  .chip-products-icon img {
+    position: absolute;
+    max-width: none;
+  }
+  .chip-products-icon img:nth-child(1) {
+    left: 52.23%;
+    top: 24.83%;
+    width: 47.48%;
+    height: 74.89%;
+  }
+  .chip-products-icon img:nth-child(2) {
+    left: 0.33%;
+    top: 24.82%;
+    width: 47.51%;
+    height: 75%;
+  }
+  .chip-products-icon img:nth-child(3) {
+    left: 31.82%;
+    top: 11.94%;
+    width: 64.06%;
+    height: 28.48%;
+  }
+  .chip-products-icon img:nth-child(4) {
+    left: 4.08%;
+    top: 0.17%;
+    width: 62.74%;
+    height: 27%;
+  }
+  .expert-title {
+    position: absolute;
+    left: 21.69px;
+    top: 212.54px;
+    width: 217.742px;
+    font-weight: 800;
+    font-style: italic;
+    font-size: 31.622px;
+    line-height: 1.063;
+    color: #026f97;
+  }
+  .expert-hours {
+    position: absolute;
+    left: 21.69px;
+    top: 282.8px;
+    font-size: 17.35px;
+    line-height: 1.063;
+    color: #026f97;
+    white-space: nowrap;
+  }
+  .expert-contacts {
+    position: absolute;
+    left: 21.25px;
+    top: 314.9px;
+    display: flex;
+    gap: 23.739px;
+    background: #fff;
+  }
+  .expert-contacts a {
+    width: 146.016px;
+    display: flex;
+    align-items: center;
+    gap: 4.573px;
+    font-weight: 700;
+    font-size: 12.874px;
+    line-height: 1.063;
+    color: #026f97;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .expert-contacts a:first-child img {
+    width: 16.357px;
+    height: 10.82px;
+  }
+  .expert-contacts a:last-child img {
+    width: 15.436px;
+    height: 14.864px;
+  }
+
+  /* EN-UK Chosen by our top clients 786:16439 */
+  .trusted-bg {
+    position: absolute;
+    left: -277.96px;
+    top: -268.07px;
+    width: 921.126px;
+    height: 883.558px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+  .trusted-bg-rot {
+    flex: none;
+    position: relative;
+    width: 640.2px;
+    height: 717.85px;
+    transform: rotate(65.01deg);
+  }
+  .trusted-bg-rot img {
+    position: absolute;
+    top: 0;
+    left: -3.5%;
+    width: 103.5%;
+    height: 100%;
+    max-width: none;
+  }
+  .trusted-title {
+    position: absolute;
+    left: 50%;
+    top: 50.75px;
+    width: 297.553px;
+    transform: translateX(-50%);
+    text-align: center;
+    font-weight: 700;
+    font-size: 27.326px;
+    line-height: 1.063;
+    color: #026f97;
+  }
+  .trusted-logos {
+    position: absolute;
+    left: calc(50% + 0.09px);
+    top: 141.4px;
+    width: 324.652px;
+    transform: translateX(-50%);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px 18.552px;
+  }
+  .brand {
+    width: 61.839px;
+    height: 39.577px;
+    padding: 6.184px 5.565px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 8.039px;
+    box-shadow: 0.47px 2.821px 5.078px 1.881px rgba(0, 0, 0, 0.15);
+  }
+  .brand-un,
+  .brand-atlassian,
+  .brand-siemens {
+    width: 100%;
+    height: auto;
+  }
+  .brand-ea {
+    width: 35.747px;
+    height: 17.373px;
+    object-fit: cover;
+  }
+  .brand-lidl {
+    width: 29.683px;
+    height: 29.683px;
+  }
+  .brand-crop {
+    display: block;
+    position: relative;
+    overflow: hidden;
+  }
+  .brand-crop img {
+    position: absolute;
+    max-width: none;
+  }
+  .brand-crop--hellofresh {
+    width: 100%;
+    aspect-ratio: 63.9625 / 20.825;
+  }
+  .brand-crop--hellofresh img {
+    left: -3.35%;
+    top: -41.24%;
+    width: 106.31%;
+    height: 183.67%;
+  }
+  .brand-crop--huawei {
+    width: 100%;
+    aspect-ratio: 63.889 / 19.2695;
+  }
+  .brand-crop--huawei img {
+    left: -2.41%;
+    top: -11.56%;
+    width: 106.43%;
+    height: 125.78%;
+  }
+  .brand-crop--jaguar {
+    width: 43.873px;
+    height: 24.374px;
+  }
+  .brand-crop--jaguar img {
+    left: -15.97%;
+    top: -68.75%;
+    width: 131.94%;
+    height: 237.5%;
+  }
+
+  /* Mobile Carrousel bar 786:15977 — live: one dot per slide. With more than
+     five slides only a window of five shows (script.js initDots): the active
+     pill moves right to the middle, then stays centred while the dots slide
+     past, and moves on to the end once the last dots are in view. The outer
+     dots of the window shrink while more wait beyond them; dots outside it
+     fade out. */
+  .m-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 11px;
+  }
+  .m-dots[hidden] {
+    display: none;
+  }
+  /* clips sideways only, so the dots' tall tap areas aren't cut off */
+  .m-dots-window {
+    overflow-x: clip;
+    overflow-y: visible;
+    /* the edge-fade mask below clips to this box: 6px of room above and
+       below (taken back by the negative margin, so the row stays 11px) keeps
+       the dots from being shaved at their top and bottom while they animate */
+    padding-block: 6px;
+    margin-block: -6px;
+    transition: width var(--motion);
+  }
+  /* windowed (more than five dots): a soft fade on a side only while dots
+     are hidden beyond it (script.js .more-left / .more-right), so they slide
+     in through it; at the first / last dot that side's fade goes. The fade
+     widths are animatable custom properties, so it eases in and out. */
+  .m-dots.is-windowed .m-dots-window {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 var(--dots-fade-l),
+      #000 calc(100% - var(--dots-fade-r)),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 var(--dots-fade-l),
+      #000 calc(100% - var(--dots-fade-r)),
+      transparent 100%
+    );
+    transition:
+      width var(--motion),
+      --dots-fade-l 0.4s ease,
+      --dots-fade-r 0.4s ease;
+  }
+  .m-dots.more-left .m-dots-window {
+    --dots-fade-l: 22px;
+  }
+  .m-dots.more-right .m-dots-window {
+    --dots-fade-r: 22px;
+  }
+  .m-dots-track {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  .m-dots button {
+    position: relative;
+    flex-shrink: 0;
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border-radius: 5.5px;
+    background: #949494;
+    transition:
+      width var(--motion),
+      height var(--motion),
+      background-color var(--motion),
+      opacity 0.4s ease,
+      transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  .m-dots button.active {
+    width: 23px;
+    height: 11px;
+    background: #0091b4;
+  }
+  .m-dots button.edge {
+    transform: scale(0.6);
+  }
+  .m-dots button.out {
+    opacity: 0;
+    pointer-events: none;
+  }
+  /* "3 / 11" at the right end of the gallery's dot row (user): the dots
+     show five at a time, the counter tells where you are of how many */
+  #gallery-dots {
+    position: relative;
+    width: 100%;
+  }
+  .m-count {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    /* plain grey text, no pill (user) */
+    color: var(--grey-text);
+    font-weight: 600;
+    font-size: 12px;
+    line-height: normal;
+    font-variant-numeric: tabular-nums;
+    transform: translateY(-50%);
+  }
+  /* review feedback: the dots are tiny; a transparent 20x44 hit area
+     around each (the 10px gap leaves room for it) */
+  .m-dots button::after {
+    content: "";
+    position: absolute;
+    inset: -17px -5px;
+  }
+
+  /* ---------- title (786:15305) ---------- */
+  /* the desktop flex-basis (575px) would become a height in this column */
+  .heading-title h1 {
+    flex: none;
+  }
+  .heading-title {
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 10px;
+    padding: 0 10px 5px;
+    border-bottom: 1px solid #eef1f3;
+  }
+  .heading-title h1 {
+    width: auto;
+    font-size: 18px;
+  }
+  .sku {
+    width: auto;
+    font-size: 12px;
+  }
+
+  /* ---------- configurator (786:16932) ---------- */
+  .configurator-bg {
+    margin-bottom: 10px;
+    padding: 20px 10px;
+    gap: 10px;
+    border-radius: 0;
+  }
+  .configurator {
+    width: 100%;
+    gap: 10px;
+  }
+  /* Configurator container 786:16931 — step header: number + 109px title on
+     the left, the chosen value in a 155px column that ends 10px before the
+     chevron. Step 4 splits that column: quantity left, unit price right. */
+  .step-header {
+    gap: 10px;
+  }
+  .step-label {
+    flex: 1;
+    min-width: 0;
+    display: grid;
+    /* the title column is Figma's 109px, widened to fit "Choose the colour"
+       so every step's value still starts on the same x */
+    grid-template-columns: 23px 118px minmax(0, 1fr);
+    column-gap: 10px;
+    align-items: center;
+  }
+  .step-title {
+    width: 118px;
+  }
+  /* "Colours per print position" is wider than the 118px column; wrap it
+     rather than run under the value / error beside it */
+  .step.is-per-position .step-title {
+    white-space: normal;
+  }
+  .step-value,
+  .step-price,
+  .step-error {
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: stretch;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+  }
+  .step-price {
+    width: auto;
+    /* same 10px gap to the chevron the desktop header uses */
+    padding-right: 10px;
+    text-align: right;
+  }
+  .step[data-open="true"] .step-header {
+    padding-bottom: 14px;
+  }
+  /* an open step shows only its title; the value returns when it folds */
+  .step[data-open="true"] .step-value,
+  .step[data-open="true"] .step-price {
+    opacity: 0;
+  }
+
+  .opt-row,
+  .qty-row {
+    height: auto;
+    min-height: 40px;
+  }
+  /* Print position options 786:17072 and printing option 797:6522: Default /
+     Active rows are 48px tall, the recommended versions 67px with the name
+     line centred below the band */
+  .option-list--position .opt-row:not(.opt-row--rec),
+  .option-list--printing .opt-row:not(.opt-row--rec) {
+    height: 48px;
+  }
+  .option-list .opt-row.opt-row--rec,
+  .option-list .opt-row.opt-row--rec:hover,
+  .option-list .opt-row.opt-row--rec.selected,
+  .option-list .opt-row.opt-row--rec.selected:hover {
+    height: 67px;
+    grid-template-rows: 25px 1fr;
+  }
+
+  /* "Printing in" 797:6743: heading and rows all 15px apart */
+  .option-list--printing {
+    gap: 15px;
+  }
+  .option-list--printing .opt-row:not(.opt-row--plain) .opt-name--16 {
+    font-size: 14px;
+  }
+  /* Default / Active rows of both lists. Figma's stroke sits inside the frame,
+     over its padding, so the content starts at the padding value measured from
+     the outer edge: Default px 15.776 (border 0.776), Active px 15 (border
+     3.29, label Bold). CSS padding = that minus the border. */
+  .option-list--position .opt-row:not(.opt-row--rec),
+  .option-list--printing .opt-row:not(.opt-row--rec):not(.opt-row--plain) {
+    padding: 5px 15px;
+  }
+  .option-list--position .opt-row:not(.opt-row--rec):hover {
+    padding: 5px 14.776px;
+  }
+  .option-list--position .opt-row.selected:not(.opt-row--rec),
+  .option-list--position .opt-row.selected:not(.opt-row--rec):hover,
+  .option-list--printing
+    .opt-row.selected:not(.opt-row--rec):not(.opt-row--plain) {
+    padding: 1.71px 11.71px;
+  }
+  .option-list--printing .opt-row.selected:not(.opt-row--rec) .opt-name {
+    font-weight: 700;
+  }
+  /* Quantity options 797:6935 in "Choose Quantity section" 786:16671: 48px
+     rows, 10px apart. Default border 0.776 #909090, px 10.776; active border 3
+     #00aed8, px 10 (Figma strokes sit inside the padding, so CSS padding is
+     that minus the border). Custom quantity: same row with the 139x32 field. */
+  .option-list .qty-row,
+  .option-list .qty-row--custom {
+    height: 48px;
+    padding: 0 10px;
+  }
+  .option-list .qty-row:not(.qty-row--custom):hover {
+    padding: 0 8.776px;
+  }
+  .option-list .qty-row.selected,
+  .option-list .qty-row.selected:hover {
+    padding: 0 7px;
+  }
+  .qty-min-note {
+    font-size: 14px;
+  }
+  /* "I'll do this later" (797:6710): 48px, px 21.776, 16px label */
+  .option-list--printing .opt-row--plain {
+    padding: 0 21px;
+  }
+  .option-list--printing .opt-row--plain.selected {
+    padding: 0 18.486px;
+  }
+
+  /* Print position overlay 786:17216 — opened by tapping "view" (script.js),
+     not by hover, and closed with its X, a tap elsewhere or Escape. 338.755 x
+     384, centred on screen above the nav and buy bar. */
+  .pos-overlay {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    right: auto;
+    bottom: auto;
+    width: 338.755px;
+    max-width: calc(100% - 32px);
+    padding: 15.082px 17.402px;
+    gap: 11.601px;
+    overflow: clip;
+    border-width: 1.16px;
+    transform: translate(-50%, -50%);
+    z-index: 55;
+    cursor: default;
+    /* closed: visibility hidden, not just opacity 0. A "visible" transparent
+       fixed layer stops iOS Safari from colouring the area behind its bottom
+       toolbar white from the buy bar (found by testing on an iPhone). The
+       visibility switch waits for the fade-out. */
+    visibility: hidden;
+    transition:
+      opacity var(--motion),
+      visibility 0s linear 0.3s;
+  }
+  /* image 415: full width at 262/305 (the height attribute would pin it) */
+  .option-list .opt-row:has(.view-link:hover) .pos-overlay {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .option-list .opt-row .pos-overlay.pos-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transition:
+      opacity var(--motion),
+      visibility 0s linear 0s;
+  }
+  /* dimmed backdrop behind the open overlay, over the nav and buy bar too,
+     as in the prototype; a tap on it closes the overlay (script.js) */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    pointer-events: none;
+    /* hidden when closed, for iOS Safari's toolbar colour (see .pos-overlay) */
+    visibility: hidden;
+    transition:
+      opacity var(--motion),
+      visibility 0s linear 0.3s;
+  }
+  body.pos-overlay-open::after {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transition:
+      opacity var(--motion),
+      visibility 0s linear 0s;
+  }
+  .pos-overlay-close {
+    display: block;
+    position: absolute;
+    right: 22.05px;
+    top: 22.04px;
+    width: 22.043px;
+    height: 21.462px;
+    cursor: pointer;
+  }
+  /* the X's round-cap strokes bleed outside the node (inset -16.22% -15.79%) */
+  .pos-overlay-close img {
+    position: absolute;
+    left: -3.48px;
+    top: -3.48px;
+    width: 29.004px;
+    height: 28.423px;
+    max-width: none;
+  }
+  .per-color,
+  .per-color-grid {
+    width: 100%;
+  }
+  /* Choose Deadline section 786:16765 ("Divide colours"): the open panel
+     starts with a 15px Bold question, left-aligned; the header value is the
+     counts only ("25, 25"); the open header has pb 15 */
+  .per-color-q {
+    display: block;
+    align-self: stretch;
+    font-weight: 700;
+    font-size: 15px;
+    color: #000;
+  }
+  .step--per-color[data-open="true"] .step-header {
+    padding-bottom: 15px;
+  }
+  .per-color-name {
+    width: auto;
+    flex: 1;
+    min-width: 0;
+  }
+  .per-color-hint {
+    white-space: normal;
+    text-align: center;
+  }
+  .delivery-bar {
+    width: 100%;
+  }
+  .delivery-left {
+    width: auto;
+  }
+
+  /* Price section 911:17078 — a 370px card with a green rule, the last item
+     in the grey block, which keeps its 20px bottom padding below it. */
+  .price-block {
+    position: relative;
+    z-index: 0;
+    width: auto;
+    margin: -10px -10px 0;
+    padding: 25px 29px 15px;
+    gap: 6px;
+  }
+  /* the card itself: white fill + green rule, drawn behind the rows; the
+     surround stays the configurator's grey */
+  .price-block::before {
+    content: "";
+    position: absolute;
+    inset: 10px 10px 0;
+    z-index: -1;
+    background: #fff;
+    border: 1px solid var(--green);
+    border-radius: 10px;
+    pointer-events: none;
+  }
+  .price-row:not(.price-row--vat) {
+    padding-bottom: 8px;
+    border-bottom: 1px solid #d4d4d4;
+  }
+  .discount-badge {
+    padding: 1.2px 6px;
+    border-radius: 3.6px;
+    font-size: 13.168px;
+  }
+  .price-old {
+    font-size: 16px;
+  }
+  .total-new {
+    font-size: 22px;
+  }
+
+  /* ---------- product info tabs (798:7434) ---------- */
+  .tab-list {
+    justify-content: flex-start;
+    gap: 22px;
+    padding: 16px 16px 0;
+    border-radius: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tab-list::-webkit-scrollbar {
+    display: none;
+  }
+  /* phones: the tabs slide sideways and come to rest on a tab */
+  .tab-list {
+    scroll-snap-type: x proximity;
+    scroll-padding-left: 16px;
+    overscroll-behavior-x: contain;
+  }
+  .tab {
+    scroll-snap-align: start;
+  }
+  .tab {
+    flex: none;
+    padding: 12px 7px;
+    line-height: normal;
+    font-weight: 600;
+    color: #5a6b7a;
+    white-space: nowrap;
+    border-bottom: 2px solid #e3e8ec;
+  }
+  .tab.active {
+    font-weight: 800;
+    color: var(--ink);
+    border-bottom: 3px solid #0091b4;
+  }
+  .description {
+    margin-bottom: 20px;
+    padding: 16px 16px 24px;
+    background: #f6f6f6;
+  }
+  /* the tabs already name each panel on screen */
+  .description .pdp-section-heading,
+  .col2 > .pdp-section-heading {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .tab-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .tab-panel[hidden] {
+    display: none;
+  }
+  .desc-body {
+    padding-top: 0;
+  }
+  .desc-body p,
+  .read-more,
+  .pdp-section-text {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .tags {
+    padding-top: 0;
+    font-size: 12px;
+    color: #5a6b7a;
+  }
+  .spec-table {
+    padding: 8px;
+    background: #fff;
+    border-radius: 6px;
+  }
+  .spec-row {
+    justify-content: space-between;
+    gap: 16px;
+    padding: 8px;
+    border-bottom: 1px solid var(--grey-line);
+  }
+  .spec-row:last-child {
+    border-bottom: 0;
+  }
+  .spec-key,
+  .spec-val {
+    width: auto;
+    padding: 0;
+    font-size: 13px;
+  }
+  .spec-key {
+    color: #5a6b7a;
+  }
+  .spec-val {
+    font-weight: 700;
+    color: var(--ink);
+    text-align: right;
+  }
+  .kb-link {
+    margin-top: 0;
+    background: #fff;
+  }
+  /* print option cards: same 206.667 cards, sliding sideways like the
+     other mobile tracks (edge to edge, 16px inset) */
+  .print-cards {
+    margin: 0 -16px;
+    padding: 0 16px 4px;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scroll-padding-left: 16px;
+    scrollbar-width: none;
+  }
+  .print-cards::-webkit-scrollbar {
+    display: none;
+  }
+  .print-card {
+    scroll-snap-align: start;
+  }
+
+  /* ---------- customer reviews (798:7461) ---------- */
+  .kiyoh-rating {
+    justify-content: center;
+    padding: 17px 16px 14px;
+    background: #f8f8f8;
+    font-size: 14px;
+  }
+  .stars-green {
+    font-size: 18px;
+    letter-spacing: 0;
+  }
+  .kiyoh-label {
+    margin-left: 6px;
+  }
+  .kiyoh-label .grey {
+    font-size: 12px;
+  }
+  .review-cards {
+    flex-direction: row;
+    gap: 10px;
+    padding: 4px 16px 8px 11px;
+    scroll-padding-left: 11px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    background: #f8f8f8;
+  }
+  .review-cards::-webkit-scrollbar {
+    display: none;
+  }
+  .review-card {
+    flex: 0 0 280px;
+    padding: 17px;
+    gap: 7.2px;
+    background: #fff;
+    border: 1px solid #e8edf1;
+    border-radius: 6px;
+    scroll-snap-align: start;
+  }
+  #review-dots {
+    height: auto;
+    padding: 6px 0 26px;
+    background: #f8f8f8;
+  }
+  #review-dots .m-dots-track {
+    gap: 9.6px;
+  }
+  #review-dots button,
+  #review-dots button.active {
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    background: #cfd6db;
+  }
+  #review-dots button.active {
+    background: #099bd3;
+  }
+
+  /* ---------- comparable products (798:7492) ---------- */
+  .comparable {
+    padding: 24px 0 24px 16px;
+    gap: 12px;
+  }
+  .comparable h2 {
+    padding-right: 16px;
+    font-size: 18px;
+    line-height: normal;
+  }
+  .comparable-row::after,
+  .card-arrow {
+    display: none;
+  }
+  .card-track {
+    gap: 12px;
+    padding-right: 16px;
+  }
+  .pcard {
+    width: 270px; /* user (was 307) */
+  }
+
+  /* ---------- footer (812:18977) ---------- */
+  .footer-main {
+    padding: 32px 16px;
+  }
+  .footer-cols {
+    width: 100%;
+    flex-direction: column;
+    gap: 17px;
+  }
+  .footer-col,
+  .footer-col--gifts,
+  .footer-col--actions {
+    width: 100%;
+  }
+  .footer-group {
+    gap: 0;
+  }
+  .footer .footer-heading {
+    margin-bottom: 12px;
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .footer-col a {
+    line-height: 29.4px;
+    color: #e6f4fb;
+  }
+  /* Service & contact leads, centred */
+  .footer-col--actions {
+    order: -1;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 23px;
+    text-align: center;
+  }
+  .footer-col--actions .footer-group {
+    align-items: center;
+    gap: 8px;
+  }
+  .footer-col--actions .footer-heading {
+    margin-bottom: 0;
+  }
+  .footer-col--actions p {
+    max-width: 308px;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #e6f4fb;
+  }
+  .footer-btn--contact {
+    padding: 12.117px 19.388px;
+    background: #8dc63f;
+    border-radius: 42.581px;
+    font-size: 16px;
+  }
+  .newsletter {
+    max-width: 340px;
+  }
+  .socials {
+    justify-content: center;
+    gap: 8px;
+  }
+  .footer-col .social {
+    flex: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+  }
+  /* "We are active in" sits above General */
+  .footer-col--general {
+    flex-direction: column-reverse;
+    gap: 17px;
+  }
+  .flags {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .flag-row {
+    display: contents;
+  }
+  .brand-bar {
+    height: auto;
+    padding: 16px;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .payments {
+    flex-wrap: wrap;
+    justify-content: center;
+    white-space: normal;
+  }
+
+  /* ---------- buy bar (PDP-Button - mobile/payment section 831:19766) ---------- */
+  .m-buybar {
+    display: block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 45;
+    /* 831:19453: 11px / 9px padding, drop shadow -3 4 12.55 at 25% —
+       mirrored upwards, since the bar sits on the bottom edge */
+    padding: 11px 15px calc(11px + env(safe-area-inset-bottom)); /* sides 15 (user; Figma 9) */
+    background: #fff;
+    box-shadow: -3px -4px 12.55px rgba(0, 0, 0, 0.25);
+    transition:
+      transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1),
+      visibility 0s linear 0s;
+  }
+  /* footer in view (script.js): the bar slides down out of the way, with its
+     white extension below; back as soon as the footer leaves */
+  .m-buybar.is-away {
+    transform: translateY(calc(100% + 20px)); /* + its shadow */
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1),
+      visibility 0s linear 0.3s;
+  }
+  /* iOS Safari (26) colours the area behind its bottom toolbar from a plain
+     fixed bar touching the bottom of the viewport (confirmed on the user's
+     iPhone with a test page). So: nothing drawn below the bar, and the bar
+     is kept out of the phone page zoom (script.js fitPhone). */
+  .m-buybar-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  /* 831:19454 */
+  .m-buybar-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 80px; /* room for its two rows; animates to 0 below */
+    overflow: hidden;
+    transition:
+      max-height 0.3s cubic-bezier(0.22, 0.61, 0.36, 1),
+      opacity 0.2s ease-out,
+      margin-bottom 0.3s cubic-bezier(0.22, 0.61, 0.36, 1),
+      visibility 0s linear 0s;
+  }
+  /* the page's price block is in view (script.js buyBarAtPriceBlock): only
+     the two CTAs stay; -12px takes back the inner gap above the buttons */
+  .m-buybar.is-compact .m-buybar-summary {
+    max-height: 0;
+    opacity: 0;
+    margin-bottom: -12px;
+    visibility: hidden; /* its link leaves the tab order too */
+    transition:
+      max-height 0.3s cubic-bezier(0.22, 0.61, 0.36, 1),
+      opacity 0.2s ease-out,
+      margin-bottom 0.3s cubic-bezier(0.22, 0.61, 0.36, 1),
+      visibility 0s linear 0.3s;
+  }
+  /* 831:19488 — label left, prices right, 1px #d4d4d4 rule 8px below */
+  .m-buybar-price {
+    display: flex;
+    align-items: flex-start; /* price on the label's line, "excl. VAT" below */
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .m-buybar-label {
+    line-height: 24px;
+    font-weight: 700;
+    font-size: 16px; /* user: back to 16 */
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  /* 831:19491 (179 wide): badge + old price in an 86px group (831:19492),
+     new price right-aligned in a 79.5px box (831:19496) */
+  /* top-aligned: badge, old price and price share the label's 24px line */
+  .m-buybar-right {
+    display: flex;
+    align-items: flex-start;
+    gap: 13.5px;
+    white-space: nowrap;
+  }
+  .m-buybar-was {
+    min-width: 86px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+  }
+  /* as tall as the price line (user), not the struck-through price */
+  .m-buybar .discount-badge {
+    display: inline-flex;
+    align-items: center;
+    height: 24px;
+    padding: 0 6px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+  .m-buybar .price-old {
+    line-height: 24px;
+    font-size: 14px;
+    color: var(--grey-text);
+  }
+  .m-buybar .price-new {
+    min-width: 79.5px;
+    text-align: right;
+    font-size: 20px;
+    line-height: 24px;
+    color: #000;
+  }
+  /* "All-in price p.p." with "excl. VAT" under it (user) */
+  .m-buybar-labels {
+    display: flex;
+    flex-direction: column;
+  }
+  .m-buybar-excl {
+    font-size: 12px;
+    line-height: 1.1;
+    color: var(--grey-text);
+  }
+  .m-buybar-actions {
+    display: flex;
+    gap: 12px;
+  }
+  .m-btn-quote {
+    flex: 1;
+    min-width: 0;
+    height: 48px; /* Figma 53, scaled down on request */
+    padding: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--orange);
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+    color: #fff;
+    white-space: nowrap;
+    transition: filter var(--motion);
+  }
+  .m-btn-quote i {
+    font-style: italic;
+  }
+  /* Add to cart 831:20014: 84x53, padding 15 14 15 6; cart icon in a 34x28
+     box (its artwork bleeds out of the 30.1x24.1 node: placed at 0.62 / 2.43),
+     the plus sits absolutely at 54 / 9 (10px node, 14px artwork) */
+  .m-btn-cart {
+    position: relative;
+    flex: 0 0 84px;
+    height: 48px;
+    padding: 10px 14px 10px 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--green);
+    border-radius: 20px;
+    transition: filter var(--motion);
+  }
+  .m-cart-icon {
+    position: relative;
+    flex-shrink: 0;
+    width: 34px;
+    height: 28px;
+  }
+  .m-cart-icon img {
+    position: absolute;
+    left: 0.62px;
+    top: 2.43px;
+    width: 32.982px;
+    height: 25.687px;
+    max-width: none;
+  }
+  .m-cart-plus {
+    position: absolute;
+    left: 52px;
+    top: 4.5px; /* 7px at the Figma 53px height, moved with the icon */
+    width: 14px;
+    height: 14px;
+    max-width: none;
+  }
+  .m-btn-quote:active,
+  .m-btn-cart:active {
+    filter: brightness(0.92);
+  }
+
+  /* ---------- request flow modal ---------- */
+  .request-modal {
+    width: min(560px, calc(100vw - 32px));
+    padding: 24px;
+  }
+}
+
+/* 786:17072 has no hover variant: on touch screens a tapped row must not keep
+   the desktop hover look, only Default or Active */
+@media (width < 768px) and (hover: none) {
+  .option-list--position .opt-row:not(.opt-row--rec):not(.selected):hover {
+    background: #fff;
+    border: 0.776px solid var(--outline);
+    padding: 5px 15px;
+  }
+  .option-list--position .opt-row--rec:not(.selected):hover {
+    --bw: 0.776px;
+    background: #fff;
+    border: 0.776px solid var(--outline);
+  }
+  /* quantity options 797:6935: Default and active only */
+  .option-list .qty-row:not(.qty-row--custom):not(.selected):hover {
+    background: #fff;
+    border: 0.776px solid var(--outline);
+    padding: 0 10px;
+  }
+  .qty-row--custom:not(.selected):hover .qty-custom-input {
+    background: #fff;
+    border: 1px solid var(--outline);
+  }
+  /* printing option 797:6522 likewise has no hover variant */
+  .option-list--printing .opt-row:not(.selected):hover {
+    background: #fff;
+    border-color: var(--outline);
+  }
+}
+/* 786:16991 has only Default and active: no sticky hover tile after a tap */
+@media (max-width: 767px) and (hover: none) {
+  .swatch:not(.selected):hover {
+    border: 0.577px solid var(--outline);
+    padding: 3.54px 0.577px;
+  }
+}
+
+/* ---------- mobile (< 768px) ---------- */
+@media (max-width: 767px) {
+  .swatch-grid {
+    gap: 9px 7px;
+  }
+  /* Color options 786:16991 in the "Choose color section - Mobile" grid
+     786:16121: 56.5px tiles, gap 9 / 7, five to a row.
+     Default  border 0.577 #909090, px 0.577 py 3.54, picture 49.419
+     active   border 2.223 #00aed8,          py 2.963, picture 50.573 */
+  .swatch {
+    width: 56.5px;
+    height: 56.5px;
+    border-width: 0.577px;
+    border-radius: 7.409px;
+    padding: 3.54px 0.577px;
+  }
+  .swatch img {
+    width: 49.419px;
+    height: 49.419px;
+  }
+  /* mouse hover keeps the desktop cue, scaled to the tile (56.5 / 92) */
+  .swatch:hover {
+    border-width: 1.228px;
+    padding: 4.19px 1.228px;
+  }
+  .swatch.selected,
+  .swatch.selected:hover {
+    border-width: 2.223px;
+    padding: 2.963px 0;
+  }
+  .swatch.selected img {
+    width: 50.573px;
+    height: 50.573px;
+  }
+  .per-color-grid {
+    grid-template-columns: 1fr;
+  }
+  /* Estimated delivery time — the label breaks onto two lines */
+  .delivery-bar {
+    height: 52px;
+    padding: 10px;
+  }
+  .delivery-left {
+    font-size: 14px;
+    line-height: 1;
+  }
+  .delivery-left span {
+    max-width: 100px;
+  }
+  .delivery-left .icon-22 {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* ============================================================
+   REVIEW FEEDBACK — usability pass
+   ============================================================ */
+
+/* --- larger hit areas without changing the drawn size ------------------- */
+/* "view" link in the print-position rows */
+.view-link {
+  position: relative;
+}
+.view-link::after {
+  content: "";
+  position: absolute;
+  inset: -10px -8px;
+}
+/* comparable-products arrows: 14x52 art, 44x52 target */
+.card-arrow::after {
+  content: "";
+  position: absolute;
+  inset: 0 -15px;
+}
+/* quote / design modal close: 44x44 */
+.request-close {
+  right: 8px;
+  top: 6px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+.request-close:hover {
+  background: #f0f2f4;
+}
+
+.thumb:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+/* --- text buttons that were spans -------------------------------------- */
+.read-more,
+.review-link,
+.price-details-toggle {
+  padding: 4px 0;
+  text-align: left;
+  cursor: pointer;
+}
+.read-more:hover,
+.review-link:hover,
+.price-details-toggle:hover {
+  color: var(--cyan);
+}
+.desc-more {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 23.1px;
+  color: var(--ink);
+}
+.review-link {
+  text-decoration: underline;
+}
+.review-body.is-clamped {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+/* --- price details ------------------------------------------------------ */
+.price-details {
+  margin: 4px 0 0;
+  padding: 10px 14px;
+  background: #fff;
+  border: 1px solid #e3e8ec;
+  border-radius: 10px;
+  font-size: 14px;
+  color: var(--ink);
+}
+.pd-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 4px 0;
+}
+.pd-row dd {
+  margin: 0;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.pd-row--total {
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px solid #d4d4d4;
+  font-weight: 800;
+}
+.price-details[hidden] {
+  display: none;
+}
+/* mobile buy bar: the breakdown opens above the bar's buttons */
+
+/* --- Add to cart confirmation ------------------------------------------ */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  z-index: 300;
+  max-width: min(560px, calc(100% - 32px));
+  padding: 14px 20px 14px 48px;
+  border-radius: 12px;
+  background: var(--ink);
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.4;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  transform: translate(-50%, 12px);
+  opacity: 0;
+  transition:
+    opacity var(--motion),
+    transform var(--motion);
+}
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+.toast::before {
+  content: "✓";
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}
+.toast[data-kind="warn"]::before {
+  content: "!";
+  background: var(--red-text);
+}
+/* mobile: the buy bar (and its price breakdown) owns the bottom of the
+   screen, so the toast drops in from the top instead */
+@media (width < 768px) {
+  .toast {
+    top: 12px;
+    bottom: auto;
+    transform: translate(-50%, -12px);
+  }
+  .toast.show {
+    transform: translate(-50%, 0);
+  }
+}
+
+/* --- newsletter --------------------------------------------------------- */
+.email-input input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font: inherit;
+  color: var(--ink);
+}
+.email-input input::placeholder {
+  color: var(--grey-text);
+}
+.email-input:focus-within {
+  box-shadow: inset 0 0 0 2px var(--ink);
+}
+.email-input:has(input[aria-invalid="true"]) {
+  box-shadow: inset 0 0 0 2px var(--red-text);
+}
+.newsletter-msg {
+  min-height: 1.4em;
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+}
+
+/* --- header search suggestions (script.js searchSuggest) ---------------- */
+.hd .search {
+  position: relative;
+}
+.search-suggest {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 6px);
+  z-index: 130;
+  max-height: 320px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: #fff;
+  border: 1px solid #d5e2e8;
+  border-radius: 12px;
+  box-shadow: 0 16px 32px -12px rgba(9, 40, 55, 0.28);
+}
+.search-suggest[hidden] {
+  display: none;
+}
+.search-suggest a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 15px;
+  color: var(--ink);
+  text-decoration: none;
+}
+.search-suggest a:hover,
+.search-suggest li.active a {
+  background: #edf8fb;
+}
+.search-empty {
+  padding: 10px 12px;
+  font-size: 14px;
+  color: var(--grey-text);
+}
+
+/* ============================================================
+   REVIEW FEEDBACK 2 — photos
+   ============================================================ */
+/* colour name under every tile (also the click target's label) */
+.swatch-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 92px;
+}
+.swatch-name {
+  max-width: 100%;
+  font-size: 12px;
+  line-height: 1.25;
+  color: var(--ink);
+  text-align: center;
+  cursor: pointer;
+}
+.swatch-item:has(.swatch.selected) .swatch-name {
+  font-weight: 700;
+}
+@media (max-width: 767px) {
+  .swatch-item {
+    width: 56.5px;
+  }
+  .swatch-name {
+    font-size: 11px;
+  }
+}
+/* real photo thumbnails */
+.thumb {
+  overflow: hidden;
+  background: #fff;
+  padding: 0;
+}
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* --- compact header on scroll ------------------------------------------
+   Scrolling down hides the USP banner and the category bar (desktop) /
+   category chips (mobile); the main bar with logo, search and actions stays.
+   Scrolling up brings them back. script.js toggles .is-compact on .hd.
+   Both ease their height (to / from their measured height, --usp-h /
+   --cat-h set by script.js) and fade, so the header glides instead of
+   snapping. Clipping is only on while collapsed or moving (.hd-anim), so
+   the category bar's shadow and mega menu aren't cut off at rest. */
+.hd .usp,
+.hd .cat {
+  max-height: var(--part-h, none);
+  transition:
+    max-height 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
+    padding 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
+    opacity 0.25s ease;
+}
+.hd .usp {
+  --part-h: var(--usp-h, none);
+}
+.hd .cat {
+  --part-h: var(--cat-h, none);
+}
+.hd.is-compact .usp,
+.hd.is-compact .cat {
+  max-height: 0;
+  padding-block: 0; /* .cat has 7/8px padding a zero max-height can't remove */
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.hd.hd-anim .usp,
+.hd.hd-anim .cat {
+  overflow: hidden;
+}
+.hd.is-compact .chips {
+  display: none;
+}
+/* the breadcrumbs fade out together with the nav bar (user). They keep
+   their space so the page doesn't jump; they come back with the nav bar. */
+.breadcrumb-bar {
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s;
+}
+body:has(.hd.is-compact) .breadcrumb-bar {
+  opacity: 0;
+  visibility: hidden;
+}
+@media (prefers-reduced-motion: reduce) {
+  .breadcrumb-bar,
+  .hd .usp,
+  .hd .cat {
+    transition: none;
+  }
+}
+
+/* ============================================================
+   REVIEW FEEDBACK 2 — tablet (768–1023px): two columns
+   Photo left, configurator right (the desktop layout). The configurator
+   column is ~380–500px here, so a few desktop rows are tightened.
+   ============================================================ */
+@media (768px <= width < 1024px) {
+  /* headers: narrower title column so step 4's quantity + price fit */
+  .step-title {
+    width: 118px;
+    white-space: normal;
+  }
+  .step-header {
+    gap: 10px;
+    padding-inline: 12px;
+  }
+  .step-value {
+    margin-left: 10px;
+  }
+}
+
+/* Recommended rows with the mobile cyan band (user): wherever the option
+   list is too narrow for name + "Recommended option" + view on one line
+   (< ~410px: phones, tablet, desktop up to ~1060px), the label moves into the
+   band across the top instead of shrinking to a bare icon. */
+@media (width < 1060px) {
+  /* Recommended rows ("Print position options" / "printing option" with the
+     cyan header, 786:17203 & 797:6744): a 25px #00aed8 band across the top,
+     with the row's own content in a 308px line below it.
+     Figma's strokes are drawn inside the frame, over its padding (pt = stroke
+     weight), so the band actually sits flush against the border. CSS borders
+     sit outside the padding, so the padding here is Figma's minus the border:
+     top 0, sides 15 - border (content line centred at 308), bottom 5.
+     --bw tracks the state's border width so the band meets the border and the
+     content stays put when the border thickens on hover / select. */
+  .option-list .opt-row--rec,
+  .option-list .opt-row--rec:hover,
+  .option-list .opt-row--rec.selected,
+  .option-list .opt-row--rec.selected:hover {
+    --bw: 0.776px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 20px;
+    row-gap: 5px;
+    height: auto;
+    padding: 0 calc(15px - var(--bw)) 5px;
+  }
+  .option-list--position .opt-row--rec:hover {
+    --bw: 1px;
+  }
+  /* 786:17072 "Variant4" (recommended + active): border 3.29, label Regular */
+  .option-list .opt-row--rec.selected,
+  .option-list .opt-row--rec.selected:hover {
+    --bw: 3.29px;
+  }
+  .option-list--position .opt-row--rec.selected .opt-name {
+    font-weight: 400;
+  }
+  .opt-row--rec .opt-rec-group,
+  .opt-row--rec .opt-right {
+    display: contents;
+  }
+  .opt-row--rec .recommended {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    height: 25px;
+    margin: 0 calc(var(--bw) - 15px);
+    justify-content: center;
+    gap: 9px;
+    background: var(--cyan);
+    border-radius: calc(10px - var(--bw)) calc(10px - var(--bw)) 0 0;
+  }
+  .opt-row--rec .rec-text,
+  .opt-row:has(.view-link:hover) .rec-text {
+    color: #fff;
+  }
+  .opt-row--rec .rec-icon,
+  .opt-row:has(.view-link:hover) .rec-icon {
+    background: transparent;
+    border-color: #fff;
+  }
+  .opt-row--rec .rec-icon .rec-a,
+  .opt-row--rec .rec-icon .rec-b,
+  .opt-row--rec .rec-icon .rec-a-alt,
+  .opt-row--rec .rec-icon .rec-b-alt {
+    display: none;
+  }
+  .opt-row--rec .rec-icon .rec-a-white,
+  .opt-row--rec .rec-icon .rec-b-white {
+    display: block;
+  }
+  .opt-row--rec .opt-name {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: start;
+    text-align: left;
+  }
+  .opt-row--rec .view-link,
+  .opt-row--rec .circles {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  /* full colour: the 98px "circles" column with its #d4d4d4 rule */
+  .opt-row--rec .circles {
+    align-self: stretch;
+    align-items: center;
+  }
+}
+
+/* desktop / tablet: a chosen value too long for the closed step header ends
+   in "…" like on mobile, instead of running into the chevron (user). The
+   title and step 4's unit price keep their size; only the value gives way. */
+@media (width >= 768px) {
+  .step-label {
+    flex: 1;
+    min-width: 0;
+  }
+  .step-num,
+  .step-title,
+  .step-price {
+    flex-shrink: 0;
+  }
+  .step-value,
+  .step-error {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+/* product info tabs (5 since the Figma tab set): each label stays on one
+   line; when the column is too narrow for all five (tablet / small laptop)
+   the bar scrolls sideways instead of the labels running into each other */
+@media (width >= 768px) {
+  .tab-list {
+    gap: 16px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tab-list::-webkit-scrollbar {
+    display: none;
+  }
+  .tab {
+    flex: none;
+    white-space: nowrap;
+  }
+}
+@media (768px <= width < 1280px) {
+  .tab-list {
+    padding-inline: 14px;
+  }
+}
+
+/* --- phones: first colour row above the fold ----------------------------
+   Review feedback: on a 393x852 phone only step 1's header showed above the
+   fold. The USP strip (55px; the page's own trust block and reviews carry
+   the same message lower down) is left out on phones, and the breadcrumb
+   becomes one sideways-scrolling line, so the first row of swatches is in
+   view on load. */
+@media (width < 768px) {
+  /* PDP phones (user): the USP / trust banner shows again (it slides away on
+     scrolling down, like desktop: .hd.is-compact); the search bar goes and
+     the menu button moves into the top row, right of the cart */
+  .hd.hd .bar-in {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-areas: "logo actions burger";
+    align-items: center;
+    column-gap: 4px;
+    /* user: 60px bar, every item centred on its middle line (nav.css's
+       vertical margins on logo / actions are dropped below) */
+    height: 60px;
+    padding: 0;
+  }
+  .hd.hd .bar .logo {
+    margin-block: 0;
+  }
+  .hd.hd .actions {
+    margin-block: 0;
+  }
+  .hd.hd .search {
+    display: none;
+  }
+  .hd.hd .burger {
+    margin: 0 8px 0 0;
+  }
+  .breadcrumb-bar .bar-inner {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .breadcrumb-bar .bar-inner::-webkit-scrollbar {
+    display: none;
+  }
+  .crumbs {
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
+  /* collapsed trail "Home / … / Thermos bottles" (user): middle levels and
+     the current page are hidden until "…" is tapped; the open trail wraps
+     instead of scrolling, the current page stays out (the title names it) */
+  .crumbs .crumb-mid,
+  .crumbs [aria-current] {
+    display: none;
+  }
+  .crumbs.is-expanded {
+    flex-wrap: wrap;
+  }
+  .crumbs.is-expanded .crumb-mid {
+    display: list-item;
+  }
+  .crumbs.is-expanded .crumbs-more {
+    display: none;
+  }
+  .crumbs-more button {
+    position: relative;
+    padding: 0 2px;
+    font: inherit;
+    color: inherit;
+    letter-spacing: 1px;
+  }
+  /* 44px-tall tap area around the small "…" */
+  .crumbs-more button::after {
+    content: "";
+    position: absolute;
+    inset: -15px -10px;
+  }
+  /* spacing between photo, dots, title and the configurator: opened up
+     again (user: "not enough white space") — 14px photo → dots, 20px dots
+     → title (the dots' 44px tap areas fit in it), 12px title → configurator */
+  .image-slider {
+    margin: 0 0 20px;
+    gap: 14px;
+  }
+  .heading-title {
+    margin-bottom: 12px;
+    gap: 2px;
+  }
+  .configurator-bg {
+    padding-top: 10px;
+  }
+}
+
+/* ============================================================
+   REVIEW FEEDBACK 3 — more white space below 1500px
+   The content column used to run to 10px from the screen edge and the
+   columns sat 24–45px apart, which felt crowded on laptops. The side
+   gutter now grows with the screen (24px at 768, ~36 at 1024, ~58 at 1499;
+   at 1920 the 1590px column has room to spare anyway), and the gaps
+   between and inside the columns open up a little.
+   ============================================================ */
+:root {
+  --page-gutter: clamp(16px, 4.5vw - 10px, 72px);
+}
+@media (width >= 768px) {
+  .container {
+    width: min(1590px, 100% - 2 * var(--page-gutter));
+  }
+  .bar-inner {
+    max-width: min(1592px, 100% - 2 * var(--page-gutter));
+  }
+  .main-grid {
+    gap: var(--col-gap);
+  }
+}
+@media (768px <= width < 1500px) {
+  .col1,
+  .col2 {
+    gap: 16px;
+  }
+  .configurator-bg {
+    padding: 24px 20px;
+    gap: 14px;
+  }
+  .configurator {
+    gap: 12px;
+  }
+  .swatch-grid {
+    gap: 14px 18px;
+  }
+  .option-list {
+    gap: 12px;
+  }
+  .cta-top,
+  .cta-bottom {
+    gap: 14px;
+  }
+  .container {
+    gap: 32px;
+  }
+}
+
+/* colour tiles at 1024px and below (tablet, small laptop, phone): 60x60
+   tiles on a 10px grid; the photo inside keeps the design's proportion
+   (80.5 / 92 at rest, 82.3 / 92 when selected) */
+@media (width <= 1024px) {
+  .swatch-grid {
+    gap: 10px;
+  }
+  .swatch-item {
+    width: 60px;
+  }
+  .swatch {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+  }
+  .swatch img {
+    width: 52.5px;
+    height: 52.5px;
+  }
+  .swatch.selected img {
+    width: 53.7px;
+    height: 53.7px;
+  }
+}
+
+/* above 1024px: 80x80 tiles on a 10px grid, same photo proportion as
+   above. 80px is the largest tile (user): the design's 92px is never used */
+@media (width > 1024px) {
+  .swatch-grid {
+    gap: 10px;
+  }
+  .swatch-item {
+    width: 80px;
+  }
+  .swatch {
+    width: 80px;
+    height: 80px;
+    border-radius: 10.5px;
+  }
+  .swatch img {
+    width: 70px;
+    height: 70px;
+  }
+  .swatch.selected img {
+    width: 71.6px;
+    height: 71.6px;
+  }
+}
+
+/* --- tab bar always above the fold (desktop / tablet) --------------------
+   More air below the breadcrumbs, and the photo is sized to the screen
+   height so the product tabs under it are always in view on load:
+   script.js fitGallery() sets --gallery-max (min 240px) when needed; the
+   photo then stays centred in its column. */
+@media (width >= 768px) {
+  .col1 {
+    gap: 20px;
+  }
+  /* the frame keeps the full column width (so "Fast delivery" sits in its
+     top-left corner, off the photo); only its height and the photo inside
+     shrink, the photo centred. White, like the product photos' background. */
+  /* no border on desktop (phones keep the frame's light border) */
+  .product-image-container {
+    height: var(--gallery-max, auto);
+    background: #fff;
+    padding: 0;
+  }
+  .product-image {
+    width: auto;
+    height: 100%;
+    max-width: 100%;
+    aspect-ratio: 1;
+    object-fit: contain;
+  }
+}
+
+/* --- desktop: photo column stays put while the configurator scrolls -----
+   The first column sticks just below the (sticky) header; the second column
+   scrolls past it. When the bottom of the configurator column is reached,
+   the column pair ends and the page scrolls on normally. --hd-h is the
+   header's live height (script.js), so the column follows it as the header
+   compacts / expands. */
+@media (width >= 768px) {
+  .col1 {
+    position: sticky;
+    top: calc(var(--hd-h, 70px) + 16px);
+  }
+}
+
+/* --- breadcrumb aligned with the product columns (desktop / tablet) ------
+   The breadcrumb sits in .container above .main-grid and both share one
+   width: the two columns plus the gap between them (654 + gap + 743 at full
+   size, the container width when narrower). So it starts exactly where the
+   product title starts and never runs wider than the content below; longer
+   trails wrap. 16px bottom padding, plus the container's gap to the title. */
+:root {
+  --col-gap: clamp(24px, 4vw, 64px);
+}
+@media (width >= 768px) {
+  .main-grid,
+  .breadcrumb-bar {
+    width: 100%;
+    max-width: calc(654px + 743px + var(--col-gap));
+  }
+  .breadcrumb-bar {
+    height: auto;
+    padding: 18px 0 16px;
+  }
+  .breadcrumb-bar .bar-inner {
+    max-width: none;
+    padding: 0;
+  }
+}
+@media (width < 768px) {
+  /* in the container's centred column the one-line trail would size the bar
+     to its full text width; hold it to the screen so it scrolls inside */
+  .breadcrumb-bar {
+    align-self: stretch;
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+/* --- header fixed to the top (see script.js compactHeader) ---------------
+   Fixed instead of sticky, with .hd-spacer holding its full height in the
+   flow, so collapsing the USP banner / category bar on scroll never shifts
+   the page. (Doubled selector: nav.css loads after this file.) */
+.hd.hd {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+/* auto-advancing configurator (script.js revealStep): a step scrolled into
+   view stops just below the compact header, with a little air */
+.step {
+  scroll-margin-top: calc(var(--hd-compact-h, 70px) + 12px);
+}
+
+/* --- CTA buttons: fixed type steps inside 20px side padding --------------
+   The buttons stay side by side at every desktop / tablet width. From
+   1300px up they keep the Figma layout (22px label, children at fixed
+   offsets from the centre). Below that the icon, label and arrow become a
+   centred row inside 20px side padding, at fixed sizes per range — both
+   buttons of a pair (and both pairs) always share one size:
+     1024–1299px  label 18px, icon 26px tall
+      768–1023px  label 16px, no icon; the configurator column gets 60%
+                  of the width here (see below) so the 16px label + arrow
+                  fit inside the 20px paddings even at 768px
+   The hover nudge stays, as a 3px translate. */
+@media (768px <= width < 1300px) {
+  .cta-top .pdp-btn,
+  .cta-bottom .pdp-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 20px;
+  }
+  .cta-top .pdp-btn > *,
+  .cta-bottom .pdp-btn > * {
+    position: relative;
+    top: auto;
+    /* overrides the per-variant / hover `left` offsets of the Figma layout */
+    left: auto !important;
+    transform: none;
+    flex-shrink: 0;
+    transition:
+      transform var(--motion),
+      width var(--motion),
+      height var(--motion);
+  }
+  .cta-top .pdp-btn .pb-label,
+  .cta-bottom .pdp-btn .pb-label,
+  .cta-top .pdp-btn:hover .pb-label,
+  .cta-bottom .pdp-btn:hover .pb-label {
+    transform: none;
+    font-size: 18px;
+    line-height: 1;
+  }
+  .cta-top .pdp-btn:hover > *,
+  .cta-bottom .pdp-btn:hover > * {
+    transform: translateX(3px);
+  }
+  /* icons at 26px tall, proportions kept */
+  .pdp-btn--design .pb-icon,
+  .pdp-btn--design:hover .pb-icon {
+    width: 26.2px;
+    height: 26px;
+  }
+  .pdp-btn--quote .pb-icon,
+  .pdp-btn--quote:hover .pb-icon {
+    width: 25.4px;
+    height: 26px;
+  }
+}
+@media (768px <= width < 1024px) {
+  /* tablet: photo and configurator split evenly, 50 / 50 (user; was
+     40 / 60). Desktop keeps 654 : 743. */
+  .col1 {
+    flex: 0 1 50%;
+  }
+  .col2 {
+    flex: 0 1 50%;
+  }
+  .cta-top .pdp-btn,
+  .cta-bottom .pdp-btn {
+    gap: 8px;
+  }
+  .cta-top .pdp-btn .pb-label,
+  .cta-top .pdp-btn:hover .pb-label {
+    font-size: 16px;
+  }
+  /* the outline pair under Add to cart: 14px (user) */
+  .cta-bottom .pdp-btn .pb-label,
+  .cta-bottom .pdp-btn:hover .pb-label {
+    font-size: 14px;
+  }
+  .cta-top .pb-icon {
+    display: none;
+  }
+}
+@media (width < 768px) {
+  .m-btn-quote {
+    padding-inline: 20px;
+  }
+}
+
+/* ============================================================
+   PRODUCT PHOTO GALLERY (script.js gallery) — common gallery practice:
+   arrows on the photo, a position counter, click to enlarge, a full-screen
+   viewer with arrows / thumbnails / swipe / keys, all four views on phones.
+   ============================================================ */
+/* the whole photo opens the viewer */
+.gal-zoom {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+.gal-zoom:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: -2px;
+}
+.fast-delivery {
+  z-index: 2;
+  pointer-events: none;
+}
+/* arrows: always visible (hidden controls get missed), 44px targets */
+.gal-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition:
+    background-color var(--motion),
+    box-shadow var(--motion);
+}
+.gal-nav:hover {
+  background: #fff;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.24);
+}
+.gal-nav:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+.gal-nav img {
+  width: 9px;
+  height: 18px;
+}
+.gal-nav--prev {
+  left: 12px;
+}
+.gal-nav--prev img {
+  transform: scaleX(-1);
+  margin-right: 2px;
+}
+.gal-nav--next {
+  right: 12px;
+}
+.gal-nav--next img {
+  margin-left: 2px;
+}
+/* "2 / 4" */
+.gal-count {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 2;
+  /* plain grey text, no pill — same as the phone counter (.m-count) */
+  color: var(--grey-text);
+  font-weight: 600;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+/* desktop / tablet: horizontal swipes on the photo page through it
+   (script.js); vertical ones still scroll the page */
+@media (width >= 768px) {
+  .product-image-container {
+    touch-action: pan-y;
+  }
+}
+/* phones: swipe + dots do the paging; a tap on a slide opens the viewer */
+@media (width < 768px) {
+  .product-image-container .gal-nav,
+  .gal-count {
+    display: none;
+  }
+  .gal-zoom {
+    cursor: default;
+  }
+}
+
+/* --- full-screen viewer (same backdrop + card as the print preview) --- */
+.gal-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 250; /* above the fixed header (100–120) and the nav drawer (200) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: opacity var(--motion);
+}
+.gal-lightbox[hidden] {
+  display: none;
+}
+.gal-lightbox.open {
+  opacity: 1;
+}
+body.gal-lightbox-open {
+  overflow: hidden;
+}
+.gal-lb-card {
+  position: relative;
+  margin: 0;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 32px 40px 24px;
+  background: #fff;
+  border-radius: 20.882px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+.gal-lb-close {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  z-index: 3;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  cursor: pointer;
+}
+.gal-lb-close:hover {
+  background: #f0f2f4;
+}
+.gal-lb-close:focus-visible,
+.gal-lb-thumb:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+.gal-lb-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  touch-action: pan-y;
+}
+.gal-lb-stage .gal-nav {
+  position: static;
+  flex-shrink: 0;
+  transform: none;
+  background: #f0f2f4;
+  box-shadow: none;
+}
+.gal-lb-stage .gal-nav:hover {
+  background: #e3e8ec;
+}
+/* the frame clips a sideways track of slides (one per photo) and the zoomed
+   photo; script.js handles every touch on it (swipe, pinch, double tap, pan,
+   pull down to close), so the browser does none.
+   The photos are 500px: on desktop shown at most 1.5x so they stay sharp. */
+.gal-lb-frame {
+  position: relative;
+  flex-shrink: 0;
+  width: min(64vh, 750px, 100vw - 248px);
+  aspect-ratio: 1;
+  overflow: hidden;
+  touch-action: none;
+  cursor: zoom-in;
+}
+.gal-lb-frame.is-zoomed {
+  cursor: grab;
+}
+.gal-lb-frame.is-zoomed:active {
+  cursor: grabbing;
+}
+.gal-lb-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+.gal-lb-slide {
+  flex: 0 0 100%;
+  height: 100%;
+}
+.gal-lb-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform-origin: center;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.gal-lb-caption {
+  display: flex;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ink);
+}
+.gal-lb-count {
+  font-weight: 400;
+  color: var(--grey-text);
+  font-variant-numeric: tabular-nums;
+}
+.gal-lb-thumbs {
+  display: flex;
+  gap: 8px;
+  max-width: 100%;
+  padding: 4px; /* room for the focus ring inside the scrolling strip */
+  overflow-x: auto;
+}
+.gal-lb-thumb {
+  flex-shrink: 0;
+  width: 56px; /* nine fit under the photo */
+  height: 56px;
+  padding: 0;
+  overflow: hidden;
+  background: #fff;
+  border: 0.81px solid #e3e8ec;
+  border-radius: 4.861px;
+  cursor: pointer;
+}
+.gal-lb-thumb.active {
+  border: 2.661px solid var(--grey-text);
+}
+.gal-lb-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+/* phones: the viewer fills the screen. The X sits in a 64px top band, the
+   caption and thumbnails at the bottom; the photo frame takes all the room in
+   between, so zooming uses the whole screen height without covering either.
+   No arrows: swiping (and the thumbnails) do the paging, like the page's own
+   carousel. */
+@media (width < 768px) {
+  .gal-lightbox {
+    padding: 0;
+  }
+  .gal-lb-card {
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    gap: 16px;
+    padding: 64px 0 calc(20px + env(safe-area-inset-bottom));
+    border-radius: 0;
+  }
+  .gal-lb-stage {
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+  }
+  .gal-lb-frame {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+  .gal-lb-stage .gal-nav {
+    display: none;
+  }
+  /* nine thumbnails are wider than the phone: the strip scrolls, inset 16px */
+  .gal-lb-thumbs {
+    width: 100%;
+    padding: 2px 16px;
+    justify-content: safe center;
+    scrollbar-width: none;
+  }
+  .gal-lb-thumbs::-webkit-scrollbar {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gal-lightbox,
+  .gal-nav {
+    transition: none;
+  }
+}
+
+/* pagination-dot fades (phone carousel): registered so they can animate */
+@property --dots-fade-l {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+@property --dots-fade-r {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
