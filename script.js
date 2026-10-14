@@ -151,11 +151,11 @@ function setValue(stepName, label) {
 }
 
 // step 4's collapsed header carries the unit price too (527:11603), written
-// in the "€ 6,01 p.p" form the tier rows use; call after state.price is set
+// in the "£ 6.01 p.p" form the tier rows use; call after state.price is set
 function setQuantityValue(qty) {
   setValue("quantity", `${qty} pieces`);
   const price = document.getElementById("quantity-price");
-  price.textContent = `€ ${state.price.toFixed(2).replace(".", ",")} p.p`;
+  price.textContent = `£ ${state.price.toFixed(2)} p.p`;
   price.classList.add("filled");
 }
 
@@ -703,7 +703,7 @@ document.querySelectorAll(".add-to-cart, .m-btn-cart").forEach((btn) =>
       showToast(`Almost there: ${msg.charAt(0).toLowerCase()}${msg.slice(1)}.`, "warn");
       return;
     }
-    showToast(`Added to cart: ${state.quantity} × Thermos bottle, ${euro(state.quantity * state.price)} excl. VAT.`);
+    showToast(`Added to cart: ${state.quantity} × Thermos bottle, ${money(state.quantity * state.price)} excl. VAT.`);
   })
 );
 
@@ -859,23 +859,23 @@ perPositionList.addEventListener("click", (e) => {
 });
 
 /* ---------- price block ---------- */
-const euro = (n) => "€ " + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const money = (n) => "£ " + n.toLocaleString("en-GB", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
 function updatePrice() {
   const { quantity, price } = state;
   const discount = Math.round((1 - price / BASE_PRICE) * 100);
   document.getElementById("discount-badge").textContent = `-${discount}%`;
   document.getElementById("price-old").textContent = BASE_PRICE.toFixed(2);
-  document.getElementById("price-new").textContent = euro(price);
+  document.getElementById("price-new").textContent = money(price);
   document.getElementById("total-old").textContent = (quantity * BASE_PRICE).toLocaleString("en-US", {
     minimumFractionDigits: 2, maximumFractionDigits: 2,
   });
-  document.getElementById("total-new").textContent = euro(quantity * price);
+  document.getElementById("total-new").textContent = money(quantity * price);
 
   // mobile / tablet buy bar mirrors the per-piece price
   document.querySelectorAll('[data-price="discount"]').forEach((el) => (el.textContent = `-${discount}%`));
   document.querySelectorAll('[data-price="old"]').forEach((el) => (el.textContent = BASE_PRICE.toFixed(2)));
-  document.querySelectorAll('[data-price="new"]').forEach((el) => (el.textContent = euro(price)));
+  document.querySelectorAll('[data-price="new"]').forEach((el) => (el.textContent = money(price)));
   updatePriceDetails();
 }
 
@@ -888,11 +888,11 @@ function updatePriceDetails() {
   const saving = quantity * (BASE_PRICE - price);
   const vat = subtotal * VAT_RATE;
   const rows = [
-    [`List price (${quantity} × ${euro(BASE_PRICE)})`, euro(quantity * BASE_PRICE)],
-    ["Volume discount", saving > 0 ? `− ${euro(saving)}` : euro(0)],
-    ["Total excl. VAT", euro(subtotal)],
-    ["VAT 21%", euro(vat)],
-    ["Total incl. VAT", euro(subtotal + vat)],
+    [`List price (${quantity} × ${money(BASE_PRICE)})`, money(quantity * BASE_PRICE)],
+    ["Volume discount", saving > 0 ? `− ${money(saving)}` : money(0)],
+    ["Total excl. VAT", money(subtotal)],
+    ["VAT 21%", money(vat)],
+    ["Total incl. VAT", money(subtotal + vat)],
   ];
   document.querySelectorAll(".price-details").forEach((dl) => {
     dl.innerHTML = rows
@@ -1795,8 +1795,8 @@ document.querySelectorAll("[data-nav]").forEach((btn) => {
       ["Printing position", state.labels.position || "Not chosen yet"],
       ["Printing in", state.labels.printing || "Not chosen yet"],
       ["Quantity", `${state.quantity} pieces`],
-      ["Price p.p.", euro(state.price)],
-      ["Total", euro(state.quantity * state.price)],
+      ["Price p.p.", money(state.price)],
+      ["Total", money(state.quantity * state.price)],
     ].map(([k, v]) => `<div class="rs-line"><span>${k}</span><span>${v}</span></div>`).join("");
 
     overlay.classList.add("open");
