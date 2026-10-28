@@ -6,17 +6,17 @@
 
 :root {
   --ink: #2c3e50;
-  --grey-text: #787575;
+  --grey-text: #716e6e; /* was #787575: on #f4f4f4 4.15:1 -> 4.59:1 */
   --grey-line: #cacaca;
   --outline: #909090;
   --badge: #497687;
   --cyan: #00aed8;
   --tab-active: #099bd3;
-  --orange: #fd7e14;
-  --green: #28a745;
+  --orange: #e77312; /* was #fd7e14: white bold label 2.57:1 -> 3.06:1 (WCAG large text) */
+  --green: #26a042; /* was #28a745: label on #f4f4f4 2.85:1 -> 3.08:1 */
   --green-sale: #08a64a;
   --green-star: #7cb518;
-  --red: #ea2023;
+  --red: #e62022; /* was #ea2023: white 11px badge 4.44:1 -> 4.57:1 */
   /* darker brand red for error text, icons and badges: 5.5:1 on white
      (--red is 4.44:1, just under WCAG AA 4.5:1 for small text) */
   --red-text: #d0191c;
@@ -105,7 +105,7 @@ button {
   align-items: center;
   font-weight: 400;
   font-size: 16px;
-  color: #7a8a99;
+  color: #6a7784; /* was #7a8a99 (3.55:1), now 4.58:1 */
 }
 .breadcrumb-bar .bar-inner {
   padding-right: 16px;
@@ -171,7 +171,7 @@ button {
   width: 55.165px;
   font-weight: 400;
   font-size: 13px;
-  color: #aab5be;
+  color: #6f777c; /* was #aab5be (2.09:1), now 4.56:1 */
 }
 /* tablet and the 1024 tier: the item number stacks under the title (user) */
 @media (768px <= width < 1280px) {
@@ -2844,10 +2844,6 @@ body.pos-lightbox-open {
   color: var(--ink);
   scroll-margin-top: 20px;
 }
-.pdp-section-heading--sub {
-  font-size: 15px;
-  margin-top: 8px;
-}
 .pdp-section-text {
   font-size: 14px;
   line-height: 23.1px;
@@ -2929,7 +2925,7 @@ h3.pcard-title {
     padding: 15px 16px 15px 7px; /* 15px top / bottom (user; was 5) */
     font-weight: 400;
     font-size: 12px;
-    color: #7a8a99;
+    color: #6a7784; /* was #7a8a99 (3.55:1), now 4.58:1 */
   }
   .breadcrumb-bar .bar-inner {
     max-width: none;
@@ -3046,203 +3042,9 @@ h3.pcard-title {
   }
 
   /* EN-UK Contact 786:16403 — fixed 347px artboard, Figma coordinates */
-  .expert-photo {
-    position: absolute;
-    left: -27.76px;
-    top: -13.88px;
-    width: 214.706px;
-    height: 214.706px;
-    border-radius: 50%;
-    overflow: hidden;
-  }
-  .expert-photo img {
-    position: absolute;
-    left: 8.05%;
-    top: -34.12%;
-    width: 161.41%;
-    height: 159.78%;
-    max-width: none;
-  }
-  .expert-photo::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      197.08deg,
-      rgba(0, 0, 0, 0) 60.99%,
-      #000 105.58%
-    );
-  }
-  .expert-chip {
-    position: absolute;
-    height: 40.365px;
-    padding: 6.307px 5.676px;
-    display: flex;
-    align-items: center;
-    gap: 6.307px;
-    background: #fff;
-    border-radius: 8.199px;
-    box-shadow: 0 1.735px 4.771px rgba(30, 127, 149, 0.3);
-    font-weight: 700;
-    font-size: 15.834px;
-    line-height: 1.063;
-    color: #026f97;
-    white-space: nowrap;
-  }
-  .expert-chip--products {
-    left: 156.15px;
-    top: 25.59px;
-  }
-  .expert-chip--designs {
-    left: 225.12px;
-    top: 84.58px;
-  }
-  .expert-chip--delivery {
-    left: 156.15px;
-    top: 143.57px;
-  }
-  .expert-chip--designs img {
-    width: 25.403px;
-    height: 22.119px;
-  }
-  .expert-chip--delivery img {
-    width: 36.03px;
-    height: 22.119px;
-  }
   /* image 14 [Vectorized]: four vectors placed at the file's insets */
-  .chip-products-icon {
-    position: relative;
-    height: 100%;
-    aspect-ratio: 49.125 / 48;
-    overflow: hidden;
-  }
-  .chip-products-icon img {
-    position: absolute;
-    max-width: none;
-  }
-  .chip-products-icon img:nth-child(1) {
-    left: 52.23%;
-    top: 24.83%;
-    width: 47.48%;
-    height: 74.89%;
-  }
-  .chip-products-icon img:nth-child(2) {
-    left: 0.33%;
-    top: 24.82%;
-    width: 47.51%;
-    height: 75%;
-  }
-  .chip-products-icon img:nth-child(3) {
-    left: 31.82%;
-    top: 11.94%;
-    width: 64.06%;
-    height: 28.48%;
-  }
-  .chip-products-icon img:nth-child(4) {
-    left: 4.08%;
-    top: 0.17%;
-    width: 62.74%;
-    height: 27%;
-  }
-  .expert-title {
-    position: absolute;
-    left: 21.69px;
-    top: 212.54px;
-    width: 217.742px;
-    font-weight: 800;
-    font-style: italic;
-    font-size: 31.622px;
-    line-height: 1.063;
-    color: #026f97;
-  }
-  .expert-hours {
-    position: absolute;
-    left: 21.69px;
-    top: 282.8px;
-    font-size: 17.35px;
-    line-height: 1.063;
-    color: #026f97;
-    white-space: nowrap;
-  }
-  .expert-contacts {
-    position: absolute;
-    left: 21.25px;
-    top: 314.9px;
-    display: flex;
-    gap: 23.739px;
-    background: #fff;
-  }
-  .expert-contacts a {
-    width: 146.016px;
-    display: flex;
-    align-items: center;
-    gap: 4.573px;
-    font-weight: 700;
-    font-size: 12.874px;
-    line-height: 1.063;
-    color: #026f97;
-    text-decoration: none;
-    white-space: nowrap;
-  }
-  .expert-contacts a:first-child img {
-    width: 16.357px;
-    height: 10.82px;
-  }
-  .expert-contacts a:last-child img {
-    width: 15.436px;
-    height: 14.864px;
-  }
 
   /* EN-UK Chosen by our top clients 786:16439 */
-  .trusted-bg {
-    position: absolute;
-    left: -277.96px;
-    top: -268.07px;
-    width: 921.126px;
-    height: 883.558px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-  }
-  .trusted-bg-rot {
-    flex: none;
-    position: relative;
-    width: 640.2px;
-    height: 717.85px;
-    transform: rotate(65.01deg);
-  }
-  .trusted-bg-rot img {
-    position: absolute;
-    top: 0;
-    left: -3.5%;
-    width: 103.5%;
-    height: 100%;
-    max-width: none;
-  }
-  .trusted-title {
-    position: absolute;
-    left: 50%;
-    top: 50.75px;
-    width: 297.553px;
-    transform: translateX(-50%);
-    text-align: center;
-    font-weight: 700;
-    font-size: 27.326px;
-    line-height: 1.063;
-    color: #026f97;
-  }
-  .trusted-logos {
-    position: absolute;
-    left: calc(50% + 0.09px);
-    top: 141.4px;
-    width: 324.652px;
-    transform: translateX(-50%);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 18px 18.552px;
-  }
   .brand {
     width: 61.839px;
     height: 39.577px;
@@ -3254,60 +3056,6 @@ h3.pcard-title {
     background: #fff;
     border-radius: 8.039px;
     box-shadow: 0.47px 2.821px 5.078px 1.881px rgba(0, 0, 0, 0.15);
-  }
-  .brand-un,
-  .brand-atlassian,
-  .brand-siemens {
-    width: 100%;
-    height: auto;
-  }
-  .brand-ea {
-    width: 35.747px;
-    height: 17.373px;
-    object-fit: cover;
-  }
-  .brand-lidl {
-    width: 29.683px;
-    height: 29.683px;
-  }
-  .brand-crop {
-    display: block;
-    position: relative;
-    overflow: hidden;
-  }
-  .brand-crop img {
-    position: absolute;
-    max-width: none;
-  }
-  .brand-crop--hellofresh {
-    width: 100%;
-    aspect-ratio: 63.9625 / 20.825;
-  }
-  .brand-crop--hellofresh img {
-    left: -3.35%;
-    top: -41.24%;
-    width: 106.31%;
-    height: 183.67%;
-  }
-  .brand-crop--huawei {
-    width: 100%;
-    aspect-ratio: 63.889 / 19.2695;
-  }
-  .brand-crop--huawei img {
-    left: -2.41%;
-    top: -11.56%;
-    width: 106.43%;
-    height: 125.78%;
-  }
-  .brand-crop--jaguar {
-    width: 43.873px;
-    height: 24.374px;
-  }
-  .brand-crop--jaguar img {
-    left: -15.97%;
-    top: -68.75%;
-    width: 131.94%;
-    height: 237.5%;
   }
 
   /* Mobile Carrousel bar 786:15977 — live: one dot per slide. With more than
@@ -5062,8 +4810,11 @@ body:has(.hd.is-compact) .breadcrumb-bar {
 /* --- header fixed to the top (see script.js compactHeader) ---------------
    Fixed instead of sticky, with .hd-spacer holding its full height in the
    flow, so collapsing the USP banner / category bar on scroll never shifts
-   the page. (Doubled selector: nav.css loads after this file.) */
-.hd.hd {
+   the page. (Doubled selector: nav.css loads after this file.)
+   Only once the spacer exists (.is-fixed, script.js compactHeader): until
+   then the header stays sticky, in the flow, so the page doesn't jump down
+   when the spacer arrives (CLS). */
+.hd.hd.is-fixed {
   position: fixed;
   left: 0;
   right: 0;
@@ -5476,4 +5227,28 @@ body.gal-lightbox-open {
   syntax: "<length>";
   inherits: false;
   initial-value: 0px;
+}
+
+/* Tap targets at least 24 x 24px on phones and tablets (mobile usability) */
+@media (max-width: 1199px) {
+  .checkbox { width: 24px; height: 24px; }
+}
+
+/* --- page zoom before the first paint (phones) ------------------------------
+   --pz is set by the inline script in index.html's <head>; script.js fitPhone
+   later sets the same values inline (and keeps them right on resize). Without
+   this the page is drawn unzoomed first and jumps when script.js lands (CLS). */
+@media (max-width: 767px) {
+  body {
+    zoom: var(--pz, 1);
+  }
+  .hd,
+  .drawer,
+  .scrim,
+  .m-buybar {
+    zoom: calc(1 / var(--pz, 1));
+  }
+  .m-buybar-inner {
+    zoom: var(--pz, 1);
+  }
 }

@@ -11,32 +11,44 @@
     />
     <meta name="theme-color" content="#ffffff" />
     <meta name="format-detection" content="telephone=no" />
+    <!-- phones: the page zoom (script.js fitPhone) is known before the first
+         paint, so styles.css applies it from the start and the page doesn't
+         jump when script.js lands (CLS). Same formula as fitPhone. -->
+    <script>
+      document.documentElement.style.setProperty(
+        "--pz",
+        matchMedia("(max-width: 767px)").matches ? document.documentElement.clientWidth / 393 : 1,
+      );
+    </script>
     <title>
-      Thermos Bottle 500 ml, Stainless Steel, Personalised | from 25 pcs.
+      Personalised Thermos Bottle 500 ml, Stainless Steel | from 25 pcs.
     </title>
     <meta
       name="description"
-      content="Print your logo on a 500 ml vacuum insulated stainless steel thermos bottle. From 25 pieces, from £4.65 p.p. (5,000+ pcs), free digital design and fast delivery."
+      content="Print your logo on a 500 ml stainless steel thermos bottle. From 25 pieces at £7.99 p.p., down to £4.65 at 5,000. Free digital design."
     />
     <link
       rel="canonical"
-      href="https://www.loopper.co.uk/personalized-water-bottles/thermos-bottles/thermos-bottle-stainless-steel-500-ml-6383162"
+      href="https://www.loopper.co.uk/personalised-water-bottles/personalised-thermos-bottles/cove-500-ml-vacuum-insulated-stainless-steel-bottle-6382809"
     />
-    <!-- hreflang: one line per market, each pointing to THIS product on that
-         site. The non-UK slugs are illustrative; the feed fills the real ones. -->
-    <link rel="alternate" hreflang="en-GB" href="https://www.loopper.co.uk/personalized-water-bottles/thermos-bottles/thermos-bottle-stainless-steel-500-ml-6383162" />
-    <link rel="alternate" hreflang="en" href="https://www.loopper.com/personalized-water-bottles/thermos-bottles/thermos-bottle-stainless-steel-500-ml-6383162" />
-    <link rel="alternate" hreflang="nl" href="https://www.loopper.nl/bedrukte-drinkflessen/thermosflessen/thermosfles-rvs-500-ml-6383162" />
-    <link rel="alternate" hreflang="fr" href="https://www.loopper.fr/gourdes-personnalisees/bouteilles-isothermes/bouteille-isotherme-inox-500-ml-6383162" />
-    <link rel="alternate" hreflang="de" href="https://www.loopper.de/trinkflaschen-bedrucken/thermosflaschen/thermosflasche-edelstahl-500-ml-6383162" />
-    <link rel="alternate" hreflang="it" href="https://www.loopper.com/it/borracce-personalizzate/thermos/thermos-acciaio-inox-500-ml-6383162" />
-    <link rel="alternate" hreflang="es" href="https://www.loopper.com/es/botellas-personalizadas/termos/termo-acero-inoxidable-500-ml-6383162" />
-    <link rel="alternate" hreflang="x-default" href="https://www.loopper.co.uk/personalized-water-bottles/thermos-bottles/thermos-bottle-stainless-steel-500-ml-6383162" />
+    <!-- hreflang per LPPR-3116. Only entries verified live (HTTP 200 +
+         self-canonical) on 18 Sep 2026 are emitted. "it" is omitted because
+         this article is not live on /it/, which is the ticket's omit case.
+         The ticket's wider regional set (nl-BE, de-AT, de-CH, fr-BE, fr-CH,
+         en-US, en-IE) is policy and not settled, so it is left out here.
+         x-default points at .co.uk: Lars's call, because .com PDPs are
+         noindex and an x-default Google drops is worse than none. -->
+    <link rel="alternate" hreflang="en" href="https://www.loopper.co.uk/personalised-water-bottles/personalised-thermos-bottles/cove-500-ml-vacuum-insulated-stainless-steel-bottle-6382809" />
+    <link rel="alternate" hreflang="en-GB" href="https://www.loopper.co.uk/personalised-water-bottles/personalised-thermos-bottles/cove-500-ml-vacuum-insulated-stainless-steel-bottle-6382809" />
+    <link rel="alternate" hreflang="nl-NL" href="https://www.loopper.nl/waterflessen-bedrukken/thermosflessen-bedrukken/cove-vacuum-geisoleerde-roestvrijstalen-fles-van-500-ml-6382809" />
+    <link rel="alternate" hreflang="de-DE" href="https://www.loopper.de/wasserflaschen-bedrucken/thermosflaschen-bedrucken/cove-500-ml-vakuumisolierte-edelstahlflasche-6382809" />
+    <link rel="alternate" hreflang="fr-FR" href="https://www.loopper.fr/gourde-personnalisee/gourde-isotherme-personnalisee/bouteille-cove-de-500nml-en-acier-inoxydable-a-isolation-sous-vide-6382809" />
+    <link rel="alternate" hreflang="x-default" href="https://www.loopper.co.uk/personalised-water-bottles/personalised-thermos-bottles/cove-500-ml-vacuum-insulated-stainless-steel-bottle-6382809" />
     <meta name="robots" content="index, follow" />
     <meta property="og:type" content="product" />
     <meta
       property="og:title"
-      content="Thermos Bottle 500 ml, Stainless Steel, Personalised | from 25 pcs."
+      content="Personalised Thermos Bottle 500 ml, Stainless Steel | from 25 pcs."
     />
     <meta
       property="og:description"
@@ -44,41 +56,41 @@
     />
     <meta
       property="og:url"
-      content="https://www.loopper.co.uk/personalized-water-bottles/thermos-bottles/thermos-bottle-stainless-steel-500-ml-6383162"
+      content="https://www.loopper.co.uk/personalised-water-bottles/personalised-thermos-bottles/cove-500-ml-vacuum-insulated-stainless-steel-bottle-6382809"
     />
     <meta
       property="og:image"
-      content="https://img.loopper.com/storage/webshop/articles/thermos-bottle-stainless-steel-500-ml.jpg"
+      content="https://img.loopper.com/storage/webshop/articles/6383162.jpg"
     />
     <meta property="og:site_name" content="Loopper" />
     <meta property="og:locale" content="en_GB" />
     <meta name="twitter:card" content="summary_large_image" />
+    <!-- dev: generate validFrom (today) and priceValidUntil (today + 1 year) per request, as the live template does -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@graph": [
           {
             "@type": "WebPage",
-            "@id": "https://www.loopper.co.uk/personalized-water-bottles/thermos-bottles/thermos-bottle-stainless-steel-500-ml-6383162#webpage",
-            "name": "Thermos Bottle 500 ml, Stainless Steel, Personalised | from 25 pcs.",
-            "url": "https://www.loopper.co.uk/personalized-water-bottles/thermos-bottles/thermos-bottle-stainless-steel-500-ml-6383162",
+            "@id": "https://www.loopper.co.uk/personalised-water-bottles/personalised-thermos-bottles/cove-500-ml-vacuum-insulated-stainless-steel-bottle-6382809#webpage",
+            "name": "Personalised Thermos Bottle 500 ml, Stainless Steel | from 25 pcs.",
+            "url": "https://www.loopper.co.uk/personalised-water-bottles/personalised-thermos-bottles/cove-500-ml-vacuum-insulated-stainless-steel-bottle-6382809",
             "isPartOf": {
               "@id": "https://www.loopper.co.uk#website"
             },
             "breadcrumb": {
-              "@id": "https://www.loopper.co.uk/personalized-water-bottles/thermos-bottles/thermos-bottle-stainless-steel-500-ml-6383162#breadcrumb"
+              "@id": "https://www.loopper.co.uk/personalised-water-bottles/personalised-thermos-bottles/cove-500-ml-vacuum-insulated-stainless-steel-bottle-6382809#breadcrumb"
             },
             "publisher": {
               "@id": "https://www.loopper.co.uk#organization"
             },
             "mainEntity": {
-              "@id": "https://www.loopper.co.uk/personalized-water-bottles/thermos-bottles/thermos-bottle-stainless-steel-500-ml-6383162#product"
-            },
-            "dateModified": "2026-09-16"
+              "@id": "https://www.loopper.co.uk/personalised-water-bottles/personalised-thermos-bottles/cove-500-ml-vacuum-insulated-stainless-steel-bottle-6382809#product"
+            }
           },
           {
             "@type": "BreadcrumbList",
-            "@id": "https://www.loopper.co.uk/personalized-water-bottles/thermos-bottles/thermos-bottle-stainless-steel-500-ml-6383162#breadcrumb",
+            "@id": "https://www.loopper.co.uk/personalised-water-bottles/personalised-thermos-bottles/cove-500-ml-vacuum-insulated-stainless-steel-bottle-6382809#breadcrumb",
             "itemListElement": [
               {
                 "@type": "ListItem",
@@ -90,29 +102,29 @@
                 "@type": "ListItem",
                 "position": 2,
                 "name": "Personalised water bottles",
-                "item": "https://www.loopper.co.uk/personalized-water-bottles"
+                "item": "https://www.loopper.co.uk/personalised-water-bottles"
               },
               {
                 "@type": "ListItem",
                 "position": 3,
                 "name": "Thermos bottles",
-                "item": "https://www.loopper.co.uk/personalized-water-bottles/thermos-bottles"
+                "item": "https://www.loopper.co.uk/personalised-water-bottles/personalised-thermos-bottles"
               },
               {
                 "@type": "ListItem",
                 "position": 4,
                 "name": "Thermos bottle, stainless steel, 500 ml",
-                "item": "https://www.loopper.co.uk/personalized-water-bottles/thermos-bottles/thermos-bottle-stainless-steel-500-ml-6383162"
+                "item": "https://www.loopper.co.uk/personalised-water-bottles/personalised-thermos-bottles/cove-500-ml-vacuum-insulated-stainless-steel-bottle-6382809"
               }
             ]
           },
           {
             "@type": "Product",
-            "@id": "https://www.loopper.co.uk/personalized-water-bottles/thermos-bottles/thermos-bottle-stainless-steel-500-ml-6383162#product",
-            "name": "Thermos bottle, stainless steel, 500 ml",
+            "@id": "https://www.loopper.co.uk/personalised-water-bottles/personalised-thermos-bottles/cove-500-ml-vacuum-insulated-stainless-steel-bottle-6382809#product",
+            "name": "Personalised thermos bottle, stainless steel, 500 ml",
             "description": "Vacuum insulated stainless steel bottle with an iconic design. The insulated 18/8 stainless steel keeps drinks hot or cold for several hours. Personalised with your logo.",
             "image": [
-              "https://img.loopper.com/storage/webshop/articles/thermos-bottle-stainless-steel-500-ml.jpg"
+              "https://img.loopper.com/storage/webshop/articles/6383162.jpg"
             ],
             "sku": "6383162",
             "brand": {
@@ -120,21 +132,6 @@
               "name": "Loopper"
             },
             "material": "18/8 stainless steel",
-            "color": [
-              "Grey",
-              "Black",
-              "White",
-              "Navy",
-              "Royal blue",
-              "Green",
-              "Red",
-              "Orange",
-              "Yellow",
-              "Pink",
-              "Purple",
-              "Teal",
-              "Sand"
-            ],
             "height": {
               "@type": "QuantitativeValue",
               "value": 27,
@@ -157,7 +154,7 @@
             },
             "offers": {
               "@type": "Offer",
-              "url": "https://www.loopper.co.uk/personalized-water-bottles/thermos-bottles/thermos-bottle-stainless-steel-500-ml-6383162",
+              "url": "https://www.loopper.co.uk/personalised-water-bottles/personalised-thermos-bottles/cove-500-ml-vacuum-insulated-stainless-steel-bottle-6382809",
               "priceCurrency": "GBP",
               "price": "7.99",
               "priceSpecification": [
@@ -299,13 +296,72 @@
               ],
               "availability": "https://schema.org/InStock",
               "itemCondition": "https://schema.org/NewCondition",
+              "validFrom": "2026-10-28",
+              "priceValidUntil": "2027-10-28",
               "seller": {
                 "@id": "https://www.loopper.co.uk#organization"
               },
               "hasMerchantReturnPolicy": {
                 "@id": "https://www.loopper.co.uk#merchant-return-policy"
+              },
+              "shippingDetails": {
+                "@type": "OfferShippingDetails",
+                "shippingRate": {
+                  "@type": "MonetaryAmount",
+                  "value": 0,
+                  "currency": "GBP"
+                },
+                "shippingDestination": {
+                  "@type": "DefinedRegion",
+                  "addressCountry": "GB"
+                },
+                "deliveryTime": {
+                  "@type": "ShippingDeliveryTime",
+                  "handlingTime": {
+                    "@type": "QuantitativeValue",
+                    "minValue": 5,
+                    "maxValue": 10,
+                    "unitCode": "DAY"
+                  },
+                  "transitTime": {
+                    "@type": "QuantitativeValue",
+                    "minValue": 1,
+                    "maxValue": 2,
+                    "unitCode": "DAY"
+                  }
+                }
               }
             }
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://www.loopper.co.uk#organization",
+            "name": "Loopper",
+            "url": "https://www.loopper.co.uk",
+            "logo": "https://www.loopper.com/storage/logo/Loopper_logo_default.svg",
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "9.3",
+              "bestRating": "10",
+              "worstRating": "1",
+              "reviewCount": "1289"
+            },
+            "hasMerchantReturnPolicy": {
+              "@type": "MerchantReturnPolicy",
+              "@id": "https://www.loopper.co.uk#merchant-return-policy",
+              "applicableCountry": "GB",
+              "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.loopper.co.uk#website",
+            "url": "https://www.loopper.co.uk",
+            "name": "Loopper",
+            "publisher": {
+              "@id": "https://www.loopper.co.uk#organization"
+            },
+            "inLanguage": "en-GB"
           }
         ]
       }
@@ -332,15 +388,13 @@
     </style>
     <!-- ?v=: raise it after editing the CSS / JS, so phones testing the
          prototype fetch the new files instead of a cached copy -->
-    <link rel="stylesheet" href="styles.css?v=57" />
-    <link rel="stylesheet" href="nav.css?v=57" />
+    <link rel="stylesheet" href="styles.css?v=61" />
+    <!-- new menu (22 Oct 2026) -->
+    <link rel="stylesheet" href="menu.css?v=59" />
   </head>
   <body>
-    <!-- ============ NAVIGATION MENU ============
-         From 02 Navigation menu/loopper-navigation-menu.html: icon
-         sprite, header (USP bar, search, actions, category bar + mega
-         menu, mobile chips), scrim and mobile drawer. Styles in
-         nav.css, behaviour in nav.js. -->
+    <!-- NEW MENU (prototype 22 Oct 2026) -->
+
     <!-- SVG icon sprite -->
     <svg width="0" height="0" style="position: absolute" aria-hidden="true">
       <defs>
@@ -474,16 +528,16 @@
             <span class="usp-item"
               ><span class="usp-ic"
                 ><img
-                  src="assets/nav/v2-usp-check.svg"
+                  src="assets/menu/icon-2363a53e6f.svg"
                   width="18.0604"
                   height="14.0691"
                   alt="" /></span
-              >23 years of experience</span
+              >24 years of experience</span
             >
             <span class="usp-item"
               ><span class="usp-ic"
                 ><img
-                  src="assets/nav/v2-usp-check.svg"
+                  src="assets/menu/icon-2363a53e6f.svg"
                   width="18.0604"
                   height="14.0691"
                   alt="" /></span
@@ -492,16 +546,16 @@
             <span class="usp-item"
               ><span class="usp-ic"
                 ><img
-                  src="assets/nav/v2-usp-check.svg"
+                  src="assets/menu/icon-2363a53e6f.svg"
                   width="18.0604"
                   height="14.0691"
                   alt="" /></span
               >Personal service</span
             >
           </div>
-          <a class="usp-tp" href="https://www.trustpilot.com/review/loopper.com" rel="noopener"
+          <a class="usp-tp" href="https://www.trustpilot.com/review/www.loopper.com" rel="noopener"
             ><img
-              src="assets/nav/trustpilot-rating@2x.png"
+              src="assets/menu/icon-95088561fc.png"
               width="315"
               height="18"
               alt="Trustpilot 4.7/5 (1,282 reviews)"
@@ -512,7 +566,7 @@
             aria-label="Hide these messages"
           >
             <img
-              src="assets/nav/v2-usp-close.svg"
+              src="assets/menu/icon-bba9c3d141.svg"
               width="15.4286"
               height="15.4286"
               alt=""
@@ -526,12 +580,12 @@
           <a class="logo" href="/" aria-label="Loopper home"
             ><img
               class="d-only d-logo"
-              src="assets/nav/v2-logo.svg"
+              src="assets/menu/icon-1433ec5648.svg"
               width="165"
               height="35.8333"
               alt="" /><img
               class="m-only m-logo"
-              src="assets/nav/logo.svg"
+              src="assets/menu/icon-5056bd6b44.svg"
               width="102"
               height="22"
               alt=""
@@ -546,7 +600,7 @@
               autocomplete="off"
             />
             <button type="submit" aria-label="Search">
-              <img src="assets/nav/search.svg" width="34" height="28" alt="" />
+              <img src="assets/menu/icon-dfb142047e.svg" width="34" height="28" alt="" />
             </button>
           </form>
 
@@ -559,7 +613,7 @@
                 aria-haspopup="true"
                 aria-expanded="false"
                 aria-controls="langMenu"
-                aria-label="Country: United Kingdom. Change country"
+                aria-label="GB, United Kingdom. Change country"
               >
                 <span
                   class="lang-flag"
@@ -572,7 +626,7 @@
               <ul class="lang-menu" id="langMenu" hidden>
                 <li>
                   <a
-                    href="https://www.loopper.co.uk/personalized-water-bottles/thermos-bottles/thermos-bottle-stainless-steel-500-ml-6383162"
+                    href="https://www.loopper.co.uk"
                     hreflang="en-GB"
                     aria-current="true"
                     ><span class="cur-opt"
@@ -601,7 +655,7 @@
                   ></a>
                 </li>
                 <li>
-                  <a href="https://www.loopper.nl/bedrukte-drinkflessen/thermosflessen/thermosfles-rvs-500-ml-6383162" hreflang="nl"
+                  <a href="https://www.loopper.nl" hreflang="nl"
                     ><span class="cur-opt"
                       ><span
                         class="lang-flag lang-flag-lg"
@@ -628,7 +682,7 @@
                   ></a>
                 </li>
                 <li>
-                  <a href="https://www.loopper.com/personalized-water-bottles/thermos-bottles/thermos-bottle-stainless-steel-500-ml-6383162" hreflang="en"
+                  <a href="https://www.loopper.com" hreflang="en"
                     ><span class="cur-opt"
                       ><span
                         class="lang-flag lang-flag-lg"
@@ -655,7 +709,7 @@
                   ></a>
                 </li>
                 <li>
-                  <a href="https://www.loopper.fr/gourdes-personnalisees/bouteilles-isothermes/bouteille-isotherme-inox-500-ml-6383162" hreflang="fr"
+                  <a href="https://www.loopper.fr" hreflang="fr"
                     ><span class="cur-opt"
                       ><span
                         class="lang-flag lang-flag-lg"
@@ -682,7 +736,7 @@
                   ></a>
                 </li>
                 <li>
-                  <a href="https://www.loopper.de/trinkflaschen-bedrucken/thermosflaschen/thermosflasche-edelstahl-500-ml-6383162" hreflang="de"
+                  <a href="https://www.loopper.de" hreflang="de"
                     ><span class="cur-opt"
                       ><span
                         class="lang-flag lang-flag-lg"
@@ -709,7 +763,7 @@
                   ></a>
                 </li>
                 <li>
-                  <a href="https://www.loopper.com/it/borracce-personalizzate/thermos/thermos-acciaio-inox-500-ml-6383162" hreflang="it"
+                  <a href="https://www.loopper.com/it" hreflang="it"
                     ><span class="cur-opt"
                       ><span
                         class="lang-flag lang-flag-lg"
@@ -736,7 +790,7 @@
                   ></a>
                 </li>
                 <li>
-                  <a href="https://www.loopper.com/es/botellas-personalizadas/termos/termo-acero-inoxidable-500-ml-6383162" hreflang="es"
+                  <a href="https://www.loopper.com/es" hreflang="es"
                     ><span class="cur-opt"
                       ><span
                         class="lang-flag lang-flag-lg"
@@ -778,7 +832,7 @@
               </button>
               <ul class="lang-menu" id="curMenu" hidden>
                 <li>
-                  <a href="#" data-cur="GBP" data-sym="£" aria-current="true"
+                  <button type="button" data-cur="GBP" data-sym="£" aria-current="true"
                     ><span class="cur-opt"
                       ><span class="cur-badge">£</span>GBP
                       <span class="cur-name">· British pound</span></span
@@ -797,10 +851,10 @@
                         stroke-linecap="round"
                         stroke-linejoin="round"
                       /></svg
-                  ></a>
+                  ></button>
                 </li>
                 <li>
-                  <a href="#" data-cur="EUR" data-sym="€"
+                  <button type="button" data-cur="EUR" data-sym="€"
                     ><span class="cur-opt"
                       ><span class="cur-badge">€</span>EUR
                       <span class="cur-name">· Euro</span></span
@@ -819,7 +873,7 @@
                         stroke-linecap="round"
                         stroke-linejoin="round"
                       /></svg
-                  ></a>
+                  ></button>
                 </li>
               </ul>
             </div>
@@ -829,25 +883,25 @@
               aria-label="Call us on +44 20 4576 5960"
               ><span class="m-ic m-phone"
                 ><img
-                  src="assets/nav/phone.svg"
+                  src="assets/menu/icon-b0b0bd4e97.svg"
                   width="27.0611"
                   height="28"
                   alt="" /></span
               ><span class="ph-num d-only">+44 20 4576 5960</span></a
             >
-            <a class="act" href="#" aria-label="My account"
+            <a class="act" href="/login" rel="nofollow" aria-label="My account"
               ><span class="m-ic m-account"
                 ><img
-                  src="assets/nav/account.svg"
+                  src="assets/menu/icon-92f79a3c63.svg"
                   width="34"
                   height="29.6186"
                   alt="" /></span
             ></a>
-            <a class="act" href="#" aria-label="Basket"
+            <a class="act" href="/shoppingcart/customer-details" aria-label="Basket"
               ><span class="ic-wrap"
                 ><span class="m-ic m-cart"
                   ><img
-                    src="assets/nav/cart.svg"
+                    src="assets/menu/icon-9d2b16dc5f.svg"
                     width="32.9824"
                     height="25.6872"
                     alt="" /></span></span
@@ -862,7 +916,7 @@
             aria-controls="drawer"
           >
             <img
-              src="assets/nav/menu.svg"
+              src="assets/menu/icon-b9ddc8df4c.svg"
               width="33.8253"
               height="33.8253"
               alt=""
@@ -873,14 +927,93 @@
 
       <!-- Mobile: category chips -->
       <nav class="chips" aria-label="Popular categories">
-        <ul id="chips"></ul>
+        <ul id="chips"><li><a class="chip" href="/personalised-bags" data-id="bags"><svg class="ico " aria-hidden="true"><use href="#i-bags"></use></svg>Bags</a></li><li><a class="chip" href="/brands" data-id="brands"><svg class="ico " aria-hidden="true"><use href="#i-brands"></use></svg>Brands</a></li><li><a class="chip" href="/personalised-clothing" data-id="clothing"><svg class="ico " aria-hidden="true"><use href="#i-clothing"></use></svg>Clothing</a></li><li><a class="chip" href="/personalised-water-bottles" data-id="food-drinkware"><svg class="ico " aria-hidden="true"><use href="#i-food-drinkware"></use></svg>Food &amp; Drinkware</a></li><li><a class="chip" href="/personalised-gadgets" data-id="gadgets"><svg class="ico " aria-hidden="true"><use href="#i-gadgets"></use></svg>Gadgets</a></li><li><a class="chip" href="/wholesale-giveaways" data-id="giveaways"><svg class="ico " aria-hidden="true"><use href="#i-giveaways"></use></svg>Giveaways</a></li><li><a class="chip" href="/personalised-office-supplies" data-id="office"><svg class="ico " aria-hidden="true"><use href="#i-office"></use></svg>Office</a></li><li><a class="chip" href="/personalised-travel-accessories" data-id="outdoor"><svg class="ico " aria-hidden="true"><use href="#i-outdoor"></use></svg>Outdoor</a></li><li><a class="chip" href="/personalised-sustainable-products" data-id="sustainable"><svg class="ico " aria-hidden="true"><use href="#i-sustainable"></use></svg>Sustainable</a></li><li><button class="chip" type="button" data-id="themes"><svg class="ico " aria-hidden="true"><use href="#i-themes"></use></svg>Sectors &amp; Themes</button></li><li><a class="chip" href="/personalised-wellness-products" data-id="wellness"><svg class="ico " aria-hidden="true"><use href="#i-wellness"></use></svg>Wellness</a></li></ul>
       </nav>
 
       <!-- Desktop: category bar + mega menu -->
       <nav class="cat" id="cat" aria-label="Product categories">
-        <div class="wrap"><ul class="cat-list" id="catList"></ul></div>
+        <div class="wrap"><ul class="cat-list" id="catList"><li><button class="cat-btn" data-id="all" data-label="Popular Categories" aria-expanded="false" aria-controls="mega"><span>Popular Categories</span></button></li><li data-cat="brands"><a class="cat-btn" data-id="brands" data-label="All Brands" aria-expanded="false" aria-controls="mega" href="/brands"><span>All Brands</span></a></li><li data-cat="giveaways"><a class="cat-btn" data-id="giveaways" data-label="Giveaways" aria-expanded="false" aria-controls="mega" href="/wholesale-giveaways"><span>Giveaways</span></a></li><li data-cat="food-drinkware"><a class="cat-btn" data-id="food-drinkware" data-label="Food &amp; Drinkware" aria-expanded="false" aria-controls="mega" href="/personalised-water-bottles"><span>Food &amp; Drinkware</span></a></li><li data-cat="clothing"><a class="cat-btn" data-id="clothing" data-label="Clothing" aria-expanded="false" aria-controls="mega" href="/personalised-clothing"><span>Clothing</span></a></li><li data-cat="gadgets"><a class="cat-btn" data-id="gadgets" data-label="Gadgets" aria-expanded="false" aria-controls="mega" href="/personalised-gadgets"><span>Gadgets</span></a></li><li data-cat="office"><a class="cat-btn" data-id="office" data-label="Office" aria-expanded="false" aria-controls="mega" href="/personalised-office-supplies"><span>Office</span></a></li><li data-cat="bags"><a class="cat-btn" data-id="bags" data-label="Bags" aria-expanded="false" aria-controls="mega" href="/personalised-bags"><span>Bags</span></a></li><li data-cat="christmas"><a class="cat-btn" href="/personalised-christmas-giveaways" data-label="Christmas"><span>Christmas</span></a></li><li data-cat="themes"><button class="cat-btn" data-id="themes" data-label="Sectors &amp; Themes" aria-expanded="false" aria-controls="mega"><span>Sectors &amp; Themes</span></button></li><li data-more="" hidden=""><button class="cat-btn" data-id="more" data-label="More" aria-expanded="false" aria-controls="mega"><span>More</span></button></li></ul></div>
         <div class="mega" id="mega" hidden>
-          <div class="wrap mega-in" id="megaIn"></div>
+          <div class="wrap mega-in" id="megaIn"><div data-panel="all" hidden=""><div class="mm" data-key="all">
+      <div class="mm-left">
+        <p class="mm-kicker">Popular Categories</p>
+        <div class="mm-tabs" role="tablist" aria-orientation="horizontal" aria-label="Popular Categories">
+        
+        <a class="mm-g" href="/personalised-lighters" role="tab" data-gi="0" aria-selected="true" aria-controls="mmp-all-0"><span class="g-txt"><span class="g-label">Lighters</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-fans" role="tab" data-gi="1" aria-selected="false" aria-controls="mmp-all-1"><span class="g-txt"><span class="g-label">Fans</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-sports-bottles" role="tab" data-gi="2" aria-selected="false" aria-controls="mmp-all-2"><span class="g-txt"><span class="g-label">Sports bottles</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-balls" role="tab" data-gi="3" aria-selected="false" aria-controls="mmp-all-3"><span class="g-txt"><span class="g-label">Balls</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/event-giveaways/personalised-condoms"><span class="g-txt"><span class="g-label">Condoms</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-mugs" role="tab" data-gi="5" aria-selected="false" aria-controls="mmp-all-5"><span class="g-txt"><span class="g-label">Mugs</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-keyrings" role="tab" data-gi="6" aria-selected="false" aria-controls="mmp-all-6"><span class="g-txt"><span class="g-label">Keyrings</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-winter-hats" role="tab" data-gi="7" aria-selected="false" aria-controls="mmp-all-7"><span class="g-txt"><span class="g-label">Winter hats</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/giveaways-for-kids"><span class="g-txt"><span class="g-label">Giveaways for kids</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-portfolios" role="tab" data-gi="9" aria-selected="false" aria-controls="mmp-all-9"><span class="g-txt"><span class="g-label">Portfolios</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-towels" role="tab" data-gi="10" aria-selected="false" aria-controls="mmp-all-10"><span class="g-txt"><span class="g-label">Towels</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-caps" role="tab" data-gi="11" aria-selected="false" aria-controls="mmp-all-11"><span class="g-txt"><span class="g-label">Caps</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-sunglasses" role="tab" data-gi="12" aria-selected="false" aria-controls="mmp-all-12"><span class="g-txt"><span class="g-label">Sunglasses</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-lip-balm" role="tab" data-gi="13" aria-selected="false" aria-controls="mmp-all-13"><span class="g-txt"><span class="g-label">Lip balm</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a>
+        </div>
+        <button class="btn-all" type="button" data-open="az">Browse products A–Z <img src="assets/menu/icon-8a58d53e54.svg" width="14" height="10" alt=""></button>
+      </div>
+      <div class="mm-divider" aria-hidden="true"></div>
+      <div class="mm-center" id="mmp-all-0" data-pi="0" role="tabpanel" hidden=""><div class="pane-low"><div class="mm-items" style="grid-template-rows:repeat(3,auto);grid-template-columns:repeat(2,minmax(0,1fr))"><a href="/personalised-lighters/clipper-lighters">Clipper lighters</a><a href="/personalised-lighters/personalised-cigarette-cases">Cigarette cases</a><a href="/personalised-lighters/personalised-matches">Matches</a><a href="/personalised-lighters/personalised-ashtrays">Ashtrays</a><a href="/personalised-lighters/personalised-cricket-lighters">Cricket lighters</a></div></div></div><div class="mm-center" id="mmp-all-2" data-pi="2" role="tabpanel" hidden=""><div class="pane-low"><div class="mm-items" style="grid-template-rows:repeat(3,auto);grid-template-columns:repeat(2,minmax(0,1fr))"><a href="/personalised-water-bottles/stanley">Stanley</a><a href="/personalised-sports-bottles/personalised-protein-shakers">Protein shakers</a><a href="/personalised-water-bottles/personalised-stainless-steel-water-bottles">Stainless steel water bottles</a><a href="/personalised-water-bottles/personalised-eco-water-bottles">Eco water bottles</a><a href="/personalised-water-bottles/personalised-infuser-water-bottles">Infuser water bottles</a><a href="/personalised-water-bottles/personalised-thermos-bottles">Thermos bottles</a></div></div></div><div class="mm-center" id="mmp-all-3" data-pi="3" role="tabpanel" hidden=""><div class="pane-low"><div class="mm-items" style="grid-template-rows:repeat(3,auto);grid-template-columns:repeat(2,minmax(0,1fr))"><a href="/personalised-balls/personalised-tennis-balls">Tennis balls</a><a href="/personalised-balls/personalised-stress-balls">Stress balls</a><a href="/personalised-towels/personalised-beach-towels">Beach towels</a><a href="/personalised-balls/personalised-footballs">Footballs</a><a href="/personalised-aprons/personalised-bbq-aprons">BBQ aprons</a><a href="/personalised-beach-articles/personalised-air-mattress">Air mattress</a></div></div></div>
+    </div></div><div data-panel="brands" hidden=""><div class="grid-panel"><div class="mm-head"><p class="mm-title">Brands</p><a class="link-all" href="/brands">View all brands <img src="assets/menu/icon-f5a93c56e4.svg" width="14" height="10" alt=""></a></div>
+        <div class="grid-links"><a href="/brands/adidas">Adidas</a><a href="/personalised-water-bottles/avira">Avira</a><a href="/personalised-bags/bellroy">Bellroy</a><a href="/brands/bic">BIC</a><a href="/brands/brandcharger">BrandCharger</a><a href="/personalised-water-bottles/camelbak">CamelBak</a><a href="/personalised-bags/case-logic">Case Logic</a><a href="/personalised-bags/cerruti">Cerruti</a><a href="/personalised-mugs/circular-and-co">Circular&amp;Co</a><a href="/personalised-lighters/clipper-lighters">Clipper lighters</a><a href="/personalised-mugs/contigo">Contigo</a><a href="/personalised-luggages/delsey-paris">Delsey Paris</a><a href="/personalised-water-bottles/dopper">Dopper</a><a href="/personalised-water-bottles/earth-water">EARTH Water</a><a href="/personalised-bags/festibax">Festibax</a><a href="/personalised-gadgets/fresh-n-rebel">Fresh 'n Rebel</a><a href="/kitchen-giveaways/gusta">Gusta</a><a href="/brands/herschel">Herschel</a><a href="/brands/hugo-boss">Hugo Boss</a><a href="/personalised-umbrellas/impliva">Impliva</a><a href="/personalised-clothing/iqoniq">Iqoniq</a><a href="/personalised-wellness-products/janzen">Janzen</a><a href="/personalised-gadgets/jbl">JBL</a><a href="/personalised-water-bottles/join-the-pipe">Join The Pipe</a><a href="/personalised-water-bottles/kambukka">Kambukka</a><a href="/brands/kingcap">KINGCAP®</a><a href="/personalised-water-bottles/klean-kanteen">Klean Kanteen</a><a href="/personalised-water-bottles/larq">LARQ</a><a href="/personalised-games/lego">LEGO</a><a href="/personalised-candy/lindt">Lindt</a><a href="/personalised-candy/mms">M&amp;M'S</a><a href="/personalised-water-bottles/mepal">Mepal Waterbottles</a><a href="/personalised-notebooks/moleskine">Moleskine</a><a href="/personalised-notebooks/moyu">MOYU</a><a href="/kitchen-giveaways/opinel">Opinel</a><a href="/personalised-pens/parker">Parker</a><a href="/personalised-pens/prodir">Prodir</a><a href="/brands/puma">Puma</a><a href="/brands/reisenthel">Reisenthel</a><a href="/personalised-clothing/roly">Roly</a><a href="/personalised-water-bottles/sagaform">Sagaform</a><a href="/personalised-clothing/sols">SOL'S</a><a href="/personalised-gadgets/sony">Sony</a><a href="/personalised-pens/stabilo">Stabilo</a><a href="/personalised-water-bottles/stanley">Stanley</a><a href="/personalised-clothing/stanley-stella">Stanley Stella</a><a href="/personalised-water-bottles/swing">Swing</a><a href="/brands/swiss-peak">Swiss Peak</a><a href="/personalised-sports-bottles/tacx">Tacx</a><a href="/personalised-water-bottles/tefal">Tefal</a><a href="/brands/the-north-face">The North Face</a><a href="/personalised-candy/tony-chocolonely">Tony's Chocolonely</a><a href="/personalised-wellness-products/personalised-treatments-products">Treatments ®</a><a href="/personalised-wine-gifts/tubes-gifts">TUBES Gifts</a><a href="/personalised-gadgets/urban-vitamin">Urban Vitamin</a><a href="/personalised-tools/victorinox">Victorinox</a><a href="/brands/vinga">VINGA</a><a href="/personalised-towels/walra">Walra</a><a href="/personalised-gadgets/walter">Walter</a><a href="/personalised-pens/waterman">Waterman</a><a href="/personalised-wellness-products/we-love-the-planet">We Love The Planet</a><a href="/personalised-lighters/zippo">Zippo</a></div></div></div><div data-panel="giveaways" hidden=""><div class="mm mm-side" data-key="giveaways">
+      <div class="mm-left">
+        
+        <div class="mm-tabs" role="tablist" aria-orientation="horizontal" aria-label="Giveaways">
+        <div class="mm-kick"><p class="mm-kicker">Giveaways</p><a class="g-all" href="/wholesale-giveaways">view all</a></div>
+        <a class="mm-g" href="/personalised-lighters" role="tab" data-gi="0" aria-selected="true" aria-controls="mmp-giveaways-0"><span class="g-txt"><span class="g-label">Lighters</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-fans" role="tab" data-gi="1" aria-selected="false" aria-controls="mmp-giveaways-1"><span class="g-txt"><span class="g-label">Fans</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/event-giveaways/personalised-condoms"><span class="g-txt"><span class="g-label">Condoms</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-keyrings" role="tab" data-gi="3" aria-selected="false" aria-controls="mmp-giveaways-3"><span class="g-txt"><span class="g-label">Keyrings</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/giveaways-for-kids"><span class="g-txt"><span class="g-label">Giveaways for kids</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-pens" role="tab" data-gi="5" aria-selected="false" aria-controls="mmp-giveaways-5"><span class="g-txt"><span class="g-label">Pens</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-lanyards" role="tab" data-gi="6" aria-selected="false" aria-controls="mmp-giveaways-6"><span class="g-txt"><span class="g-label">Lanyards</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-notebooks" role="tab" data-gi="7" aria-selected="false" aria-controls="mmp-giveaways-7"><span class="g-txt"><span class="g-label">Notebooks</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/brands" role="tab" data-gi="8" aria-selected="false" aria-controls="mmp-giveaways-8"><span class="g-txt"><span class="g-label">Brands<svg class="brand-tag" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 3a1 1 0 0 1 1-1h8.6a1 1 0 0 1 .7.3l9.4 9.4a1 1 0 0 1 0 1.4l-8.6 8.6a1 1 0 0 1-1.4 0L2.3 12.3a1 1 0 0 1-.3-.7zm5 6.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" fill-rule="evenodd"></path></svg></span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a>
+        </div>
+        
+      </div>
+      <div class="mm-divider" aria-hidden="true"></div>
+      <div class="mm-center" id="mmp-giveaways-0" data-pi="0" role="tabpanel" hidden=""><div class="pane-low"><div class="mm-items" style="grid-template-rows:repeat(3,auto);grid-template-columns:repeat(2,minmax(0,1fr))"><a href="/personalised-lighters/clipper-lighters">Clipper lighters</a><a href="/personalised-lighters/personalised-cigarette-cases">Cigarette cases</a><a href="/personalised-lighters/personalised-matches">Matches</a><a href="/personalised-lighters/personalised-ashtrays">Ashtrays</a><a href="/personalised-lighters/personalised-cricket-lighters">Cricket lighters</a></div></div></div>
+    </div></div><div data-panel="food-drinkware" hidden=""><div class="mm mm-side" data-key="food-drinkware">
+      <div class="mm-left">
+        
+        <div class="mm-tabs" role="tablist" aria-orientation="horizontal" aria-label="Food &amp; Drinkware">
+        <div class="mm-kick"><p class="mm-kicker">Food &amp; Drinkware</p><a class="g-all" href="/personalised-water-bottles">view all</a></div>
+        <a class="mm-g" href="/personalised-sports-bottles" role="tab" data-gi="0" aria-selected="true" aria-controls="mmp-food-drinkware-0"><span class="g-txt"><span class="g-label">Sports bottles</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-mugs" role="tab" data-gi="1" aria-selected="false" aria-controls="mmp-food-drinkware-1"><span class="g-txt"><span class="g-label">Mugs</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-candy" role="tab" data-gi="2" aria-selected="false" aria-controls="mmp-food-drinkware-2"><span class="g-txt"><span class="g-label">Candy</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-glassware" role="tab" data-gi="3" aria-selected="false" aria-controls="mmp-food-drinkware-3"><span class="g-txt"><span class="g-label">Glassware</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-bottle-openers" role="tab" data-gi="4" aria-selected="false" aria-controls="mmp-food-drinkware-4"><span class="g-txt"><span class="g-label">Bottle openers</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/kitchen-giveaways" role="tab" data-gi="5" aria-selected="false" aria-controls="mmp-food-drinkware-5"><span class="g-txt"><span class="g-label">Kitchen giveaways</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/brands" role="tab" data-gi="6" aria-selected="false" aria-controls="mmp-food-drinkware-6"><span class="g-txt"><span class="g-label">Brands<svg class="brand-tag" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 3a1 1 0 0 1 1-1h8.6a1 1 0 0 1 .7.3l9.4 9.4a1 1 0 0 1 0 1.4l-8.6 8.6a1 1 0 0 1-1.4 0L2.3 12.3a1 1 0 0 1-.3-.7zm5 6.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" fill-rule="evenodd"></path></svg></span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a>
+        </div>
+        
+      </div>
+      <div class="mm-divider" aria-hidden="true"></div>
+      <div class="mm-center" id="mmp-food-drinkware-0" data-pi="0" role="tabpanel" hidden=""><div class="pane-low"><div class="mm-items" style="grid-template-rows:repeat(3,auto);grid-template-columns:repeat(2,minmax(0,1fr))"><a href="/personalised-water-bottles/stanley">Stanley</a><a href="/personalised-sports-bottles/personalised-protein-shakers">Protein shakers</a><a href="/personalised-water-bottles/personalised-stainless-steel-water-bottles">Stainless steel water bottles</a><a href="/personalised-water-bottles/personalised-eco-water-bottles">Eco water bottles</a><a href="/personalised-water-bottles/personalised-infuser-water-bottles">Infuser water bottles</a><a href="/personalised-water-bottles/personalised-thermos-bottles">Thermos bottles</a></div></div></div><div class="mm-center" id="mmp-food-drinkware-5" data-pi="5" role="tabpanel" hidden=""><div class="pane-low"><div class="mm-items" style="grid-template-rows:repeat(3,auto);grid-template-columns:repeat(2,minmax(0,1fr))"><a href="/kitchen-giveaways/personalised-napkins">Napkins</a><a href="/kitchen-giveaways/personalised-lunchboxes">Lunchboxes</a><a href="/catering-giveaways">Catering giveaways</a><a href="/kitchen-giveaways/personalised-knife-sets">Knife sets</a><a href="/kitchen-giveaways/personalised-fridge-magnets">Fridge magnets</a><a href="/kitchen-giveaways/amuse">Amuse</a></div></div></div>
+    </div></div><div data-panel="clothing" hidden=""><div class="mm mm-side" data-key="clothing">
+      <div class="mm-left">
+        
+        <div class="mm-tabs" role="tablist" aria-orientation="horizontal" aria-label="Clothing">
+        
+        <a class="mm-g is-top" href="/personalised-clothing" role="tab" data-gi="0" aria-selected="true" aria-controls="mmp-clothing-0"><span class="g-txt"><span class="g-label">Clothing</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-winter-hats" role="tab" data-gi="1" aria-selected="false" aria-controls="mmp-clothing-1"><span class="g-txt"><span class="g-label">Winter hats</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-caps" role="tab" data-gi="2" aria-selected="false" aria-controls="mmp-clothing-2"><span class="g-txt"><span class="g-label">Caps</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-safety-vests" role="tab" data-gi="3" aria-selected="false" aria-controls="mmp-clothing-3"><span class="g-txt"><span class="g-label">Safety vests</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-footwear" role="tab" data-gi="4" aria-selected="false" aria-controls="mmp-clothing-4"><span class="g-txt"><span class="g-label">Footwear</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-aprons" role="tab" data-gi="5" aria-selected="false" aria-controls="mmp-clothing-5"><span class="g-txt"><span class="g-label">Aprons</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-polo-shirts" role="tab" data-gi="6" aria-selected="false" aria-controls="mmp-clothing-6"><span class="g-txt"><span class="g-label">Polo shirts</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/brands" role="tab" data-gi="7" aria-selected="false" aria-controls="mmp-clothing-7"><span class="g-txt"><span class="g-label">Brands<svg class="brand-tag" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 3a1 1 0 0 1 1-1h8.6a1 1 0 0 1 .7.3l9.4 9.4a1 1 0 0 1 0 1.4l-8.6 8.6a1 1 0 0 1-1.4 0L2.3 12.3a1 1 0 0 1-.3-.7zm5 6.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" fill-rule="evenodd"></path></svg></span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a>
+        </div>
+        
+      </div>
+      <div class="mm-divider" aria-hidden="true"></div>
+      <div class="mm-center" id="mmp-clothing-0" data-pi="0" role="tabpanel" hidden=""><div class="pane-top"><div class="mm-items" style="grid-template-rows:repeat(3,auto);grid-template-columns:repeat(2,minmax(0,1fr))"><a href="/personalised-jackets">Jackets</a><a href="/personalised-clothing/personalised-t-shirts">T-shirts</a><a href="/personalised-clothing/personalised-hoodies">Hoodies</a><a href="/personalised-clothing/personalised-kids-shirts">Kids' shirts</a><a href="/personalised-clothing/personalised-sustainable-fashion">Sustainable fashion</a><a href="/personalised-clothing/personalised-jumpers">Jumpers</a></div></div></div><div class="mm-center" id="mmp-clothing-3" data-pi="3" role="tabpanel" hidden=""><div class="pane-low"><div class="mm-items" style="grid-template-rows:repeat(2,auto);grid-template-columns:repeat(2,minmax(0,1fr))"><a href="/personalised-safety-vests/personalised-childrens-safety-vests">Children's safety vests</a><a href="/personalised-reflective-items">Reflective items</a><a href="/personalised-safety-vests/personalised-safety-vests-fast-delivery">Safety vests fast delivery</a><a href="/personalised-safety-vests/personalised-premium-safety-vests">Premium safety vests</a></div></div></div><div class="mm-center" id="mmp-clothing-4" data-pi="4" role="tabpanel" hidden=""><div class="pane-low"><div class="mm-items" style="grid-template-rows:repeat(3,auto);grid-template-columns:repeat(2,minmax(0,1fr))"><a href="/personalised-footwear/personalised-slippers">Slippers</a><a href="/personalised-footwear/personalised-flip-flops">Flip-flops</a><a href="/personalised-footwear/personalised-bath-slippers">Bath slippers</a><a href="/personalised-footwear/personalised-trainers">Trainers</a><a href="/personalised-flip-flops//personalised-flip-flops-fast-delivery">Flip Flop Fast delivery</a></div></div></div>
+    </div></div><div data-panel="gadgets" hidden=""><div class="mm mm-side" data-key="gadgets">
+      <div class="mm-left">
+        
+        <div class="mm-tabs" role="tablist" aria-orientation="horizontal" aria-label="Gadgets">
+        
+        <a class="mm-g is-top" href="/personalised-gadgets" role="tab" data-gi="0" aria-selected="true" aria-controls="mmp-gadgets-0"><span class="g-txt"><span class="g-label">Gadgets</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-power-banks" role="tab" data-gi="1" aria-selected="false" aria-controls="mmp-gadgets-1"><span class="g-txt"><span class="g-label">Power banks</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-watches" role="tab" data-gi="2" aria-selected="false" aria-controls="mmp-gadgets-2"><span class="g-txt"><span class="g-label">Watches</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-chargers" role="tab" data-gi="3" aria-selected="false" aria-controls="mmp-gadgets-3"><span class="g-txt"><span class="g-label">Chargers</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-tools" role="tab" data-gi="4" aria-selected="false" aria-controls="mmp-gadgets-4"><span class="g-txt"><span class="g-label">Tools</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/brands" role="tab" data-gi="5" aria-selected="false" aria-controls="mmp-gadgets-5"><span class="g-txt"><span class="g-label">Brands<svg class="brand-tag" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 3a1 1 0 0 1 1-1h8.6a1 1 0 0 1 .7.3l9.4 9.4a1 1 0 0 1 0 1.4l-8.6 8.6a1 1 0 0 1-1.4 0L2.3 12.3a1 1 0 0 1-.3-.7zm5 6.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" fill-rule="evenodd"></path></svg></span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a>
+        </div>
+        
+      </div>
+      <div class="mm-divider" aria-hidden="true"></div>
+      
+    </div></div><div data-panel="office" hidden=""><div class="mm mm-side" data-key="office">
+      <div class="mm-left">
+        
+        <div class="mm-tabs" role="tablist" aria-orientation="horizontal" aria-label="Office">
+        <div class="mm-kick"><p class="mm-kicker">Office</p><a class="g-all" href="/personalised-office-supplies">view all</a></div>
+        <a class="mm-g" href="/personalised-portfolios" role="tab" data-gi="0" aria-selected="true" aria-controls="mmp-office-0"><span class="g-txt"><span class="g-label">Portfolios</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-usb-sticks" role="tab" data-gi="1" aria-selected="false" aria-controls="mmp-office-1"><span class="g-txt"><span class="g-label">USB sticks</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-pens" role="tab" data-gi="2" aria-selected="false" aria-controls="mmp-office-2"><span class="g-txt"><span class="g-label">Pens</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-notebooks" role="tab" data-gi="3" aria-selected="false" aria-controls="mmp-office-3"><span class="g-txt"><span class="g-label">Notebooks</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-mouse-pads" role="tab" data-gi="4" aria-selected="false" aria-controls="mmp-office-4"><span class="g-txt"><span class="g-label">Mouse pads</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-office-supplies" role="tab" data-gi="5" aria-selected="false" aria-controls="mmp-office-5"><span class="g-txt"><span class="g-label">Office supplies</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/marketing-and-print-materials" role="tab" data-gi="6" aria-selected="false" aria-controls="mmp-office-6"><span class="g-txt"><span class="g-label">Marketing</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/brands" role="tab" data-gi="7" aria-selected="false" aria-controls="mmp-office-7"><span class="g-txt"><span class="g-label">Brands<svg class="brand-tag" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 3a1 1 0 0 1 1-1h8.6a1 1 0 0 1 .7.3l9.4 9.4a1 1 0 0 1 0 1.4l-8.6 8.6a1 1 0 0 1-1.4 0L2.3 12.3a1 1 0 0 1-.3-.7zm5 6.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" fill-rule="evenodd"></path></svg></span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a>
+        </div>
+        
+      </div>
+      <div class="mm-divider" aria-hidden="true"></div>
+      
+    </div></div><div data-panel="bags" hidden=""><div class="mm mm-side" data-key="bags">
+      <div class="mm-left">
+        
+        <div class="mm-tabs" role="tablist" aria-orientation="horizontal" aria-label="Bags">
+        
+        <a class="mm-g is-top" href="/personalised-bags" role="tab" data-gi="0" aria-selected="true" aria-controls="mmp-bags-0"><span class="g-txt"><span class="g-label">Bags</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-cotton-bags" role="tab" data-gi="1" aria-selected="false" aria-controls="mmp-bags-1"><span class="g-txt"><span class="g-label">Cotton bags</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-backpacks" role="tab" data-gi="2" aria-selected="false" aria-controls="mmp-bags-2"><span class="g-txt"><span class="g-label">Backpacks</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/personalised-luggage" role="tab" data-gi="3" aria-selected="false" aria-controls="mmp-bags-3"><span class="g-txt"><span class="g-label">Luggage</span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a><a class="mm-g" href="/brands" role="tab" data-gi="4" aria-selected="false" aria-controls="mmp-bags-4"><span class="g-txt"><span class="g-label">Brands<svg class="brand-tag" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 3a1 1 0 0 1 1-1h8.6a1 1 0 0 1 .7.3l9.4 9.4a1 1 0 0 1 0 1.4l-8.6 8.6a1 1 0 0 1-1.4 0L2.3 12.3a1 1 0 0 1-.3-.7zm5 6.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" fill-rule="evenodd"></path></svg></span></span><span class="g-all">view all</span><span class="g-chev"><img src="assets/menu/icon-2685aad9a6.svg" width="16" height="22" alt=""><img src="assets/menu/icon-9a61ca159d.svg" width="16" height="22" alt=""></span></a>
+        </div>
+        
+      </div>
+      <div class="mm-divider" aria-hidden="true"></div>
+      <div class="mm-center" id="mmp-bags-0" data-pi="0" role="tabpanel" hidden=""><div class="pane-top"><div class="mm-items" style="grid-template-rows:repeat(3,auto);grid-template-columns:repeat(2,minmax(0,1fr))"><a href="/personalised-paper-bags">Paper bags</a><a href="/personalised-bags/personalised-non-woven-bags">Non-woven bags</a><a href="/personalised-bags/personalised-jute-bags">Jute bags</a><a href="/personalised-bags/personalised-cooler-bags">Cooler bags</a><a href="/personalised-bags/personalised-polyester-bags">Polyester bags</a><a href="/personalised-bags/personalised-toiletry-bags">Toiletry bags</a></div></div></div>
+    </div></div><div data-panel="themes" hidden=""><div class="grid-panel"><div class="mm-head"><p class="mm-title">Sectors &amp; Themes</p></div>
+        <div class="grid-links"><a href="/sports-club-giveaways">Sports club</a><a href="/public-administration-giveaways">Public administration</a><a href="/healthcare-giveaways">Healthcare</a><a href="/hotel-gifts">Hotel gifts</a><a href="/tobacconists-and-cbd-shops-giveaways">Tobacconists &amp; CBD shops</a><a href="/new-year-gifts">New Year Gifts</a><a href="/wholesale-giveaways">Wholesale</a><a href="/event-giveaways">Event</a><a href="/made-in-eu">Made in EU</a><a href="/construction-giveaways">Construction</a><a href="/banks-insurance-companies-giveaways">Banks &amp; insurance companies</a><a href="/transport-company-giveaways">Transport company</a><a href="/education-giveaways">Education</a><a href="/garage-and-car-dealers-giveaways">Garage and car dealers</a><a href="/specialities">Specialities</a></div></div></div><div data-panel="dyn" hidden=""></div></div>
         </div>
       </nav>
     </header>
@@ -897,20 +1030,17 @@
     >
       <div class="dr-top">
         <span class="logo" aria-hidden="true"
-          ><img src="assets/nav/logo.svg" width="102" height="22" alt=""
+          ><img src="assets/menu/icon-5056bd6b44.svg" width="102" height="22" alt=""
         /></span>
         <button class="dr-close" id="drClose" aria-label="Close menu">
-          <!-- same X as the photo viewer and print previews (user) -->
-          <img
-            src="assets/mobile/overlay-close.svg"
-            width="29"
-            height="28"
-            alt=""
-          />
+          <svg class="ico"><use href="#i-x" /></svg>
         </button>
       </div>
       <div class="dr-stage" id="drStage"></div>
     </div>
+
+    
+<!-- /NEW MENU -->
 
     <div class="stage" id="main">
       <div class="frame" id="frame">
@@ -938,12 +1068,12 @@
                   </button>
                 </li>
                 <li class="crumb-mid">
-                  <a href="/personalized-water-bottles"
+                  <a href="/personalised-water-bottles"
                     >Personalised water bottles</a
                   >
                 </li>
                 <li>
-                  <a href="/personalized-water-bottles/thermos-bottles"
+                  <a href="/personalised-water-bottles/personalised-thermos-bottles"
                     >Thermos bottles</a
                   >
                 </li>
@@ -1410,7 +1540,7 @@
                     <p class="pdp-section-text">
                       A food-safe steel with 18% chromium and 8% nickel that
                       does not rust or take on flavours.
-                      <a href="/knowledge-bank/materials/stainless-steel"
+                      <a href="/knowledge-bank/materials"
                         >Read more about stainless steel</a
                       >
                     </p>
@@ -2335,7 +2465,7 @@
                             >
                             <span class="qty-right"
                               ><span class="qty-price"
-                                ><span>£ 7.99</span><span>p.p</span></span
+                                ><span>£7.99</span><span>p.p</span></span
                               ></span
                             >
                           </button>
@@ -2351,7 +2481,7 @@
                             <span class="qty-right"
                               ><span class="save-badge">Save -5%</span
                               ><span class="qty-price"
-                                ><span>£ 7.59</span><span>p.p</span></span
+                                ><span>£7.59</span><span>p.p</span></span
                               ></span
                             >
                           </button>
@@ -2367,7 +2497,7 @@
                             <span class="qty-right"
                               ><span class="save-badge">Save -10%</span
                               ><span class="qty-price"
-                                ><span>£ 7.19</span><span>p.p</span></span
+                                ><span>£7.19</span><span>p.p</span></span
                               ></span
                             >
                           </button>
@@ -2383,7 +2513,7 @@
                             <span class="qty-right"
                               ><span class="save-badge">Save -25%</span
                               ><span class="qty-price"
-                                ><span>£ 6.01</span><span>p.p</span></span
+                                ><span>£6.01</span><span>p.p</span></span
                               ></span
                             >
                           </button>
@@ -2399,7 +2529,7 @@
                             <span class="qty-right"
                               ><span class="save-badge">Save -29%</span
                               ><span class="qty-price"
-                                ><span>£ 5.67</span><span>p.p</span></span
+                                ><span>£5.67</span><span>p.p</span></span
                               ></span
                             >
                           </button>
@@ -2415,7 +2545,7 @@
                             <span class="qty-right"
                               ><span class="save-badge">Save -33%</span
                               ><span class="qty-price"
-                                ><span>£ 5.35</span><span>p.p</span></span
+                                ><span>£5.35</span><span>p.p</span></span
                               ></span
                             >
                           </button>
@@ -2431,7 +2561,7 @@
                             <span class="qty-right"
                               ><span class="save-badge">Save -38%</span
                               ><span class="qty-price"
-                                ><span>£ 4.99</span><span>p.p</span></span
+                                ><span>£4.99</span><span>p.p</span></span
                               ></span
                             >
                           </button>
@@ -2447,7 +2577,7 @@
                             <span class="qty-right"
                               ><span class="save-badge">Save -42%</span
                               ><span class="qty-price"
-                                ><span>£ 4.65</span><span>p.p</span></span
+                                ><span>£4.65</span><span>p.p</span></span
                               ></span
                             >
                           </button>
@@ -2549,18 +2679,18 @@
                         >-25%</span
                       >
                       <span class="price-old" id="price-old">7.99</span>
-                      <span class="price-new" id="price-new">£ 6.01</span>
+                      <span class="price-new" id="price-new">£6.01</span>
                     </div>
                   </div>
                   <div class="price-row">
                     <div class="price-label">Total price</div>
                     <div class="price-right">
                       <span class="price-old" id="total-old">1,997.25</span>
-                      <span class="total-new" id="total-new">£ 1,502.50</span>
+                      <span class="total-new" id="total-new">£1,502.50</span>
                     </div>
                   </div>
                   <div class="price-row price-row--vat">
-                    <span>Prices excl. 21% VAT.</span>
+                    <span>Prices excl. VAT.</span>
                     <button
                       class="underline price-details-toggle"
                       type="button"
@@ -2639,14 +2769,14 @@
               </div>
 
               <h2 class="pdp-section-heading">
-                Reviews for Thermos bottle | Stainless steel | 500 ml
+                What customers say about Loopper
               </h2>
               <div class="kiyoh-rating">
                 <span class="stars-green">★★★★</span
                 ><span class="star-half">½</span>
                 <span class="kiyoh-label"
                   ><b>Kiyoh 9.3</b>
-                  <span class="grey">(1,261 reviews)</span></span
+                  <span class="grey">(1,289 reviews)</span></span
                 >
               </div>
 
@@ -2757,9 +2887,8 @@
                     </div>
                     <h3 class="pcard-title">
                       <a
-                        href="/personalized-water-bottles/thermos-bottles/thermos-bottle-stainless-steel-750-ml-cup-lid"
-                        >Thermos bottle | Stainless steel |<br />750 ml | With
-                        cup lid</a
+                        href="/personalised-water-bottles/personalised-thermos-bottles/thor-650-ml-copper-vacuum-insulated-sport-bottle-1149215"
+                        >Thermos bottle | Stainless steel | <br />650 ml | Bestseller</a
                       >
                     </h3>
                     <div class="pcard-meta">
@@ -2791,9 +2920,8 @@
                     </div>
                     <h3 class="pcard-title">
                       <a
-                        href="/personalized-water-bottles/thermos-bottles/thermos-bottle-copper-insulated-500-ml"
-                        >Thermos bottle | Copper insulated |<br />500 ml | Screw
-                        cap</a
+                        href="/personalised-water-bottles/personalised-thermos-bottles/vasa-500-ml-copper-vacuum-insulated-sport-bottle-1150888"
+                        >Thermos bottle | Stainless steel | <br />500 ml | Bestseller</a
                       >
                     </h3>
                     <div class="pcard-meta">
@@ -2825,9 +2953,8 @@
                     </div>
                     <h3 class="pcard-title">
                       <a
-                        href="/personalized-water-bottles/thermos-bottles/thermos-flask-stainless-steel-1-l"
-                        >Thermos flask | Stainless steel |<br />1 L | Wide
-                        mouth</a
+                        href="/personalised-water-bottles/swing/swing-wood-edition-500ml-1150912"
+                        >Swing thermo bottle | Stainless steel | <br />500 ml | Wood look</a
                       >
                     </h3>
                     <div class="pcard-meta">
@@ -2859,8 +2986,8 @@
                     </div>
                     <h3 class="pcard-title">
                       <a
-                        href="/personalized-water-bottles/tritan-water-bottles/water-bottle-tritan-650-ml"
-                        >Water bottle | Tritan |<br />650 ml | Sport cap</a
+                        href="/personalised-water-bottles/swing/thermos-flask-swing-metal-500ml-1-1150913"
+                        >Swing thermos bottle | Stainless steel | <br />500 ml | Warm for up to 12h</a
                       >
                     </h3>
                     <div class="pcard-meta">
@@ -2892,9 +3019,8 @@
                     </div>
                     <h3 class="pcard-title">
                       <a
-                        href="/personalized-mugs/thermos-mugs/thermos-mug-double-walled-350-ml"
-                        >Thermos mug | Double walled |<br />350 ml | Leak
-                        proof</a
+                        href="/personalised-water-bottles/personalised-thermos-bottles/stainless-steel-flask-double-walled-1000ml-quentin-1145396"
+                        >Stainless steel flask | Double walled | <br />1000 ml | Quentin</a
                       >
                     </h3>
                     <div class="pcard-meta">
@@ -2945,12 +3071,12 @@
               <div class="footer-col footer-col--general">
                 <div class="footer-group">
                   <p class="footer-heading">General</p>
-                  <a href="/terms-and-conditions/">Terms and conditions</a>
-                  <a href="/privacy-policy/">Privacy policy</a>
-                  <a href="/payment-options/">Payment options</a>
-                  <a href="/send-and-delivery/">Send and delivery</a>
-                  <a href="/order-process/">Order process</a>
-                  <a href="/can-i-return-products/">Can I return products?</a>
+                  <a href="/general-conditions">Terms and conditions</a>
+                  <a href="/privacy-policy">Privacy policy</a>
+                  <a href="/customer-service/payment-options">Payment options</a>
+                  <a href="/customer-service/send-and-delivery">Send and delivery</a>
+                  <a href="/customer-service/order-process">Order process</a>
+                  <a href="/faq/other-questions/can-i-return-products">Can I return products?</a>
                 </div>
                 <!-- Active In 687:15239 -->
                 <div class="footer-group active-in">
@@ -3002,38 +3128,38 @@
               <!-- Column Gifts 687:15272 -->
               <div class="footer-col footer-group footer-col--gifts">
                 <p class="footer-heading">Promotional gifts</p>
-                <a href="/personalized-bags/">Personalised bags</a>
-                <a href="/personalized-lighters/">Personalised lighters</a>
-                <a href="/personalized-mugs/">Personalised mugs</a>
-                <a href="/personalized-notebooks/">Personalised notebooks</a>
-                <a href="/personalized-pens/">Personalised pens</a>
-                <a href="/personalized-power-banks/"
+                <a href="/personalised-bags">Personalised bags</a>
+                <a href="/personalised-lighters">Personalised lighters</a>
+                <a href="/personalised-mugs">Personalised mugs</a>
+                <a href="/personalised-notebooks">Personalised notebooks</a>
+                <a href="/personalised-pens">Personalised pens</a>
+                <a href="/personalised-power-banks"
                   >Personalised power banks</a
                 >
-                <a href="/personalized-towels/">Personalised towels</a>
-                <a href="/personalized-water-bottles"
+                <a href="/personalised-towels">Personalised towels</a>
+                <a href="/personalised-water-bottles"
                   >Personalised water bottles</a
                 >
-                <a href="/special-projects/">Special Projects</a>
-                <a href="/merch-packs/">Merch packs</a>
+                <a href="/about-us/special-projects">Special Projects</a>
+                <a href="/merchandising">Merch packs</a>
               </div>
               <!-- Column Knowledge 687:15284 -->
               <div class="footer-col footer-group">
                 <p class="footer-heading">Knowledge bank</p>
-                <a href="/print-options/">Print options</a>
-                <a href="/materials/">Materials</a>
-                <a href="/products/">Products</a>
-                <a href="/technical/">Technical</a>
+                <a href="/knowledge-bank/print-options">Print options</a>
+                <a href="/knowledge-bank/materials">Materials</a>
+                <a href="/knowledge-bank/products">Products</a>
+                <a href="/knowledge-bank/technical">Technical</a>
               </div>
               <!-- Column About 687:15290 -->
               <div class="footer-col footer-group">
                 <p class="footer-heading">About Loopper</p>
-                <a href="/about-us/">About us</a>
-                <a href="/blog/">Blog</a>
-                <a href="/customer-stories/">Customer stories</a>
-                <a href="/careers/">Careers</a>
-                <a href="/resellers/">Resellers</a>
-                <a href="/faq/">FAQ</a>
+                <a href="/about-us">About us</a>
+                <a href="/blog">Blog</a>
+                <a href="/customer-stories">Customer stories</a>
+                <a href="/loopper-careers">Careers</a>
+                <a href="/resellers">Resellers</a>
+                <a href="/faq">FAQ</a>
               </div>
               <!-- Column Actions 687:15298 -->
               <div class="footer-col footer-col--actions">
@@ -3209,7 +3335,7 @@
                 <span class="discount-badge" data-price="discount">-25%</span>
                 <span class="price-old" data-price="old">7.99</span>
               </span>
-              <span class="price-new" data-price="new">£ 6.01</span>
+              <span class="price-new" data-price="new">£6.01</span>
             </span>
           </div>
         </div>
@@ -3347,7 +3473,8 @@
     </div>
     <!-- Add to cart confirmation (script.js showToast) -->
     <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
-    <script src="nav.js?v=57"></script>
-    <script src="script.js?v=57"></script>
+    <script src="menu-data.js?v=58"></script>
+    <script src="menu.js?v=59"></script>
+    <script src="script.js?v=60"></script>
   </body>
 </html>

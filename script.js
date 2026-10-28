@@ -40,6 +40,9 @@ const fluidLayout = matchMedia(`(width < ${DESKTOP_MIN}px)`);
 const MOBILE_DESIGN_WIDTH = 393;
 const phoneLayout = matchMedia("(max-width: 767px)");
 
+// The first values come from the inline script in index.html's <head> (--pz,
+// styles.css "page zoom before the first paint"); this keeps them right on
+// resize / rotation. Keep both formulas in sync.
 function fitPhone() {
   const vw = document.documentElement.clientWidth;
   const zoom = phoneLayout.matches ? vw / MOBILE_DESIGN_WIDTH : 1;
@@ -151,11 +154,11 @@ function setValue(stepName, label) {
 }
 
 // step 4's collapsed header carries the unit price too (527:11603), written
-// in the "£ 6.01 p.p" form the tier rows use; call after state.price is set
+// in the "£6.01 p.p" form the tier rows use; call after state.price is set
 function setQuantityValue(qty) {
   setValue("quantity", `${qty} pieces`);
   const price = document.getElementById("quantity-price");
-  price.textContent = `£ ${state.price.toFixed(2)} p.p`;
+  price.textContent = `£${state.price.toFixed(2)} p.p`;
   price.classList.add("filled");
 }
 
@@ -859,7 +862,7 @@ perPositionList.addEventListener("click", (e) => {
 });
 
 /* ---------- price block ---------- */
-const money = (n) => "£ " + n.toLocaleString("en-GB", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const money = (n) => "£" + n.toLocaleString("en-GB", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
 function updatePrice() {
   const { quantity, price } = state;
@@ -1852,6 +1855,8 @@ window.addEventListener("load", fitFrame);
   new ResizeObserver(sizeSpacer).observe(hd);
   window.addEventListener("resize", sizeSpacer); // the page zoom follows the width
   sizeSpacer();
+  // pin it only now: the spacer takes over the room it held in the flow
+  hd.classList.add("is-fixed");
 
   // natural heights of the parts that collapse, for the height animation
   const root = document.documentElement;
