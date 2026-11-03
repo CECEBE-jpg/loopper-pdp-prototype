@@ -33,3 +33,89 @@
     gap: var(--exp-gap);
   }
 }
+
+/* 3. fit form + summary above the fold at 100% (no scaling) on a 1080p
+   screen (~950px window). Layout only, all content stays:
+   - title and progress bar share one row
+   - in the wider form, "My logo" and "When do you need…" sit side by side
+   - tighter vertical gaps; smaller summary photo (243 → 110px) */
+@media (width >= 768px) {
+  :root {
+    --exp-title-w: 330px; /* room for "Get your free Design / Quote" */
+  }
+  .req-body {
+    margin-top: -63px; /* pull the progress bar up next to the title */
+  }
+  .req-top {
+    margin-left: var(--exp-title-w);
+  }
+  .back-btn {
+    left: calc(-69px - var(--exp-title-w)); /* stays left of the title */
+  }
+  .req-title {
+    position: relative;
+    z-index: 1;
+    width: var(--exp-width);
+  }
+  .req-body {
+    gap: 20px;
+  }
+
+  /* form */
+  .form-card {
+    padding: 20px 24px;
+    gap: 20px;
+  }
+  .f-extra {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 28px;
+  }
+  .f-extra > * {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .f-when-row {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .f-when-right {
+    width: 100%;
+  }
+  .f-details {
+    min-height: 0;
+    gap: 14px;
+  }
+  .f-textarea {
+    height: 52px;
+  }
+
+  /* summary */
+  .summary {
+    gap: 12px;
+  }
+  .summary-panel {
+    gap: 14px;
+  }
+  .summary-title {
+    padding-top: 0;
+  }
+  .summary-img {
+    width: 110px;
+    height: 110px;
+  }
+  .summary-main {
+    gap: 12px;
+  }
+  .summary-specs {
+    gap: 14px;
+  }
+  .summary-selects {
+    gap: 10px;
+  }
+}
+@media (width >= 768px) {
+  .req {
+    padding-top: 16px; /* a little air under the header */
+  }
+}
