@@ -5472,3 +5472,29 @@ body.tlm-lock {
 .mty-req .yrq-toggle {
   margin-top: -8px; /* line → link text ≈ 16px, like the other gaps */
 }
+
+/* phone Request summary toggle: the PDP chevron (same as the summary
+   dropdowns and "Show product details"); .rsm-chev still turns 180deg
+   when the card opens */
+.rsm-chev:has(.chev-node) {
+  width: 13px;
+  height: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rsm-chev .chev-node {
+  width: 6px;
+  height: 13px;
+  position: relative;
+  flex: none;
+  transform: rotate(90deg);
+}
+.rsm-chev .chev-node img {
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  width: 9.63877px;
+  height: 17px;
+  max-width: none;
+}
