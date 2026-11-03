@@ -1,218 +1,168 @@
 /* ============================================================
-   PDP header + breadcrumb on the request form and thank-you page
-   The navigation menu itself is ../nav.css (+ ../nav.js), the same files
-   the product page uses. The rules below are the product page's own
-   additions to it (../styles.css: fixed header, compact on scroll, search
-   suggestions, phone bar, breadcrumb), copied so both pages match.
-   Keep in sync with ../styles.css.
+   Request form + thank-you header, restyled like the product page
+   Same markup and content as the original request flow (.hdr / .mhdr in
+   index.html, rules in styles.css); only the look follows the PDP
+   navigation menu (../nav.css): light-blue USP strip on top, 70px white
+   bar with a pill search, grey rounded category bar, PDP type sizes and
+   colours. Values measured from the PDP at 1440px.
    ============================================================ */
 
-/* --- header fixed to the top (pdp-header.js keeps a spacer under it) --- */
-.hd.hd {
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
+/* ---------- desktop ---------- */
+.hdr {
+  --hd-pad: 3vw; /* PDP: 43px side padding at 1440 */
+  color: #15232b;
 }
 
-/* --- compact header on scroll: USP banner + category bar slide away --- */
-.hd .usp,
-.hd .cat {
-  max-height: var(--part-h, none);
-  transition:
-    max-height 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
-    padding 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
-    opacity 0.25s ease;
+/* USP / trust strip: first, like the PDP's USP bar */
+.hdr-trust {
+  order: -1;
+  height: 36px;
+  padding: 0 var(--hd-pad);
+  background: #eff7ff;
+  color: #003e4d;
 }
-.hd .usp {
-  --part-h: var(--usp-h, none);
+.hdr-usps {
+  flex: 0 1 auto;
+  justify-content: flex-start;
+  gap: 43px;
 }
-.hd .cat {
-  --part-h: var(--cat-h, none);
+.hdr .usp {
+  gap: 11px;
+  font-size: 12.29px;
+  font-weight: 600;
 }
-.hd.is-compact .usp,
-.hd.is-compact .cat {
-  max-height: 0;
-  padding-block: 0;
-  opacity: 0;
-  overflow: hidden;
-  pointer-events: none;
+.usp-badge {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
 }
-.hd.hd-anim .usp,
-.hd.hd-anim .cat {
-  overflow: hidden;
+.usp-badge img {
+  width: 9px;
+  height: 9px;
 }
-.hd.is-compact .chips {
-  display: none;
+.kiyoh {
+  gap: 6px;
 }
-
-/* --- header search suggestions --- */
-.hd .search {
-  position: relative;
+.kiyoh-stars {
+  font-size: 17px;
+  letter-spacing: 1px;
+  line-height: 1;
 }
-.search-suggest {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: calc(100% + 6px);
-  z-index: 130;
-  max-height: 320px;
-  overflow-y: auto;
-  margin: 0;
-  padding: 6px;
-  list-style: none;
-  background: #fff;
-  border: 1px solid #d5e2e8;
-  border-radius: 12px;
-  box-shadow: 0 16px 32px -12px rgba(9, 40, 55, 0.28);
-}
-.search-suggest[hidden] {
-  display: none;
-}
-.search-suggest a {
-  display: block;
-  padding: 10px 12px;
-  border-radius: 8px;
+.kiyoh-score {
   font-size: 15px;
-  color: #092837;
-  text-decoration: none;
-}
-.search-suggest a:hover,
-.search-suggest li.active a {
-  background: #edf8fb;
-}
-.search-empty {
-  padding: 10px 12px;
-  font-size: 14px;
-  color: #7a8a99;
+  font-weight: 600;
+  color: #003e4d;
 }
 
-/* --- breadcrumb (same look as the product page) --- */
-.breadcrumb-bar {
-  height: 52px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 400;
-  font-size: 16px;
-  color: #7a8a99;
-  transition:
-    opacity 0.25s ease,
-    visibility 0.25s;
+/* main bar: logo | pill search | actions */
+.hdr-top {
+  height: 70px;
+  padding: 0 var(--hd-pad);
+  gap: 50px;
 }
-body:has(.hd.is-compact) .breadcrumb-bar {
-  opacity: 0;
-  visibility: hidden;
+.hdr-logo {
+  width: 165px;
+  height: 33px;
 }
-/* lines up with the request / thank-you content (1096px column) */
-.breadcrumb-bar .bar-inner {
-  width: 1096px;
-  max-width: calc(100% - 20px);
-  display: flex;
-  align-items: center;
+.hdr-search {
+  height: 42px;
+  padding: 0 14px 0 17px;
+  border: 2px solid #cacaca;
+  border-radius: 34px;
+  box-shadow: 0 1px 7.4px 1px rgba(0, 0, 0, 0.09);
 }
-.crumbs {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+body[data-screen="thanks"] .hdr-search {
+  flex: 1 1 auto;
+  max-width: 733px;
 }
-.crumbs a {
-  color: inherit;
-  text-decoration: none;
+.hdr-search input {
+  font-size: 18px;
+  font-weight: 700;
+  color: #15232b;
 }
-.crumbs a:hover {
-  text-decoration: underline;
+.hdr-search input::placeholder {
+  color: #838383;
 }
-.crumbs li + li::before {
-  content: " / ";
-  white-space: pre;
+.hdr-search img {
+  width: 24px;
+  height: 24px;
 }
-.crumbs [aria-current] {
-  color: #5a6b7a;
+.hdr-right {
+  gap: 26px;
 }
-.crumbs-more {
+.hdr-lang {
+  gap: 7px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #787575;
+}
+.hdr-lang-dot {
+  width: 20px;
+  height: 20px;
+}
+.hdr-phone {
+  gap: 6px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #787575;
+}
+.hdr-phone img {
+  width: 26px;
+  height: 26px;
+}
+/* "1 open request" badge on the quote icon's top-right corner (it is the
+   next flex item, so it is pulled back over the icon) */
+.hdr-badge {
+  position: relative;
+  left: auto;
+  top: -14px;
+  width: 20px;
+  height: 20px;
+  margin: 0 -12px 0 -38px;
+  font-size: 11px;
+}
+
+/* category bar: grey rounded bar with a soft shadow, dark SemiBold 15 */
+.hdr-cats {
+  height: auto;
+  margin: 7px 27px 8px;
+  padding: 10px 34px;
+  background: #f6f6f6;
+  border-radius: 26px;
+  filter: drop-shadow(1px 4px 3.1px rgba(0, 0, 0, 0.11));
+  color: #2c3e50;
+  font-size: 15px;
+  line-height: 29.4px;
+}
+.hdr-all,
+.hdr-links {
+  font-weight: 600;
+}
+.hdr-links a,
+.hdr-all {
+  padding: 0 16px;
+  border-radius: 11px;
+}
+.hdr-links a:hover,
+.hdr-all:hover {
+  background: #e6f6fa;
+  color: #00aed8;
+}
+.hdr-menu-icon img {
+  filter: brightness(0.2);
+}
+/* the form screens hide the bar's links (original behaviour); an empty
+   grey bar would read as broken, so the bar itself is left out there */
+body[data-screen="design"] .hdr-cats,
+body[data-screen="quote"] .hdr-cats {
   display: none;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .breadcrumb-bar,
-  .hd .usp,
-  .hd .cat {
-    transition: none;
-  }
+/* ---------- phones: PDP's 60px bar and search pill ---------- */
+.mhdr-bar {
+  height: 60px;
+  padding: 0 16px;
 }
-
-/* --- phones: same 60px bar as the product page (menu button top right,
-   no search field), breadcrumb folds to "Home / … / current" --- */
-@media (width < 768px) {
-  .hd.hd .bar-in {
-    grid-template-columns: minmax(0, 1fr) auto auto;
-    grid-template-areas: "logo actions burger";
-    align-items: center;
-    column-gap: 4px;
-    height: 60px;
-    padding: 0;
-  }
-  .hd.hd .bar .logo {
-    margin-block: 0;
-  }
-  .hd.hd .actions {
-    margin-block: 0;
-  }
-  .hd.hd .search {
-    display: none;
-  }
-  .hd.hd .burger {
-    margin: 0 8px 0 0;
-  }
-
-  .breadcrumb-bar {
-    height: auto;
-    justify-content: flex-start;
-    padding: 15px 16px 15px 16px;
-    font-size: 12px;
-  }
-  .breadcrumb-bar .bar-inner {
-    width: auto;
-    max-width: none;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-  .breadcrumb-bar .bar-inner::-webkit-scrollbar {
-    display: none;
-  }
-  .crumbs {
-    flex-wrap: nowrap;
-    white-space: nowrap;
-  }
-  .crumbs-more {
-    display: list-item;
-  }
-  .crumbs .crumb-mid {
-    display: none;
-  }
-  .crumbs.is-expanded {
-    flex-wrap: wrap;
-    white-space: normal;
-  }
-  .crumbs.is-expanded .crumb-mid {
-    display: list-item;
-  }
-  .crumbs.is-expanded .crumbs-more {
-    display: none;
-  }
-  .crumbs-more button {
-    position: relative;
-    padding: 0 2px;
-    font: inherit;
-    color: inherit;
-    letter-spacing: 1px;
-  }
-  .crumbs-more button::after {
-    content: "";
-    position: absolute;
-    inset: -15px -10px;
-  }
+.mhdr-pill {
+  border-width: 2px;
 }

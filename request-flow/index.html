@@ -11,639 +11,246 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css?v=6" />
-    <link rel="stylesheet" href="nav.css?v=1" />
-    <link rel="stylesheet" href="pdp-header.css?v=1" />
+    <link rel="stylesheet" href="pdp-header.css?v=2" />
   </head>
   <body data-screen="pdp">
-    <!-- ============ NAVIGATION MENU ============
-         From 02 Navigation menu/loopper-navigation-menu.html: icon
-         sprite, header (USP bar, search, actions, category bar + mega
-         menu, mobile chips), scrim and mobile drawer. Styles in
-         nav.css, behaviour in nav.js. -->
-    <!-- SVG icon sprite -->
-    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
-      <defs>
-        <symbol id="i-check" viewBox="0 0 24 24">
-          <path d="M4 12.5l5 5L20 6.5" />
-        </symbol>
-        <symbol id="i-x" viewBox="0 0 24 24">
-          <path d="M6 6l12 12M18 6L6 18" />
-        </symbol>
-        <symbol id="i-search" viewBox="0 0 24 24">
-          <circle cx="11" cy="11" r="6.5" />
-          <path d="M16 16l4.5 4.5" />
-        </symbol>
-        <symbol id="i-phone" viewBox="0 0 24 24">
-          <path
-            d="M5 4h3.5l1.8 4.5-2.3 1.4a11 11 0 0 0 6.1 6.1l1.4-2.3L20 15.5V19a1.5 1.5 0 0 1-1.6 1.5A16.5 16.5 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4z"
+    <!-- ===================== HEADER (top section) ===================== -->
+    <header class="hdr d-only">
+      <div class="hdr-top">
+        <a class="hdr-logo" href="#pdp" aria-label="Loopper home">
+          <img src="assets/logo-loopper.png" alt="" />
+        </a>
+        <form class="hdr-search" role="search" onsubmit="return false;">
+          <input
+            type="search"
+            placeholder="Search for product..."
+            aria-label="Search for product"
           />
-        </symbol>
-        <symbol id="i-user" viewBox="0 0 24 24">
-          <circle cx="12" cy="8" r="4" />
-          <path d="M4.5 20.5a7.5 7.5 0 0 1 15 0" />
-        </symbol>
-        <symbol id="i-cart" viewBox="0 0 24 24">
-          <path d="M3 4h2.5l2.2 11h10.6L20.5 7.5H7" />
-          <circle cx="9.5" cy="19.5" r="1.3" />
-          <circle cx="17" cy="19.5" r="1.3" />
-        </symbol>
-        <symbol id="i-menu" viewBox="0 0 24 24">
-          <path d="M4 6.5h16M4 12h16M4 17.5h16" />
-        </symbol>
-        <symbol id="i-chev-d" viewBox="0 0 24 24">
-          <path d="M6 9l6 6 6-6" />
-        </symbol>
-        <symbol id="i-chev-r" viewBox="0 0 24 24">
-          <path d="M9 6l6 6-6 6" />
-        </symbol>
-        <symbol id="i-chev-l" viewBox="0 0 24 24">
-          <path d="M15 6l-6 6 6 6" />
-        </symbol>
-        <symbol id="i-arrow" viewBox="0 0 24 24">
-          <path d="M5 12h14M13 6l6 6-6 6" />
-        </symbol>
-        <symbol id="i-grid" viewBox="0 0 24 24">
-          <rect x="4" y="4" width="6.5" height="6.5" rx="1.5" />
-          <rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5" />
-          <rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5" />
-          <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5" />
-        </symbol>
-        <symbol id="i-az" viewBox="0 0 24 24">
-          <path d="M4 18l3.5-10L11 18M5.2 14.5h4.6M14 8h6l-6 10h6" />
-        </symbol>
-        <symbol id="i-bags" viewBox="0 0 24 24">
-          <path d="M5.5 8h13l-1 12.5h-11z" />
-          <path d="M9 10V6.5a3 3 0 0 1 6 0V10" />
-        </symbol>
-        <symbol id="i-brands" viewBox="0 0 24 24">
-          <path
-            d="M12 3.5l2.5 5.3 5.8.7-4.3 4 1.1 5.8L12 16.5l-5.1 2.8L8 13.5l-4.3-4 5.8-.7z"
-          />
-        </symbol>
-        <symbol id="i-clothing" viewBox="0 0 24 24">
-          <path
-            d="M9 4L4 6.5 5.5 11 8 10v10h8V10l2.5 1L20 6.5 15 4a3 3 0 0 1-6 0z"
-          />
-        </symbol>
-        <symbol id="i-food-drinkware" viewBox="0 0 24 24">
-          <path d="M5 9h11v6a4.5 4.5 0 0 1-4.5 4.5h-2A4.5 4.5 0 0 1 5 15z" />
-          <path
-            d="M16 10.5h1.5a2.5 2.5 0 0 1 0 5H16M9 3.5c-.8 1 .8 2 0 3M12.5 3.5c-.8 1 .8 2 0 3"
-          />
-        </symbol>
-        <symbol id="i-gadgets" viewBox="0 0 24 24">
-          <rect x="7" y="3" width="10" height="18" rx="2.5" />
-          <path d="M11 17.5h2" />
-        </symbol>
-        <symbol id="i-giveaways" viewBox="0 0 24 24">
-          <rect x="4" y="10" width="16" height="10.5" rx="1.5" />
-          <path
-            d="M3 7h18v3H3zM12 7v13.5M12 7C10.5 3 6.5 3.5 7.5 6.5M12 7c1.5-4 5.5-3.5 4.5-.5"
-          />
-        </symbol>
-        <symbol id="i-office" viewBox="0 0 24 24">
-          <path d="M4.5 19.5l1-4.5L16 4.5l3.5 3.5L9 18.5z" />
-          <path d="M13.5 7l3.5 3.5" />
-        </symbol>
-        <symbol id="i-outdoor" viewBox="0 0 24 24">
-          <path d="M3 19.5l6.5-10 4 6 2.5-3.5 5 7.5z" />
-          <circle cx="17" cy="6" r="2" />
-        </symbol>
-        <symbol id="i-sustainable" viewBox="0 0 24 24">
-          <path d="M5 19c0-8.5 5.5-14 15-14 0 9.5-5.5 15-14 15" />
-          <path d="M5 19l8.5-8.5" />
-        </symbol>
-        <symbol id="i-themes" viewBox="0 0 24 24">
-          <path
-            d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18"
-          />
-        </symbol>
-        <symbol id="i-wellness" viewBox="0 0 24 24">
-          <path
-            d="M12 20s-7.5-4.6-7.5-10.2A4.2 4.2 0 0 1 12 7.3a4.2 4.2 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20z"
-          />
-        </symbol>
-        <symbol id="i-spark" viewBox="0 0 24 24">
-          <path d="M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z" />
-        </symbol>
-        <symbol id="i-pen-tool" viewBox="0 0 24 24">
-          <path d="M12 19l7-7 3 3-7 7zM18 13l-1.5-7.5L2 2l3.5 14.5L13 18z" />
-          <circle cx="11" cy="11" r="2" />
-        </symbol>
-        <symbol id="i-chat" viewBox="0 0 24 24">
-          <path d="M4 5h16v11H9l-5 4z" />
-        </symbol>
-        <symbol id="i-stories" viewBox="0 0 24 24">
-          <path d="M4 5h11a3 3 0 0 1 3 3v11H7a3 3 0 0 1-3-3z" />
-          <path d="M8 9h6M8 12.5h6" />
-        </symbol>
-        <symbol id="i-globe" viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="8.5" />
-          <path
-            d="M3.5 12h17M12 3.5c2.5 2.5 3.5 5.5 3.5 8.5s-1 6-3.5 8.5c-2.5-2.5-3.5-5.5-3.5-8.5s1-6 3.5-8.5z"
-          />
-        </symbol>
-      </defs>
-    </svg>
-
-    <header class="hd" id="hd">
-      <div class="usp" id="usp">
-        <div class="wrap">
-          <div class="usp-left">
-            <span class="usp-item"
-              ><span class="usp-ic"
-                ><img
-                  src="../assets/nav/v2-usp-check.svg"
-                  width="18.0604"
-                  height="14.0691"
-                  alt="" /></span
-              >23 years of experience</span
-            >
-            <span class="usp-item"
-              ><span class="usp-ic"
-                ><img
-                  src="../assets/nav/v2-usp-check.svg"
-                  width="18.0604"
-                  height="14.0691"
-                  alt="" /></span
-              >Free digital design</span
-            >
-            <span class="usp-item"
-              ><span class="usp-ic"
-                ><img
-                  src="../assets/nav/v2-usp-check.svg"
-                  width="18.0604"
-                  height="14.0691"
-                  alt="" /></span
-              >Personal service</span
-            >
+          <img src="assets/icon-search.svg" width="18" height="18" alt="" />
+        </form>
+        <div class="hdr-right">
+          <div class="hdr-lang">
+            <span class="hdr-lang-dot"></span><span>EN</span>
           </div>
+          <a class="hdr-phone" href="tel:+442045765960">
+            <img
+              src="assets/icon-phone.svg"
+              width="20.2428"
+              height="20.2428"
+              alt=""
+            />
+            <span>+44 20 4576 5960</span>
+          </a>
+          <a class="hdr-icon hdr-cart" href="#pdp" aria-label="Shopping cart">
+            <img
+              class="off-thanks"
+              src="assets/icon-cart.svg"
+              width="27.8339"
+              height="27.8339"
+              alt=""
+            />
+            <img
+              class="on-thanks"
+              src="assets/icon-cart-ty.svg"
+              width="28"
+              height="30"
+              alt=""
+            />
+          </a>
           <a
-            class="usp-tp"
-            href="https://www.trustpilot.com/review/loopper.com"
-            rel="noopener"
-            ><img
-              src="../assets/nav/trustpilot-rating@2x.png"
-              width="315"
-              height="18"
-              alt="Trustpilot 4.7/5 (1,282 reviews)"
-          /></a>
-          <button
-            class="usp-close"
-            id="uspClose"
-            aria-label="Hide these messages"
+            class="hdr-icon hdr-quote"
+            href="#thanks"
+            aria-label="My quote requests"
           >
             <img
-              src="../assets/nav/v2-usp-close.svg"
-              width="15.4286"
-              height="15.4286"
+              class="off-thanks"
+              src="assets/icon-quote.svg"
+              width="28"
+              height="28"
               alt=""
             />
-          </button>
+            <img
+              class="on-thanks"
+              src="assets/icon-quote-ty.svg"
+              width="28"
+              height="28"
+              alt=""
+            />
+          </a>
+          <span class="hdr-badge" aria-label="1 open request">1</span>
+          <a class="hdr-icon hdr-account" href="#pdp" aria-label="My account">
+            <img
+              src="assets/icon-account.svg"
+              width="28"
+              height="29.6186"
+              alt=""
+            />
+          </a>
         </div>
       </div>
-
-      <div class="bar">
-        <div class="wrap bar-in">
-          <a class="logo" href="/" aria-label="Loopper home"
+      <nav class="hdr-cats" aria-label="Categories">
+        <a class="hdr-all" href="#pdp">
+          <span class="hdr-menu-icon"
             ><img
-              class="hd-d-only d-logo"
-              src="../assets/nav/v2-logo.svg"
-              width="165"
-              height="35.8333"
-              alt="" /><img
-              class="hd-m-only m-logo"
-              src="../assets/nav/logo.svg"
-              width="102"
-              height="22"
+              src="assets/icon-menu.svg"
+              width="18.2948"
+              height="16.3719"
               alt=""
-          /></a>
-
-          <form class="search" role="search" onsubmit="return false;">
-            <label for="q" class="vh">Search products</label>
-            <input
-              id="q"
-              type="search"
-              placeholder="What are you looking for?"
-              autocomplete="off"
-            />
-            <button type="submit" aria-label="Search">
-              <img
-                src="../assets/nav/search.svg"
-                width="34"
-                height="28"
+          /></span>
+          Products A-Z
+        </a>
+        <div class="hdr-links">
+          <a href="#pdp">Bags</a>
+          <a href="#pdp">Brands</a>
+          <a href="#pdp">Clothing</a>
+          <a href="#pdp">Food &amp; Drinkware</a>
+          <a href="#pdp">Gadgets</a>
+          <a href="#pdp">Giveaways</a>
+          <a href="#pdp">Office</a>
+          <a href="#pdp">Outdoor</a>
+          <a href="#pdp">Sustainable</a>
+          <a href="#pdp">Themes</a>
+          <a href="#pdp">Wellness</a>
+        </div>
+      </nav>
+      <div class="hdr-trust">
+        <div class="hdr-usps">
+          <div class="usp">
+            <span class="usp-badge"
+              ><img
+                src="assets/icon-check-usp1.svg"
+                width="13.4043"
+                height="13.4043"
                 alt=""
-              />
-            </button>
-          </form>
-
-          <div class="actions">
-            <div class="lang">
-              <button
-                class="act act-lang"
-                id="langBtn"
-                type="button"
-                aria-haspopup="true"
-                aria-expanded="false"
-                aria-controls="langMenu"
-                aria-label="Country: United Kingdom. Change country"
-              >
-                <span
-                  class="lang-flag"
-                  style="
-                    background-image: url(&quot;https://www.loopper.co.uk/storage/flags/gb.svg&quot;);
-                  "
-                ></span
-                ><span class="lang-code">GB</span>
-              </button>
-              <ul class="lang-menu" id="langMenu" hidden>
-                <li>
-                  <a
-                    href="https://www.loopper.co.uk/personalized-water-bottles/thermos-bottles/thermos-bottle-stainless-steel-500-ml-6383162"
-                    hreflang="en-GB"
-                    aria-current="true"
-                    ><span class="cur-opt"
-                      ><span
-                        class="lang-flag lang-flag-lg"
-                        style="
-                          background-image: url(&quot;https://www.loopper.co.uk/storage/flags/gb.svg&quot;);
-                        "
-                      ></span
-                      ><span class="lang-name">United Kingdom</span></span
-                    ><svg
-                      class="cur-check"
-                      width="14"
-                      height="10"
-                      viewBox="0 0 14 10"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M1.5 5.2L5.2 8.5L12.5 1.5"
-                        stroke="#00AED8"
-                        stroke-width="2.4"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      /></svg
-                  ></a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.loopper.nl/bedrukte-drinkflessen/thermosflessen/thermosfles-rvs-500-ml-6383162"
-                    hreflang="nl"
-                    ><span class="cur-opt"
-                      ><span
-                        class="lang-flag lang-flag-lg"
-                        style="
-                          background-image: url(&quot;https://www.loopper.co.uk/storage/flags/nl.svg&quot;);
-                        "
-                      ></span
-                      ><span class="lang-name">Nederlands</span></span
-                    ><svg
-                      class="cur-check"
-                      width="14"
-                      height="10"
-                      viewBox="0 0 14 10"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M1.5 5.2L5.2 8.5L12.5 1.5"
-                        stroke="#00AED8"
-                        stroke-width="2.4"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      /></svg
-                  ></a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.loopper.com/personalized-water-bottles/thermos-bottles/thermos-bottle-stainless-steel-500-ml-6383162"
-                    hreflang="en"
-                    ><span class="cur-opt"
-                      ><span
-                        class="lang-flag lang-flag-lg"
-                        style="
-                          background-image: url(&quot;https://www.loopper.co.uk/storage/flags/en.svg&quot;);
-                        "
-                      ></span
-                      ><span class="lang-name">English</span></span
-                    ><svg
-                      class="cur-check"
-                      width="14"
-                      height="10"
-                      viewBox="0 0 14 10"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M1.5 5.2L5.2 8.5L12.5 1.5"
-                        stroke="#00AED8"
-                        stroke-width="2.4"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      /></svg
-                  ></a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.loopper.fr/gourdes-personnalisees/bouteilles-isothermes/bouteille-isotherme-inox-500-ml-6383162"
-                    hreflang="fr"
-                    ><span class="cur-opt"
-                      ><span
-                        class="lang-flag lang-flag-lg"
-                        style="
-                          background-image: url(&quot;https://www.loopper.co.uk/storage/flags/fr.svg&quot;);
-                        "
-                      ></span
-                      ><span class="lang-name">Français</span></span
-                    ><svg
-                      class="cur-check"
-                      width="14"
-                      height="10"
-                      viewBox="0 0 14 10"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M1.5 5.2L5.2 8.5L12.5 1.5"
-                        stroke="#00AED8"
-                        stroke-width="2.4"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      /></svg
-                  ></a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.loopper.de/trinkflaschen-bedrucken/thermosflaschen/thermosflasche-edelstahl-500-ml-6383162"
-                    hreflang="de"
-                    ><span class="cur-opt"
-                      ><span
-                        class="lang-flag lang-flag-lg"
-                        style="
-                          background-image: url(&quot;https://www.loopper.co.uk/storage/flags/de.svg&quot;);
-                        "
-                      ></span
-                      ><span class="lang-name">Deutsch</span></span
-                    ><svg
-                      class="cur-check"
-                      width="14"
-                      height="10"
-                      viewBox="0 0 14 10"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M1.5 5.2L5.2 8.5L12.5 1.5"
-                        stroke="#00AED8"
-                        stroke-width="2.4"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      /></svg
-                  ></a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.loopper.com/it/borracce-personalizzate/thermos/thermos-acciaio-inox-500-ml-6383162"
-                    hreflang="it"
-                    ><span class="cur-opt"
-                      ><span
-                        class="lang-flag lang-flag-lg"
-                        style="
-                          background-image: url(&quot;https://www.loopper.co.uk/storage/flags/it.svg&quot;);
-                        "
-                      ></span
-                      ><span class="lang-name">Italiano</span></span
-                    ><svg
-                      class="cur-check"
-                      width="14"
-                      height="10"
-                      viewBox="0 0 14 10"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M1.5 5.2L5.2 8.5L12.5 1.5"
-                        stroke="#00AED8"
-                        stroke-width="2.4"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      /></svg
-                  ></a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.loopper.com/es/botellas-personalizadas/termos/termo-acero-inoxidable-500-ml-6383162"
-                    hreflang="es"
-                    ><span class="cur-opt"
-                      ><span
-                        class="lang-flag lang-flag-lg"
-                        style="
-                          background-image: url(&quot;https://www.loopper.co.uk/storage/flags/es.svg&quot;);
-                        "
-                      ></span
-                      ><span class="lang-name">Español</span></span
-                    ><svg
-                      class="cur-check"
-                      width="14"
-                      height="10"
-                      viewBox="0 0 14 10"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M1.5 5.2L5.2 8.5L12.5 1.5"
-                        stroke="#00AED8"
-                        stroke-width="2.4"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      /></svg
-                  ></a>
-                </li>
-              </ul>
-            </div>
-            <div class="lang cur">
-              <button
-                class="act act-cur"
-                id="curBtn"
-                type="button"
-                aria-haspopup="true"
-                aria-expanded="false"
-                aria-controls="curMenu"
-                aria-label="Currency: GBP. Change currency"
-              >
-                <span class="cur-sym" id="curSym" aria-hidden="true">£</span>
-              </button>
-              <ul class="lang-menu" id="curMenu" hidden>
-                <li>
-                  <a href="#" data-cur="GBP" data-sym="£" aria-current="true"
-                    ><span class="cur-opt"
-                      ><span class="cur-badge">£</span>GBP
-                      <span class="cur-name">· British pound</span></span
-                    ><svg
-                      class="cur-check"
-                      width="14"
-                      height="10"
-                      viewBox="0 0 14 10"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M1.5 5.2L5.2 8.5L12.5 1.5"
-                        stroke="#00AED8"
-                        stroke-width="2.4"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      /></svg
-                  ></a>
-                </li>
-                <li>
-                  <a href="#" data-cur="EUR" data-sym="€"
-                    ><span class="cur-opt"
-                      ><span class="cur-badge">€</span>EUR
-                      <span class="cur-name">· Euro</span></span
-                    ><svg
-                      class="cur-check"
-                      width="14"
-                      height="10"
-                      viewBox="0 0 14 10"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M1.5 5.2L5.2 8.5L12.5 1.5"
-                        stroke="#00AED8"
-                        stroke-width="2.4"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      /></svg
-                  ></a>
-                </li>
-              </ul>
-            </div>
-            <a
-              class="act act-phone"
-              href="tel:+442045765960"
-              aria-label="Call us on +44 20 4576 5960"
-              ><span class="m-ic m-phone"
-                ><img
-                  src="../assets/nav/phone.svg"
-                  width="27.0611"
-                  height="28"
-                  alt="" /></span
-              ><span class="ph-num hd-d-only">+44 20 4576 5960</span></a
-            >
-            <a class="act" href="#" aria-label="My account"
-              ><span class="m-ic m-account"
-                ><img
-                  src="../assets/nav/account.svg"
-                  width="34"
-                  height="29.6186"
-                  alt="" /></span
-            ></a>
-            <a class="act" href="#" aria-label="Basket"
-              ><span class="ic-wrap"
-                ><span class="m-ic m-cart"
-                  ><img
-                    src="../assets/nav/cart.svg"
-                    width="32.9824"
-                    height="25.6872"
-                    alt="" /></span></span
-            ></a>
+            /></span>
+            23 years of experience
           </div>
-
-          <button
-            class="burger"
-            id="burger"
-            aria-label="Open menu"
-            aria-expanded="false"
-            aria-controls="drawer"
-          >
-            <img
-              src="../assets/nav/menu.svg"
-              width="33.8253"
-              height="33.8253"
-              alt=""
-            />
-          </button>
+          <div class="usp">
+            <span class="usp-badge"
+              ><img
+                src="assets/icon-check-usp2.svg"
+                width="13.4043"
+                height="13.4043"
+                alt=""
+            /></span>
+            Free digital design
+          </div>
+          <div class="usp">
+            <span class="usp-badge"
+              ><img
+                src="assets/icon-check-usp3.svg"
+                width="13.4043"
+                height="13.4043"
+                alt=""
+            /></span>
+            Personal service
+          </div>
+        </div>
+        <div class="kiyoh">
+          <span class="kiyoh-stars" aria-hidden="true">★★★★</span>
+          <span class="kiyoh-stars is-empty" aria-hidden="true">☆</span>
+          <p class="kiyoh-score">
+            <b>Kiyoh 9.3</b><span> (1179 reviews)</span>
+          </p>
         </div>
       </div>
-
-      <!-- Mobile: category chips -->
-      <nav class="chips" aria-label="Popular categories">
-        <ul id="chips"></ul>
-      </nav>
-
-      <!-- Desktop: category bar + mega menu -->
-      <nav class="cat" id="cat" aria-label="Product categories">
-        <div class="wrap"><ul class="cat-list" id="catList"></ul></div>
-        <div class="mega" id="mega" hidden>
-          <div class="wrap mega-in" id="megaIn"></div>
-        </div>
-      </nav>
+      <div class="hdr-crumbs">
+        Home / Personalized water bottles / Thermos bottles / Thermos bottle |
+        Stainless steel | 500 ml | Must-have
+      </div>
     </header>
 
-    <div class="scrim" id="scrim" hidden></div>
-
-    <!-- Mobile drawer -->
-    <div
-      class="drawer"
-      id="drawer"
-      role="dialog"
-      aria-modal="true"
-      aria-label="Menu"
-    >
-      <div class="dr-top">
-        <span class="logo" aria-hidden="true"
-          ><img src="../assets/nav/logo.svg" width="102" height="22" alt=""
-        /></span>
-        <button class="dr-close" id="drClose" aria-label="Close menu">
-          <!-- same X as the photo viewer and print previews (user) -->
-          <img
-            src="../assets/mobile/overlay-close.svg"
-            width="29"
+    <!-- ===================== MOBILE HEADER (Glass Mobile PDP Nav) ===================== -->
+    <header class="mhdr m-only">
+      <div class="mhdr-bar">
+        <a href="#pdp" aria-label="Loopper home"
+          ><img src="assets/m-logo.svg" width="102" height="22" alt=""
+        /></a>
+        <div class="mhdr-icons">
+          <a
+            class="mhdr-icon mhdr-phone"
+            href="tel:+442045765960"
+            aria-label="Call us"
+            ><img
+              src="assets/m-icon-phone.svg"
+              width="27.0611"
+              height="28"
+              alt=""
+          /></a>
+          <a
+            class="mhdr-icon mhdr-account mh-other"
+            href="#pdp"
+            aria-label="My account"
+            ><img
+              src="assets/m-icon-account.svg"
+              width="30"
+              height="29.6186"
+              alt=""
+          /></a>
+          <a
+            class="mhdr-icon mhdr-account is-pdp mh-pdp"
+            href="#pdp"
+            aria-label="My account"
+            ><img
+              src="assets/m-icon-account-pdp.svg"
+              width="34"
+              height="29.6186"
+              alt=""
+          /></a>
+          <a
+            class="mhdr-icon mhdr-cart mh-other"
+            href="#pdp"
+            aria-label="Shopping cart"
+            ><img
+              src="assets/m-icon-cart.svg"
+              width="32.9824"
+              height="25.6872"
+              alt=""
+          /></a>
+          <a
+            class="mhdr-icon mhdr-cart mh-pdp"
+            href="#pdp"
+            aria-label="Shopping cart"
+            ><img
+              src="assets/m-icon-cart-pdp.svg"
+              width="32.9824"
+              height="25.6872"
+              alt=""
+          /></a>
+          <a
+            class="mhdr-icon mhdr-quote mh-other"
+            href="#thanks"
+            aria-label="My quote requests"
+            ><img src="assets/m-icon-quote.svg" width="30" height="30" alt=""
+          /></a>
+        </div>
+      </div>
+      <div class="mhdr-search">
+        <a class="mh-pdp" href="#pdp" aria-label="Back"
+          ><img src="assets/m-back-34.svg" width="34" height="34" alt=""
+        /></a>
+        <form class="mhdr-pill" role="search" onsubmit="return false;">
+          <input type="search" placeholder="Search" aria-label="Search" />
+        </form>
+        <a href="#thanks" aria-label="My quote requests"
+          ><img
+            src="assets/m-icon-quote-search.svg"
+            width="34"
             height="28"
+            alt=""
+        /></a>
+        <button type="button" aria-label="Menu">
+          <img
+            src="assets/m-icon-menu.svg"
+            width="33.8253"
+            height="33.8253"
             alt=""
           />
         </button>
       </div>
-      <div class="dr-stage" id="drStage"></div>
-    </div>
+    </header>
 
     <main id="main">
-      <!-- Breadcrumb, styled like the product page (pdp-header.css);
-           the current page follows the screen (pdp-header.js) -->
-      <div class="breadcrumb-bar">
-        <nav class="bar-inner" aria-label="Breadcrumb">
-          <ol class="crumbs">
-            <li><a href="/">Home</a></li>
-            <li class="crumbs-more">
-              <button
-                type="button"
-                aria-expanded="false"
-                aria-label="Show full path"
-              >
-                …
-              </button>
-            </li>
-            <li class="crumb-mid">
-              <a href="/personalized-water-bottles"
-                >Personalised water bottles</a
-              >
-            </li>
-            <li class="crumb-mid">
-              <a href="/personalized-water-bottles/thermos-bottles"
-                >Thermos bottles</a
-              >
-            </li>
-            <li class="crumb-mid">
-              <a href="../">Thermos bottle | Stainless steel | 500 ml</a>
-            </li>
-            <li aria-current="page" id="crumb-current">Your request</li>
-          </ol>
-        </nav>
-      </div>
       <!-- ===================== SCREEN 1: PRODUCT PAGE ===================== -->
       <section class="screen" id="screen-pdp" aria-label="Product page">
         <div class="pdp-grid d-only">
@@ -4890,8 +4497,6 @@
         </div>
       </div>
     </div>
-    <script src="../nav.js?v=58"></script>
     <script src="script.js?v=5"></script>
-    <script src="pdp-header.js?v=1"></script>
   </body>
 </html>
