@@ -315,7 +315,7 @@ body[data-screen="quote"] .hdr-cats > * {
 body[data-screen="pdp"] .hdr-usps {
   flex-basis: 746px;
 }
-.usp {
+.hdr .usp {
   display: flex;
   align-items: center;
   gap: 10.723px;

@@ -1,0 +1,218 @@
+/* ============================================================
+   PDP header + breadcrumb on the request form and thank-you page
+   The navigation menu itself is ../nav.css (+ ../nav.js), the same files
+   the product page uses. The rules below are the product page's own
+   additions to it (../styles.css: fixed header, compact on scroll, search
+   suggestions, phone bar, breadcrumb), copied so both pages match.
+   Keep in sync with ../styles.css.
+   ============================================================ */
+
+/* --- header fixed to the top (pdp-header.js keeps a spacer under it) --- */
+.hd.hd {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+/* --- compact header on scroll: USP banner + category bar slide away --- */
+.hd .usp,
+.hd .cat {
+  max-height: var(--part-h, none);
+  transition:
+    max-height 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
+    padding 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
+    opacity 0.25s ease;
+}
+.hd .usp {
+  --part-h: var(--usp-h, none);
+}
+.hd .cat {
+  --part-h: var(--cat-h, none);
+}
+.hd.is-compact .usp,
+.hd.is-compact .cat {
+  max-height: 0;
+  padding-block: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.hd.hd-anim .usp,
+.hd.hd-anim .cat {
+  overflow: hidden;
+}
+.hd.is-compact .chips {
+  display: none;
+}
+
+/* --- header search suggestions --- */
+.hd .search {
+  position: relative;
+}
+.search-suggest {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 6px);
+  z-index: 130;
+  max-height: 320px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: #fff;
+  border: 1px solid #d5e2e8;
+  border-radius: 12px;
+  box-shadow: 0 16px 32px -12px rgba(9, 40, 55, 0.28);
+}
+.search-suggest[hidden] {
+  display: none;
+}
+.search-suggest a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #092837;
+  text-decoration: none;
+}
+.search-suggest a:hover,
+.search-suggest li.active a {
+  background: #edf8fb;
+}
+.search-empty {
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #7a8a99;
+}
+
+/* --- breadcrumb (same look as the product page) --- */
+.breadcrumb-bar {
+  height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 400;
+  font-size: 16px;
+  color: #7a8a99;
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s;
+}
+body:has(.hd.is-compact) .breadcrumb-bar {
+  opacity: 0;
+  visibility: hidden;
+}
+/* lines up with the request / thank-you content (1096px column) */
+.breadcrumb-bar .bar-inner {
+  width: 1096px;
+  max-width: calc(100% - 20px);
+  display: flex;
+  align-items: center;
+}
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.crumbs a {
+  color: inherit;
+  text-decoration: none;
+}
+.crumbs a:hover {
+  text-decoration: underline;
+}
+.crumbs li + li::before {
+  content: " / ";
+  white-space: pre;
+}
+.crumbs [aria-current] {
+  color: #5a6b7a;
+}
+.crumbs-more {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .breadcrumb-bar,
+  .hd .usp,
+  .hd .cat {
+    transition: none;
+  }
+}
+
+/* --- phones: same 60px bar as the product page (menu button top right,
+   no search field), breadcrumb folds to "Home / … / current" --- */
+@media (width < 768px) {
+  .hd.hd .bar-in {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-areas: "logo actions burger";
+    align-items: center;
+    column-gap: 4px;
+    height: 60px;
+    padding: 0;
+  }
+  .hd.hd .bar .logo {
+    margin-block: 0;
+  }
+  .hd.hd .actions {
+    margin-block: 0;
+  }
+  .hd.hd .search {
+    display: none;
+  }
+  .hd.hd .burger {
+    margin: 0 8px 0 0;
+  }
+
+  .breadcrumb-bar {
+    height: auto;
+    justify-content: flex-start;
+    padding: 15px 16px 15px 16px;
+    font-size: 12px;
+  }
+  .breadcrumb-bar .bar-inner {
+    width: auto;
+    max-width: none;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .breadcrumb-bar .bar-inner::-webkit-scrollbar {
+    display: none;
+  }
+  .crumbs {
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
+  .crumbs-more {
+    display: list-item;
+  }
+  .crumbs .crumb-mid {
+    display: none;
+  }
+  .crumbs.is-expanded {
+    flex-wrap: wrap;
+    white-space: normal;
+  }
+  .crumbs.is-expanded .crumb-mid {
+    display: list-item;
+  }
+  .crumbs.is-expanded .crumbs-more {
+    display: none;
+  }
+  .crumbs-more button {
+    position: relative;
+    padding: 0 2px;
+    font: inherit;
+    color: inherit;
+    letter-spacing: 1px;
+  }
+  .crumbs-more button::after {
+    content: "";
+    position: absolute;
+    inset: -15px -10px;
+  }
+}
