@@ -1,0 +1,71 @@
+/* ============================================================
+   compact.html — management variant of the request form.
+   Same page as index.html with only two changes:
+   1. a smaller, more compact progress bar (one 52px row: circle + label
+      side by side, short connector lines) instead of the 102px card
+   2. the form scales to fit the window height (compact-fit.js), so the
+      bottom of the form and Send request are visible above the fold
+   ============================================================ */
+
+/* 1. compact progress bar */
+.req-top {
+  height: 52px;
+}
+.progress {
+  height: 52px;
+  padding: 0 24px;
+  align-items: center;
+}
+.steps {
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+}
+.steps-track {
+  display: none;
+}
+.step,
+.step.is-1,
+.step.is-2,
+.step.is-3 {
+  position: static;
+  left: auto;
+  width: auto;
+  transform: none;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.step-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+.step.is-3 img {
+  position: static !important;
+  width: 24px;
+  height: 24px;
+}
+.step.is-3 > span:first-of-type {
+  display: none;
+}
+/* connector lines between the steps: done part green, rest grey */
+.step.is-2::before,
+.step.is-3::before {
+  content: "";
+  width: 96px;
+  height: 2px;
+  margin: 0 8px;
+  background: var(--card-line);
+}
+.step.is-2::before {
+  background: var(--green);
+}
+/* back button stays centred on the (now 52px) bar */
+.back-btn {
+  top: 4px;
+}
