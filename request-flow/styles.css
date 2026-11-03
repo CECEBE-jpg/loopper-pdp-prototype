@@ -5454,3 +5454,21 @@ body.tlm-lock {
 .yrq-toggle:focus:not(:focus-visible) {
   outline: none;
 }
+
+/* "Your request" card dividers: real lines that fill the card's content
+   width (inside its padding) instead of the fixed 316px Figma exports.
+   Green like the card stroke; the line between two products stays grey.
+   A green line also sits above the Show / Hide product details toggle. */
+.mty-req .m-hr {
+  height: 0;
+  border-top: 1px solid var(--green);
+}
+.mty-req .m-hr img {
+  display: none;
+}
+.mty-req .yrq-list .m-hr {
+  border-top-color: #ababab;
+}
+.mty-req .yrq-toggle {
+  margin-top: -8px; /* line → link text ≈ 16px, like the other gaps */
+}
