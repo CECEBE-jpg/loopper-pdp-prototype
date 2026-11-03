@@ -1783,7 +1783,25 @@ initDots(document.querySelector(".review-cards"), document.getElementById("revie
 const overlay = document.getElementById("request-overlay");
 const summary = document.getElementById("request-summary");
 
+/* Free design / Free quote go to the finalized request flow
+   (request-flow/, copy of "03 Request flow") with the chosen options in
+   the query string; Send request there leads to its #thanks confirmation. */
 document.querySelectorAll("[data-nav]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const q = new URLSearchParams();
+    const add = (k, v) => v && q.set(k, v);
+    add("color", state.labels.color);
+    add("position", state.labels.position);
+    add("printing", state.labels.printing);
+    add("qty", state.quantity);
+    add("img", document.querySelector('.thumb[data-view="colour"] img')?.getAttribute("src"));
+    const s = q.toString();
+    location.href = `request-flow/${s ? "?" + s : ""}#${btn.dataset.nav}`;
+  });
+});
+
+/* old in-page request overlay, no longer opened by the CTAs */
+document.querySelectorAll("[data-nav-overlay]").forEach((btn) => {
   btn.addEventListener("click", () => {
     const kind = btn.dataset.nav;
     document.getElementById("request-title").textContent =

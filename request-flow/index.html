@@ -1,0 +1,4501 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Loopper | Request flow prototype</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Arimo&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-screen="pdp">
+    <!-- ===================== HEADER (top section) ===================== -->
+    <header class="hdr d-only">
+      <div class="hdr-top">
+        <a class="hdr-logo" href="#pdp" aria-label="Loopper home">
+          <img src="assets/logo-loopper.png" alt="" />
+        </a>
+        <form class="hdr-search" role="search" onsubmit="return false;">
+          <input
+            type="search"
+            placeholder="Search for product..."
+            aria-label="Search for product"
+          />
+          <img src="assets/icon-search.svg" width="18" height="18" alt="" />
+        </form>
+        <div class="hdr-right">
+          <div class="hdr-lang">
+            <span class="hdr-lang-dot"></span><span>EN</span>
+          </div>
+          <a class="hdr-phone" href="tel:+442045765960">
+            <img
+              src="assets/icon-phone.svg"
+              width="20.2428"
+              height="20.2428"
+              alt=""
+            />
+            <span>+44 20 4576 5960</span>
+          </a>
+          <a class="hdr-icon hdr-cart" href="#pdp" aria-label="Shopping cart">
+            <img
+              class="off-thanks"
+              src="assets/icon-cart.svg"
+              width="27.8339"
+              height="27.8339"
+              alt=""
+            />
+            <img
+              class="on-thanks"
+              src="assets/icon-cart-ty.svg"
+              width="28"
+              height="30"
+              alt=""
+            />
+          </a>
+          <a
+            class="hdr-icon hdr-quote"
+            href="#thanks"
+            aria-label="My quote requests"
+          >
+            <img
+              class="off-thanks"
+              src="assets/icon-quote.svg"
+              width="28"
+              height="28"
+              alt=""
+            />
+            <img
+              class="on-thanks"
+              src="assets/icon-quote-ty.svg"
+              width="28"
+              height="28"
+              alt=""
+            />
+          </a>
+          <span class="hdr-badge" aria-label="1 open request">1</span>
+          <a class="hdr-icon hdr-account" href="#pdp" aria-label="My account">
+            <img
+              src="assets/icon-account.svg"
+              width="28"
+              height="29.6186"
+              alt=""
+            />
+          </a>
+        </div>
+      </div>
+      <nav class="hdr-cats" aria-label="Categories">
+        <a class="hdr-all" href="#pdp">
+          <span class="hdr-menu-icon"
+            ><img
+              src="assets/icon-menu.svg"
+              width="18.2948"
+              height="16.3719"
+              alt=""
+          /></span>
+          Products A-Z
+        </a>
+        <div class="hdr-links">
+          <a href="#pdp">Bags</a>
+          <a href="#pdp">Brands</a>
+          <a href="#pdp">Clothing</a>
+          <a href="#pdp">Food &amp; Drinkware</a>
+          <a href="#pdp">Gadgets</a>
+          <a href="#pdp">Giveaways</a>
+          <a href="#pdp">Office</a>
+          <a href="#pdp">Outdoor</a>
+          <a href="#pdp">Sustainable</a>
+          <a href="#pdp">Themes</a>
+          <a href="#pdp">Wellness</a>
+        </div>
+      </nav>
+      <div class="hdr-trust">
+        <div class="hdr-usps">
+          <div class="usp">
+            <span class="usp-badge"
+              ><img
+                src="assets/icon-check-usp1.svg"
+                width="13.4043"
+                height="13.4043"
+                alt=""
+            /></span>
+            23 years of experience
+          </div>
+          <div class="usp">
+            <span class="usp-badge"
+              ><img
+                src="assets/icon-check-usp2.svg"
+                width="13.4043"
+                height="13.4043"
+                alt=""
+            /></span>
+            Free digital design
+          </div>
+          <div class="usp">
+            <span class="usp-badge"
+              ><img
+                src="assets/icon-check-usp3.svg"
+                width="13.4043"
+                height="13.4043"
+                alt=""
+            /></span>
+            Personal service
+          </div>
+        </div>
+        <div class="kiyoh">
+          <span class="kiyoh-stars" aria-hidden="true">★★★★</span>
+          <span class="kiyoh-stars is-empty" aria-hidden="true">☆</span>
+          <p class="kiyoh-score">
+            <b>Kiyoh 9.3</b><span> (1179 reviews)</span>
+          </p>
+        </div>
+      </div>
+      <div class="hdr-crumbs">
+        Home / Personalized water bottles / Thermos bottles / Thermos bottle |
+        Stainless steel | 500 ml | Must-have
+      </div>
+    </header>
+
+    <!-- ===================== MOBILE HEADER (Glass Mobile PDP Nav) ===================== -->
+    <header class="mhdr m-only">
+      <div class="mhdr-bar">
+        <a href="#pdp" aria-label="Loopper home"
+          ><img src="assets/m-logo.svg" width="102" height="22" alt=""
+        /></a>
+        <div class="mhdr-icons">
+          <a
+            class="mhdr-icon mhdr-phone"
+            href="tel:+442045765960"
+            aria-label="Call us"
+            ><img
+              src="assets/m-icon-phone.svg"
+              width="27.0611"
+              height="28"
+              alt=""
+          /></a>
+          <a
+            class="mhdr-icon mhdr-account mh-other"
+            href="#pdp"
+            aria-label="My account"
+            ><img
+              src="assets/m-icon-account.svg"
+              width="30"
+              height="29.6186"
+              alt=""
+          /></a>
+          <a
+            class="mhdr-icon mhdr-account is-pdp mh-pdp"
+            href="#pdp"
+            aria-label="My account"
+            ><img
+              src="assets/m-icon-account-pdp.svg"
+              width="34"
+              height="29.6186"
+              alt=""
+          /></a>
+          <a
+            class="mhdr-icon mhdr-cart mh-other"
+            href="#pdp"
+            aria-label="Shopping cart"
+            ><img
+              src="assets/m-icon-cart.svg"
+              width="32.9824"
+              height="25.6872"
+              alt=""
+          /></a>
+          <a
+            class="mhdr-icon mhdr-cart mh-pdp"
+            href="#pdp"
+            aria-label="Shopping cart"
+            ><img
+              src="assets/m-icon-cart-pdp.svg"
+              width="32.9824"
+              height="25.6872"
+              alt=""
+          /></a>
+          <a
+            class="mhdr-icon mhdr-quote mh-other"
+            href="#thanks"
+            aria-label="My quote requests"
+            ><img src="assets/m-icon-quote.svg" width="30" height="30" alt=""
+          /></a>
+        </div>
+      </div>
+      <div class="mhdr-search">
+        <a class="mh-pdp" href="#pdp" aria-label="Back"
+          ><img src="assets/m-back-34.svg" width="34" height="34" alt=""
+        /></a>
+        <form class="mhdr-pill" role="search" onsubmit="return false;">
+          <input type="search" placeholder="Search" aria-label="Search" />
+        </form>
+        <a href="#thanks" aria-label="My quote requests"
+          ><img
+            src="assets/m-icon-quote-search.svg"
+            width="34"
+            height="28"
+            alt=""
+        /></a>
+        <button type="button" aria-label="Menu">
+          <img
+            src="assets/m-icon-menu.svg"
+            width="33.8253"
+            height="33.8253"
+            alt=""
+          />
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <!-- ===================== SCREEN 1: PRODUCT PAGE ===================== -->
+      <section class="screen" id="screen-pdp" aria-label="Product page">
+        <div class="pdp-grid d-only">
+          <div class="pdp-col1">
+            <div class="pdp-title-row">
+              <h1 class="pdp-title">
+                Thermos bottle | Stainless steel | 500 ml | Must-have 500 ml |
+                Must-have
+              </h1>
+              <p class="pdp-sku">6383162</p>
+            </div>
+            <div class="pdp-hero">
+              <img
+                src="assets/product-thermos.png"
+                alt="Thermos bottle, stainless steel, 500 ml"
+              />
+              <div class="pdp-fast">
+                <img
+                  src="assets/icon-fast-delivery.svg"
+                  width="28.5"
+                  height="13.8971"
+                  alt=""
+                />
+                Fast delivery
+              </div>
+            </div>
+            <div class="pdp-thumbs">
+              <div class="pdp-thumbs-track">
+                <button class="thumb is-active" type="button">img</button>
+                <button class="thumb" type="button" style="width: 91.692px">
+                  img
+                </button>
+                <button class="thumb" type="button">img</button>
+                <button class="thumb" type="button">img</button>
+                <button class="thumb" type="button">img</button>
+                <button class="thumb" type="button">img</button>
+                <button class="thumb" type="button">img</button>
+                <button class="thumb" type="button">img</button>
+                <button class="thumb" type="button">img</button>
+                <span class="pdp-thumbs-fade"></span>
+              </div>
+              <button
+                class="pdp-thumbs-arrow"
+                type="button"
+                aria-label="More images"
+              >
+                <img
+                  src="assets/arrow-thumbs.svg"
+                  width="12.6827"
+                  height="25.0001"
+                  alt=""
+                />
+              </button>
+            </div>
+            <div class="pdp-tabs" role="tablist">
+              <span class="pdp-tab is-active">Product details</span>
+              <span class="pdp-tab">Properties</span>
+              <span class="pdp-tab">Print</span>
+              <span class="pdp-tab">Print options</span>
+              <span class="pdp-tab">Delivery</span>
+            </div>
+            <div class="pdp-desc">
+              <div>
+                <p class="pdp-desc-text">
+                  Vacuum insulated stainless steel bottle with an iconic design.
+                  The insulated 18/8 stainless steel keeps drinks hot or cold
+                  for severalhours. Tested and approved ....
+                </p>
+                <a class="pdp-readmore" href="#pdp">Read more</a>
+              </div>
+              <p class="pdp-tags">
+                Tags: Personalized water bottles, Thermos bottles
+              </p>
+            </div>
+          </div>
+
+          <div class="pdp-col2">
+            <div class="cta-row">
+              <a
+                class="cta cta-orange"
+                href="#design"
+                aria-label="Get free Design"
+              >
+                <span class="cta-inner">
+                  <span class="cta-label">
+                    <img
+                      src="assets/icon-free-design.svg"
+                      width="31.2795"
+                      height="31"
+                      alt=""
+                    />
+                    <span>Get free <span class="bi">Design</span></span>
+                  </span>
+                  <span class="cta-chev"
+                    ><img
+                      src="assets/chevron-cta-design.svg"
+                      width="9.63877"
+                      height="17"
+                      alt=""
+                  /></span>
+                </span>
+              </a>
+              <a
+                class="cta cta-orange"
+                href="#quote"
+                aria-label="Get free Quote"
+              >
+                <span class="cta-inner" style="height: auto">
+                  <span class="cta-label">
+                    <img
+                      src="assets/icon-free-quote.svg"
+                      width="31"
+                      height="31"
+                      alt=""
+                    />
+                    <span>Get free <span class="bi">Quote</span></span>
+                  </span>
+                  <span class="cta-chev"
+                    ><img
+                      src="assets/chevron-cta-quote.svg"
+                      width="9.63877"
+                      height="17"
+                      alt=""
+                  /></span>
+                </span>
+              </a>
+            </div>
+
+            <div class="config">
+              <div class="cfg-card cfg-open" id="cfg-color">
+                <button
+                  class="cfg-head"
+                  type="button"
+                  aria-expanded="true"
+                  aria-controls="cfg-color-body"
+                >
+                  <span class="cfg-title"
+                    ><span class="cfg-num">1</span>Choose the color</span
+                  >
+                  <span class="cfg-chev"
+                    ><img
+                      src="assets/chevron-config-open.svg"
+                      width="9.63877"
+                      height="17"
+                      alt=""
+                  /></span>
+                </button>
+                <div class="cfg-body" id="cfg-color-body">
+                  <div class="swatches">
+                    <button class="swatch" type="button" aria-label="Colour 1">
+                      <img src="assets/swatch-thermos.png" alt="" />
+                    </button>
+                    <button class="swatch" type="button" aria-label="Colour 2">
+                      <img src="assets/swatch-thermos.png" alt="" />
+                    </button>
+                    <button class="swatch" type="button" aria-label="Colour 3">
+                      <img src="assets/swatch-thermos.png" alt="" />
+                    </button>
+                    <button class="swatch" type="button" aria-label="Colour 4">
+                      <img src="assets/swatch-thermos.png" alt="" />
+                    </button>
+                    <button class="swatch" type="button" aria-label="Colour 5">
+                      <img src="assets/swatch-thermos.png" alt="" />
+                    </button>
+                    <button class="swatch" type="button" aria-label="Colour 6">
+                      <img src="assets/swatch-thermos.png" alt="" />
+                    </button>
+                    <button class="swatch" type="button" aria-label="Colour 7">
+                      <img src="assets/swatch-thermos.png" alt="" />
+                    </button>
+                    <button class="swatch" type="button" aria-label="Colour 8">
+                      <img src="assets/swatch-thermos.png" alt="" />
+                    </button>
+                    <button class="swatch" type="button" aria-label="Colour 9">
+                      <img src="assets/swatch-thermos.png" alt="" />
+                    </button>
+                    <button class="swatch" type="button" aria-label="Colour 10">
+                      <img src="assets/swatch-thermos.png" alt="" />
+                    </button>
+                    <button class="swatch" type="button" aria-label="Colour 11">
+                      <img src="assets/swatch-thermos.png" alt="" />
+                    </button>
+                    <button class="swatch" type="button" aria-label="Colour 12">
+                      <img src="assets/swatch-thermos.png" alt="" />
+                    </button>
+                    <button class="swatch" type="button" aria-label="Colour 13">
+                      <img src="assets/swatch-thermos.png" alt="" />
+                    </button>
+                  </div>
+                  <label class="multi">
+                    <span class="checkbox"
+                      ><input type="checkbox" /><span></span
+                    ></span>
+                    Choose multiple colors
+                  </label>
+                </div>
+              </div>
+              <button class="cfg-card cfg-closed" type="button">
+                <span class="cfg-title"
+                  ><span class="cfg-num">2</span>Printing position</span
+                >
+                <span class="cfg-chev"
+                  ><img
+                    src="assets/chevron-config-closed.svg"
+                    width="9.63877"
+                    height="17"
+                    alt=""
+                /></span>
+              </button>
+              <button class="cfg-card cfg-closed" type="button">
+                <span class="cfg-title"
+                  ><span class="cfg-num">3</span>Printing in</span
+                >
+                <span class="cfg-chev"
+                  ><img
+                    src="assets/chevron-config-closed.svg"
+                    width="9.63877"
+                    height="17"
+                    alt=""
+                /></span>
+              </button>
+              <button class="cfg-card cfg-closed" type="button">
+                <span class="cfg-title"
+                  ><span class="cfg-num">4</span>Choose quantity</span
+                >
+                <span class="cfg-chev"
+                  ><img
+                    src="assets/chevron-config-closed.svg"
+                    width="9.63877"
+                    height="17"
+                    alt=""
+                /></span>
+              </button>
+
+              <div class="delivery">
+                <span class="delivery-label">
+                  <img
+                    src="assets/icon-delivery-calendar.svg"
+                    width="22"
+                    height="22"
+                    alt=""
+                  />
+                  Estimated delivery time
+                </span>
+                <span class="delivery-date">30th of August 2026</span>
+              </div>
+
+              <div class="price">
+                <div class="price-row">
+                  <p class="price-label">Price p.p.</p>
+                  <div class="price-vals">
+                    <span style="width: 60px; height: 19px"></span>
+                    <span class="price-badge">-25%</span>
+                    <span class="price-old">7.99</span>
+                    <span class="price-now">€ 6.01</span>
+                  </div>
+                </div>
+                <div class="price-row">
+                  <p class="price-label">
+                    <span style="font-size: 15px">Total </span>price
+                  </p>
+                  <div class="price-vals is-total">
+                    <span class="price-old">1,997.25</span>
+                    <span class="price-total">€ 1,502.50</span>
+                  </div>
+                </div>
+                <div class="price-foot">
+                  <span>Prices excl. 21% VAT.</span>
+                  <a href="#pdp">View price details</a>
+                </div>
+              </div>
+
+              <button class="add-cart" type="button">
+                Add to cart
+                <span class="add-cart-icons">
+                  <span class="add-cart-cart"
+                    ><img
+                      src="assets/icon-cart-white.svg"
+                      width="32.9824"
+                      height="25.6872"
+                      alt=""
+                  /></span>
+                  <span class="add-cart-plus"
+                    ><img
+                      src="assets/icon-cart-sparkle.svg"
+                      width="14"
+                      height="14"
+                      alt=""
+                  /></span>
+                </span>
+              </button>
+
+              <div class="cta-row is-bottom">
+                <a
+                  class="cta cta-outline is-design"
+                  href="#design"
+                  aria-label="Get free Design"
+                >
+                  <span class="cta-inner" style="width: 190px">
+                    <span>Get free <span class="bi">Design</span></span>
+                    <span class="cta-chev"
+                      ><img
+                        src="assets/chevron-cta-green.svg"
+                        width="9.63877"
+                        height="17"
+                        alt=""
+                    /></span>
+                  </span>
+                </a>
+                <a
+                  class="cta cta-outline is-quote"
+                  href="#quote"
+                  aria-label="Get free Quote"
+                >
+                  <span class="cta-inner" style="width: 182px">
+                    <span>Get free <span class="bi">Quote</span></span>
+                    <span class="cta-chev"
+                      ><img
+                        src="assets/chevron-cta-green.svg"
+                        width="9.63877"
+                        height="17"
+                        alt=""
+                    /></span>
+                  </span>
+                </a>
+              </div>
+            </div>
+
+            <div class="kiyoh-pdp">
+              <span class="stars" aria-hidden="true">★★★★</span>
+              <p class="rest">½ <b>Kiyoh 9.3</b> (1,261 reviews)</p>
+            </div>
+
+            <div class="reviews">
+              <article class="review">
+                <div class="review-head">
+                  <p class="review-name is-narrow">Jannie</p>
+                  <p class="review-stars">★★★★<span>½</span></p>
+                </div>
+                <p class="review-text">
+                  The contact with Loopper was excellent,<br />good advice,
+                  thinking along with you. The<br />delivery also went well,
+                  delivered on time..
+                </p>
+                <p class="review-more">Show full review</p>
+              </article>
+              <article class="review" style="gap: 7.2px">
+                <div class="review-head">
+                  <p class="review-name">AF-X</p>
+                  <p class="review-stars">★★★★<span>★</span></p>
+                </div>
+                <p class="review-text">
+                  Positive experience with effective guidance<br />and help from
+                  Loopper. Prices are good.
+                </p>
+              </article>
+              <article class="review">
+                <div class="review-head">
+                  <p class="review-name">Camiel</p>
+                  <p class="review-stars">★★★★<span>★</span></p>
+                </div>
+                <p class="review-text">
+                  Loopper stands out for its accessibility (also<br />by phone),
+                  thinking along with the solution,<br />super fast proofs
+                  over..
+                </p>
+                <p class="review-more">Show full review</p>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <section class="compare d-only">
+          <h2>Comparable products</h2>
+          <div class="compare-row">
+            <div class="compare-track" id="compare-track"></div>
+            <img
+              class="compare-arrow"
+              src="assets/arrow-carousel.svg"
+              width="14"
+              height="52"
+              alt=""
+            />
+          </div>
+        </section>
+
+        <!-- ===================== MOBILE PRODUCT PAGE (786:15285) ===================== -->
+        <div class="mp m-only">
+          <div class="mp-media">
+            <p class="mp-crumb">
+              Home / Water bottles / Thermos bottles /
+              <span>thermos stainless steel 500 ml</span>
+            </p>
+            <div class="mp-slides-wrap">
+              <div class="mp-slides m-scroll">
+                <div class="mp-slide is-ph">
+                  <span class="mp-fast"><span>🚚</span>Fast delivery</span
+                  >Product image
+                </div>
+                <div class="mp-slide is-ph">Product image</div>
+                <div class="mp-slide" aria-label="Talk to a merch expert">
+                  <div class="mx-photo">
+                    <img src="assets/m-contact-photo-round.png" alt="" />
+                  </div>
+                  <span class="mx-chip" style="left: 156.15px; top: 25.59px">
+                    <span class="mx-products-icon">
+                      <img
+                        src="assets/m-icon-products-1.svg"
+                        alt=""
+                        style="inset: 24.83% 0.29% 0.28% 52.23%"
+                      />
+                      <img
+                        src="assets/m-icon-products-2.svg"
+                        alt=""
+                        style="inset: 24.82% 52.16% 0.18% 0.33%"
+                      />
+                      <img
+                        src="assets/m-icon-products-3.svg"
+                        alt=""
+                        style="inset: 11.94% 4.12% 59.58% 31.82%"
+                      />
+                      <img
+                        src="assets/m-icon-products-4.svg"
+                        alt=""
+                        style="inset: 0.17% 33.18% 72.83% 4.08%"
+                      />
+                    </span>
+                    Products
+                  </span>
+                  <span class="mx-chip" style="left: 225.12px; top: 84.58px"
+                    ><img
+                      src="assets/m-icon-logo-design.svg"
+                      alt=""
+                    />Designs</span
+                  >
+                  <span class="mx-chip" style="left: 156.15px; top: 143.57px"
+                    ><img
+                      src="assets/m-icon-delivery.svg"
+                      alt=""
+                    />Delivery</span
+                  >
+                  <p class="mx-title">Talk to a merch expert</p>
+                  <p class="mx-hours">Monday to Friday, 9:00 - 17:00</p>
+                  <div class="mx-contacts">
+                    <a href="mailto:promo@loopper.com"
+                      ><img
+                        src="assets/m-icon-mail-blue.svg"
+                        alt=""
+                      />promo@loopper.com</a
+                    >
+                    <a href="tel:+442045765960"
+                      ><img
+                        src="assets/m-icon-phone-blue.svg"
+                        width="15.4355"
+                        height="14.8639"
+                        alt=""
+                      />
+                      +44 20 4576 5960</a
+                    >
+                  </div>
+                </div>
+                <div
+                  class="mp-slide"
+                  aria-label="Trusted by top brands since 2002"
+                >
+                  <div class="mb-swirl">
+                    <div>
+                      <img
+                        src="assets/m-brands-swirl.svg"
+                        width="662.636"
+                        height="717.85"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                  <p class="mb-title">
+                    Trusted by top brands<br /><i>since 2002</i>
+                  </p>
+                  <div class="mb-logos">
+                    <span class="mb-logo"
+                      ><img
+                        src="assets/m-brand-un.png"
+                        alt="UN"
+                        style="
+                          width: 100%;
+                          aspect-ratio: 1970 / 610;
+                          object-fit: cover;
+                        "
+                    /></span>
+                    <span class="mb-logo"
+                      ><img
+                        src="assets/m-brand-ea.png"
+                        alt="EA"
+                        style="
+                          width: 35.747px;
+                          height: 17.373px;
+                          object-fit: cover;
+                        "
+                    /></span>
+                    <span class="mb-logo"
+                      ><img
+                        src="assets/m-brand-atlassian.png"
+                        alt="Atlassian"
+                        style="
+                          width: 100%;
+                          aspect-ratio: 3840 / 477;
+                          object-fit: cover;
+                        "
+                    /></span>
+                    <span class="mb-logo"
+                      ><img
+                        src="assets/m-brand-siemens.png"
+                        alt="Siemens"
+                        style="
+                          width: 100%;
+                          aspect-ratio: 3840 / 915;
+                          object-fit: cover;
+                        "
+                    /></span>
+                    <span class="mb-logo"
+                      ><span class="crop" style="aspect-ratio: 63.9625 / 20.825"
+                        ><img
+                          src="assets/m-brand-hellofresh.png"
+                          alt="HelloFresh"
+                          style="
+                            left: -3.35%;
+                            top: -41.24%;
+                            width: 106.31%;
+                            height: 183.67%;
+                          " /></span
+                    ></span>
+                    <span class="mb-logo"
+                      ><img
+                        src="assets/m-brand-lidl.png"
+                        alt="Lidl"
+                        style="
+                          width: 29.683px;
+                          height: 29.683px;
+                          object-fit: cover;
+                        "
+                    /></span>
+                    <span class="mb-logo"
+                      ><span
+                        class="crop"
+                        style="aspect-ratio: 63.8892 / 19.2695"
+                        ><img
+                          src="assets/m-brand-huawei.png"
+                          alt="Huawei"
+                          style="
+                            left: -2.41%;
+                            top: -11.56%;
+                            width: 106.43%;
+                            height: 125.78%;
+                          " /></span
+                    ></span>
+                    <span class="mb-logo"
+                      ><span
+                        class="crop"
+                        style="width: 43.873px; height: 24.374px"
+                        ><img
+                          src="assets/m-brand-8.png"
+                          alt=""
+                          style="
+                            left: -15.97%;
+                            top: -68.75%;
+                            width: 131.94%;
+                            height: 237.5%;
+                          " /></span
+                    ></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <img
+              src="assets/m-carousel-bar.svg"
+              width="261"
+              height="11"
+              alt=""
+            />
+          </div>
+
+          <div class="mp-title">
+            <h1>Thermos bottle | Stainless steel | 500<br />ml | Must-have</h1>
+            <p>6383162</p>
+          </div>
+
+          <div class="mp-config">
+            <div class="cfg-card cfg-open">
+              <button class="cfg-head" type="button" aria-expanded="true">
+                <span class="cfg-title"
+                  ><span class="cfg-num">1</span>Choose the color</span
+                >
+                <span class="cfg-chev"
+                  ><img
+                    src="assets/chevron-config-open.svg"
+                    width="9.63877"
+                    height="17"
+                    alt=""
+                /></span>
+              </button>
+              <div class="cfg-body">
+                <div class="swatches">
+                  <button class="swatch" type="button" aria-label="Colour 1">
+                    <img src="assets/swatch-thermos.png" alt="" />
+                  </button>
+                  <button class="swatch" type="button" aria-label="Colour 2">
+                    <img src="assets/swatch-thermos.png" alt="" />
+                  </button>
+                  <button class="swatch" type="button" aria-label="Colour 3">
+                    <img src="assets/swatch-thermos.png" alt="" />
+                  </button>
+                  <button class="swatch" type="button" aria-label="Colour 4">
+                    <img src="assets/swatch-thermos.png" alt="" />
+                  </button>
+                  <button class="swatch" type="button" aria-label="Colour 5">
+                    <img src="assets/swatch-thermos.png" alt="" />
+                  </button>
+                  <button class="swatch" type="button" aria-label="Colour 6">
+                    <img src="assets/swatch-thermos.png" alt="" />
+                  </button>
+                  <button class="swatch" type="button" aria-label="Colour 7">
+                    <img src="assets/swatch-thermos.png" alt="" />
+                  </button>
+                  <button class="swatch" type="button" aria-label="Colour 8">
+                    <img src="assets/swatch-thermos.png" alt="" />
+                  </button>
+                  <button class="swatch" type="button" aria-label="Colour 9">
+                    <img src="assets/swatch-thermos.png" alt="" />
+                  </button>
+                </div>
+                <label class="multi">
+                  <span class="checkbox"
+                    ><input type="checkbox" /><span></span
+                  ></span>
+                  Choose multiple colors
+                </label>
+              </div>
+            </div>
+            <button class="cfg-card cfg-closed" type="button">
+              <span class="cfg-title"
+                ><span class="cfg-num">2</span>Printing position</span
+              >
+              <span class="cfg-chev"
+                ><img
+                  src="assets/chevron-config-closed.svg"
+                  width="9.63877"
+                  height="17"
+                  alt=""
+              /></span>
+            </button>
+            <button class="cfg-card cfg-closed" type="button">
+              <span class="cfg-title"
+                ><span class="cfg-num">3</span>Printing in</span
+              >
+              <span class="cfg-chev"
+                ><img
+                  src="assets/chevron-config-closed.svg"
+                  width="9.63877"
+                  height="17"
+                  alt=""
+              /></span>
+            </button>
+            <button class="cfg-card cfg-closed" type="button">
+              <span class="cfg-title"
+                ><span class="cfg-num">4</span>Choose quantity</span
+              >
+              <span class="cfg-chev"
+                ><img
+                  src="assets/chevron-config-closed.svg"
+                  width="9.63877"
+                  height="17"
+                  alt=""
+              /></span>
+            </button>
+            <button class="cfg-card cfg-closed" type="button">
+              <span class="cfg-title is-divide"
+                ><span class="cfg-num">5</span>Divide colors</span
+              >
+              <span class="cfg-chev"
+                ><img
+                  src="assets/chevron-config-closed.svg"
+                  width="9.63877"
+                  height="17"
+                  alt=""
+              /></span>
+            </button>
+            <div class="mp-delivery">
+              <span class="mp-delivery-label"
+                ><img
+                  src="assets/m-icon-delivery-calendar.svg"
+                  alt=""
+                />Estimated<br />delivery time</span
+              >
+              <span class="mp-delivery-date">30th of August 2026</span>
+            </div>
+          </div>
+
+          <div class="mp-price">
+            <div class="mprice-row">
+              <p class="mprice-label">All-in price p.p.</p>
+              <div class="mprice-vals">
+                <span class="mprice-old"
+                  ><span class="mprice-badge">-25%</span><s>7.99</s></span
+                >
+                <span class="mprice-now">€&nbsp;&nbsp;6.01</span>
+              </div>
+            </div>
+            <div class="mprice-row is-top">
+              <p class="mprice-label is-total">Total price</p>
+              <div class="mprice-vals">
+                <span class="mprice-was"><b>€ </b>1,997.25</span>
+                <span class="mprice-now" style="width: auto">€ 1,502.50</span>
+              </div>
+            </div>
+            <div class="mprice-foot">
+              <span>Prices excl. 21% VAT.</span
+              ><a href="#pdp">View price details</a>
+            </div>
+          </div>
+
+          <div
+            style="
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              gap: 20px;
+            "
+          >
+            <section class="mp-info">
+              <div class="mp-tabs m-scroll" role="tablist">
+                <span class="mp-tab is-active">Product details</span>
+                <span class="mp-tab">Properties</span>
+                <span class="mp-tab">Print options</span>
+                <span class="mp-tab">Print</span>
+                <span class="mp-tab">Delivery</span>
+              </div>
+              <p class="mp-desc">
+                Vacuum insulated stainless steel bottle with an iconic design.
+                The insulated 18/8 stainless steel keeps drinks hot or cold for
+                several hours. Tested and approved under German Food Safe
+                Legislation (LFGB), and tested for phthalates content according
+                to REACH regulations. Featuring a base that fits in most cup
+                holders, this sleek looking water bottle is a perfect
+                promotional item. Volume capacity is 500 ml. Presented in a
+                recycled cardboard gift box. Stainless Steel.
+              </p>
+              <p class="mp-tags">
+                Tags: Personalized water bottles, Thermos bottles
+              </p>
+              <dl class="mp-specs">
+                <div>
+                  <dt>Height</dt>
+                  <dd>27 cm.</dd>
+                </div>
+                <div>
+                  <dt>Width</dt>
+                  <dd>7 cm.</dd>
+                </div>
+                <div>
+                  <dt>Length</dt>
+                  <dd>7 cm.</dd>
+                </div>
+                <div>
+                  <dt>Weight</dt>
+                  <dd>284 grams</dd>
+                </div>
+              </dl>
+            </section>
+
+            <section class="mrev" aria-label="Customer reviews">
+              <div class="mrev-score">
+                <span class="stars" aria-hidden="true">★★★★½</span
+                ><b>Kiyoh 9.3</b><span>(1,261 reviews)</span>
+              </div>
+              <div class="mrev-track m-scroll">
+                <article class="mrev-card">
+                  <b>Antoinette</b>
+                  <p>
+                    Good advice, fast response and fast delivery. Nice con..
+                  </p>
+                  <div class="stars">★★★★★</div>
+                </article>
+                <article class="mrev-card">
+                  <b>Rieneke</b>
+                  <p>
+                    They think along with you. You get a quick response and de..
+                  </p>
+                  <div class="stars">★★★★<span>½</span></div>
+                </article>
+                <article class="mrev-card">
+                  <b>Vera</b>
+                  <p>I needed embroidered hats on short notice for a..</p>
+                  <div class="stars">★★★★★</div>
+                </article>
+              </div>
+              <div class="mrev-dots" aria-hidden="true">
+                <i class="is-active"></i><i></i><i></i>
+              </div>
+            </section>
+          </div>
+
+          <section class="mp-compare">
+            <h2>Comparable products</h2>
+            <div class="mp-compare-track m-scroll" id="m-compare-track"></div>
+          </section>
+        </div>
+      </section>
+
+      <!-- ===================== SCREEN 2: FREE DESIGN REQUEST ===================== -->
+      <section
+        class="screen"
+        id="screen-design"
+        aria-label="Request page for Free Design"
+      >
+        <div class="req d-only">
+          <h1 class="req-title">Get your free Design</h1>
+          <div class="req-body">
+            <div class="req-top" data-slot="progress"></div>
+            <div class="req-grid">
+              <aside class="summary" data-slot="summary"></aside>
+              <form class="form-card" action="#thanks" novalidate>
+                <div class="f-extra">
+                  <div class="f-logo" data-slot="logo"></div>
+                  <div class="f-when">
+                    <p class="f-h">When do you need your products?</p>
+                    <div class="f-when-row">
+                      <label class="rd is-when"
+                        ><input
+                          type="radio"
+                          name="when-d"
+                          value="asap"
+                          checked
+                        /><span class="rd-box"
+                          ><img
+                            src="assets/radio-checked-green.svg"
+                            width="18"
+                            height="18"
+                            alt="" /></span
+                        >As soon as possible</label
+                      >
+                      <div class="f-when-right">
+                        <label class="rd is-when"
+                          ><input
+                            type="radio"
+                            name="when-d"
+                            value="deadline"
+                          /><span class="rd-box"
+                            ><img
+                              src="assets/radio-checked-green.svg"
+                              width="18"
+                              height="18"
+                              alt="" /></span
+                          >I have a deadline</label
+                        >
+                        <label class="f-date">
+                          <input
+                            type="text"
+                            inputmode="numeric"
+                            placeholder="DD-MM-YY"
+                            aria-label="Deadline date"
+                            data-deadline="when-d"
+                          />
+                          <img
+                            src="assets/icon-calendar.svg"
+                            width="16"
+                            height="16"
+                            alt=""
+                          />
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="f-details">
+                  <p class="f-h">My details</p>
+                  <div class="f-fields">
+                    <div class="f-field">
+                      <label class="f-label" for="d-email">Email*</label>
+                      <input
+                        class="f-input"
+                        id="d-email"
+                        name="email"
+                        type="email"
+                        placeholder="e.g. name@company.com"
+                        autocomplete="email"
+                      />
+                    </div>
+                    <div class="f-group16">
+                      <div class="f-field is-biz">
+                        <p class="f-label">Business type*</p>
+                        <div
+                          class="f-biz"
+                          role="radiogroup"
+                          aria-label="Business type"
+                        >
+                          <label class="rd"
+                            ><input type="radio" name="biz-d" checked /><span
+                              class="rd-box"
+                              ><img
+                                src="assets/radio-checked.svg"
+                                width="18"
+                                height="18"
+                                alt="" /></span
+                            >Company</label
+                          >
+                          <label class="rd"
+                            ><input type="radio" name="biz-d" /><span
+                              class="rd-box"
+                              ><img
+                                src="assets/radio-checked.svg"
+                                width="18"
+                                height="18"
+                                alt="" /></span
+                            >Public administration</label
+                          >
+                          <label class="rd"
+                            ><input type="radio" name="biz-d" /><span
+                              class="rd-box"
+                              ><img
+                                src="assets/radio-checked.svg"
+                                width="18"
+                                height="18"
+                                alt="" /></span
+                            >Individual</label
+                          >
+                        </div>
+                      </div>
+                      <div class="f-field">
+                        <label class="f-label" for="d-company"
+                          >Company name</label
+                        >
+                        <input
+                          class="f-input"
+                          id="d-company"
+                          name="company"
+                          type="text"
+                          placeholder="Company Name"
+                          autocomplete="organization"
+                        />
+                      </div>
+                    </div>
+                    <div class="f-row">
+                      <div class="f-field f-sal">
+                        <p class="f-label">Salutation</p>
+                        <div
+                          class="f-sal-box"
+                          role="radiogroup"
+                          aria-label="Salutation"
+                        >
+                          <label class="rd"
+                            ><input
+                              type="radio"
+                              name="sal-d"
+                              value="Mr."
+                              checked
+                            /><span class="rd-box"
+                              ><img
+                                src="assets/radio-checked.svg"
+                                width="18"
+                                height="18"
+                                alt="" /></span
+                            >Mr.</label
+                          >
+                          <label class="rd"
+                            ><input
+                              type="radio"
+                              name="sal-d"
+                              value="Mrs."
+                            /><span class="rd-box"
+                              ><img
+                                src="assets/radio-checked.svg"
+                                width="18"
+                                height="18"
+                                alt="" /></span
+                            >Mrs.</label
+                          >
+                        </div>
+                      </div>
+                      <div class="f-names">
+                        <div class="f-field is-grow">
+                          <label class="f-label" for="d-first"
+                            >First name*</label
+                          >
+                          <input
+                            class="f-input"
+                            id="d-first"
+                            name="first"
+                            type="text"
+                            placeholder="First Name"
+                            autocomplete="given-name"
+                          />
+                        </div>
+                        <div class="f-field is-grow">
+                          <label class="f-label" for="d-last">Surname*</label>
+                          <input
+                            class="f-input"
+                            id="d-last"
+                            name="last"
+                            type="text"
+                            placeholder="Surname"
+                            autocomplete="family-name"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="f-field">
+                      <label class="f-label" for="d-phone">Phone number</label>
+                      <input
+                        class="f-input"
+                        id="d-phone"
+                        name="phone"
+                        type="tel"
+                        placeholder="Phone Number"
+                        autocomplete="tel"
+                      />
+                    </div>
+                  </div>
+                  <div class="f-comments">
+                    <label class="f-label" for="d-comments">Comments</label>
+                    <textarea
+                      class="f-textarea"
+                      id="d-comments"
+                      placeholder="Do you have a question or discount code?"
+                    ></textarea>
+                  </div>
+                </div>
+                <button class="send-btn" type="submit">
+                  Send Request
+                  <img
+                    src="assets/icon-send.svg"
+                    width="19.5607"
+                    height="19.5607"
+                    alt=""
+                  />
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== SCREEN 3: FREE QUOTE REQUEST ===================== -->
+      <section
+        class="screen"
+        id="screen-quote"
+        aria-label="Request page for Free Quote"
+      >
+        <div class="req d-only">
+          <h1 class="req-title">Get your free Quote</h1>
+          <div class="req-body">
+            <div class="req-top" data-slot="progress"></div>
+            <div class="req-grid">
+              <aside class="summary" data-slot="summary"></aside>
+              <form class="form-card" action="#thanks" novalidate>
+                <div class="f-details">
+                  <p class="f-h">My details</p>
+                  <div class="f-fields">
+                    <div class="f-field">
+                      <label class="f-label" for="q-email">Email*</label>
+                      <input
+                        class="f-input"
+                        id="q-email"
+                        name="email"
+                        type="email"
+                        placeholder="e.g. name@company.com"
+                        autocomplete="email"
+                      />
+                    </div>
+                    <div class="f-group16">
+                      <div class="f-field is-biz">
+                        <p class="f-label">Business type*</p>
+                        <div
+                          class="f-biz"
+                          role="radiogroup"
+                          aria-label="Business type"
+                        >
+                          <label class="rd"
+                            ><input type="radio" name="biz-q" checked /><span
+                              class="rd-box"
+                              ><img
+                                src="assets/radio-checked.svg"
+                                width="18"
+                                height="18"
+                                alt="" /></span
+                            >Company</label
+                          >
+                          <label class="rd"
+                            ><input type="radio" name="biz-q" /><span
+                              class="rd-box"
+                              ><img
+                                src="assets/radio-checked.svg"
+                                width="18"
+                                height="18"
+                                alt="" /></span
+                            >Public administration</label
+                          >
+                          <label class="rd"
+                            ><input type="radio" name="biz-q" /><span
+                              class="rd-box"
+                              ><img
+                                src="assets/radio-checked.svg"
+                                width="18"
+                                height="18"
+                                alt="" /></span
+                            >Individual</label
+                          >
+                        </div>
+                      </div>
+                      <div class="f-field">
+                        <label class="f-label" for="q-company"
+                          >Company name</label
+                        >
+                        <input
+                          class="f-input"
+                          id="q-company"
+                          name="company"
+                          type="text"
+                          placeholder="Company Name"
+                          autocomplete="organization"
+                        />
+                      </div>
+                    </div>
+                    <div class="f-row">
+                      <div class="f-field f-sal">
+                        <p class="f-label">Salutation</p>
+                        <div
+                          class="f-sal-box"
+                          role="radiogroup"
+                          aria-label="Salutation"
+                        >
+                          <label class="rd"
+                            ><input
+                              type="radio"
+                              name="sal-q"
+                              value="Mr."
+                              checked
+                            /><span class="rd-box"
+                              ><img
+                                src="assets/radio-checked.svg"
+                                width="18"
+                                height="18"
+                                alt="" /></span
+                            >Mr.</label
+                          >
+                          <label class="rd"
+                            ><input
+                              type="radio"
+                              name="sal-q"
+                              value="Mrs."
+                            /><span class="rd-box"
+                              ><img
+                                src="assets/radio-checked.svg"
+                                width="18"
+                                height="18"
+                                alt="" /></span
+                            >Mrs.</label
+                          >
+                        </div>
+                      </div>
+                      <div class="f-names">
+                        <div class="f-field is-grow">
+                          <label class="f-label" for="q-first"
+                            >First name*</label
+                          >
+                          <input
+                            class="f-input"
+                            id="q-first"
+                            name="first"
+                            type="text"
+                            placeholder="First Name"
+                            autocomplete="given-name"
+                          />
+                        </div>
+                        <div class="f-field is-grow">
+                          <label class="f-label" for="q-last">Surname*</label>
+                          <input
+                            class="f-input"
+                            id="q-last"
+                            name="last"
+                            type="text"
+                            placeholder="Surname"
+                            autocomplete="family-name"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="f-field">
+                      <label class="f-label" for="q-phone">Phone number</label>
+                      <input
+                        class="f-input"
+                        id="q-phone"
+                        name="phone"
+                        type="tel"
+                        placeholder="Phone Number"
+                        autocomplete="tel"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="f-extra">
+                  <div class="f-logo" data-slot="logo"></div>
+                  <div class="f-when">
+                    <p class="f-h">When do you need your products?</p>
+                    <div class="f-when-row">
+                      <label class="rd is-when"
+                        ><input
+                          type="radio"
+                          name="when-q"
+                          value="asap"
+                          checked
+                        /><span class="rd-box"
+                          ><img
+                            src="assets/radio-checked-green.svg"
+                            width="18"
+                            height="18"
+                            alt="" /></span
+                        >As soon as possible</label
+                      >
+                      <div class="f-when-right">
+                        <label class="rd is-when"
+                          ><input
+                            type="radio"
+                            name="when-q"
+                            value="deadline"
+                          /><span class="rd-box"
+                            ><img
+                              src="assets/radio-checked-green.svg"
+                              width="18"
+                              height="18"
+                              alt="" /></span
+                          >I have a deadline</label
+                        >
+                        <label class="f-date">
+                          <input
+                            type="text"
+                            inputmode="numeric"
+                            placeholder="DD-MM-YY"
+                            aria-label="Deadline date"
+                            data-deadline="when-q"
+                          />
+                          <img
+                            src="assets/icon-calendar.svg"
+                            width="16"
+                            height="16"
+                            alt=""
+                          />
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="f-comments">
+                    <label class="f-label" for="q-comments">Comments</label>
+                    <textarea
+                      class="f-textarea"
+                      id="q-comments"
+                      placeholder="Do you have a question or discount code?"
+                    ></textarea>
+                  </div>
+                </div>
+                <button class="send-btn" type="submit">
+                  Send Request
+                  <img
+                    src="assets/icon-send.svg"
+                    width="19.5607"
+                    height="19.5607"
+                    alt=""
+                  />
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== MOBILE REQUEST PAGE (864:6594) ===================== -->
+      <section
+        class="screen m-only"
+        id="screen-mrequest"
+        aria-label="Request page for Free Quote and Design"
+      >
+        <div class="mrq">
+          <div class="mrq-stepper">
+            <a class="mrq-back" href="#pdp" aria-label="Back to the product"
+              ><img src="assets/m-back-42.svg" width="42" height="42" alt=""
+            /></a>
+            <h1>Get your free <br />Quote &amp; Design</h1>
+            <div class="mrq-steps">
+              <div class="mrq-dots" aria-hidden="true">
+                <b>1</b><i></i><b>2</b><i class="is-todo"></i
+                ><img
+                  src="assets/m-step-circle-done.svg"
+                  width="24"
+                  height="24"
+                  alt=""
+                />
+              </div>
+              <div class="mrq-labels">
+                <a href="#pdp">Choose <br />your product</a>
+                <span class="is-current" aria-current="step"
+                  >Your Logo <br />&amp; Information</span
+                >
+                <span class="is-todo">Quote send</span>
+              </div>
+            </div>
+          </div>
+          <form class="mrq-content mrq-form" action="#thanks" novalidate>
+            <div class="mrq-top">
+              <!-- Request Summary Mobile: Figma component set 864:7161
+                   collapsed 864:7297 / two products 933:20875 / expanded 864:7387 -->
+              <div class="rsm">
+                <button
+                  class="rsm-toggle"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="rsm-extra"
+                >
+                  <span class="rsm-head"
+                    >Request summary<span class="rsm-chev"
+                      ><img
+                        src="assets/m-chevron-summary.svg"
+                        width="17"
+                        height="10.6213"
+                        alt="" /></span
+                  ></span>
+                  <span class="rsm-products">
+                    <span class="rsm-row"
+                      ><img src="assets/product-thermos.png" alt="" /><span
+                        class="rsm-name"
+                        >Thermos bottle | Stainless steel | 500 ml</span
+                      ></span
+                    >
+                    <span class="rsm-collapse rsm-second" aria-hidden="true"
+                      ><span
+                        ><span class="rsm-second-inner"
+                          ><span class="rsm-row"
+                            ><img
+                              src="assets/product-thermos.png"
+                              alt=""
+                            /><span class="rsm-name"
+                              >Thermos bottle | Stainless steel | 500 ml</span
+                            ></span
+                          ></span
+                        ></span
+                      ></span
+                    >
+                  </span>
+                </button>
+                <div class="rsm-collapse rsm-extra" id="rsm-extra">
+                  <div>
+                    <div class="rsm-extra-inner">
+                      <div class="rsm-details">
+                        <div class="rsm-field">
+                          <p class="rsm-label">Color</p>
+                          <button class="rsm-select" type="button">
+                            Grey<span class="rsm-spacer"></span
+                            ><span class="rsm-caret"
+                              ><img
+                                src="assets/m-select-vector-b.svg"
+                                width="8"
+                                height="5.41421"
+                                alt=""
+                            /></span>
+                          </button>
+                        </div>
+                        <div class="rsm-field">
+                          <p class="rsm-label">Quantity</p>
+                          <button class="rsm-select" type="button">
+                            25 pieces<span class="rsm-spacer"></span
+                            ><span class="rsm-caret"
+                              ><img
+                                src="assets/m-select-vector-b.svg"
+                                width="8"
+                                height="5.41421"
+                                alt=""
+                            /></span>
+                          </button>
+                        </div>
+                        <div class="rsm-field">
+                          <p class="rsm-label">Print position</p>
+                          <p class="rsm-value">
+                            Back (30x70mm)<span class="rsm-spacer"></span>
+                          </p>
+                        </div>
+                        <div class="rsm-field">
+                          <p class="rsm-label">Printing in</p>
+                          <p class="rsm-value">
+                            2 colors<span class="rsm-spacer"></span>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="rsm-actions">
+                        <a class="s-action is-edit" href="#pdp"
+                          ><img
+                            src="assets/icon-edit.svg"
+                            width="25"
+                            height="24"
+                            alt=""
+                          /><span>Edit request </span></a
+                        >
+                        <button class="s-action" type="button">
+                          <img
+                            src="assets/icon-remove.svg"
+                            width="23.4468"
+                            height="24.2553"
+                            alt=""
+                          />Remove
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a class="madd" href="#pdp"
+                ><span
+                  ><img
+                    src="assets/m-icon-plus-blue.svg"
+                    width="17.2941"
+                    height="17.2941"
+                    alt="" /></span
+                >Add extra product</a
+              >
+            </div>
+
+            <div class="mbox">
+              <p class="mbox-h is-big">My details</p>
+              <div class="mf-field">
+                <label class="mf-label" for="m-email">Email*</label>
+                <input
+                  class="mf-input"
+                  id="m-email"
+                  name="email"
+                  type="email"
+                  placeholder="e.g. name@company.com"
+                  autocomplete="email"
+                />
+              </div>
+              <div class="mf-field is-group">
+                <p class="mf-label">Business type*</p>
+                <div
+                  class="mf-cards"
+                  role="radiogroup"
+                  aria-label="Business type"
+                >
+                  <label class="mrc"
+                    ><input
+                      type="radio"
+                      name="biz-m"
+                      value="company"
+                      checked
+                    /><span class="rd-box"
+                      ><img
+                        src="assets/m-radio-checked.svg"
+                        width="18"
+                        height="18"
+                        alt="" /></span
+                    >Company</label
+                  >
+                  <label class="mrc"
+                    ><input type="radio" name="biz-m" value="public" /><span
+                      class="rd-box"
+                      ><img
+                        src="assets/m-radio-checked.svg"
+                        width="18"
+                        height="18"
+                        alt="" /></span
+                    >Public administration</label
+                  >
+                  <label class="mrc"
+                    ><input type="radio" name="biz-m" value="individual" /><span
+                      class="rd-box"
+                      ><img
+                        src="assets/m-radio-checked.svg"
+                        width="18"
+                        height="18"
+                        alt="" /></span
+                    >Individual</label
+                  >
+                </div>
+              </div>
+              <div class="mf-field">
+                <label class="mf-label" for="m-company">Company name</label>
+                <input
+                  class="mf-input"
+                  id="m-company"
+                  name="company"
+                  type="text"
+                  placeholder="Company Name"
+                  autocomplete="organization"
+                />
+              </div>
+              <div class="mf-field">
+                <p class="mf-label">Salutation</p>
+                <div
+                  class="mf-cards is-row"
+                  role="radiogroup"
+                  aria-label="Salutation"
+                >
+                  <label class="mrc"
+                    ><input
+                      type="radio"
+                      name="sal-m"
+                      value="Mrs."
+                      checked
+                    /><span class="rd-box"
+                      ><img
+                        src="assets/m-radio-checked.svg"
+                        width="18"
+                        height="18"
+                        alt="" /></span
+                    >Mrs.</label
+                  >
+                  <label class="mrc"
+                    ><input type="radio" name="sal-m" value="Mr." /><span
+                      class="rd-box"
+                      ><img
+                        src="assets/m-radio-checked.svg"
+                        width="18"
+                        height="18"
+                        alt="" /></span
+                    >Mr.</label
+                  >
+                </div>
+              </div>
+              <div class="mf-field">
+                <label class="mf-label" for="m-first">First name*</label>
+                <input
+                  class="mf-input"
+                  id="m-first"
+                  name="first"
+                  type="text"
+                  placeholder="First Name"
+                  autocomplete="given-name"
+                />
+              </div>
+              <div class="mf-field">
+                <label class="mf-label" for="m-last">Surname*</label>
+                <input
+                  class="mf-input"
+                  id="m-last"
+                  name="last"
+                  type="text"
+                  placeholder="Surname"
+                  autocomplete="family-name"
+                />
+              </div>
+              <div class="mf-field">
+                <label class="mf-label" for="m-phone">Phone number</label>
+                <input
+                  class="mf-input"
+                  id="m-phone"
+                  name="phone"
+                  type="tel"
+                  placeholder="Phone Number"
+                  autocomplete="tel"
+                />
+              </div>
+              <div class="mf-field">
+                <label class="mf-label" for="m-comments">Comments</label>
+                <textarea
+                  class="mf-input"
+                  id="m-comments"
+                  placeholder="Do you have a question or discount code?"
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="mbox is-when">
+              <p class="mbox-h">When do you need your products?</p>
+              <!-- Deadline section form mobile: Figma component set 1357:7968
+                   ASAP 1357:7865 / deadline + date field 1357:7967 / date picker open 1357:8301 -->
+              <div
+                class="dl"
+                role="radiogroup"
+                aria-label="When do you need your products?"
+              >
+                <label class="mrc"
+                  ><input
+                    type="radio"
+                    name="when-m"
+                    value="asap"
+                    checked
+                  /><span class="rd-box"
+                    ><img
+                      src="assets/m-radio-checked.svg"
+                      width="18"
+                      height="18"
+                      alt="" /></span
+                  >As soon as possible</label
+                >
+                <div class="dl-deadline">
+                  <label class="mrc"
+                    ><input type="radio" name="when-m" value="deadline" /><span
+                      class="rd-box"
+                      ><img
+                        src="assets/m-radio-checked.svg"
+                        width="18"
+                        height="18"
+                        alt="" /></span
+                    >I have a deadline</label
+                  >
+                  <div class="dl-collapse dl-datewrap">
+                    <div>
+                      <div class="dl-pad">
+                        <button
+                          class="dl-date"
+                          type="button"
+                          aria-expanded="false"
+                          aria-controls="dl-picker"
+                        >
+                          <span class="dl-date-text">DD-MM-YY</span>
+                          <img
+                            src="assets/m-icon-calendar-green.svg"
+                            width="22"
+                            height="22"
+                            alt=""
+                          />
+                        </button>
+                        <div class="dl-collapse dl-pickerwrap" id="dl-picker">
+                          <div>
+                            <div class="dl-pad">
+                              <div
+                                class="dl-picker"
+                                role="dialog"
+                                aria-label="Choose a deadline"
+                              >
+                                <div class="dl-head">
+                                  <span class="dl-month"
+                                    ><span class="dl-month-name"
+                                      >April 2025</span
+                                    ><svg
+                                      width="7"
+                                      height="11"
+                                      viewBox="0 0 7 11"
+                                      aria-hidden="true"
+                                    >
+                                      <path
+                                        d="M1.5 1.2 5.5 5.5 1.5 9.8"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      /></svg
+                                  ></span>
+                                  <span class="dl-arrows">
+                                    <button
+                                      class="dl-prev"
+                                      type="button"
+                                      aria-label="Previous month"
+                                    >
+                                      <svg
+                                        width="10"
+                                        height="17"
+                                        viewBox="0 0 10 17"
+                                        aria-hidden="true"
+                                      >
+                                        <path
+                                          d="M8 1.5 1.8 8.5 8 15.5"
+                                          fill="none"
+                                          stroke="currentColor"
+                                          stroke-width="2.2"
+                                          stroke-linecap="round"
+                                          stroke-linejoin="round"
+                                        />
+                                      </svg>
+                                    </button>
+                                    <button
+                                      class="dl-next"
+                                      type="button"
+                                      aria-label="Next month"
+                                    >
+                                      <svg
+                                        width="10"
+                                        height="17"
+                                        viewBox="0 0 10 17"
+                                        aria-hidden="true"
+                                      >
+                                        <path
+                                          d="M2 1.5 8.2 8.5 2 15.5"
+                                          fill="none"
+                                          stroke="currentColor"
+                                          stroke-width="2.2"
+                                          stroke-linecap="round"
+                                          stroke-linejoin="round"
+                                        />
+                                      </svg>
+                                    </button>
+                                  </span>
+                                </div>
+                                <div class="dl-weekdays" aria-hidden="true">
+                                  <span>Sun</span><span>Mon</span
+                                  ><span>Tue</span><span>Wed</span
+                                  ><span>Thu</span><span>Fri</span
+                                  ><span>Sat</span>
+                                </div>
+                                <div class="dl-grid"></div>
+                                <div class="dl-sep"><i></i></div>
+                                <div class="dl-time">
+                                  <span>Time</span
+                                  ><span class="dl-time-pill">9:41 AM</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mbox">
+              <p class="mbox-h">My logo</p>
+              <div class="mlogo-btns">
+                <label class="mlogo-upload"
+                  >Upload your logo
+                  <img
+                    src="assets/icon-upload-design.svg"
+                    width="18.5"
+                    height="18.5"
+                    alt="" /><input
+                    class="vh"
+                    type="file"
+                    accept="image/*,.pdf,.ai,.eps,.svg"
+                /></label>
+                <button class="mlogo-text" type="button">Add text</button>
+              </div>
+              <p class="mlogo-later">You can also upload your logo later</p>
+            </div>
+
+            <button class="send-btn" type="submit">
+              Send Request
+              <img
+                src="assets/icon-send.svg"
+                width="19.5607"
+                height="19.5607"
+                alt=""
+              />
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ===================== SCREEN 4: CONFIRMATION ===================== -->
+      <section class="screen" id="screen-thanks" aria-label="Request sent">
+        <div class="ty d-only">
+          <div class="ty-intro">
+            <div class="ty-intro-left">
+              <span class="ty-check"
+                ><span class="ty-check-icon"
+                  ><img
+                    src="assets/ty-check.svg"
+                    width="40.5004"
+                    height="34.222"
+                    alt="" /></span
+              ></span>
+              <div class="ty-intro-text">
+                <h1>Request has been successfully send</h1>
+                <p>
+                  Thank you for your request at Loopper. We will get started on
+                  your quote right away.
+                </p>
+              </div>
+            </div>
+            <button class="pill is-main acta" type="button">
+              Go to my account
+            </button>
+          </div>
+
+          <div class="ty-row">
+            <div class="ty-card">
+              <h2>Your request</h2>
+              <div class="hr"><img src="assets/divider-1.svg" alt="" /></div>
+              <div class="ty-contact">
+                <h3>Contact details</h3>
+                <dl class="ty-kv" style="margin: 0">
+                  <div>
+                    <dt>Email</dt>
+                    <dd data-ty="email">patrick@loopper.com</dd>
+                  </div>
+                  <div>
+                    <dt>Company</dt>
+                    <dd data-ty="company">Loopper Relatiegeschenken B.V.</dd>
+                  </div>
+                  <div>
+                    <dt>Name</dt>
+                    <dd data-ty="name">Dhr. Patrick Geijtenbeek</dd>
+                  </div>
+                  <div>
+                    <dt>Phone number</dt>
+                    <dd data-ty="phone">0612326898</dd>
+                  </div>
+                </dl>
+              </div>
+              <div class="hr"><img src="assets/divider-2.svg" alt="" /></div>
+              <div class="ty-products">
+                <h3>Product details</h3>
+                <div class="ty-plist">
+                  <div class="ty-product">
+                    <p class="ty-product-name">
+                      Waterfles | Tritan | 650 ml | Schroefdop | Bestseller |
+                      lime
+                    </p>
+                    <div class="ty-product-card">
+                      <img
+                        src="assets/product-thermos.png"
+                        width="148"
+                        height="148"
+                        alt=""
+                      />
+                      <dl class="ty-pd">
+                        <div>
+                          <dt>Color</dt>
+                          <dd>grey</dd>
+                        </div>
+                        <div>
+                          <dt>Quantity</dt>
+                          <dd>25 stuks</dd>
+                        </div>
+                        <div>
+                          <dt>Print position</dt>
+                          <dd>Back (30x70mm)</dd>
+                        </div>
+                        <div>
+                          <dt>Printing in</dt>
+                          <dd>2 colors</dd>
+                        </div>
+                        <div>
+                          <dt>Productnumber</dt>
+                          <dd class="is-small">1128935</dd>
+                        </div>
+                      </dl>
+                    </div>
+                  </div>
+                  <div class="hr">
+                    <img src="assets/divider-3.svg" alt="" />
+                  </div>
+                  <div class="ty-product">
+                    <p class="ty-product-name nowrap">
+                      Waterfles | Tritan | 650 ml | Schroefdop | Bestseller |
+                      lime
+                    </p>
+                    <div class="ty-product-card">
+                      <img
+                        src="assets/product-thermos.png"
+                        width="149"
+                        height="149"
+                        alt=""
+                      />
+                      <dl class="ty-pd">
+                        <div>
+                          <dt>Color</dt>
+                          <dd>grey</dd>
+                        </div>
+                        <div>
+                          <dt>Quantity</dt>
+                          <dd>25 stuks</dd>
+                        </div>
+                        <div>
+                          <dt>Print position</dt>
+                          <dd>Back (30x70mm)</dd>
+                        </div>
+                        <div>
+                          <dt>Printing in</dt>
+                          <dd>2 colors</dd>
+                        </div>
+                        <div>
+                          <dt>Productnumber</dt>
+                          <dd class="is-small">1128935</dd>
+                        </div>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="hr"><img src="assets/divider-2.svg" alt="" /></div>
+              <div class="ty-btns">
+                <button class="pill is-outline acta" type="button">
+                  Go to my account
+                </button>
+                <a class="pill is-solid" href="#pdp">Continue shopping</a>
+              </div>
+            </div>
+
+            <div class="ty-survey">
+              <h2>We’d like to know you better</h2>
+              <div class="hr" style="--len: 481px">
+                <img src="assets/divider-4.svg" alt="" />
+              </div>
+              <div class="ty-qs">
+                <div class="ty-q">
+                  <p>What branch is your company active in?</p>
+                  <div class="ty-dd">
+                    <div class="mdd" data-kind="list">
+                      <button
+                        class="mdd-head"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="mdd-d1"
+                      >
+                        <span class="mdd-value">Select</span
+                        ><span class="mdd-chev"
+                          ><img
+                            src="assets/m-chevron-dropdown-open.svg"
+                            width="12"
+                            height="12"
+                            alt=""
+                        /></span>
+                      </button>
+                      <div class="mdd-collapse" id="mdd-d1">
+                        <div>
+                          <div class="mdd-inner">
+                            <div class="m-hr">
+                              <img
+                                src="assets/m-divider-dropdown.svg"
+                                width="1"
+                                height="274"
+                                alt=""
+                              />
+                            </div>
+                            <div class="mdd-list" role="listbox">
+                              <button
+                                class="mdd-item"
+                                type="button"
+                                role="option"
+                              >
+                                text</button
+                              ><button
+                                class="mdd-item"
+                                type="button"
+                                role="option"
+                              >
+                                text</button
+                              ><button
+                                class="mdd-item"
+                                type="button"
+                                role="option"
+                              >
+                                text</button
+                              ><button
+                                class="mdd-item"
+                                type="button"
+                                role="option"
+                              >
+                                text</button
+                              ><button
+                                class="mdd-item"
+                                type="button"
+                                role="option"
+                              >
+                                text</button
+                              ><button
+                                class="mdd-item"
+                                type="button"
+                                role="option"
+                              >
+                                text</button
+                              ><button
+                                class="mdd-item"
+                                type="button"
+                                role="option"
+                              >
+                                text
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="hr" style="--len: 481px">
+                  <img src="assets/divider-5.svg" alt="" />
+                </div>
+                <div class="ty-q">
+                  <p>What is the product for?</p>
+                  <div class="ty-dd">
+                    <div class="mdd" data-kind="checks">
+                      <button
+                        class="mdd-head"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="mdd-d2"
+                      >
+                        <span class="mdd-value">Select</span
+                        ><span class="mdd-chev"
+                          ><img
+                            src="assets/m-chevron-dropdown-open.svg"
+                            width="12"
+                            height="12"
+                            alt=""
+                        /></span>
+                      </button>
+                      <div class="mdd-collapse" id="mdd-d2">
+                        <div>
+                          <div class="mdd-inner">
+                            <div class="m-hr">
+                              <img
+                                src="assets/m-divider-dropdown.svg"
+                                width="1"
+                                height="274"
+                                alt=""
+                              />
+                            </div>
+                            <div class="mdd-list is-checks">
+                              <label class="mdd-check"
+                                ><span class="checkbox"
+                                  ><input type="checkbox" /><span></span></span
+                                >text</label
+                              ><label class="mdd-check"
+                                ><span class="checkbox"
+                                  ><input type="checkbox" /><span></span></span
+                                >text</label
+                              ><label class="mdd-check"
+                                ><span class="checkbox"
+                                  ><input type="checkbox" /><span></span></span
+                                >text</label
+                              ><label class="mdd-check"
+                                ><span class="checkbox"
+                                  ><input type="checkbox" /><span></span></span
+                                >text</label
+                              ><label class="mdd-check"
+                                ><span class="checkbox"
+                                  ><input type="checkbox" /><span></span></span
+                                >text</label
+                              ><label class="mdd-check"
+                                ><span class="checkbox"
+                                  ><input type="checkbox" /><span></span></span
+                                >text</label
+                              ><label class="mdd-check"
+                                ><span class="checkbox"
+                                  ><input type="checkbox" /><span></span></span
+                                >text</label
+                              >
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="hr" style="--len: 481px">
+                  <img src="assets/divider-5.svg" alt="" />
+                </div>
+                <div class="ty-q">
+                  <p>How often do you buy merch?</p>
+                  <div class="ty-dd">
+                    <div class="mdd" data-kind="list">
+                      <button
+                        class="mdd-head"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="mdd-d3"
+                      >
+                        <span class="mdd-value">Select</span
+                        ><span class="mdd-chev"
+                          ><img
+                            src="assets/m-chevron-dropdown-open.svg"
+                            width="12"
+                            height="12"
+                            alt=""
+                        /></span>
+                      </button>
+                      <div class="mdd-collapse" id="mdd-d3">
+                        <div>
+                          <div class="mdd-inner">
+                            <div class="m-hr">
+                              <img
+                                src="assets/m-divider-dropdown.svg"
+                                width="1"
+                                height="274"
+                                alt=""
+                              />
+                            </div>
+                            <div class="mdd-list" role="listbox">
+                              <button
+                                class="mdd-item"
+                                type="button"
+                                role="option"
+                              >
+                                text</button
+                              ><button
+                                class="mdd-item"
+                                type="button"
+                                role="option"
+                              >
+                                text</button
+                              ><button
+                                class="mdd-item"
+                                type="button"
+                                role="option"
+                              >
+                                text</button
+                              ><button
+                                class="mdd-item"
+                                type="button"
+                                role="option"
+                              >
+                                text</button
+                              ><button
+                                class="mdd-item"
+                                type="button"
+                                role="option"
+                              >
+                                text</button
+                              ><button
+                                class="mdd-item"
+                                type="button"
+                                role="option"
+                              >
+                                text</button
+                              ><button
+                                class="mdd-item"
+                                type="button"
+                                role="option"
+                              >
+                                text
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="hr" style="--len: 481px">
+                <img src="assets/divider-4.svg" alt="" />
+              </div>
+              <div class="ty-alt">
+                <h3>Would you like an alternative product?</h3>
+                <p>
+                  We denken graag mee. Wil je nog alternatieven? Laat ons weten
+                  wat voor jou belangrijk is.
+                </p>
+                <div class="ty-checks">
+                  <label data-state="default"
+                    ><span class="checkbox"
+                      ><input type="checkbox" /><span></span></span
+                    >Duurzaam<span class="alt-note" aria-live="polite"
+                      ><span class="alt-saved"
+                        ><img
+                          src="assets/m-icon-saved.svg"
+                          width="14.9239"
+                          height="14.9239"
+                          alt=""
+                        />
+                        Input saved</span
+                      ><span class="alt-removed">removed</span></span
+                    ></label
+                  >
+                  <label data-state="default"
+                    ><span class="checkbox"
+                      ><input type="checkbox" /><span></span></span
+                    >Grotere opdruk<span class="alt-note" aria-live="polite"
+                      ><span class="alt-saved"
+                        ><img
+                          src="assets/m-icon-saved.svg"
+                          width="14.9239"
+                          height="14.9239"
+                          alt=""
+                        />
+                        Input saved</span
+                      ><span class="alt-removed">removed</span></span
+                    ></label
+                  >
+                  <label data-state="default"
+                    ><span class="checkbox"
+                      ><input type="checkbox" /><span></span></span
+                    >Snellere levering<span class="alt-note" aria-live="polite"
+                      ><span class="alt-saved"
+                        ><img
+                          src="assets/m-icon-saved.svg"
+                          width="14.9239"
+                          height="14.9239"
+                          alt=""
+                        />
+                        Input saved</span
+                      ><span class="alt-removed">removed</span></span
+                    ></label
+                  >
+                  <label data-state="default"
+                    ><span class="checkbox"
+                      ><input type="checkbox" /><span></span></span
+                    >Goedkoper<span class="alt-note" aria-live="polite"
+                      ><span class="alt-saved"
+                        ><img
+                          src="assets/m-icon-saved.svg"
+                          width="14.9239"
+                          height="14.9239"
+                          alt=""
+                        />
+                        Input saved</span
+                      ><span class="alt-removed">removed</span></span
+                    ></label
+                  >
+                  <label data-state="default"
+                    ><span class="checkbox"
+                      ><input type="checkbox" /><span></span></span
+                    >Kleinere oplage<span class="alt-note" aria-live="polite"
+                      ><span class="alt-saved"
+                        ><img
+                          src="assets/m-icon-saved.svg"
+                          width="14.9239"
+                          height="14.9239"
+                          alt=""
+                        />
+                        Input saved</span
+                      ><span class="alt-removed">removed</span></span
+                    ></label
+                  >
+                  <label data-state="default"
+                    ><span class="checkbox"
+                      ><input type="checkbox" /><span></span></span
+                    >Betere kwaliteit<span class="alt-note" aria-live="polite"
+                      ><span class="alt-saved"
+                        ><img
+                          src="assets/m-icon-saved.svg"
+                          width="14.9239"
+                          height="14.9239"
+                          alt=""
+                        />
+                        Input saved</span
+                      ><span class="alt-removed">removed</span></span
+                    ></label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ty-help">
+            <div class="ty-help-content">
+              <div class="ty-help-title">
+                <h2>Do you need help?</h2>
+                <p>Contact us</p>
+              </div>
+              <div class="ty-help-list">
+                <div class="ty-help-row">
+                  <img
+                    src="assets/icon-check-green.svg"
+                    width="19.0074"
+                    height="19.0074"
+                    alt=""
+                  />Telefonisch beschikbaar
+                </div>
+                <a class="ty-help-row" href="mailto:benelux@loopper.com"
+                  ><img
+                    src="assets/icon-mail.svg"
+                    width="19.0074"
+                    height="19.0074"
+                    alt=""
+                  />benelux@loopper.com</a
+                >
+                <a class="ty-help-row is-phone" href="tel:0205045713"
+                  ><img
+                    src="assets/icon-phone-dark.svg"
+                    width="19.0074"
+                    height="19.0074"
+                    alt=""
+                  />020 504 5713</a
+                >
+                <p class="ty-help-note">
+                  Snelle service wij reageren binnen <b>1 uur</b> <br />(ma–vr,
+                  09:00–17:30)
+                </p>
+              </div>
+            </div>
+            <div class="ty-help-photo">
+              <div>
+                <img
+                  src="assets/contact-photo.png"
+                  alt="Loopper customer service team"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="ty-reviews">
+            <img
+              src="assets/reviews-section.png"
+              alt="What do our clients say? Customer reviews"
+            />
+          </div>
+        </div>
+
+        <!-- ===================== MOBILE CONFIRMATION (1232:21003) ===================== -->
+        <div class="m-only">
+          <div class="mty">
+            <div class="mty-banner">
+              <div class="mty-banner-head">
+                <img
+                  src="assets/m-ty-check.svg"
+                  width="44"
+                  height="44"
+                  alt=""
+                />
+                <h1>Request successfully sent</h1>
+              </div>
+              <p>
+                Thank you for your request at Loopper. We will get started on
+                your quote right away.
+              </p>
+              <button class="pill is-main acta" type="button">
+                Go to my account
+              </button>
+            </div>
+
+            <!-- "request summary": Figma component set 1232:22830
+                 closed 1232:22829 (contact details) / open 1232:22828 (+ product details) -->
+            <div class="mty-req">
+              <button
+                class="mty-req-btn"
+                type="button"
+                aria-expanded="false"
+                aria-controls="yrq-products"
+              >
+                <span class="mty-req-head"
+                  >Your request<span
+                    class="m-chev yrq-chev"
+                    style="width: 17px; height: 9px"
+                    ><img
+                      src="assets/m-chevron-request.svg"
+                      width="20"
+                      height="12.6846"
+                      alt="" /></span
+                ></span>
+              </button>
+              <div class="mty-req-body">
+                <div class="m-hr">
+                  <img
+                    src="assets/m-divider-request.svg"
+                    width="1"
+                    height="316"
+                    alt=""
+                  />
+                </div>
+                <div class="yrq-contact">
+                  <h3>Contact details</h3>
+                  <dl class="ty-kv">
+                    <div>
+                      <dt>Email</dt>
+                      <dd data-ty="email">patrick@loopper.com</dd>
+                    </div>
+                    <div>
+                      <dt>Company</dt>
+                      <dd data-ty="company">Loopper Relatiegeschenken B.V.</dd>
+                    </div>
+                    <div>
+                      <dt>Name</dt>
+                      <dd data-ty="name">Dhr. Patrick Geijtenbeek</dd>
+                    </div>
+                    <div>
+                      <dt>Phone number</dt>
+                      <dd data-ty="phone">0612326898</dd>
+                    </div>
+                  </dl>
+                </div>
+              </div>
+              <div class="yrq-collapse" id="yrq-products">
+                <div>
+                  <div class="yrq-more">
+                    <div class="m-hr">
+                      <img
+                        src="assets/m-divider-request.svg"
+                        width="1"
+                        height="316"
+                        alt=""
+                      />
+                    </div>
+                    <div class="yrq-products">
+                      <h3>Product details</h3>
+                      <div class="yrq-list">
+                        <div class="yrq-product">
+                          <p class="yrq-name">
+                            Waterfles | Tritan | 650 ml | Schroefdop |
+                            Bestseller | lime
+                          </p>
+                          <div class="yrq-card">
+                            <img
+                              src="assets/product-thermos.png"
+                              width="85.423"
+                              height="85.423"
+                              alt=""
+                            />
+                            <dl class="ty-pd">
+                              <div>
+                                <dt>Color</dt>
+                                <dd>grey</dd>
+                              </div>
+                              <div>
+                                <dt>Quantity</dt>
+                                <dd>25 stuks</dd>
+                              </div>
+                              <div>
+                                <dt>Print position</dt>
+                                <dd>Back (30x70mm)</dd>
+                              </div>
+                              <div>
+                                <dt>Printing in</dt>
+                                <dd>2 colors</dd>
+                              </div>
+                              <div>
+                                <dt>Productnumber</dt>
+                                <dd class="is-small">1128935</dd>
+                              </div>
+                            </dl>
+                          </div>
+                        </div>
+                        <div class="m-hr">
+                          <img
+                            src="assets/m-divider-product.svg"
+                            width="1"
+                            height="316"
+                            alt=""
+                          />
+                        </div>
+                        <div class="yrq-product">
+                          <p class="yrq-name">
+                            Waterfles | Tritan | 650 ml | Schroefdop |
+                            Bestseller | lime
+                          </p>
+                          <div class="yrq-card">
+                            <img
+                              src="assets/product-thermos.png"
+                              width="86"
+                              height="86"
+                              alt=""
+                            />
+                            <dl class="ty-pd">
+                              <div>
+                                <dt>Color</dt>
+                                <dd>grey</dd>
+                              </div>
+                              <div>
+                                <dt>Quantity</dt>
+                                <dd>25 stuks</dd>
+                              </div>
+                              <div>
+                                <dt>Print position</dt>
+                                <dd>Back (30x70mm)</dd>
+                              </div>
+                              <div>
+                                <dt>Printing in</dt>
+                                <dd>2 colors</dd>
+                              </div>
+                              <div>
+                                <dt>Productnumber</dt>
+                                <dd class="is-small">1128935</dd>
+                              </div>
+                            </dl>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mty-survey">
+              <h2>We’d like to know you better</h2>
+              <div class="m-hr">
+                <img
+                  src="assets/m-divider-survey-1.svg"
+                  width="1"
+                  height="298"
+                  alt=""
+                />
+              </div>
+              <div class="mty-qs">
+                <div class="mty-q">
+                  <p>What branch is your company active in?</p>
+                  <div class="mdd" data-kind="list">
+                    <button
+                      class="mdd-head"
+                      type="button"
+                      aria-expanded="false"
+                      aria-controls="mdd-1"
+                    >
+                      <span class="mdd-value">Select</span
+                      ><span class="mdd-chev"
+                        ><img
+                          src="assets/m-chevron-dropdown-open.svg"
+                          width="12"
+                          height="12"
+                          alt=""
+                      /></span>
+                    </button>
+                    <div class="mdd-collapse" id="mdd-1">
+                      <div>
+                        <div class="mdd-inner">
+                          <div class="m-hr">
+                            <img
+                              src="assets/m-divider-dropdown.svg"
+                              width="1"
+                              height="274"
+                              alt=""
+                            />
+                          </div>
+                          <div class="mdd-list" role="listbox">
+                            <button
+                              class="mdd-item"
+                              type="button"
+                              role="option"
+                            >
+                              text</button
+                            ><button
+                              class="mdd-item"
+                              type="button"
+                              role="option"
+                            >
+                              text</button
+                            ><button
+                              class="mdd-item"
+                              type="button"
+                              role="option"
+                            >
+                              text</button
+                            ><button
+                              class="mdd-item"
+                              type="button"
+                              role="option"
+                            >
+                              text</button
+                            ><button
+                              class="mdd-item"
+                              type="button"
+                              role="option"
+                            >
+                              text</button
+                            ><button
+                              class="mdd-item"
+                              type="button"
+                              role="option"
+                            >
+                              text</button
+                            ><button
+                              class="mdd-item"
+                              type="button"
+                              role="option"
+                            >
+                              text
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="m-hr">
+                  <img
+                    src="assets/m-divider-survey-2.svg"
+                    width="1"
+                    height="298"
+                    alt=""
+                  />
+                </div>
+                <div class="mty-q">
+                  <p>What is the product for?</p>
+                  <div class="mdd" data-kind="checks">
+                    <button
+                      class="mdd-head"
+                      type="button"
+                      aria-expanded="false"
+                      aria-controls="mdd-2"
+                    >
+                      <span class="mdd-value">Select</span
+                      ><span class="mdd-chev"
+                        ><img
+                          src="assets/m-chevron-dropdown-open.svg"
+                          width="12"
+                          height="12"
+                          alt=""
+                      /></span>
+                    </button>
+                    <div class="mdd-collapse" id="mdd-2">
+                      <div>
+                        <div class="mdd-inner">
+                          <div class="m-hr">
+                            <img
+                              src="assets/m-divider-dropdown.svg"
+                              width="1"
+                              height="274"
+                              alt=""
+                            />
+                          </div>
+                          <div class="mdd-list is-checks">
+                            <label class="mdd-check"
+                              ><span class="checkbox"
+                                ><input type="checkbox" /><span></span></span
+                              >text</label
+                            ><label class="mdd-check"
+                              ><span class="checkbox"
+                                ><input type="checkbox" /><span></span></span
+                              >text</label
+                            ><label class="mdd-check"
+                              ><span class="checkbox"
+                                ><input type="checkbox" /><span></span></span
+                              >text</label
+                            ><label class="mdd-check"
+                              ><span class="checkbox"
+                                ><input type="checkbox" /><span></span></span
+                              >text</label
+                            ><label class="mdd-check"
+                              ><span class="checkbox"
+                                ><input type="checkbox" /><span></span></span
+                              >text</label
+                            ><label class="mdd-check"
+                              ><span class="checkbox"
+                                ><input type="checkbox" /><span></span></span
+                              >text</label
+                            ><label class="mdd-check"
+                              ><span class="checkbox"
+                                ><input type="checkbox" /><span></span></span
+                              >text</label
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="m-hr">
+                  <img
+                    src="assets/m-divider-survey-2.svg"
+                    width="1"
+                    height="298"
+                    alt=""
+                  />
+                </div>
+                <div class="mty-q">
+                  <p>How often do you buy merch?</p>
+                  <div class="mdd" data-kind="list">
+                    <button
+                      class="mdd-head"
+                      type="button"
+                      aria-expanded="false"
+                      aria-controls="mdd-3"
+                    >
+                      <span class="mdd-value">Select</span
+                      ><span class="mdd-chev"
+                        ><img
+                          src="assets/m-chevron-dropdown-open.svg"
+                          width="12"
+                          height="12"
+                          alt=""
+                      /></span>
+                    </button>
+                    <div class="mdd-collapse" id="mdd-3">
+                      <div>
+                        <div class="mdd-inner">
+                          <div class="m-hr">
+                            <img
+                              src="assets/m-divider-dropdown.svg"
+                              width="1"
+                              height="274"
+                              alt=""
+                            />
+                          </div>
+                          <div class="mdd-list" role="listbox">
+                            <button
+                              class="mdd-item"
+                              type="button"
+                              role="option"
+                            >
+                              text</button
+                            ><button
+                              class="mdd-item"
+                              type="button"
+                              role="option"
+                            >
+                              text</button
+                            ><button
+                              class="mdd-item"
+                              type="button"
+                              role="option"
+                            >
+                              text</button
+                            ><button
+                              class="mdd-item"
+                              type="button"
+                              role="option"
+                            >
+                              text</button
+                            ><button
+                              class="mdd-item"
+                              type="button"
+                              role="option"
+                            >
+                              text</button
+                            ><button
+                              class="mdd-item"
+                              type="button"
+                              role="option"
+                            >
+                              text</button
+                            ><button
+                              class="mdd-item"
+                              type="button"
+                              role="option"
+                            >
+                              text
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="m-hr">
+                <img
+                  src="assets/m-divider-survey-3.svg"
+                  width="1"
+                  height="298"
+                  alt=""
+                />
+              </div>
+              <div class="mty-alt">
+                <h3>Would you like an alternative product?</h3>
+                <p>
+                  We denken graag mee. Wil je nog alternatieven? Laat ons weten
+                  wat voor jou belangrijk is.
+                </p>
+                <div class="mty-checks">
+                  <label data-state="default"
+                    ><span class="checkbox"
+                      ><input type="checkbox" /><span></span></span
+                    >Duurzaam<span class="alt-note" aria-live="polite"
+                      ><span class="alt-saved"
+                        ><img
+                          src="assets/m-icon-saved.svg"
+                          width="14.9239"
+                          height="14.9239"
+                          alt=""
+                        />
+                        Input saved</span
+                      ><span class="alt-removed">removed</span></span
+                    ></label
+                  >
+                  <label data-state="default"
+                    ><span class="checkbox"
+                      ><input type="checkbox" /><span></span></span
+                    >Grotere opdruk<span class="alt-note" aria-live="polite"
+                      ><span class="alt-saved"
+                        ><img
+                          src="assets/m-icon-saved.svg"
+                          width="14.9239"
+                          height="14.9239"
+                          alt=""
+                        />
+                        Input saved</span
+                      ><span class="alt-removed">removed</span></span
+                    ></label
+                  >
+                  <label data-state="default"
+                    ><span class="checkbox"
+                      ><input type="checkbox" /><span></span></span
+                    >Snellere levering<span class="alt-note" aria-live="polite"
+                      ><span class="alt-saved"
+                        ><img
+                          src="assets/m-icon-saved.svg"
+                          width="14.9239"
+                          height="14.9239"
+                          alt=""
+                        />
+                        Input saved</span
+                      ><span class="alt-removed">removed</span></span
+                    ></label
+                  >
+                  <label data-state="default"
+                    ><span class="checkbox"
+                      ><input type="checkbox" /><span></span></span
+                    >Goedkoper<span class="alt-note" aria-live="polite"
+                      ><span class="alt-saved"
+                        ><img
+                          src="assets/m-icon-saved.svg"
+                          width="14.9239"
+                          height="14.9239"
+                          alt=""
+                        />
+                        Input saved</span
+                      ><span class="alt-removed">removed</span></span
+                    ></label
+                  >
+                  <label data-state="default"
+                    ><span class="checkbox"
+                      ><input type="checkbox" /><span></span></span
+                    >Kleinere oplage<span class="alt-note" aria-live="polite"
+                      ><span class="alt-saved"
+                        ><img
+                          src="assets/m-icon-saved.svg"
+                          width="14.9239"
+                          height="14.9239"
+                          alt=""
+                        />
+                        Input saved</span
+                      ><span class="alt-removed">removed</span></span
+                    ></label
+                  >
+                  <label data-state="default"
+                    ><span class="checkbox"
+                      ><input type="checkbox" /><span></span></span
+                    >Betere kwaliteit<span class="alt-note" aria-live="polite"
+                      ><span class="alt-saved"
+                        ><img
+                          src="assets/m-icon-saved.svg"
+                          width="14.9239"
+                          height="14.9239"
+                          alt=""
+                        />
+                        Input saved</span
+                      ><span class="alt-removed">removed</span></span
+                    ></label
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="mty-help">
+              <div class="mty-help-content">
+                <h2>Need help?</h2>
+                <div class="ty-help-list">
+                  <div class="ty-help-row">
+                    <img
+                      src="assets/icon-check-green.svg"
+                      width="19.0074"
+                      height="19.0074"
+                      alt=""
+                    />Telefonisch beschikbaar
+                  </div>
+                  <a class="ty-help-row" href="mailto:benelux@loopper.com"
+                    ><img
+                      src="assets/icon-mail.svg"
+                      width="19.0074"
+                      height="19.0074"
+                      alt=""
+                    />benelux@loopper.com</a
+                  >
+                  <a class="ty-help-row is-phone" href="tel:0205045713"
+                    ><img
+                      src="assets/icon-phone-dark.svg"
+                      width="19.0074"
+                      height="19.0074"
+                      alt=""
+                    />020 504 5713</a
+                  >
+                  <p class="ty-help-note">
+                    Snelle service wij reageren binnen <b>1 uur</b> (ma–vr,
+                    09:00–17:30)
+                  </p>
+                </div>
+              </div>
+              <div class="mty-help-photo">
+                <img
+                  src="assets/contact-photo.png"
+                  alt="Loopper customer service team"
+                />
+              </div>
+            </div>
+          </div>
+
+          <section class="mrev is-white" aria-label="Customer reviews">
+            <h2>What do our clients say?</h2>
+            <div class="mrev-score">
+              <span class="stars" aria-hidden="true">★★★★½</span><b>Kiyoh 9.3</b
+              ><span>(1,261 reviews)</span>
+            </div>
+            <div class="mrev-track m-scroll">
+              <article class="mrev-card">
+                <b>Antoinette</b>
+                <p>Good advice, fast response and fast delivery. Nice con..</p>
+                <div class="stars">★★★★★</div>
+              </article>
+              <article class="mrev-card">
+                <b>Rieneke</b>
+                <p>
+                  They think along with you. You get a quick response and de..
+                </p>
+                <div class="stars">★★★★<span>½</span></div>
+              </article>
+              <article class="mrev-card">
+                <b>Vera</b>
+                <p>I needed embroidered hats on short notice for a..</p>
+                <div class="stars">★★★★★</div>
+              </article>
+            </div>
+            <div class="mrev-dots" aria-hidden="true">
+              <i class="is-active"></i><i></i><i></i>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===================== FOOTER (PDP + confirmation) ===================== -->
+    <footer class="ftr d-only">
+      <div class="ftr-main">
+        <div class="ftr-cols">
+          <div class="ftr-col is-general">
+            <div class="ftr-group">
+              <p class="ftr-h">General</p>
+              <a class="ftr-link" href="#pdp">Terms and conditions</a>
+              <a class="ftr-link" href="#pdp">Privacy policy</a>
+              <a class="ftr-link" href="#pdp">Payment options</a>
+              <a class="ftr-link" href="#pdp">Send and delivery</a>
+              <a class="ftr-link" href="#pdp">Order process</a>
+              <a class="ftr-link" href="#pdp">Can I return products?</a>
+            </div>
+            <div class="ftr-group">
+              <p class="ftr-h is-small">We are active in</p>
+              <div class="ftr-flags">
+                <div class="ftr-flag-row">
+                  <span class="flag is-h" title="Netherlands"
+                    ><i style="background: #ae1c28"></i
+                    ><i style="background: #fff"></i
+                    ><i style="background: #21468b"></i
+                  ></span>
+                  <span class="flag is-eu" title="Belgium">
+                    <img
+                      class="off-thanks"
+                      src="assets/flag-eu-star.svg"
+                      width="8"
+                      height="8"
+                      alt=""
+                    />
+                    <img
+                      class="on-thanks"
+                      src="assets/flag-eu-star-ty.svg"
+                      width="8"
+                      height="8"
+                      alt=""
+                    />
+                  </span>
+                  <span class="flag is-v" title="France"
+                    ><i style="background: #002395"></i
+                    ><i style="background: #fff"></i
+                    ><i style="background: #ed2939"></i
+                  ></span>
+                  <span class="flag is-h" title="Germany"
+                    ><i style="background: #000"></i
+                    ><i style="background: red"></i
+                    ><i style="background: #fc0"></i
+                  ></span>
+                </div>
+                <div class="ftr-flag-row">
+                  <span class="flag is-v" title="Italy"
+                    ><i style="background: #009246"></i
+                    ><i style="background: #fff"></i
+                    ><i style="background: #f1d80f"></i
+                  ></span>
+                  <span class="flag is-h" title="Spain"
+                    ><i style="background: #aa151b"></i
+                    ><i style="background: #f1d511"></i
+                    ><i style="background: #aa151b"></i
+                  ></span>
+                  <span class="flag is-uk" title="United Kingdom">
+                    <span class="flag-uk-line"
+                      ><div>
+                        <img
+                          src="assets/flag-uk-line1.svg"
+                          width="24"
+                          height="2"
+                          alt=""
+                          style="bottom: 0"
+                        /></div
+                    ></span>
+                    <span class="flag-uk-line"
+                      ><div>
+                        <img
+                          src="assets/flag-uk-line2.svg"
+                          width="24"
+                          height="1"
+                          alt=""
+                          style="bottom: 0"
+                        /></div
+                    ></span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ftr-col is-wide">
+            <p class="ftr-h">Promotional gifts</p>
+            <a class="ftr-link" href="#pdp">Personalized bags</a>
+            <a class="ftr-link" href="#pdp">Personalized lighters</a>
+            <a class="ftr-link" href="#pdp">Personalized mugs</a>
+            <a class="ftr-link" href="#pdp">Personalized notebooks</a>
+            <a class="ftr-link" href="#pdp">Personalized pens</a>
+            <a class="ftr-link" href="#pdp">Personalized power banks</a>
+            <a class="ftr-link" href="#pdp">Personalized towels</a>
+            <a class="ftr-link" href="#pdp">Personalized water bottles</a>
+            <a class="ftr-link" href="#pdp">Special Projects</a>
+            <a class="ftr-link" href="#pdp">Merch packs</a>
+          </div>
+          <div class="ftr-col">
+            <p class="ftr-h">Knowledge bank</p>
+            <a class="ftr-link" href="#pdp">Print options</a>
+            <a class="ftr-link" href="#pdp">Materials</a>
+            <a class="ftr-link" href="#pdp">Products</a>
+            <a class="ftr-link" href="#pdp">Technical</a>
+          </div>
+          <div class="ftr-col">
+            <p class="ftr-h">About Loopper</p>
+            <a class="ftr-link" href="#pdp">About us</a>
+            <a class="ftr-link" href="#pdp">Blog</a>
+            <a class="ftr-link" href="#pdp">Customer stories</a>
+            <a class="ftr-link" href="#pdp">Careers</a>
+            <a class="ftr-link" href="#pdp">Resellers</a>
+            <a class="ftr-link" href="#pdp">FAQ</a>
+          </div>
+          <div class="ftr-col is-actions">
+            <div class="ftr-group">
+              <p class="ftr-h">Service &amp; contact</p>
+              <p class="ftr-text">
+                Whether you have a question or an inquiry, we are always
+                available to help you to our best abilities.
+              </p>
+              <a class="ftr-btn" href="#pdp">Contact</a>
+            </div>
+            <div class="ftr-group">
+              <p class="ftr-h">Follow us</p>
+              <p class="ftr-text">
+                Always stay in touch with our latest discounts and news.
+                Subscribe now!
+              </p>
+              <form class="ftr-sub" onsubmit="return false;">
+                <label>
+                  <input
+                    type="email"
+                    placeholder="Email address"
+                    aria-label="Email address"
+                  />
+                  <img
+                    src="assets/icon-asterisk.svg"
+                    width="14"
+                    height="14"
+                    alt=""
+                  />
+                </label>
+                <button type="submit">Subscribe</button>
+              </form>
+              <div class="ftr-social">
+                <a href="#pdp" aria-label="Facebook">
+                  <img
+                    class="off-thanks"
+                    src="assets/social-facebook.svg"
+                    width="18"
+                    height="18"
+                    alt=""
+                  />
+                  <img
+                    class="on-thanks"
+                    src="assets/social-facebook-ty.svg"
+                    width="18"
+                    height="18"
+                    alt=""
+                  />
+                </a>
+                <a href="#pdp" aria-label="Instagram">
+                  <img
+                    class="off-thanks"
+                    src="assets/social-instagram.svg"
+                    width="18"
+                    height="18"
+                    alt=""
+                  />
+                  <img
+                    class="on-thanks"
+                    src="assets/social-instagram-ty.svg"
+                    width="18"
+                    height="18"
+                    alt=""
+                  />
+                </a>
+                <a href="#pdp" aria-label="LinkedIn">
+                  <img
+                    class="off-thanks"
+                    src="assets/social-linkedin.svg"
+                    width="18"
+                    height="18"
+                    alt=""
+                  />
+                  <img
+                    class="on-thanks"
+                    src="assets/social-linkedin-ty.svg"
+                    width="18"
+                    height="18"
+                    alt=""
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ftr-bar">
+        <div class="ftr-pay">
+          <span style="color: #1a2e40">SEPA</span><i></i>
+          <span style="color: #003087">PayPal</span><i></i>
+          <span style="color: #eb001b">Mastercard</span><i></i>
+          <span style="color: #1a19f4">VISA</span><i></i>
+          <span style="color: #016fd0">AMEX</span><i></i>
+          <span style="color: #016fd0">Belfius</span><i></i>
+          <span style="color: #0599bf">Trustly</span>
+        </div>
+        <div class="ftr-tp">
+          <div class="ftr-tp-stars" aria-hidden="true">
+            <span
+              ><img
+                src="assets/trustpilot-star.svg"
+                width="11"
+                height="11"
+                alt=""
+            /></span>
+            <span
+              ><img
+                src="assets/trustpilot-star.svg"
+                width="11"
+                height="11"
+                alt=""
+            /></span>
+            <span
+              ><img
+                src="assets/trustpilot-star.svg"
+                width="11"
+                height="11"
+                alt=""
+            /></span>
+            <span
+              ><img
+                src="assets/trustpilot-star.svg"
+                width="11"
+                height="11"
+                alt=""
+            /></span>
+            <span
+              ><img
+                src="assets/trustpilot-star.svg"
+                width="11"
+                height="11"
+                alt=""
+            /></span>
+          </div>
+          <p>Trustpilot <b>4.7/5</b> (1,272 reviews)</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ===================== MOBILE FOOTER ===================== -->
+    <footer class="mftr m-only">
+      <div class="mftr-service">
+        <b>Service &amp; contact</b>
+        <p>
+          Whether you have a question or request, we are always ready to help
+          you as best we can.
+        </p>
+        <a class="mftr-contact" href="#pdp">Contact us</a>
+      </div>
+      <div class="mftr-social">
+        <a href="#pdp" aria-label="Facebook">f</a>
+        <a href="#pdp" aria-label="Instagram">◎</a>
+        <a href="#pdp" aria-label="LinkedIn">in</a>
+      </div>
+      <div class="mftr-cols">
+        <div class="mftr-col is-first">
+          <h3 class="is-first">We are active in</h3>
+          <div class="mftr-flags">
+            <i style="background: #fff"></i><i style="background: #1f3fd0"></i
+            ><i style="background: #0033a0"></i><i style="background: #222"></i
+            ><i style="background: #009246"></i
+            ><i style="background: #c60b1e"></i
+            ><i style="background: #012169"></i>
+          </div>
+          <h3>General</h3>
+          <div class="mftr-links">
+            <a href="#pdp">Terms and conditions</a
+            ><a href="#pdp">Privacy policy</a>
+          </div>
+        </div>
+        <div class="mftr-col is-gifts">
+          <h3>Promotional gifts</h3>
+          <div class="mftr-links">
+            <a href="#pdp">Personalized lighters</a
+            ><a href="#pdp">Personalized sports bottles</a
+            ><a href="#pdp">Personalized mugs</a
+            ><a href="#pdp">Personalized notebooks</a
+            ><a href="#pdp">Personalized pens</a
+            ><a href="#pdp">Personalized water bottles</a
+            ><a href="#pdp">Personalized bags</a
+            ><a href="#pdp">Personalized sunglasses</a
+            ><a href="#pdp">Promotional gifts</a
+            ><a href="#pdp">Promotional materials</a
+            ><a href="#pdp">Goodie bags</a>
+          </div>
+        </div>
+        <div class="mftr-col is-narrow">
+          <h3>Knowledge bank</h3>
+          <div class="mftr-links">
+            <a href="#pdp">Print options</a><a href="#pdp">Materials</a
+            ><a href="#pdp">Products</a><a href="#pdp">Technical</a>
+          </div>
+        </div>
+        <div class="mftr-col is-narrow">
+          <h3>About Loopper</h3>
+          <div class="mftr-links">
+            <a href="#pdp">About us</a><a href="#pdp">Blog</a
+            ><a href="#pdp">Vacancies</a><a href="#pdp">Resellers</a
+            ><a href="#pdp">FAQ</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Mobile sticky buy bar ("PDP-Button - mobile/payment section") -->
+    <div class="mbar m-only">
+      <div class="mbar-price">
+        <div class="mprice-row">
+          <p class="mprice-label">All-in price p.p.</p>
+          <div class="mprice-vals">
+            <span class="mprice-old"
+              ><span class="mprice-badge">-25%</span><s>7.99</s></span
+            >
+            <span class="mprice-now">€&nbsp;&nbsp;6.01</span>
+          </div>
+        </div>
+        <div class="mprice-foot">
+          <span>All prices excl. 21% VAT.</span
+          ><a href="#pdp">View price details</a>
+        </div>
+      </div>
+      <div class="mbar-btns">
+        <a class="mbar-quote" href="#quote"
+          ><span>Free <span class="bi">Quote &amp; Design</span></span></a
+        >
+        <button class="mbar-cart" type="button" aria-label="Add to cart">
+          <span class="add-cart-cart"
+            ><img
+              src="assets/icon-cart-white.svg"
+              width="32.9824"
+              height="25.6872"
+              alt=""
+          /></span>
+          <img
+            class="sparkle"
+            src="assets/m-icon-cart-sparkle.svg"
+            width="14"
+            height="14"
+            alt=""
+          />
+        </button>
+      </div>
+    </div>
+
+    <!-- Prototype screen picker (not part of the design) -->
+    <details class="proto">
+      <summary>Screens</summary>
+      <nav aria-label="Prototype screens">
+        <a href="#pdp">Product page <small>531:12867</small></a>
+        <a href="#design">Free Design <small>539:16500</small></a>
+        <a href="#quote">Free Quote <small>539:16651</small></a>
+        <a href="#thanks">Request sent <small>1232:21317</small></a>
+      </nav>
+    </details>
+
+    <!-- ===================== Shared request-page parts ===================== -->
+    <template id="tpl-progress">
+      <a class="back-btn" href="#pdp" aria-label="Back to the product">❮</a>
+      <div class="progress">
+        <div class="steps">
+          <div class="steps-track"><i></i></div>
+          <a class="step is-1" href="#pdp">
+            <span class="step-circle">1</span>
+            <span class="step-label">Choose your product</span>
+          </a>
+          <div class="step is-2" aria-current="step">
+            <span class="step-circle">2</span>
+            <span>Your Logo &amp; Information</span>
+          </div>
+          <div class="step is-3">
+            <img
+              src="assets/step-circle-done.svg"
+              width="30"
+              height="30"
+              alt=""
+              style="position: absolute; left: 43px; top: 0"
+            />
+            <span style="width: 100px; height: 30px"></span>
+            <span>Quote send </span>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template id="tpl-summary">
+      <div class="summary-panel">
+        <h2 class="summary-title">Request summary</h2>
+        <div class="summary-main">
+          <div class="summary-img">
+            <img src="assets/product-thermos.png" alt="Thermos bottle" />
+          </div>
+          <div class="summary-block">
+            <p class="s-label">Product</p>
+            <p class="s-value">
+              Thermos bottle | Stainless steel | 500 ml | Must-have | White
+            </p>
+          </div>
+          <div class="summary-specs">
+            <div class="summary-selects">
+              <div class="s-field sdd" data-kind="color">
+                <p class="s-label">Color</p>
+                <button
+                  class="s-select"
+                  type="button"
+                  aria-haspopup="listbox"
+                  aria-expanded="false"
+                >
+                  <span class="s-select-val"
+                    ><span class="s-swatch"
+                      ><img src="assets/product-thermos.png" alt="" /></span
+                    ><span class="sdd-current">Grey</span></span
+                  >
+                  <img
+                    src="assets/icon-chevron-down.svg"
+                    width="12"
+                    height="12"
+                    alt=""
+                  />
+                </button>
+                <div
+                  class="sdd-panel is-color"
+                  role="listbox"
+                  aria-label="Color"
+                >
+                  <span class="sdd-chev"
+                    ><img
+                      src="assets/m-chevron-dropdown-open.svg"
+                      width="12"
+                      height="12"
+                      alt=""
+                  /></span>
+                  <div class="sdd-list">
+                    <button
+                      class="sdd-color is-selected"
+                      type="button"
+                      role="option"
+                      aria-selected="true"
+                      data-value="Grey"
+                      data-img="assets/product-thermos.png"
+                    >
+                      <span class="sdd-swatch is-grey"
+                        ><img src="assets/product-thermos.png" alt="" /></span
+                      ><span class="sdd-color-name">Grey</span></button
+                    ><button
+                      class="sdd-color"
+                      type="button"
+                      role="option"
+                      aria-selected="false"
+                      data-value="Gold"
+                      data-img="assets/swatch-thermos.png"
+                    >
+                      <span class="sdd-swatch"
+                        ><img src="assets/swatch-thermos.png" alt="" /></span
+                      ><span class="sdd-color-name">Gold</span></button
+                    ><button
+                      class="sdd-color"
+                      type="button"
+                      role="option"
+                      aria-selected="false"
+                      data-value="Gold"
+                      data-img="assets/swatch-thermos.png"
+                    >
+                      <span class="sdd-swatch"
+                        ><img src="assets/swatch-thermos.png" alt="" /></span
+                      ><span class="sdd-color-name">Gold</span></button
+                    ><button
+                      class="sdd-color"
+                      type="button"
+                      role="option"
+                      aria-selected="false"
+                      data-value="Gold"
+                      data-img="assets/swatch-thermos.png"
+                    >
+                      <span class="sdd-swatch"
+                        ><img src="assets/swatch-thermos.png" alt="" /></span
+                      ><span class="sdd-color-name">Gold</span></button
+                    ><button
+                      class="sdd-color"
+                      type="button"
+                      role="option"
+                      aria-selected="false"
+                      data-value="Gold"
+                      data-img="assets/swatch-thermos.png"
+                    >
+                      <span class="sdd-swatch"
+                        ><img src="assets/swatch-thermos.png" alt="" /></span
+                      ><span class="sdd-color-name">Gold</span></button
+                    ><button
+                      class="sdd-color"
+                      type="button"
+                      role="option"
+                      aria-selected="false"
+                      data-value="Gold"
+                      data-img="assets/swatch-thermos.png"
+                    >
+                      <span class="sdd-swatch"
+                        ><img src="assets/swatch-thermos.png" alt="" /></span
+                      ><span class="sdd-color-name">Gold</span></button
+                    ><button
+                      class="sdd-color"
+                      type="button"
+                      role="option"
+                      aria-selected="false"
+                      data-value="Gold"
+                      data-img="assets/swatch-thermos.png"
+                    >
+                      <span class="sdd-swatch"
+                        ><img src="assets/swatch-thermos.png" alt="" /></span
+                      ><span class="sdd-color-name">Gold</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="s-field sdd" data-kind="qty">
+                <p class="s-label">Quantity</p>
+                <button
+                  class="s-select is-plain"
+                  type="button"
+                  aria-haspopup="listbox"
+                  aria-expanded="false"
+                >
+                  <span class="s-select-val"
+                    ><span class="sdd-current">25 pieces</span></span
+                  >
+                  <img
+                    src="assets/icon-chevron-down.svg"
+                    width="12"
+                    height="12"
+                    alt=""
+                  />
+                </button>
+                <div
+                  class="sdd-panel is-qty"
+                  role="listbox"
+                  aria-label="Quantity"
+                >
+                  <span class="sdd-chev"
+                    ><img
+                      src="assets/m-chevron-dropdown-open.svg"
+                      width="12"
+                      height="12"
+                      alt=""
+                  /></span>
+                  <div class="sdd-list">
+                    <button
+                      class="sdd-qty is-selected"
+                      type="button"
+                      role="option"
+                      aria-selected="true"
+                      data-value="25"
+                    >
+                      <span class="sdd-qty-n"
+                        ><span>25</span><span>pieces</span></span
+                      ><span class="sdd-qty-price"
+                        ><span class="sdd-pp"
+                          ><span>€ 6,01</span><span>p.p</span></span
+                        ></span
+                      ></button
+                    ><button
+                      class="sdd-qty"
+                      type="button"
+                      role="option"
+                      aria-selected="false"
+                      data-value="50"
+                    >
+                      <span class="sdd-qty-n"
+                        ><span>50</span><span>pieces</span></span
+                      ><span class="sdd-qty-price"
+                        ><span class="sdd-save">Save -2%</span
+                        ><span class="sdd-pp"
+                          ><span>€ 6,01</span><span>p.p</span></span
+                        ></span
+                      ></button
+                    ><button
+                      class="sdd-qty"
+                      type="button"
+                      role="option"
+                      aria-selected="false"
+                      data-value="100"
+                    >
+                      <span class="sdd-qty-n"
+                        ><span>100</span><span>pieces</span></span
+                      ><span class="sdd-qty-price"
+                        ><span class="sdd-save">Save -2%</span
+                        ><span class="sdd-pp"
+                          ><span>€ 6,01</span><span>p.p</span></span
+                        ></span
+                      ></button
+                    ><button
+                      class="sdd-qty"
+                      type="button"
+                      role="option"
+                      aria-selected="false"
+                      data-value="150"
+                    >
+                      <span class="sdd-qty-n"
+                        ><span>150</span><span>pieces</span></span
+                      ><span class="sdd-qty-price"
+                        ><span class="sdd-save">Save -2%</span
+                        ><span class="sdd-pp"
+                          ><span>€ 6,01</span><span>p.p</span></span
+                        ></span
+                      ></button
+                    ><button
+                      class="sdd-qty"
+                      type="button"
+                      role="option"
+                      aria-selected="false"
+                      data-value="250"
+                    >
+                      <span class="sdd-qty-n"
+                        ><span>250</span><span>pieces</span></span
+                      ><span class="sdd-qty-price"
+                        ><span class="sdd-save">Save -2%</span
+                        ><span class="sdd-pp"
+                          ><span>€ 6,01</span><span>p.p</span></span
+                        ></span
+                      ></button
+                    ><button
+                      class="sdd-qty"
+                      type="button"
+                      role="option"
+                      aria-selected="false"
+                      data-value="500"
+                    >
+                      <span class="sdd-qty-n"
+                        ><span>500</span><span>pieces</span></span
+                      ><span class="sdd-qty-price"
+                        ><span class="sdd-save">Save -2%</span
+                        ><span class="sdd-pp"
+                          ><span>€ 6,01</span><span>p.p</span></span
+                        ></span
+                      ></button
+                    ><button
+                      class="sdd-qty"
+                      type="button"
+                      role="option"
+                      aria-selected="false"
+                      data-value="1000"
+                    >
+                      <span class="sdd-qty-n"
+                        ><span>1000</span><span>pieces</span></span
+                      ><span class="sdd-qty-price"
+                        ><span class="sdd-save">Save -2%</span
+                        ><span class="sdd-pp"
+                          ><span>€ 6,01</span><span>p.p</span></span
+                        ></span
+                      ></button
+                    ><button
+                      class="sdd-qty"
+                      type="button"
+                      role="option"
+                      aria-selected="false"
+                      data-value="2500"
+                    >
+                      <span class="sdd-qty-n"
+                        ><span>2500</span><span>pieces</span></span
+                      ><span class="sdd-qty-price"
+                        ><span class="sdd-save">Save -2%</span
+                        ><span class="sdd-pp"
+                          ><span>€ 6,01</span><span>p.p</span></span
+                        ></span
+                      >
+                    </button>
+                    <label class="sdd-custom"
+                      ><span>Custom quantity</span
+                      ><input
+                        type="number"
+                        min="1"
+                        inputmode="numeric"
+                        value="0"
+                        aria-label="Custom quantity"
+                    /></label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="summary-specs">
+              <div class="s-static">
+                <p class="s-label">Print position</p>
+                <p>Back (30x70mm)</p>
+              </div>
+              <div class="s-static">
+                <p class="s-label">Printing in</p>
+                <p>2 colors</p>
+              </div>
+            </div>
+          </div>
+          <div class="summary-actions">
+            <a class="s-action is-edit" href="#pdp">
+              <img src="assets/icon-edit.svg" width="25" height="24" alt="" />
+              <span>Edit request </span>
+            </a>
+            <button class="s-action" type="button">
+              <img
+                src="assets/icon-remove.svg"
+                width="23.4468"
+                height="24.2553"
+                alt=""
+              />
+              Remove
+            </button>
+          </div>
+        </div>
+      </div>
+      <a class="add-extra" href="#pdp">
+        <span class="add-extra-icon"
+          ><img
+            src="assets/icon-plus.svg"
+            width="17.2941"
+            height="17.2941"
+            alt=""
+        /></span>
+        Add extra product
+      </a>
+    </template>
+
+    <template id="tpl-logo">
+      <p class="f-h">My logo</p>
+      <div class="logo-up">
+        <div class="logo-btns">
+          <label class="logo-upload">
+            Upload your logo
+            <img data-upload-icon width="18.5" height="18.5" alt="" />
+            <input class="vh" type="file" accept="image/*,.pdf,.ai,.eps,.svg" />
+          </label>
+          <button class="logo-text" type="button">Add tekst</button>
+        </div>
+        <p class="logo-later">You can also upload your logo later</p>
+      </div>
+    </template>
+
+    <template id="tpl-card">
+      <article class="card">
+        <div class="card-img">
+          img
+          <span class="card-fast">Fast delivery</span>
+          <span class="card-dot" style="top: 7.65px"></span>
+          <span class="card-dot" style="top: 26.98px"></span>
+          <span class="card-dot" style="top: 46.31px"></span>
+          <span class="card-dot" style="top: 65.64px"></span>
+        </div>
+        <p class="card-title nowrap">
+          Thermos bottle | Stainless steel |<br />750 ml | With cup lid
+        </p>
+        <p class="card-meta nowrap">
+          📦 from 25 pieces<br />📅 Wednesday 01 July 2026
+        </p>
+        <p class="card-price">11.08 per piece</p>
+        <p class="card-note is-pp">All-in price p.p for 250 pieces</p>
+        <a class="card-btn" href="#quote">Free quote</a>
+        <p class="card-note is-ship">
+          Ordered today, delivered in 7 working days
+        </p>
+      </article>
+    </template>
+
+    <template id="tpl-mcard">
+      <article class="mcard">
+        <div class="mcard-img"><i></i></div>
+        <p class="mcard-title">
+          Thermos bottle | Stainless steel | 750 ml | With cup lid
+        </p>
+        <p class="mcard-meta">
+          📦 from 25 pieces<br />📅 Wednesday 01 July 2026
+        </p>
+        <div class="mcard-price">
+          <b>11.08 per piece</b><span>Wednesday 01 July 2026</span>
+        </div>
+        <a class="mcard-btn" href="#quote">Free quote</a>
+      </article>
+    </template>
+
+    <!-- "Add text logo": Figma modal-window/Default 640:10698 with the Font and
+         PMS/Color input-container states 640:11065 (closed / open / dropdown3) -->
+    <div class="tlm" id="text-logo-modal" hidden>
+      <div class="tlm-backdrop" data-tlm-close></div>
+      <div
+        class="tlm-win"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="tlm-title"
+      >
+        <div class="tlm-head">
+          <h2 id="tlm-title">Add text logo</h2>
+          <button class="tlm-x" type="button" aria-label="Close" data-tlm-close>
+            <img
+              src="assets/modal-x-circle.svg"
+              width="39"
+              height="39"
+              alt=""
+            />
+          </button>
+        </div>
+        <div class="tlm-body">
+          <div class="tlm-row">
+            <label class="tlm-label" for="tlm-text">Text *</label>
+            <textarea
+              class="tlm-field tlm-area"
+              id="tlm-text"
+              placeholder="Type your text here"
+            ></textarea>
+          </div>
+          <div class="tlm-row">
+            <span class="tlm-label" id="tlm-font-l">Font*:</span>
+            <div class="tlm-dd" data-kind="font">
+              <div class="tlm-dd-box">
+                <button
+                  class="tlm-dd-head"
+                  type="button"
+                  aria-haspopup="listbox"
+                  aria-expanded="false"
+                  aria-labelledby="tlm-font-l tlm-font-v"
+                >
+                  <span class="tlm-dd-val" id="tlm-font-v">Select Font</span
+                  ><img
+                    class="tlm-chev"
+                    src="assets/modal-chevron-down.svg"
+                    width="12"
+                    height="12"
+                    alt=""
+                  />
+                </button>
+                <div class="tlm-dd-collapse">
+                  <div>
+                    <div
+                      class="tlm-fonts"
+                      role="listbox"
+                      aria-labelledby="tlm-font-l"
+                    >
+                      <button
+                        class="tlm-font is-placeholder is-active"
+                        type="button"
+                        role="option"
+                        aria-selected="true"
+                        data-value=""
+                      >
+                        Select Font</button
+                      ><button
+                        class="tlm-font"
+                        type="button"
+                        role="option"
+                        aria-selected="false"
+                        data-value="Calibri"
+                        style="
+                          font-family:
+                            Calibri, Carlito, &quot;Segoe UI&quot;, sans-serif;
+                        "
+                        data-family='Calibri, Carlito, "Segoe UI", sans-serif'
+                      >
+                        Calibri</button
+                      ><button
+                        class="tlm-font"
+                        type="button"
+                        role="option"
+                        aria-selected="false"
+                        data-value="Arial"
+                        style="font-family: Arial, Helvetica, sans-serif"
+                        data-family="Arial, Helvetica, sans-serif"
+                      >
+                        Arial</button
+                      ><button
+                        class="tlm-font"
+                        type="button"
+                        role="option"
+                        aria-selected="false"
+                        data-value="Times New Roman"
+                        style="
+                          font-family:
+                            &quot;Times New Roman&quot;, Times, serif;
+                        "
+                        data-family='"Times New Roman", Times, serif'
+                      >
+                        Times New Roman</button
+                      ><button
+                        class="tlm-font"
+                        type="button"
+                        role="option"
+                        aria-selected="false"
+                        data-value="Futura"
+                        style="
+                          font-family:
+                            Futura, &quot;Century Gothic&quot;,
+                            &quot;Trebuchet MS&quot;, sans-serif;
+                        "
+                        data-family='Futura, "Century Gothic", "Trebuchet MS", sans-serif'
+                      >
+                        Futura</button
+                      ><button
+                        class="tlm-font"
+                        type="button"
+                        role="option"
+                        aria-selected="false"
+                        data-value="Myriad Pro"
+                        style="
+                          font-family:
+                            &quot;Myriad Pro&quot;, &quot;Segoe UI&quot;,
+                            sans-serif;
+                        "
+                        data-family='"Myriad Pro", "Segoe UI", sans-serif'
+                      >
+                        Myriad Pro</button
+                      ><button
+                        class="tlm-font"
+                        type="button"
+                        role="option"
+                        aria-selected="false"
+                        data-value="Helvetica"
+                        style="
+                          font-family:
+                            &quot;Helvetica Neue&quot;, Helvetica, Arial,
+                            sans-serif;
+                        "
+                        data-family='"Helvetica Neue", Helvetica, Arial, sans-serif'
+                      >
+                        Helvetica
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tlm-row">
+            <span class="tlm-label" id="tlm-pms-l">PMS/Color:</span>
+            <div class="tlm-stack">
+              <div class="tlm-dd" data-kind="pms">
+                <div class="tlm-dd-box">
+                  <button
+                    class="tlm-dd-head"
+                    type="button"
+                    aria-haspopup="listbox"
+                    aria-expanded="false"
+                    aria-labelledby="tlm-pms-l tlm-pms-v"
+                  >
+                    <span class="tlm-dd-val is-dark" id="tlm-pms-v"
+                      ><span class="tlm-dd-dot"></span
+                      ><span class="tlm-dd-txt"
+                        >Select your PMS/Color</span
+                      ></span
+                    ><img
+                      class="tlm-chev"
+                      src="assets/modal-chevron-down.svg"
+                      width="12"
+                      height="12"
+                      alt=""
+                    />
+                  </button>
+                  <div class="tlm-dd-collapse">
+                    <div>
+                      <div
+                        class="tlm-pms"
+                        role="listbox"
+                        aria-labelledby="tlm-pms-l"
+                      >
+                        <p class="tlm-pms-h">Popular</p>
+                        <div class="tlm-grid">
+                          <button
+                            class="tlm-sw"
+                            type="button"
+                            role="option"
+                            aria-selected="false"
+                            data-value="White"
+                            data-color="#ffffff"
+                          >
+                            <span
+                              class="tlm-dot"
+                              style="background: #ffffff"
+                            ></span
+                            ><span class="tlm-sw-name">White</span></button
+                          ><button
+                            class="tlm-sw"
+                            type="button"
+                            role="option"
+                            aria-selected="false"
+                            data-value="YELLOW"
+                            data-color="#fde21a"
+                          >
+                            <span
+                              class="tlm-dot"
+                              style="background: #fde21a"
+                            ></span
+                            ><span class="tlm-sw-name">YELLOW</span></button
+                          ><button
+                            class="tlm-sw"
+                            type="button"
+                            role="option"
+                            aria-selected="false"
+                            data-value="Orange PMS 021"
+                            data-color="#f26b00"
+                          >
+                            <span
+                              class="tlm-dot"
+                              style="background: #f26b00"
+                            ></span
+                            ><span class="tlm-sw-name"
+                              >Orange PMS 021</span
+                            ></button
+                          ><button
+                            class="tlm-sw"
+                            type="button"
+                            role="option"
+                            aria-selected="false"
+                            data-value="Purple"
+                            data-color="#c22fb3"
+                          >
+                            <span
+                              class="tlm-dot"
+                              style="background: #c22fb3"
+                            ></span
+                            ><span class="tlm-sw-name">Purple</span></button
+                          ><button
+                            class="tlm-sw"
+                            type="button"
+                            role="option"
+                            aria-selected="false"
+                            data-value="Reflex Blue"
+                            data-color="#0f1f8c"
+                          >
+                            <span
+                              class="tlm-dot"
+                              style="background: #0f1f8c"
+                            ></span
+                            ><span class="tlm-sw-name"
+                              >Reflex Blue</span
+                            ></button
+                          ><button
+                            class="tlm-sw"
+                            type="button"
+                            role="option"
+                            aria-selected="false"
+                            data-value="Process Blue"
+                            data-color="#0090cf"
+                          >
+                            <span
+                              class="tlm-dot"
+                              style="background: #0090cf"
+                            ></span
+                            ><span class="tlm-sw-name"
+                              >Process Blue</span
+                            ></button
+                          ><button
+                            class="tlm-sw"
+                            type="button"
+                            role="option"
+                            aria-selected="false"
+                            data-value="PMS"
+                            data-color="#00a065"
+                          >
+                            <span
+                              class="tlm-dot"
+                              style="background: #00a065"
+                            ></span
+                            ><span class="tlm-sw-name">PMS</span></button
+                          ><button
+                            class="tlm-sw"
+                            type="button"
+                            role="option"
+                            aria-selected="false"
+                            data-value="Black"
+                            data-color="#3c3129"
+                          >
+                            <span
+                              class="tlm-dot"
+                              style="background: #3c3129"
+                            ></span
+                            ><span class="tlm-sw-name">Black</span></button
+                          ><button
+                            class="tlm-sw"
+                            type="button"
+                            role="option"
+                            aria-selected="false"
+                            data-value="PMS 485"
+                            data-color="#da291c"
+                          >
+                            <span
+                              class="tlm-dot"
+                              style="background: #da291c"
+                            ></span
+                            ><span class="tlm-sw-name">PMS 485</span>
+                          </button>
+                        </div>
+                        <p class="tlm-pms-h">All colors</p>
+                        <div class="tlm-grid">
+                          <button
+                            class="tlm-sw"
+                            type="button"
+                            role="option"
+                            aria-selected="false"
+                            data-value="Gold PMS 871"
+                            data-color="#84754e"
+                          >
+                            <span
+                              class="tlm-dot"
+                              style="background: #84754e"
+                            ></span
+                            ><span class="tlm-sw-name"
+                              >Gold PMS 871</span
+                            ></button
+                          ><button
+                            class="tlm-sw"
+                            type="button"
+                            role="option"
+                            aria-selected="false"
+                            data-value="PMS Cool Gray"
+                            data-color="#a7a8a3"
+                          >
+                            <span
+                              class="tlm-dot"
+                              style="background: #a7a8a3"
+                            ></span
+                            ><span class="tlm-sw-name"
+                              >PMS Cool Gray</span
+                            ></button
+                          ><button
+                            class="tlm-sw"
+                            type="button"
+                            role="option"
+                            aria-selected="false"
+                            data-value="PMS 100"
+                            data-color="#f6eb7d"
+                          >
+                            <span
+                              class="tlm-dot"
+                              style="background: #f6eb7d"
+                            ></span
+                            ><span class="tlm-sw-name">PMS 100</span></button
+                          ><button
+                            class="tlm-sw"
+                            type="button"
+                            role="option"
+                            aria-selected="false"
+                            data-value="PMS 101"
+                            data-color="#f5ec4a"
+                          >
+                            <span
+                              class="tlm-dot"
+                              style="background: #f5ec4a"
+                            ></span
+                            ><span class="tlm-sw-name">PMS 101</span></button
+                          ><button
+                            class="tlm-sw"
+                            type="button"
+                            role="option"
+                            aria-selected="false"
+                            data-value="PMS 109"
+                            data-color="#ffd100"
+                          >
+                            <span
+                              class="tlm-dot"
+                              style="background: #ffd100"
+                            ></span
+                            ><span class="tlm-sw-name">PMS 109</span></button
+                          ><button
+                            class="tlm-sw"
+                            type="button"
+                            role="option"
+                            aria-selected="false"
+                            data-value="PMS 123"
+                            data-color="#ffc72c"
+                          >
+                            <span
+                              class="tlm-dot"
+                              style="background: #ffc72c"
+                            ></span
+                            ><span class="tlm-sw-name">PMS 123</span></button
+                          ><button
+                            class="tlm-sw"
+                            type="button"
+                            role="option"
+                            aria-selected="false"
+                            data-value="PMS 151"
+                            data-color="#ff8200"
+                          >
+                            <span
+                              class="tlm-dot"
+                              style="background: #ff8200"
+                            ></span
+                            ><span class="tlm-sw-name">PMS 151</span></button
+                          ><button
+                            class="tlm-sw"
+                            type="button"
+                            role="option"
+                            aria-selected="false"
+                            data-value="PMS 186"
+                            data-color="#c8102e"
+                          >
+                            <span
+                              class="tlm-dot"
+                              style="background: #c8102e"
+                            ></span
+                            ><span class="tlm-sw-name">PMS 186</span></button
+                          ><button
+                            class="tlm-sw"
+                            type="button"
+                            role="option"
+                            aria-selected="false"
+                            data-value="PMS 213"
+                            data-color="#e31c79"
+                          >
+                            <span
+                              class="tlm-dot"
+                              style="background: #e31c79"
+                            ></span
+                            ><span class="tlm-sw-name">PMS 213</span></button
+                          ><button
+                            class="tlm-sw"
+                            type="button"
+                            role="option"
+                            aria-selected="false"
+                            data-value="PMS 266"
+                            data-color="#753bbd"
+                          >
+                            <span
+                              class="tlm-dot"
+                              style="background: #753bbd"
+                            ></span
+                            ><span class="tlm-sw-name">PMS 266</span></button
+                          ><button
+                            class="tlm-sw"
+                            type="button"
+                            role="option"
+                            aria-selected="false"
+                            data-value="PMS 286"
+                            data-color="#0033a0"
+                          >
+                            <span
+                              class="tlm-dot"
+                              style="background: #0033a0"
+                            ></span
+                            ><span class="tlm-sw-name">PMS 286</span></button
+                          ><button
+                            class="tlm-sw"
+                            type="button"
+                            role="option"
+                            aria-selected="false"
+                            data-value="PMS 300"
+                            data-color="#005eb8"
+                          >
+                            <span
+                              class="tlm-dot"
+                              style="background: #005eb8"
+                            ></span
+                            ><span class="tlm-sw-name">PMS 300</span></button
+                          ><button
+                            class="tlm-sw"
+                            type="button"
+                            role="option"
+                            aria-selected="false"
+                            data-value="PMS 354"
+                            data-color="#00b140"
+                          >
+                            <span
+                              class="tlm-dot"
+                              style="background: #00b140"
+                            ></span
+                            ><span class="tlm-sw-name">PMS 354</span></button
+                          ><button
+                            class="tlm-sw"
+                            type="button"
+                            role="option"
+                            aria-selected="false"
+                            data-value="PMS 368"
+                            data-color="#78be20"
+                          >
+                            <span
+                              class="tlm-dot"
+                              style="background: #78be20"
+                            ></span
+                            ><span class="tlm-sw-name">PMS 368</span></button
+                          ><button
+                            class="tlm-sw"
+                            type="button"
+                            role="option"
+                            aria-selected="false"
+                            data-value="PMS 432"
+                            data-color="#333f48"
+                          >
+                            <span
+                              class="tlm-dot"
+                              style="background: #333f48"
+                            ></span
+                            ><span class="tlm-sw-name">PMS 432</span></button
+                          ><button
+                            class="tlm-sw"
+                            type="button"
+                            role="option"
+                            aria-selected="false"
+                            data-value="Silver PMS 877"
+                            data-color="#8a8d8f"
+                          >
+                            <span
+                              class="tlm-dot"
+                              style="background: #8a8d8f"
+                            ></span
+                            ><span class="tlm-sw-name">Silver PMS 877</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <input
+                class="tlm-field tlm-input"
+                id="tlm-pms-own"
+                type="text"
+                placeholder="Or fill in you PMS color here"
+                aria-label="Or fill in your PMS color"
+              />
+            </div>
+          </div>
+          <div class="tlm-row">
+            <span class="tlm-label">Preview:</span>
+            <div class="tlm-preview" aria-live="polite">
+              <span class="tlm-preview-txt is-empty"
+                >Your text preview will appear here</span
+              >
+            </div>
+          </div>
+          <div class="tlm-row">
+            <label class="tlm-label" for="tlm-remarks">Remarks</label>
+            <textarea
+              class="tlm-field tlm-area"
+              id="tlm-remarks"
+              placeholder="Type your message here"
+            ></textarea>
+          </div>
+        </div>
+        <div class="tlm-foot">
+          <button class="tlm-save" type="button">Save text</button>
+        </div>
+      </div>
+    </div>
+    <script src="script.js?v=4"></script>
+  </body>
+</html>
