@@ -1,125 +1,49 @@
 /* ============================================================
-   Request form + thank-you header, restyled like the product page
-   Same markup and content as the original request flow (.hdr / .mhdr in
-   index.html, rules in styles.css); only the look follows the PDP
-   navigation menu (../nav.css): light-blue USP strip on top, 70px white
-   bar with a pill search, grey rounded category bar, PDP type sizes and
-   colours. Values measured from the PDP at 1440px.
+   Request form + thank-you header, like the product page
+   The USP bar and the main bar (logo, search, GB / £ pickers, phone,
+   account, cart) are the PDP's own markup, styled by nav.css (a copy of
+   ../nav.css) and wired by pdp-header.js. The request flow's own parts
+   stay: the quote icon (+ "1" badge on the thank-you screen), its category
+   links and the hidden search on the form screens. Values for the
+   category bar are measured from the PDP at 1440px.
    ============================================================ */
 
-/* ---------- desktop ---------- */
-.hdr {
-  --hd-pad: 3vw; /* PDP: 43px side padding at 1440 */
-  color: #15232b;
-}
-
-/* USP / trust strip: first, like the PDP's USP bar */
-.hdr-trust {
-  order: -1;
-  height: 36px;
-  padding: 0 var(--hd-pad);
-  background: #eff7ff;
-  color: #003e4d;
-}
-.hdr-usps {
-  flex: 0 1 auto;
-  justify-content: flex-start;
-  gap: 43px;
-}
-.hdr .usp {
-  gap: 11px;
-  font-size: 12.29px;
-  font-weight: 600;
-}
-.usp-badge {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-}
-.usp-badge img {
-  width: 9px;
-  height: 9px;
-}
-.kiyoh {
-  gap: 6px;
-}
-.kiyoh-stars {
-  font-size: 17px;
-  letter-spacing: 1px;
-  line-height: 1;
-}
-.kiyoh-score {
-  font-size: 15px;
-  font-weight: 600;
-  color: #003e4d;
-}
-
-/* main bar: logo | pill search | actions */
-.hdr-top {
-  height: 70px;
-  padding: 0 var(--hd-pad);
-  gap: 50px;
-}
-.hdr-logo {
-  width: 165px;
-  height: 33px;
-}
-.hdr-search {
-  height: 42px;
-  padding: 0 14px 0 17px;
-  border: 2px solid #cacaca;
-  border-radius: 34px;
-  box-shadow: 0 1px 7.4px 1px rgba(0, 0, 0, 0.09);
-}
-body[data-screen="thanks"] .hdr-search {
-  flex: 1 1 auto;
-  max-width: 733px;
-}
-.hdr-search input {
-  font-size: 18px;
-  font-weight: 700;
-  color: #15232b;
-}
-.hdr-search input::placeholder {
-  color: #838383;
-}
-.hdr-search img {
-  width: 24px;
-  height: 24px;
-}
-.hdr-right {
-  gap: 26px;
-}
-.hdr-lang {
-  gap: 7px;
-  font-size: 18px;
-  font-weight: 700;
-  color: #787575;
-}
-.hdr-lang-dot {
-  width: 20px;
-  height: 20px;
-}
-.hdr-phone {
-  gap: 6px;
-  font-size: 18px;
-  font-weight: 700;
-  color: #787575;
-}
-.hdr-phone img {
-  width: 26px;
-  height: 26px;
-}
-/* "1 open request" badge on the quote icon's top-right corner (it is the
-   next flex item, so it is pulled back over the icon) */
-.hdr-badge {
+/* the PDP header is fixed with a spacer; here it simply sits on top */
+.hdr.hd {
   position: relative;
+}
+
+/* quote icon: PDP icon size, cyan like account / cart */
+.m-quote {
+  width: 28px;
+  height: 28px;
+}
+.m-quote img {
+  left: 0;
+  top: 0;
+}
+.act-quote {
+  position: relative;
+}
+.act-quote .hdr-badge {
+  display: none;
+  position: absolute;
   left: auto;
-  top: -14px;
+  right: -10px;
+  top: -10px;
   width: 20px;
   height: 20px;
-  margin: 0 -12px 0 -38px;
+  margin: 0;
   font-size: 11px;
+}
+body[data-screen="thanks"] .act-quote .hdr-badge {
+  display: flex;
+}
+
+/* the form screens had no search field: keep its space, hide the field */
+body[data-screen="design"] .hd .search,
+body[data-screen="quote"] .hd .search {
+  visibility: hidden;
 }
 
 /* category bar: grey rounded bar with a soft shadow, dark SemiBold 15 */

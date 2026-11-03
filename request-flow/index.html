@@ -10,82 +10,430 @@
       href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Arimo&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=7" />
-    <link rel="stylesheet" href="pdp-header.css?v=2" />
+    <link rel="stylesheet" href="styles.css?v=8" />
+    <link rel="stylesheet" href="nav.css?v=2" />
+    <link rel="stylesheet" href="pdp-header.css?v=3" />
   </head>
   <body data-screen="pdp">
     <!-- ===================== HEADER (top section) ===================== -->
-    <header class="hdr d-only">
-      <div class="hdr-top">
-        <a class="hdr-logo" href="#pdp" aria-label="Loopper home">
-          <img src="assets/logo-loopper.png" alt="" />
-        </a>
-        <form class="hdr-search" role="search" onsubmit="return false;">
-          <input
-            type="search"
-            placeholder="Search for product..."
-            aria-label="Search for product"
-          />
-          <img src="assets/icon-search.svg" width="18" height="18" alt="" />
-        </form>
-        <div class="hdr-right">
-          <div class="hdr-lang">
-            <span class="hdr-lang-dot"></span><span>EN</span>
+    <header class="hdr hd d-only" id="hd">
+      <div class="usp" id="usp">
+        <div class="wrap">
+          <div class="usp-left">
+            <span class="usp-item"
+              ><span class="usp-ic"
+                ><img
+                  src="../assets/nav/v2-usp-check.svg"
+                  width="18.0604"
+                  height="14.0691"
+                  alt="" /></span
+              >23 years of experience</span
+            >
+            <span class="usp-item"
+              ><span class="usp-ic"
+                ><img
+                  src="../assets/nav/v2-usp-check.svg"
+                  width="18.0604"
+                  height="14.0691"
+                  alt="" /></span
+              >Free digital design</span
+            >
+            <span class="usp-item"
+              ><span class="usp-ic"
+                ><img
+                  src="../assets/nav/v2-usp-check.svg"
+                  width="18.0604"
+                  height="14.0691"
+                  alt="" /></span
+              >Personal service</span
+            >
           </div>
-          <a class="hdr-phone" href="tel:+442045765960">
-            <img
-              src="assets/icon-phone.svg"
-              width="20.2428"
-              height="20.2428"
-              alt=""
-            />
-            <span>+44 20 4576 5960</span>
-          </a>
-          <a class="hdr-icon hdr-cart" href="#pdp" aria-label="Shopping cart">
-            <img
-              class="off-thanks"
-              src="assets/icon-cart.svg"
-              width="27.8339"
-              height="27.8339"
-              alt=""
-            />
-            <img
-              class="on-thanks"
-              src="assets/icon-cart-ty.svg"
-              width="28"
-              height="30"
-              alt=""
-            />
-          </a>
           <a
-            class="hdr-icon hdr-quote"
-            href="#thanks"
-            aria-label="My quote requests"
+            class="usp-tp"
+            href="https://www.trustpilot.com/review/loopper.com"
+            rel="noopener"
+            ><img
+              src="../assets/nav/trustpilot-rating@2x.png"
+              width="315"
+              height="18"
+              alt="Trustpilot 4.7/5 (1,282 reviews)"
+          /></a>
+          <button
+            class="usp-close"
+            id="uspClose"
+            aria-label="Hide these messages"
           >
             <img
-              class="off-thanks"
-              src="assets/icon-quote.svg"
-              width="28"
-              height="28"
+              src="../assets/nav/v2-usp-close.svg"
+              width="15.4286"
+              height="15.4286"
               alt=""
             />
-            <img
-              class="on-thanks"
-              src="assets/icon-quote-ty.svg"
-              width="28"
-              height="28"
+          </button>
+        </div>
+      </div>
+
+      <div class="bar">
+        <div class="wrap bar-in">
+          <a class="logo" href="../" aria-label="Loopper home"
+            ><img
+              class="hd-d-only d-logo"
+              src="../assets/nav/v2-logo.svg"
+              width="165"
+              height="35.8333"
+              alt="" /><img
+              class="hd-m-only m-logo"
+              src="../assets/nav/logo.svg"
+              width="102"
+              height="22"
               alt=""
+          /></a>
+
+          <form class="search" role="search" onsubmit="return false;">
+            <label for="q" class="vh">Search products</label>
+            <input
+              id="q"
+              type="search"
+              placeholder="What are you looking for?"
+              autocomplete="off"
             />
-          </a>
-          <span class="hdr-badge" aria-label="1 open request">1</span>
-          <a class="hdr-icon hdr-account" href="#pdp" aria-label="My account">
-            <img
-              src="assets/icon-account.svg"
-              width="28"
-              height="29.6186"
-              alt=""
-            />
-          </a>
+            <button type="submit" aria-label="Search">
+              <img
+                src="../assets/nav/search.svg"
+                width="34"
+                height="28"
+                alt=""
+              />
+            </button>
+          </form>
+
+          <div class="actions">
+            <div class="lang">
+              <button
+                class="act act-lang"
+                id="langBtn"
+                type="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-controls="langMenu"
+                aria-label="Country: United Kingdom. Change country"
+              >
+                <span
+                  class="lang-flag"
+                  style="
+                    background-image: url(&quot;https://www.loopper.co.uk/storage/flags/gb.svg&quot;);
+                  "
+                ></span
+                ><span class="lang-code">GB</span>
+              </button>
+              <ul class="lang-menu" id="langMenu" hidden>
+                <li>
+                  <a
+                    href="https://www.loopper.co.uk/personalized-water-bottles/thermos-bottles/thermos-bottle-stainless-steel-500-ml-6383162"
+                    hreflang="en-GB"
+                    aria-current="true"
+                    ><span class="cur-opt"
+                      ><span
+                        class="lang-flag lang-flag-lg"
+                        style="
+                          background-image: url(&quot;https://www.loopper.co.uk/storage/flags/gb.svg&quot;);
+                        "
+                      ></span
+                      ><span class="lang-name">United Kingdom</span></span
+                    ><svg
+                      class="cur-check"
+                      width="14"
+                      height="10"
+                      viewBox="0 0 14 10"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M1.5 5.2L5.2 8.5L12.5 1.5"
+                        stroke="#00AED8"
+                        stroke-width="2.4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      /></svg
+                  ></a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.loopper.nl/bedrukte-drinkflessen/thermosflessen/thermosfles-rvs-500-ml-6383162"
+                    hreflang="nl"
+                    ><span class="cur-opt"
+                      ><span
+                        class="lang-flag lang-flag-lg"
+                        style="
+                          background-image: url(&quot;https://www.loopper.co.uk/storage/flags/nl.svg&quot;);
+                        "
+                      ></span
+                      ><span class="lang-name">Nederlands</span></span
+                    ><svg
+                      class="cur-check"
+                      width="14"
+                      height="10"
+                      viewBox="0 0 14 10"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M1.5 5.2L5.2 8.5L12.5 1.5"
+                        stroke="#00AED8"
+                        stroke-width="2.4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      /></svg
+                  ></a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.loopper.com/personalized-water-bottles/thermos-bottles/thermos-bottle-stainless-steel-500-ml-6383162"
+                    hreflang="en"
+                    ><span class="cur-opt"
+                      ><span
+                        class="lang-flag lang-flag-lg"
+                        style="
+                          background-image: url(&quot;https://www.loopper.co.uk/storage/flags/en.svg&quot;);
+                        "
+                      ></span
+                      ><span class="lang-name">English</span></span
+                    ><svg
+                      class="cur-check"
+                      width="14"
+                      height="10"
+                      viewBox="0 0 14 10"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M1.5 5.2L5.2 8.5L12.5 1.5"
+                        stroke="#00AED8"
+                        stroke-width="2.4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      /></svg
+                  ></a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.loopper.fr/gourdes-personnalisees/bouteilles-isothermes/bouteille-isotherme-inox-500-ml-6383162"
+                    hreflang="fr"
+                    ><span class="cur-opt"
+                      ><span
+                        class="lang-flag lang-flag-lg"
+                        style="
+                          background-image: url(&quot;https://www.loopper.co.uk/storage/flags/fr.svg&quot;);
+                        "
+                      ></span
+                      ><span class="lang-name">Français</span></span
+                    ><svg
+                      class="cur-check"
+                      width="14"
+                      height="10"
+                      viewBox="0 0 14 10"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M1.5 5.2L5.2 8.5L12.5 1.5"
+                        stroke="#00AED8"
+                        stroke-width="2.4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      /></svg
+                  ></a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.loopper.de/trinkflaschen-bedrucken/thermosflaschen/thermosflasche-edelstahl-500-ml-6383162"
+                    hreflang="de"
+                    ><span class="cur-opt"
+                      ><span
+                        class="lang-flag lang-flag-lg"
+                        style="
+                          background-image: url(&quot;https://www.loopper.co.uk/storage/flags/de.svg&quot;);
+                        "
+                      ></span
+                      ><span class="lang-name">Deutsch</span></span
+                    ><svg
+                      class="cur-check"
+                      width="14"
+                      height="10"
+                      viewBox="0 0 14 10"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M1.5 5.2L5.2 8.5L12.5 1.5"
+                        stroke="#00AED8"
+                        stroke-width="2.4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      /></svg
+                  ></a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.loopper.com/it/borracce-personalizzate/thermos/thermos-acciaio-inox-500-ml-6383162"
+                    hreflang="it"
+                    ><span class="cur-opt"
+                      ><span
+                        class="lang-flag lang-flag-lg"
+                        style="
+                          background-image: url(&quot;https://www.loopper.co.uk/storage/flags/it.svg&quot;);
+                        "
+                      ></span
+                      ><span class="lang-name">Italiano</span></span
+                    ><svg
+                      class="cur-check"
+                      width="14"
+                      height="10"
+                      viewBox="0 0 14 10"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M1.5 5.2L5.2 8.5L12.5 1.5"
+                        stroke="#00AED8"
+                        stroke-width="2.4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      /></svg
+                  ></a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.loopper.com/es/botellas-personalizadas/termos/termo-acero-inoxidable-500-ml-6383162"
+                    hreflang="es"
+                    ><span class="cur-opt"
+                      ><span
+                        class="lang-flag lang-flag-lg"
+                        style="
+                          background-image: url(&quot;https://www.loopper.co.uk/storage/flags/es.svg&quot;);
+                        "
+                      ></span
+                      ><span class="lang-name">Español</span></span
+                    ><svg
+                      class="cur-check"
+                      width="14"
+                      height="10"
+                      viewBox="0 0 14 10"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M1.5 5.2L5.2 8.5L12.5 1.5"
+                        stroke="#00AED8"
+                        stroke-width="2.4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      /></svg
+                  ></a>
+                </li>
+              </ul>
+            </div>
+            <div class="lang cur">
+              <button
+                class="act act-cur"
+                id="curBtn"
+                type="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-controls="curMenu"
+                aria-label="Currency: GBP. Change currency"
+              >
+                <span class="cur-sym" id="curSym" aria-hidden="true">£</span>
+              </button>
+              <ul class="lang-menu" id="curMenu" hidden>
+                <li>
+                  <a href="#" data-cur="GBP" data-sym="£" aria-current="true"
+                    ><span class="cur-opt"
+                      ><span class="cur-badge">£</span>GBP
+                      <span class="cur-name">· British pound</span></span
+                    ><svg
+                      class="cur-check"
+                      width="14"
+                      height="10"
+                      viewBox="0 0 14 10"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M1.5 5.2L5.2 8.5L12.5 1.5"
+                        stroke="#00AED8"
+                        stroke-width="2.4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      /></svg
+                  ></a>
+                </li>
+                <li>
+                  <a href="#" data-cur="EUR" data-sym="€"
+                    ><span class="cur-opt"
+                      ><span class="cur-badge">€</span>EUR
+                      <span class="cur-name">· Euro</span></span
+                    ><svg
+                      class="cur-check"
+                      width="14"
+                      height="10"
+                      viewBox="0 0 14 10"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M1.5 5.2L5.2 8.5L12.5 1.5"
+                        stroke="#00AED8"
+                        stroke-width="2.4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      /></svg
+                  ></a>
+                </li>
+              </ul>
+            </div>
+            <a
+              class="act act-phone"
+              href="tel:+442045765960"
+              aria-label="Call us on +44 20 4576 5960"
+              ><span class="m-ic m-phone"
+                ><img
+                  src="../assets/nav/phone.svg"
+                  width="27.0611"
+                  height="28"
+                  alt="" /></span
+              ><span class="ph-num hd-d-only">+44 20 4576 5960</span></a
+            >
+            <a
+              class="act act-quote"
+              href="#thanks"
+              aria-label="My quote requests"
+              ><span class="m-ic m-quote"
+                ><img
+                  src="assets/icon-quote-cyan.svg"
+                  width="28"
+                  height="28"
+                  alt="" /></span
+              ><span class="hdr-badge" aria-label="1 open request">1</span></a
+            >
+            <a class="act" href="#" aria-label="My account"
+              ><span class="m-ic m-account"
+                ><img
+                  src="../assets/nav/account.svg"
+                  width="34"
+                  height="29.6186"
+                  alt="" /></span
+            ></a>
+            <a class="act" href="#" aria-label="Basket"
+              ><span class="ic-wrap"
+                ><span class="m-ic m-cart"
+                  ><img
+                    src="../assets/nav/cart.svg"
+                    width="32.9824"
+                    height="25.6872"
+                    alt="" /></span></span
+            ></a>
+          </div>
         </div>
       </div>
       <nav class="hdr-cats" aria-label="Categories">
@@ -113,47 +461,6 @@
           <a href="#pdp">Wellness</a>
         </div>
       </nav>
-      <div class="hdr-trust">
-        <div class="hdr-usps">
-          <div class="usp">
-            <span class="usp-badge"
-              ><img
-                src="assets/icon-check-usp1.svg"
-                width="13.4043"
-                height="13.4043"
-                alt=""
-            /></span>
-            23 years of experience
-          </div>
-          <div class="usp">
-            <span class="usp-badge"
-              ><img
-                src="assets/icon-check-usp2.svg"
-                width="13.4043"
-                height="13.4043"
-                alt=""
-            /></span>
-            Free digital design
-          </div>
-          <div class="usp">
-            <span class="usp-badge"
-              ><img
-                src="assets/icon-check-usp3.svg"
-                width="13.4043"
-                height="13.4043"
-                alt=""
-            /></span>
-            Personal service
-          </div>
-        </div>
-        <div class="kiyoh">
-          <span class="kiyoh-stars" aria-hidden="true">★★★★</span>
-          <span class="kiyoh-stars is-empty" aria-hidden="true">☆</span>
-          <p class="kiyoh-score">
-            <b>Kiyoh 9.3</b><span> (1179 reviews)</span>
-          </p>
-        </div>
-      </div>
       <div class="hdr-crumbs">
         Home / Personalized water bottles / Thermos bottles / Thermos bottle |
         Stainless steel | 500 ml | Must-have
@@ -4500,5 +4807,6 @@
       </div>
     </div>
     <script src="script.js?v=5"></script>
+    <script src="pdp-header.js?v=2"></script>
   </body>
 </html>
