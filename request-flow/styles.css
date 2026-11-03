@@ -5498,3 +5498,10 @@ body.tlm-lock {
   height: 17px;
   max-width: none;
 }
+
+/* "Show / Hide product details": green of the card outline (#28a745),
+   darkened to #1e7e34 for WCAG AA — 5.14:1 on white (#28a745 is 3.13:1,
+   too low for 15px text). Chevron in the same green. */
+.mty-req .yrq-toggle {
+  color: #1e7e34;
+}
