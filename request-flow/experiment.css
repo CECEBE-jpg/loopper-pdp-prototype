@@ -4,6 +4,8 @@
    compact.html are not affected. Loaded after compact.css.
    Changes on top of compact.html:
    1. wider content column (--exp-width), so the form gets more room
+   (no fit-to-window scaling here: compact-fit.js is not loaded, the
+   form shows at 100%)
    2. form on the left, request summary on the right
    Tweak the two variables below to experiment.
    ============================================================ */
