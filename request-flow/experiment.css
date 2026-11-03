@@ -1,0 +1,33 @@
+/* ============================================================
+   experiment.html — sandbox copy of compact.html (management version).
+   Edit freely: index.html (the prototype the PDP links to) and
+   compact.html are not affected. Loaded after compact.css.
+   Changes on top of compact.html:
+   1. wider content column (--exp-width), so the form gets more room
+   2. form on the left, request summary on the right
+   Tweak the two variables below to experiment.
+   ============================================================ */
+:root {
+  --exp-width: 1300px; /* was 1096px */
+  --exp-gap: 45px; /* space between form and summary */
+}
+
+@media (width >= 768px) {
+  /* 1. wider: title, progress bar and the form + summary row */
+  .req-title,
+  .req-body {
+    width: var(--exp-width);
+  }
+  .progress {
+    width: 100%;
+  }
+  .send-btn {
+    width: 100%;
+  }
+
+  /* 2. form left, summary right */
+  .req-grid {
+    flex-direction: row-reverse;
+    gap: var(--exp-gap);
+  }
+}
