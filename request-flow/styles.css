@@ -5382,3 +5382,26 @@ body.tlm-lock {
   align-items: center;
   justify-content: center;
 }
+
+/* Phone request summary with several colours / positions: same layout as
+   the desktop multi-colour summary (Figma 1899:11158), at the phone sizes */
+.rsm-field.is-multi .rsm-select + .rsm-select {
+  margin-top: -1px; /* 5px between the selects (field gap 6px) */
+}
+.rsm-sw {
+  width: 24px;
+  height: 24px;
+  margin: -4px 6px -4px -3px;
+  object-fit: cover;
+  flex: none;
+}
+.rsm-select:has(.rsm-sw) {
+  justify-content: flex-start;
+}
+.rsm-select:has(.rsm-sw) .rsm-spacer {
+  flex: 1 0 0;
+}
+.rsm-field.is-list .s-lines p {
+  font-size: 14px;
+  white-space: normal;
+}

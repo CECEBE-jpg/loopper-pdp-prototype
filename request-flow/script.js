@@ -158,15 +158,54 @@
       return x.printing ? x.name + ": " + x.printing : x.name;
     }).join(", ");
     if (colors.length > 1 || positions.length > 1) {
-      document.querySelectorAll(".rsm-field").forEach(function (f) {
-        var label = f.querySelector(".rsm-label").textContent.trim();
-        var val = { "Color": color, "Print position": posText, "Printing in": printText }[label];
-        if (!val) return;
-        var target = f.querySelector(".rsm-select, .rsm-value");
-        var t = [...target.childNodes].find(function (n) {
+      // phone request summary (.rsm): same layout as the desktop variant —
+      // one select per colour (with its photo), COLOR DIVISION, then the
+      // positions and colours per position as lines
+      var setText = function (el, val) {
+        var t = [...el.childNodes].find(function (n) {
           return n.nodeType === 3 && n.textContent.trim();
         });
         if (t) t.textContent = val;
+      };
+      document.querySelectorAll(".rsm-details").forEach(function (box) {
+        var field = function (name) {
+          return [...box.querySelectorAll(".rsm-field")].find(function (f) {
+            return f.querySelector(".rsm-label").textContent.trim() === name;
+          });
+        };
+        if (colors.length > 1) {
+          var cf = field("Color");
+          var sel = cf.querySelector(".rsm-select");
+          cf.classList.add("is-multi");
+          colors.forEach(function (c, i) {
+            var s = i ? sel.cloneNode(true) : sel;
+            setText(s, c.name);
+            var sw = s.querySelector(".rsm-sw") || document.createElement("img");
+            sw.className = "rsm-sw";
+            sw.alt = "";
+            sw.src = photo(c.slug);
+            if (!sw.parentNode) s.prepend(sw);
+            if (i) cf.append(s);
+          });
+          var div = document.createElement("div");
+          div.className = "rsm-field is-list";
+          div.innerHTML =
+            '<p class="rsm-label">Color division</p>' +
+            lines(colors.map(function (c) {
+              return '<span class="s-reg">' + esc(c.name) + ":</span> " + (Number(c.qty) || 0);
+            }));
+          field("Quantity").after(div);
+        }
+        if (positions.length) {
+          var pf = field("Print position"), rf = field("Printing in");
+          pf.classList.add("is-list");
+          rf.classList.add("is-list");
+          pf.querySelector(".rsm-value").outerHTML =
+            lines(positions.map(function (pos) { return esc(pos.name); }));
+          rf.querySelector(".rsm-value").outerHTML = positions.length > 1
+            ? lines(positions.map(printingLine))
+            : lines([esc(positions[0].printing || "Not chosen yet")]);
+        }
       });
       txt(".summary-block .s-value", product + " | " + color);
       if (posText) p.set("position", posText);
