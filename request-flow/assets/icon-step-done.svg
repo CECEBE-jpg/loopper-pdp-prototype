@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Text">
+<mask id="path-1-inside-1_0_4" fill="white">
+<path d="M0 13C0 5.8203 5.8203 0 13 0V0C20.1797 0 26 5.8203 26 13V13C26 20.1797 20.1797 26 13 26V26C5.8203 26 0 20.1797 0 13V13Z"/>
+</mask>
+<path d="M0 13C0 5.8203 5.8203 0 13 0V0C20.1797 0 26 5.8203 26 13V13C26 20.1797 20.1797 26 13 26V26C5.8203 26 0 20.1797 0 13V13Z" fill="#5DB12A"/>
+<path d="M0 13M26 13M26 13M0 13M13 0M26 13M13 26M0 13M13 26V24.4C6.70395 24.4 1.6 19.296 1.6 13H0H-1.6C-1.6 21.0634 4.93664 27.6 13 27.6V26ZM26 13H24.4C24.4 19.296 19.296 24.4 13 24.4V26V27.6C21.0634 27.6 27.6 21.0634 27.6 13H26ZM13 0V1.6C19.296 1.6 24.4 6.70395 24.4 13H26H27.6C27.6 4.93664 21.0634 -1.6 13 -1.6V0ZM13 0V-1.6C4.93664 -1.6 -1.6 4.93664 -1.6 13H0H1.6C1.6 6.70395 6.70395 1.6 13 1.6V0Z" fill="#5DB12A" mask="url(#path-1-inside-1_0_4)"/>
+<path id="Vector 154" d="M7 13.5L11 18L19 8" stroke-width="3" stroke-linecap="round" stroke="white"/>
+</g>
+</svg>

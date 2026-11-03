@@ -1,26 +1,31 @@
 /* ============================================================
    compact.html — management variant of the request form.
-   Same page as index.html with only two changes:
-   1. a smaller, more compact progress bar (one 52px row: circle + label
-      side by side, short connector lines) instead of the 102px card
+   Same page as index.html with only these changes:
+   1. a smaller progress bar, styled like the offer flow's stepper
+      (05 Offer flow, online-offer-v6 .stepper): one row of rounded step
+      boxes — done = light green with a check, current = green outline
+      (the offer flow uses cyan; kept green here), next = grey number
    2. the form scales to fit the window height (compact-fit.js), so the
       bottom of the form and Send request are visible above the fold
+   3. no padding around the form section
    ============================================================ */
 
-/* 1. compact progress bar */
+/* 1. progress bar like the offer flow stepper */
 .req-top {
-  height: 52px;
+  height: 53px;
 }
 .progress {
-  height: 52px;
-  padding: 0 24px;
-  align-items: center;
+  height: 53px;
+  padding: 0;
+  border: 0;
+  background: none;
+  display: block;
 }
 .steps {
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 53px;
   display: flex;
-  align-items: center;
+  gap: 8px;
 }
 .steps-track {
   display: none;
@@ -33,44 +38,74 @@
   left: auto;
   width: auto;
   transform: none;
+  flex: 1;
   flex-direction: row;
   align-items: center;
-  gap: 8px;
-  font-size: 13px;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 0.8px solid #909499;
+  border-radius: 10px;
+  background: #fff;
+  font-size: 14px;
+  line-height: 20.3px;
+  font-weight: 700;
+  color: #6c7783;
+  text-align: left;
   white-space: nowrap;
 }
-.step-circle {
-  width: 24px;
-  height: 24px;
-  border-radius: 12px;
-  font-size: 12px;
+/* done: light green, green check */
+.step.is-1 {
+  border-color: #e1e7ed;
+  background: #f0ffe6;
+  color: #4a5866;
 }
-.step.is-3 img {
-  position: static !important;
-  width: 24px;
-  height: 24px;
+.step.is-1 .step-circle {
+  width: 26px;
+  height: 26px;
+  border-radius: 13px;
+  background: url("assets/icon-step-done.svg") center / 26px 26px no-repeat;
+  font-size: 0;
 }
+/* current: green outline + filled green number (offer flow: cyan) */
+.step.is-2 {
+  border: 1.6px solid var(--green);
+  background: #eefaf1;
+  color: #1c2530;
+}
+.step.is-2 .step-circle {
+  width: 26px;
+  height: 26px;
+  border-radius: 13px;
+  background: var(--green);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+}
+/* next: grey outlined number */
+.step.is-3 img,
 .step.is-3 > span:first-of-type {
   display: none;
 }
-/* connector lines between the steps: done part green, rest grey */
-.step.is-2::before,
 .step.is-3::before {
-  content: "";
-  width: 96px;
-  height: 2px;
-  margin: 0 8px;
-  background: var(--card-line);
+  content: "3";
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border: 1.6px solid #c7d0d9;
+  border-radius: 13px;
+  box-sizing: border-box;
+  font-size: 13px;
+  font-weight: 800;
+  color: #7b8794;
 }
-.step.is-2::before {
-  background: var(--green);
-}
-/* back button stays centred on the (now 52px) bar */
+/* back button stays centred on the 53px bar */
 .back-btn {
-  top: 4px;
+  top: 4.5px;
 }
 
-/* no padding around the form section (was 27px top / 80px bottom) */
+/* 3. no padding around the form section (was 27px top / 80px bottom) */
 .req {
   padding: 0;
 }
