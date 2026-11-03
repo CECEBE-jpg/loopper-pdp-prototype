@@ -5253,3 +5253,35 @@ body.tlm-lock {
     transition-duration: 0s;
   }
 }
+
+/* Back button next to the progress card: same look as the PDP's product
+   photo arrows (../styles.css .gal-nav): 44px white circle, soft shadow,
+   the PDP arrow icon. Centred on the 102px progress card as before. */
+.back-btn {
+  left: -69px;
+  top: 29px;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+  filter: none;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.back-btn:hover {
+  background: #fff;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.24);
+}
+.back-btn:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+.back-btn img {
+  width: 9px;
+  height: 18px;
+  transform: scaleX(-1);
+  margin-right: 2px;
+}
