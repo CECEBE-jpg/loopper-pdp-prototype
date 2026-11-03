@@ -588,11 +588,15 @@
   // "Your request" card (mobile confirmation): closed <-> open
   (function () {
     var card = document.querySelector(".mty-req");
-    var btn = card.querySelector(".mty-req-btn");
+    // toggle sits under the content: "Show product details" opens the
+    // product details above it, "Hide product details" closes them again
+    var btn = card.querySelector(".yrq-toggle");
+    var label = btn.querySelector(".yrq-toggle-label");
     var more = card.querySelector(".yrq-collapse");
     function setOpen(open) {
       card.classList.toggle("is-open", open);
       btn.setAttribute("aria-expanded", String(open));
+      label.textContent = open ? "Hide product details" : "Show product details";
       more.inert = !open;
     }
     setOpen(false);

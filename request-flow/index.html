@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Arimo&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=13" />
+    <link rel="stylesheet" href="styles.css?v=14" />
     <link rel="stylesheet" href="nav.css?v=2" />
     <link rel="stylesheet" href="pdp-header.css?v=3" />
   </head>
@@ -2870,23 +2870,7 @@
             <!-- "request summary": Figma component set 1232:22830
                  closed 1232:22829 (contact details) / open 1232:22828 (+ product details) -->
             <div class="mty-req">
-              <button
-                class="mty-req-btn"
-                type="button"
-                aria-expanded="false"
-                aria-controls="yrq-products"
-              >
-                <span class="mty-req-head"
-                  >Your request<span
-                    class="m-chev yrq-chev"
-                    style="width: 17px; height: 9px"
-                    ><img
-                      src="assets/m-chevron-request.svg"
-                      width="20"
-                      height="12.6846"
-                      alt="" /></span
-                ></span>
-              </button>
+              <h2 class="mty-req-head">Your request</h2>
               <div class="mty-req-body">
                 <div class="m-hr">
                   <img
@@ -3017,6 +3001,22 @@
                   </div>
                 </div>
               </div>
+              <button
+                class="yrq-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="yrq-products"
+              >
+                <span class="yrq-toggle-label">Show product details</span
+                ><span class="chev" aria-hidden="true"
+                  ><span class="chev-node"
+                    ><img
+                      width="10"
+                      height="17"
+                      src="../assets/imgVector142.svg"
+                      alt="" /></span
+                ></span>
+              </button>
             </div>
 
             <div class="mty-survey">
@@ -4814,7 +4814,7 @@
         </div>
       </div>
     </div>
-    <script src="script.js?v=9"></script>
+    <script src="script.js?v=10"></script>
     <script src="pdp-header.js?v=2"></script>
   </body>
 </html>

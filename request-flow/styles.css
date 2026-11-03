@@ -5405,3 +5405,52 @@ body.tlm-lock {
   font-size: 14px;
   white-space: normal;
 }
+
+/* "Your request" (mobile thank-you): the toggle sits under the content
+   (UX: it opens the product details right above it, and closes them from
+   the bottom without scrolling back up). Header is a plain title now. */
+.mty-req h2.mty-req-head {
+  margin: 0;
+}
+.yrq-toggle {
+  align-self: center;
+  min-height: 44px;
+  margin: -14px 0 -14px; /* 44px tap area without adding height */
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1764a7;
+}
+.yrq-toggle .chev {
+  width: 13px;
+  height: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.yrq-toggle .chev-node {
+  width: 6px;
+  height: 13px;
+  position: relative;
+  flex: none;
+  transform: rotate(90deg);
+  transition: transform var(--yrq-dur) var(--yrq-ease);
+}
+.mty-req.is-open .yrq-toggle .chev-node {
+  transform: rotate(-90deg);
+}
+.yrq-toggle .chev-node img {
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  width: 9.63877px;
+  height: 17px;
+  max-width: none;
+}
+.yrq-toggle:focus:not(:focus-visible) {
+  outline: none;
+}
