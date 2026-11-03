@@ -79,6 +79,100 @@
         )
         .forEach(function (el) { el.src = src; });
     }
+
+    // Several colours and / or print positions (Figma 1899:11158, the
+    // multi-colour variant of Request summary 497:10999). The PDP sends
+    // cfg = {colors: [{name, slug, qty}], positions: [{name, printing}]}.
+    var cfg = {};
+    try { cfg = JSON.parse(p.get("cfg") || "{}"); } catch (e) { cfg = {}; }
+    var colors = cfg.colors || [];
+    var positions = cfg.positions || [];
+    var esc = function (s) {
+      return String(s).replace(/[&<>"]/g, function (c) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+      });
+    };
+    var photo = function (slug) { return "../assets/product/" + slug + ".jpg"; };
+    var printingLine = function (pos) {
+      return pos.printing
+        ? '<span class="s-reg">' + esc(pos.name) + ":</span> " + esc(pos.printing)
+        : esc(pos.name);
+    };
+    var lines = function (html) {
+      return '<div class="s-lines">' + html.map(function (h) {
+        return "<p>" + h + "</p>";
+      }).join("") + "</div>";
+    };
+    document.querySelectorAll(".summary-panel").forEach(function (panel) {
+      var specs = panel.querySelector(".summary-specs");
+      if (colors.length > 1) {
+        // one colour select per colour, stacked under one COLOR label
+        var first = panel.querySelector('.sdd[data-kind="color"]');
+        first.classList.add("is-multi");
+        var setColour = function (field, c) {
+          field.querySelector(".sdd-current").textContent = c.name;
+          field.querySelector(".s-select-val .s-swatch img").src = photo(c.slug);
+        };
+        setColour(first, colors[0]);
+        var after = first;
+        colors.slice(1).forEach(function (c) {
+          var extra = first.cloneNode(true);
+          extra.classList.remove("is-multi");
+          extra.classList.add("is-extra");
+          setColour(extra, c);
+          after.after(extra);
+          after = extra;
+        });
+        // COLOR DIVISION: pieces per colour
+        var division = document.createElement("div");
+        division.className = "s-static is-list";
+        division.innerHTML =
+          '<p class="s-label">Color division</p>' +
+          lines(colors.map(function (c) {
+            return '<span class="s-reg">' + esc(c.name) + ":</span> " + (Number(c.qty) || 0);
+          }));
+        // after the colour + quantity selects, before PRINT POSITION
+        var firstStatic = panel.querySelector(".s-static");
+        firstStatic.before(division);
+      }
+      if (positions.length > 1 || colors.length > 1) {
+        panel.querySelectorAll(".s-static:not(.is-list)").forEach(function (box) {
+          var label = box.querySelector(".s-label").textContent.trim();
+          if (!positions.length) return;
+          box.classList.add("is-list");
+          var value = box.querySelector("p:not(.s-label)");
+          var html =
+            label === "Print position"
+              ? lines(positions.map(function (pos) { return esc(pos.name); }))
+              : positions.length > 1
+                ? lines(positions.map(printingLine))
+                : lines([esc(positions[0].printing || "Not chosen yet")]);
+          value.outerHTML = html;
+        });
+      }
+    });
+    // phones + thank-you page: the same choices as one line per field
+    if (colors.length > 1) color = colors.map(function (c) { return c.name; }).join(", ");
+    var posText = positions.length > 1 && positions.map(function (x) { return x.name; }).join(", ");
+    var printText = positions.length > 1 && positions.map(function (x) {
+      return x.printing ? x.name + ": " + x.printing : x.name;
+    }).join(", ");
+    if (colors.length > 1 || positions.length > 1) {
+      document.querySelectorAll(".rsm-field").forEach(function (f) {
+        var label = f.querySelector(".rsm-label").textContent.trim();
+        var val = { "Color": color, "Print position": posText, "Printing in": printText }[label];
+        if (!val) return;
+        var target = f.querySelector(".rsm-select, .rsm-value");
+        var t = [...target.childNodes].find(function (n) {
+          return n.nodeType === 3 && n.textContent.trim();
+        });
+        if (t) t.textContent = val;
+      });
+      txt(".summary-block .s-value", product + " | " + color);
+      if (posText) p.set("position", posText);
+      if (printText) p.set("printing", printText);
+    }
+
     // Thank-you page "Your request": first product = the PDP configuration
     document
       .querySelectorAll(".ty-plist > .ty-product:first-child, .yrq-list > .yrq-product:first-child")

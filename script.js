@@ -1795,6 +1795,23 @@ document.querySelectorAll("[data-nav]").forEach((btn) => {
     add("printing", state.labels.printing);
     add("qty", state.quantity);
     add("img", document.querySelector('.thumb[data-view="colour"] img')?.getAttribute("src"));
+    // several colours (with pieces per colour) and / or positions (with
+    // colours per position): the request summary lists them (Figma 1899:11158)
+    const colors = state.multi.color
+      ? [...swatchGrid.querySelectorAll(".swatch.selected")].map((s) => ({
+          name: s.dataset.name,
+          slug: s.dataset.colour,
+          qty: perColor.get(s.dataset.name) || 0,
+        }))
+      : [];
+    const perPos = printingStep.classList.contains("is-per-position");
+    const positions = [...document.querySelectorAll('.step[data-step="position"] .opt-row.selected')].map(
+      (r) => ({
+        name: POSITION_SIZE[r.dataset.name] ? `${r.dataset.name} (${POSITION_SIZE[r.dataset.name]})` : r.dataset.name,
+        printing: (perPos ? perPosition.get(r.dataset.name) : state.labels.printing) || "",
+      })
+    );
+    if (colors.length > 1 || positions.length > 1) q.set("cfg", JSON.stringify({ colors, positions }));
     const s = q.toString();
     location.href = `request-flow/${s ? "?" + s : ""}#${btn.dataset.nav}`;
   });

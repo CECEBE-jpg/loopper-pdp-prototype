@@ -5285,3 +5285,40 @@ body.tlm-lock {
   transform: scaleX(-1);
   margin-right: 2px;
 }
+
+/* Request summary, several colours / print positions (Figma 1899:11158):
+   one colour select per colour under one COLOR label (5px apart), then
+   COLOR DIVISION, PRINT POSITION and PRINTING IN as lists of lines
+   (16px, label part Regular, value Bold). Single colour = 497:10999. */
+.s-field.is-multi,
+.s-field.is-extra {
+  height: auto;
+  justify-content: flex-start;
+}
+.s-field.is-multi {
+  gap: 10px;
+}
+.s-field.is-extra {
+  margin-top: -10px; /* summary-selects gap 15px → 5px between the selects */
+}
+.s-field.is-extra .s-label {
+  display: none;
+}
+.s-static.is-list {
+  height: auto;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.s-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.s-lines p {
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
+}
+.s-lines .s-reg {
+  font-weight: 400;
+}
