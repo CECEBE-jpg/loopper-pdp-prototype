@@ -1926,8 +1926,8 @@ body.pos-lightbox-open {
   height: 10px;
 }
 
-/* ===================== KIYOH + REVIEWS ===================== */
-.kiyoh-rating {
+/* ===================== REVIEWS (Trustpilot; Kiyoh only on the Dutch domain) ===================== */
+.review-rating {
   display: flex;
   align-items: center;
   font-size: 17.202px;
@@ -1940,14 +1940,14 @@ body.pos-lightbox-open {
 .star-half {
   color: var(--grey-text);
 }
-.kiyoh-label {
+.review-rating-label {
   margin-left: 6px;
 }
-.kiyoh-label b {
+.review-rating-label b {
   font-weight: 700;
   color: var(--ink);
 }
-.kiyoh-label .grey {
+.review-rating-label .grey {
   color: var(--grey-text);
 }
 
@@ -2972,7 +2972,7 @@ h3.pcard-title {
   .col2 > .pdp-section-heading {
     order: 6;
   }
-  .kiyoh-rating {
+  .review-rating {
     order: 7;
   }
   .review-cards {
@@ -3859,7 +3859,7 @@ h3.pcard-title {
   }
 
   /* ---------- customer reviews (798:7461) ---------- */
-  .kiyoh-rating {
+  .review-rating {
     justify-content: center;
     padding: 17px 16px 14px;
     background: #f8f8f8;
@@ -3869,10 +3869,10 @@ h3.pcard-title {
     font-size: 18px;
     letter-spacing: 0;
   }
-  .kiyoh-label {
+  .review-rating-label {
     margin-left: 6px;
   }
-  .kiyoh-label .grey {
+  .review-rating-label .grey {
     font-size: 12px;
   }
   .review-cards {
