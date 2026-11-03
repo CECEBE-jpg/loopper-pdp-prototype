@@ -5322,3 +5322,63 @@ body.tlm-lock {
 .s-lines .s-reg {
   font-weight: 400;
 }
+
+/* Summary dropdown chevrons = the PDP configurator chevron (../styles.css
+   .chev): grey 4px round-cap arrow, pointing down when closed and turning
+   to point up when the dropdown opens. */
+.s-select .chev {
+  width: 13px;
+  height: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.s-select .chev-node {
+  width: 6px;
+  height: 13px;
+  position: relative;
+  flex: none;
+  transform: rotate(90deg);
+  transition: transform 0.3s ease-out;
+}
+.sdd.is-open .s-select .chev-node {
+  transform: rotate(-90deg);
+}
+.s-select .chev-node img {
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  width: 9.63877px;
+  height: 17px;
+  max-width: none;
+}
+/* the open panel's chevron (top right): same PDP chevron, pointing up */
+.sdd-chev .chev {
+  width: 13px;
+  height: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sdd-chev .chev-node {
+  width: 6px;
+  height: 13px;
+  position: relative;
+  transform: rotate(90deg); /* .sdd-chev itself is turned 180deg */
+}
+.sdd-chev .chev-node img {
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  width: 9.63877px;
+  height: 17px;
+  max-width: none;
+}
+.sdd-chev:has(.chev) {
+  width: 13px;
+  height: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
