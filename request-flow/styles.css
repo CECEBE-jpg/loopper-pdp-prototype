@@ -5633,7 +5633,7 @@ body.tlm-lock {
   font-size: 13px;
   line-height: 1.35;
   color: #000;
-  text-align: left;
+  text-align: center;
 }
 .sdd-moq.is-error {
   font-style: normal;
