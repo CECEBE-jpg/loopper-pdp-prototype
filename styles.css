@@ -5477,3 +5477,98 @@ body.gal-lightbox-open {
   inherits: false;
   initial-value: 0px;
 }
+
+/* ============================================================
+   CTA sizing (user, 2026-11-04): every CTA label is at most 18px, every
+   CTA icon at most 25px tall (width follows the artwork's own proportions,
+   never stretched), and each button's content sits as one group centred
+   horizontally and vertically. Applies to the orange Free design / Free
+   quote pair, Add to cart, the green outline pair and the phone buy bar.
+   (Tablet 768–1023 keeps its smaller 16 / 14px labels.)
+   ============================================================ */
+@media (width >= 768px) {
+  /* the Figma layout positioned each part absolutely from the centre;
+     one centred flex row instead, at every desktop width */
+  .cta-top .pdp-btn,
+  .cta-bottom .pdp-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 20px;
+  }
+  .cta-top .pdp-btn > *,
+  .cta-bottom .pdp-btn > * {
+    position: relative;
+    top: auto;
+    left: auto !important;
+    transform: none;
+    flex-shrink: 0;
+    transition:
+      transform var(--motion),
+      width var(--motion),
+      height var(--motion);
+  }
+  .cta-top .pdp-btn .pb-label,
+  .cta-bottom .pdp-btn .pb-label,
+  .cta-top .pdp-btn:hover .pb-label,
+  .cta-bottom .pdp-btn:hover .pb-label {
+    transform: none;
+    line-height: 1;
+  }
+  .cta-top .pdp-btn:hover > *,
+  .cta-bottom .pdp-btn:hover > * {
+    transform: translateX(3px);
+  }
+  /* icons: 25px tall, width from the artwork ratio
+     (design 31.28 x 31, quote 36.2 x 37 / hover 30.33 x 31) */
+  .pdp-btn--design .pb-icon,
+  .pdp-btn--design:hover .pb-icon {
+    width: 25.22px;
+    height: 25px;
+  }
+  .pdp-btn--quote .pb-icon,
+  .pdp-btn--quote:hover .pb-icon {
+    width: 24.46px;
+    height: 25px;
+  }
+}
+@media (width >= 1024px) {
+  .cta-top .pdp-btn .pb-label,
+  .cta-bottom .pdp-btn .pb-label,
+  .cta-top .pdp-btn:hover .pb-label,
+  .cta-bottom .pdp-btn:hover .pb-label {
+    font-size: 18px;
+  }
+}
+/* Add to cart: 18px label, cart icon 25px tall (33 x 26 artwork -> 31.7 x 25) */
+.add-to-cart {
+  font-size: 18px;
+  padding: 0 20px;
+  justify-content: center;
+  align-items: center;
+}
+.add-to-cart .cart-icons {
+  align-items: center;
+}
+.add-to-cart .cart-icon {
+  width: auto;
+  height: 25px;
+  aspect-ratio: 33 / 26;
+}
+/* phone buy bar */
+@media (width < 768px) {
+  .m-btn-quote {
+    font-size: 18px;
+  }
+  .m-cart-icon {
+    width: 32.1px;
+    height: 25px;
+  }
+  .m-cart-icon img {
+    left: 0;
+    top: 0;
+    width: 32.1px;
+    height: 25px;
+  }
+}
