@@ -678,9 +678,43 @@
       });
     });
     var custom = dd.querySelector(".sdd-custom input");
+    // minimum order quantity, same rule + wording as the PDP's step 4:
+    // 25 pieces, or the print option's minimum (3 colours 50, 4 colours
+    // 100 — PDP placeholders) when the chosen printing has one
+    var moqNote = dd.querySelector(".sdd-moq");
+    var printing = new URLSearchParams(location.search).get("printing") || "";
+    var moqFor = /4 colou?rs/i.test(printing) ? "4 colours"
+      : /3 colou?rs/i.test(printing) ? "3 colours" : "";
+    var moq = moqFor === "4 colours" ? 100 : moqFor === "3 colours" ? 50 : 25;
+    var moqText = moqFor
+      ? "Minimum order quantity is at least " + moq + " pieces (" + moqFor + " printing)"
+      : "Minimum order quantity is at least " + moq + " pieces";
+    function setMoqError(on) {
+      if (!moqNote) return;
+      moqNote.classList.toggle("is-error", on);
+      custom.closest(".sdd-custom").classList.toggle("is-invalid", on);
+      custom.setAttribute("aria-invalid", String(on));
+      moqNote.textContent = on
+        ? moqFor
+          ? moqFor + " printing needs at least " + moq + " pieces — choose a larger quantity"
+          : "Please enter at least " + moq + " pieces — the minimum order quantity"
+        : moqText;
+    }
+    if (custom) {
+      custom.min = String(moq);
+      setMoqError(false);
+      custom.addEventListener("input", function () {
+        var n = parseInt(custom.value, 10) || 0;
+        if (n === 0 || n >= moq) setMoqError(false);
+      });
+    }
     if (custom)
       custom.addEventListener("change", function () {
         var n = parseInt(custom.value, 10);
+        if (n > 0 && n < moq) {
+          setMoqError(true);
+          return;
+        }
         if (n > 0) {
           dd.querySelectorAll("[role=option]").forEach(function (o) {
             o.classList.remove("is-selected");

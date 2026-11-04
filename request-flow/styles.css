@@ -5621,3 +5621,39 @@ body.tlm-lock {
   font-weight: 700;
   color: #000;
 }
+
+/* Custom quantity minimum (same wording + error as the PDP step 4 note):
+   italic note under the field; under the minimum it turns into a red
+   ⚠ message and the input gets a red border. */
+.sdd-moq {
+  margin: 4px 0 0;
+  padding: 0 6px;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.35;
+  color: #000;
+  text-align: left;
+}
+.sdd-moq.is-error {
+  font-style: normal;
+  font-weight: 600;
+  color: #d0191c;
+}
+.sdd-moq.is-error::before {
+  content: "";
+  display: inline-block;
+  width: 1.1em;
+  height: 1.1em;
+  margin-right: 0.35em;
+  vertical-align: -0.2em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23d0191c' d='M10.3 3.2a2 2 0 0 1 3.4 0l8.5 14.7A2 2 0 0 1 20.5 21h-17a2 2 0 0 1-1.7-3.1z'/%3E%3Cpath fill='%23fff' d='M11 8h2v6h-2zm0 8h2v2h-2z'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+.sdd-custom.is-invalid input,
+.sdd-custom.is-invalid input:focus {
+  background: #fdeced;
+  border: 2px solid #d0191c;
+  color: #d0191c;
+  outline: none;
+}
