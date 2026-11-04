@@ -4,10 +4,10 @@
    fold. The form section (.req) is scaled down just enough that the
    bottom of the form card, plus a 16px margin, fits in the window.
    Never enlarged, never below 70% so text stays readable.
-   The thank-you page is NOT scaled: it shows at 100% as in Figma
-   1232:21317. */
+   The thank-you page is scaled so the same content as in Figma
+   1232:21317 is above the fold. */
 (function () {
-  var MIN = 0.7, MARGIN = 16;
+  var MIN = 0.7, MARGIN = 16, TY_ABOVE_FOLD = 940;
   function fit() {
     document.querySelectorAll(".req").forEach(function (req) {
       req.style.zoom = "";
@@ -18,6 +18,17 @@
       var bottom = form.getBoundingClientRect().bottom + scrollY + MARGIN;
       var z = Math.min(1, (innerHeight - top) / (bottom - top));
       req.style.zoom = String(Math.max(MIN, Math.round(z * 1000) / 1000));
+    });
+    // thank-you page: Figma 1232:21317 shows 940px of content between the
+    // header and the fold (grey line) — intro, "Your request" with both
+    // products and the full "We'd like to know you better" card. Scale so
+    // the same content is above the fold in this window.
+    document.querySelectorAll(".ty").forEach(function (ty) {
+      ty.style.zoom = "";
+      if (innerWidth < 768 || !ty.offsetParent) return;
+      var top = ty.getBoundingClientRect().top + scrollY;
+      var z = Math.min(1, (innerHeight - top) / TY_ABOVE_FOLD);
+      ty.style.zoom = String(Math.max(MIN, Math.round(z * 1000) / 1000));
     });
   }
   window.addEventListener("resize", fit);
