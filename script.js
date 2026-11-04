@@ -166,9 +166,13 @@ function setQuantityValue(qty) {
    a scroll-margin-top for the header. The header is held compact during the
    scroll, since scrolling up would otherwise expand it over the steps. */
 const STEP_MOTION_MS = 320;
+const AUTO_SCROLL = false; // true brings back the scroll after each step
 let revealTimer;
 function revealStep(step, finished) {
   clearTimeout(revealTimer);
+  // auto-scroll removed (user, 2026-11-04): the next step still opens, the
+  // page no longer moves
+  if (!AUTO_SCROLL) return;
   revealTimer = setTimeout(() => {
     if (step.dataset.open !== "true") return;
     const hd = document.getElementById("hd");
@@ -213,6 +217,7 @@ function advanceFrom(stepName) {
    expand on scrolling up). */
 function showConfigSummary() {
   clearTimeout(revealTimer);
+  if (!AUTO_SCROLL) return; // auto-scroll removed (user, 2026-11-04)
   revealTimer = setTimeout(() => {
     const hd = document.getElementById("hd");
     const compactH = hd.querySelector(".bar").getBoundingClientRect().height;
