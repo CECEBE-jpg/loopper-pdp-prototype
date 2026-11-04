@@ -225,7 +225,14 @@
             "Print position": p.get("position") || "Not chosen yet",
             "Printing in": p.get("printing") || "Not chosen yet",
             "Productnumber": "6383162" }[row.querySelector("dt").textContent.trim()];
-          if (val) row.querySelector("dd").textContent = val;
+          if (!val) return;
+          // several positions / colours: one per line ("a, b" -> a <br> b)
+          var dd = row.querySelector("dd");
+          dd.textContent = "";
+          String(val).split(", ").forEach(function (part, i) {
+            if (i) dd.appendChild(document.createElement("br"));
+            dd.appendChild(document.createTextNode(part));
+          });
         });
       });
   })();

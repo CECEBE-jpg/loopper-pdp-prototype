@@ -5505,3 +5505,25 @@ body.tlm-lock {
 .mty-req .yrq-toggle {
   color: #1e7e34;
 }
+
+/* Thank-you "Product details": long values (several positions / colours)
+   no longer run past the card. A value that doesn't fit next to its label
+   wraps onto its own row underneath, one position per line. */
+.ty-pd {
+  height: auto;
+  min-height: 124px;
+  white-space: normal;
+}
+.ty-pd > div {
+  flex-wrap: wrap;
+  column-gap: 12px;
+}
+.ty-pd dt {
+  flex: none;
+}
+.ty-pd dd {
+  flex: 0 1 auto;
+  max-width: 100%;
+  margin-left: auto;
+  text-align: right;
+}
