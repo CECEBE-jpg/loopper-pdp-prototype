@@ -56,14 +56,15 @@
 /* done: light green, green check */
 .step.is-1 {
   border-color: #e1e7ed;
-  background: #f0ffe6;
+  background: #eefaf1; /* same green tint as the current step */
   color: #4a5866;
 }
 .step.is-1 .step-circle {
   width: 26px;
   height: 26px;
   border-radius: 13px;
-  background: url("assets/icon-step-done.svg") center / 26px 26px no-repeat;
+  background: url("assets/icon-step-done-green.svg") center / 26px 26px
+    no-repeat;
   font-size: 0;
 }
 /* current: green outline + filled green number (offer flow: cyan) */
