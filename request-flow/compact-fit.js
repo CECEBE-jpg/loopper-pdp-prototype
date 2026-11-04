@@ -19,7 +19,7 @@
     });
   }
   window.addEventListener("resize", fit);
-  window.addEventListener("hashchange", function () { requestAnimationFrame(fit); });
+  window.addEventListener("hashchange", function () { setTimeout(fit, 0); });
   window.addEventListener("load", fit);
   if (document.fonts) document.fonts.ready.then(fit);
   fit();

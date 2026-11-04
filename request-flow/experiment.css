@@ -1,121 +1,40 @@
 /* ============================================================
-   experiment.html — sandbox copy of compact.html (management version).
-   Edit freely: index.html (the prototype the PDP links to) and
-   compact.html are not affected. Loaded after compact.css.
-   Changes on top of compact.html:
-   1. wider content column (--exp-width), so the form gets more room
-   (no fit-to-window scaling here: compact-fit.js is not loaded, the
-   form shows at 100%)
-   2. form on the left, request summary on the right
-   Tweak the two variables below to experiment.
+   experiment.html — sandbox for the request form.
+   index.html (the prototype the PDP links to) and compact.html are not
+   affected. Loaded after styles.css, pdp-header.css and compact.css.
+
+   Implements Figma 2037:9861 "Request page for Free Design":
+   - the 1096px layout with the form on the LEFT and the request summary
+     on the RIGHT (45px apart)
+   - summary photo 124px, no extra padding above "Request summary"
+   - 27px space between the header and the title (Figma pt 195 under a
+     168px header)
+   with two deliberate differences, asked for by the user:
+   - the progress bar is the offer-flow style from compact.css (row of
+     step boxes, current step green), not the Figma progress card
+   - compact-fit.js scales the form section down so the whole form and
+     summary fit in the window at 100% browser zoom
+   (The header stays the PDP header; the Figma frame shows the old one.)
    ============================================================ */
-:root {
-  --exp-width: 1300px; /* was 1096px */
-  --exp-gap: 45px; /* space between form and summary */
-}
 
 @media (width >= 768px) {
-  /* 1. wider: title, progress bar and the form + summary row */
-  .req-title,
-  .req-body {
-    width: var(--exp-width);
-  }
-  .progress {
-    width: 100%;
-  }
-  .send-btn {
-    width: 100%;
+  /* Figma: 27px above the title, 80px below the form */
+  .req {
+    padding: 27px 0 80px;
   }
 
-  /* 2. form left, summary right */
+  /* form left, summary right */
   .req-grid {
     flex-direction: row-reverse;
-    gap: var(--exp-gap);
-  }
-}
-
-/* 3. fit form + summary above the fold at 100% (no scaling) on a 1080p
-   screen (~950px window). Layout only, all content stays:
-   - title and progress bar share one row
-   - in the wider form, "My logo" and "When do you need…" sit side by side
-   - tighter vertical gaps; smaller summary photo (243 → 110px) */
-@media (width >= 768px) {
-  :root {
-    --exp-title-w: 330px; /* room for "Get your free Design / Quote" */
-  }
-  .req-body {
-    margin-top: -63px; /* pull the progress bar up next to the title */
-  }
-  .req-top {
-    margin-left: var(--exp-title-w);
-  }
-  .back-btn {
-    left: calc(-69px - var(--exp-title-w)); /* stays left of the title */
-  }
-  .req-title {
-    position: relative;
-    z-index: 1;
-    width: var(--exp-width);
-  }
-  .req-body {
-    gap: 20px;
+    gap: 45px;
   }
 
-  /* form */
-  .form-card {
-    padding: 20px 24px;
-    gap: 20px;
-  }
-  .f-extra {
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 28px;
-  }
-  .f-extra > * {
-    flex: 1 1 0;
-    min-width: 0;
-  }
-  .f-when-row {
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .f-when-right {
-    width: 100%;
-  }
-  .f-details {
-    min-height: 0;
-    gap: 14px;
-  }
-  .f-textarea {
-    height: 52px;
-  }
-
-  /* summary */
-  .summary {
-    gap: 12px;
-  }
-  .summary-panel {
-    gap: 14px;
+  /* summary: photo 124px (Figma 2037:10293), title without top padding */
+  .summary-img {
+    width: 124px;
+    height: 124px;
   }
   .summary-title {
     padding-top: 0;
-  }
-  .summary-img {
-    width: 110px;
-    height: 110px;
-  }
-  .summary-main {
-    gap: 12px;
-  }
-  .summary-specs {
-    gap: 14px;
-  }
-  .summary-selects {
-    gap: 10px;
-  }
-}
-@media (width >= 768px) {
-  .req {
-    padding-top: 16px; /* a little air under the header */
   }
 }
