@@ -632,7 +632,17 @@
     var btn = dd.querySelector(".s-select");
     var summary = dd.closest(".summary");
     var current = dd.querySelector(".sdd-current");
+    // open panel header like the confirmation survey dropdown (.mdd):
+    // current value + the up chevron, a divider underneath
+    var head = document.createElement("div");
+    head.className = "sdd-head";
+    var headVal = document.createElement("span");
+    headVal.className = "sdd-head-val";
+    var chev = dd.querySelector(".sdd-chev");
+    chev.before(head);
+    head.append(headVal, chev);
     function setOpen(open) {
+      headVal.textContent = current.textContent;
       dd.classList.toggle("is-open", open);
       btn.setAttribute("aria-expanded", String(open));
       summary.classList.toggle(
@@ -648,7 +658,7 @@
       });
       setOpen(open);
     });
-    dd.querySelector(".sdd-chev").addEventListener("click", function () {
+    head.addEventListener("click", function () {
       setOpen(false);
     });
     dd.querySelectorAll("[role=option]").forEach(function (opt) {

@@ -5527,3 +5527,97 @@ body.tlm-lock {
   margin-left: auto;
   text-align: right;
 }
+
+/* Request summary dropdowns, styled like the confirmation page's survey
+   dropdowns (.mdd, Figma "Form flow" 1357:6157): the open list covers the
+   select at the same width, 10px corners, a header with the current value
+   and the up chevron above a divider, then 33px bold rows that turn cyan
+   with white text on hover and when picked. */
+.sdd-panel,
+.sdd-panel.is-color,
+.sdd-panel.is-qty {
+  top: calc(100% - 51px); /* exactly over the 51px select, below the label */
+  left: 0;
+  right: 0;
+  width: auto;
+  padding: 0 11px 12px;
+  align-items: stretch;
+  gap: 0;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+.sdd-head {
+  height: 49px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--field-line);
+  font-size: 16px;
+  font-weight: 800;
+  color: #333;
+  cursor: pointer;
+}
+.sdd-head-val {
+  flex: 1 0 0;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sdd-head .sdd-chev {
+  flex: none;
+  cursor: pointer;
+}
+.sdd-list {
+  margin-top: 10px;
+  gap: 6px;
+}
+.sdd-color,
+.sdd-qty,
+.sdd-color.is-selected,
+.sdd-qty.is-selected {
+  height: 33px;
+  padding: 0 6px;
+  border: 0;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #000;
+  transition:
+    background-color 300ms ease-out,
+    color 300ms ease-out;
+}
+.sdd-color {
+  gap: 10px;
+}
+.sdd-color .sdd-swatch {
+  width: 25px;
+  height: 25px;
+}
+.sdd-color-name {
+  width: auto;
+  font-size: 15px;
+  line-height: normal;
+  color: inherit;
+}
+.sdd-color:hover,
+.sdd-qty:hover,
+.sdd-color:focus-visible,
+.sdd-qty:focus-visible,
+.sdd-color.is-selected,
+.sdd-qty.is-selected {
+  background: var(--cyan);
+  color: #fff;
+}
+.sdd-qty .sdd-qty-n,
+.sdd-qty .sdd-pp {
+  color: inherit;
+}
+.sdd-custom {
+  margin-top: 6px;
+  padding: 0 6px;
+  border-bottom: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #000;
+}
