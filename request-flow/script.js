@@ -986,3 +986,16 @@
     });
   });
 })();
+
+// "Go to my account" (confirmation page, desktop + phone) opens the client
+// account prototype v1 from the offer flow project (05 Offer flow)
+(function () {
+  var ACCOUNT_URL =
+    "https://cecebe-jpg.github.io/Loopper-offer-flow/frontend/prototype/account-v1.html";
+  document.querySelectorAll(".acta").forEach(function (btn) {
+    if (!/Go to my account/.test(btn.textContent)) return;
+    btn.addEventListener("click", function () {
+      location.href = ACCOUNT_URL;
+    });
+  });
+})();
