@@ -18,9 +18,9 @@
    ============================================================ */
 
 @media (width >= 768px) {
-  /* Figma: 27px above the title, 80px below the form */
+  /* no space above the title (Figma had 27px), 80px below the form */
   .req {
-    padding: 27px 0 80px;
+    padding: 0 0 80px;
   }
 
   /* form left, summary right */
