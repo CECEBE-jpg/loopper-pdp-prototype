@@ -194,47 +194,126 @@
 }
 
 /* ============================================================
-   Confirmation page (desktop) at the PDP's scale too: 100%, no
-   shrinking (compact-fit.js skips .ty here), the same fluid width as
-   the PDP content, and a tighter layout so the intro, the top of
-   "Your request" and the whole "We'd like to know you better" card
-   stay above the fold (the content Figma 1232:21317 shows above it).
+   Confirmation page (desktop): Figma 1232:21317, drawn for a
+   1536 x 820 laptop browser window (1080p at 125%). Shown at 100%
+   (compact-fit.js does not scale it here). Content column 1162px,
+   centred; "Your request" and the survey card side by side as in the
+   design; "Comparable products" (the PDP section, comparable.css)
+   replaces the old reviews image.
    ============================================================ */
 @media (width >= 768px) {
   .ty {
-    padding: 16px 0 25px;
-    gap: 20px;
+    padding: 27px 0 40px; /* Figma: content starts 27px under the header */
+    gap: 25px;
   }
   .ty-intro,
   .ty-row,
-  .ty-help,
-  .ty-reviews {
-    width: min(1461px, 100% - 2 * var(--rf-gutter));
+  .ty-help {
+    width: min(1162px, 100% - 2 * var(--rf-gutter));
   }
+
+  /* ThankYouIntro 1232:21319: 29 / 60 / 29 / 64, 51px check, 20px title */
   .ty-intro {
-    padding: 18px 48px;
+    padding: 29px 60px 29px 64px;
+    border-radius: 10px;
   }
   .ty-intro-left {
     width: auto;
+    gap: 26px;
   }
+  /* the 71px check circle scaled as a whole to Figma's 51px (its tick
+     artwork bleeds out of its box, so it is not resized on its own) */
+  .ty-check {
+    zoom: 0.7183;
+  }
+  .ty-intro-text {
+    width: auto;
+    flex: 1 1 auto;
+    gap: 4px;
+  }
+  .ty-intro-text h1 {
+    font-size: 20px;
+    font-weight: 800;
+    color: #000;
+  }
+  .ty-intro-text p {
+    font-size: 15px;
+  }
+  .ty-intro .acta {
+    width: 198px;
+    height: 55.5px;
+    font-size: 16.13px;
+  }
+
+  /* row: "Your request" 564px | survey fills the rest, 25px apart */
   .ty-row {
-    gap: 32px;
+    gap: 25px;
   }
-  .ty-card,
+  .ty-card {
+    flex: 0 0 564px;
+    width: 564px;
+    padding: 22px 30px;
+    gap: 15px;
+  }
+  .ty-card h2 {
+    font-size: 20px;
+  }
+  .ty-card h3 {
+    font-size: 18px;
+  }
+  /* Product details 1232:21347: 10px under the heading and between products */
+  .ty-products,
+  .ty-plist {
+    gap: 10px;
+  }
+  .ty-product-card > img {
+    width: 120px;
+    height: 120px;
+    margin: 0 14px;
+  }
+  .ty-btns .pill {
+    width: 201px;
+    height: 56.4px;
+    font-size: 16.37px;
+  }
+
+  /* Form flow 1232:21400: 22 / 30 padding, 15px gaps, 42px dropdowns */
   .ty-survey {
     flex: 1 1 0;
     min-width: 0;
     width: auto;
-  }
-  .ty-survey {
     height: auto;
-    padding: 28px 32px;
-    gap: 20px;
+    padding: 22px 30px;
+    gap: 15px;
+  }
+  .ty-survey h2 {
+    font-size: 20px;
+  }
+  .ty-dd {
+    height: 42px;
+  }
+  .ty-dd .mdd-head {
+    height: 40px;
   }
   .ty-alt {
-    padding-bottom: 0;
+    gap: 15px;
+    padding-bottom: 20px;
+  }
+  .ty-alt h3 {
+    font-size: 18px;
   }
   .ty-checks {
-    width: 100%;
+    width: min(481px, 100%);
+  }
+
+  /* Contact section 1232:21401 */
+  .ty-help {
+    height: 333px;
+  }
+
+  /* Comparable products 2046:10843: 1470px container, 82px side padding */
+  .ty .comparable {
+    width: min(1470px, 100%);
+    padding-bottom: 40px;
   }
 }

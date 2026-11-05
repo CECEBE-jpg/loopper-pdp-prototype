@@ -1,0 +1,312 @@
+/* Comparable products on the confirmation page (Figma 1232:21317 /
+ 2046:10843): copied from the PDP (../styles.css COMPARABLE PRODUCTS,
+ Figma 531:13024) — keep in sync. */
+.ty .comparable { --motion: 0.3s ease-out; }
+/* ===================== COMPARABLE PRODUCTS ===================== */
+/* Container 531:12868 (px-82) > 531:13024 (pt-50, gap-20): the section is
+   1426 wide inside the 1590 column, not full width. */
+.comparable {
+  width: 100%;
+  padding: 50px 82px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.comparable h2 {
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 30px;
+  color: var(--ink);
+  text-align: center;
+}
+.comparable-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+}
+/* Rectangle 531:13035 — white fade over the cut-off card. Figma pins it to the
+   track (right -8, bottom 0.8); it lives on the row instead so it stays put
+   while the track scrolls underneath. Track right edge = row right - arrow 14
+   - gap 14, so right -8 on the track is right 20 here. */
+.comparable-row::after {
+  content: "";
+  position: absolute;
+  right: 20px;
+  bottom: 0.8px;
+  width: 249px;
+  height: 451px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), #fff 80.052%);
+  pointer-events: none;
+  transition: opacity var(--motion);
+}
+/* scrolled to the last card: nothing is cut off any more */
+.comparable-row.at-end::after {
+  opacity: 0;
+}
+.card-track {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  position: relative;
+  scroll-behavior: smooth;
+  /* Figma shows no scrollbar (and it added ~15px under the cards); the
+     arrows are the affordance instead */
+  scrollbar-width: none;
+  /* every swipe, flick and key press comes to rest on a tile edge */
+  scroll-snap-type: x mandatory;
+  /* a sideways swipe past either end must not trigger browser back/forward */
+  overscroll-behavior-x: contain;
+}
+.card-track::-webkit-scrollbar {
+  display: none;
+}
+/* each tile sits in a slide wrapper so the slider can snap to and label it
+   without touching the tile itself */
+.card-track > .slide {
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+.card-track:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 4px;
+}
+/* mouse drag (desktop only; touch and trackpads scroll natively) */
+.card-track.is-draggable {
+  cursor: grab;
+}
+.card-track.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+  scroll-behavior: auto;
+}
+/* snapping is paused while dragging and while the release glides to a tile,
+   otherwise it would yank the track to the nearest edge mid-gesture */
+.card-track.is-dragging,
+.card-track.is-settling {
+  scroll-snap-type: none;
+}
+
+.card-arrow {
+  width: 14px;
+  height: 52px;
+  flex-shrink: 0;
+  display: block;
+  position: relative;
+  border-radius: 4px;
+  transition:
+    opacity var(--motion),
+    visibility 0s;
+}
+.card-arrow img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: filter var(--motion);
+}
+.card-arrow:hover img {
+  filter: brightness(0.6);
+}
+.card-arrow:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 4px;
+}
+/* The drawn chevron is 14px wide; the hit area is widened to 44px outward,
+   away from the tiles, so it's easy to hit without covering a tile. */
+.card-arrow::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+.card-arrow--next::before {
+  left: -4px;
+  right: -26px;
+}
+.card-arrow--prev::before {
+  left: -26px;
+  right: -4px;
+}
+/* no control where there's nowhere to go; it fades out, then leaves the
+   tab order and hit-testing once the fade has finished */
+.card-arrow:disabled {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--motion),
+    visibility 0s 0.3s;
+}
+/* prev mirrors next into the left gutter: track left - gap 14 - arrow 14 */
+.card-arrow--prev {
+  position: absolute;
+  left: -28px;
+  top: 50%;
+  margin-top: -26px;
+}
+.card-arrow--prev img {
+  transform: scaleX(-1);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-track {
+    scroll-behavior: auto;
+  }
+}
+
+.pcard {
+  width: 270px; /* user (design: 340) */
+  height: 451.404px;
+  flex-shrink: 0;
+  position: relative;
+  background: #fff;
+  border: 1.137px solid #e8edf1;
+  border-radius: 6.823px;
+  transition:
+    box-shadow var(--motion),
+    transform var(--motion);
+}
+.pcard:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+.pcard-img {
+  position: absolute;
+  left: 15.92px;
+  right: 16.3px;
+  top: 15.92px;
+  height: 172.843px;
+  background: #f0f2f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c2ccd3;
+  font-size: 12.508px;
+}
+/* four 11.371px #8a98a6 squares down the image's right edge (228:4853…4859):
+   Containers at top 6.51 + pt 1.137, stepping 19.33 */
+.pcard-thumbs {
+  position: absolute;
+  right: 8.16px;
+  top: 7.647px;
+  display: flex;
+  flex-direction: column;
+  gap: 7.959px;
+}
+.pcard-thumbs i {
+  display: block;
+  width: 11.371px;
+  height: 11.371px;
+  background: #8a98a6;
+}
+.pcard-pill {
+  position: absolute;
+  left: 7.96px;
+  top: 7.96px;
+  background: #fff;
+  border-radius: 4px;
+  padding: 3.411px 10.234px;
+  font-weight: 600;
+  font-size: 12.51px;
+  color: #000;
+}
+.pcard-title {
+  position: absolute;
+  left: 15.92px;
+  right: 16.3px;
+  top: 202.41px;
+  font-weight: 700;
+  font-size: 14.78px;
+  line-height: 20.696px;
+  color: var(--ink);
+  /* the 270px card fits two lines above the meta row; longer names end in … */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+.pcard-meta {
+  position: absolute;
+  left: 15.92px;
+  right: 16.3px;
+  top: 254.45px;
+  font-size: 13.65px;
+  line-height: 25.926px;
+  color: var(--ink);
+}
+.pcard-price {
+  position: absolute;
+  left: 15.92px;
+  right: 16.3px;
+  top: 316.07px;
+  font-weight: 800;
+  font-size: 17.06px;
+  color: var(--ink);
+}
+.pcard-allin {
+  position: absolute;
+  left: 15.92px;
+  right: 16.3px;
+  top: 338.82px;
+  font-size: 12.51px;
+  color: var(--grey-text);
+}
+.pcard-btn {
+  position: absolute;
+  left: 15.92px;
+  right: 16.3px;
+  top: 367.25px;
+  background: #064453;
+  border-radius: 5.686px;
+  padding: 11.371px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+  font-size: 15.124px;
+  color: #fff;
+  transition: filter var(--motion);
+}
+.pcard-btn:hover {
+  filter: brightness(1.25);
+}
+.pcard-delivery {
+  position: absolute;
+  left: 15.92px;
+  right: 16.3px;
+  top: 416.14px;
+  font-size: 12.51px;
+  color: var(--grey-text);
+h3.pcard-title {
+  margin: 0;
+}
+.pcard-title a {
+  color: inherit;
+  text-decoration: none;
+}
+.pcard-title a:hover {
+  text-decoration: underline;
+}
+.card-arrow::after {
+  content: "";
+  position: absolute;
+  inset: 0 -15px;
+}
