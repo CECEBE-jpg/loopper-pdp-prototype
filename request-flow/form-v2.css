@@ -1,0 +1,151 @@
+/* ============================================================
+   form-v2.html only: request form fields styled like the Monday Merch
+   checkout reference (screen recording 2026-11-05), "fields only":
+   - floating labels: the label sits inside the field like a placeholder
+     and shrinks to the top-left when the field is focused or filled; it is
+     the real <label>, so it never disappears (unlike a placeholder)
+   - 50px fields, 10px corners, dark focus border; the "e.g." example
+     only shows once the field is focused
+   - salutation: its label inside the box too, so it lines up with the
+     name fields
+   Layout (label column), colours and the green button stay as in the
+   main form. Borders keep #8f8f8f (3:1, form-a11y.css) rather than the
+   reference's lighter grey.
+   ============================================================ */
+@media (min-width: 768px) {
+  :root {
+    --fv2-h: 50px;
+    --fv2-radius: 10px;
+    --fv2-ink: #1c1c1e;
+    --fv2-label: #5f6368; /* 6.0:1 on white */
+  }
+
+  /* ---------- text fields with a floating label ---------- */
+  .req .f-field:has(> .f-input),
+  .req .f-comments:has(> .f-textarea) {
+    position: relative;
+    gap: 0;
+  }
+  .req .f-field:has(> .f-input) > .f-label,
+  .req .f-comments:has(> .f-textarea) > .f-label {
+    position: absolute;
+    left: 14px;
+    top: 15px;
+    z-index: 1;
+    max-width: calc(100% - 28px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: var(--fv2-label);
+    pointer-events: none;
+    transform-origin: left top;
+    transition:
+      top 0.15s ease,
+      font-size 0.15s ease,
+      color 0.15s ease;
+  }
+  /* focused or filled: the label moves up and gets small */
+  .req .f-field:has(> .f-input:focus) > .f-label,
+  .req .f-field:has(> .f-input:not(:placeholder-shown)) > .f-label,
+  .req .f-comments:has(> .f-textarea:focus) > .f-label,
+  .req .f-comments:has(> .f-textarea:not(:placeholder-shown)) > .f-label {
+    top: 7px;
+    font-size: 11.5px;
+    line-height: 14px;
+  }
+  .req .f-field:has(> .f-input[aria-invalid="true"]) > .f-label {
+    color: #c4141b;
+  }
+
+  .req .f-input {
+    height: var(--fv2-h);
+    padding: 20px 14px 6px;
+    border: 1px solid #8f8f8f;
+    border-radius: var(--fv2-radius);
+    font-size: 14px;
+    color: var(--fv2-ink);
+    transition:
+      border-color 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+  .req .f-textarea {
+    height: 64px;
+    padding: 24px 14px 8px;
+    border: 1px solid #8f8f8f;
+    border-radius: var(--fv2-radius);
+    font-size: 14px;
+    color: var(--fv2-ink);
+  }
+  /* the "e.g." example only once the label has moved out of the way */
+  .req .f-input::placeholder,
+  .req .f-textarea::placeholder {
+    color: transparent;
+  }
+  .req .f-input:focus::placeholder,
+  .req .f-textarea:focus::placeholder {
+    color: #757575;
+  }
+  /* focus: dark border like the reference (no blue glow) */
+  .req .f-input:focus,
+  .req .f-textarea:focus,
+  .req .f-date:focus-within {
+    border-color: var(--fv2-ink);
+    box-shadow: inset 0 0 0 1px var(--fv2-ink);
+    outline: none;
+  }
+  .req .f-input[aria-invalid="true"],
+  .req .f-input[aria-invalid="true"]:focus {
+    border-color: #c4141b !important;
+    box-shadow: inset 0 0 0 1px #c4141b;
+  }
+  .req .f-error {
+    margin-top: 5px;
+    font-weight: 600;
+  }
+
+  /* ---------- the boxes around the radios: same shape ---------- */
+  .req .f-biz {
+    border-radius: var(--fv2-radius);
+    padding: 14px;
+  }
+  .req .f-date {
+    height: 44px;
+    border-color: #8f8f8f;
+    border-radius: var(--fv2-radius);
+  }
+  .req .f-date input {
+    font-size: 14px;
+  }
+
+  /* salutation: label inside the box, like the floating labels above */
+  .req .f-sal {
+    position: relative;
+    gap: 0;
+  }
+  .req .f-sal > .f-label {
+    position: absolute;
+    left: 14px;
+    top: 7px;
+    z-index: 1;
+    font-size: 11.5px;
+    font-weight: 400;
+    line-height: 14px;
+    color: var(--fv2-label);
+  }
+  .req .f-sal-box {
+    height: var(--fv2-h);
+    padding: 18px 14px 0;
+    border-color: #8f8f8f;
+    border-radius: var(--fv2-radius);
+    justify-content: flex-start;
+    gap: 18px;
+  }
+
+  /* send button: same green, pill shape like the reference */
+  .req .send-btn {
+    height: 50px;
+    border-radius: 25px;
+  }
+}
