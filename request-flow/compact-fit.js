@@ -11,6 +11,8 @@
   function fit() {
     document.querySelectorAll(".req").forEach(function (req) {
       req.style.zoom = "";
+      // index / compact: the form is fluid at 100% (fluid.css), no scaling
+      if (document.documentElement.hasAttribute("data-req-fluid")) return;
       if (innerWidth < 768 || !req.offsetParent) return;
       var form = req.querySelector(".form-card");
       if (!form) return;

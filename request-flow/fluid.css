@@ -1,0 +1,194 @@
+/* ============================================================
+   Request form at the PDP's scale (index.html + compact.html).
+   The form used to be a fixed 1096px Figma layout, shrunk by
+   compact-fit.js to ~88% so it fit the window — so its text looked
+   smaller than the PDP's. Now (html[data-req-fluid], see compact-fit.js):
+   - no scaling: everything shows at 100%, like the PDP
+   - the same fluid width as the PDP's content (main-grid: 654 + 743 +
+     column gap, max 1461px at 1920, page gutter on both sides)
+   - the extra width makes the form shorter so it still fits above the
+     fold: title + progress bar on one row (>= 1280px), logo and deadline
+     side by side, email | phone and business type | company name in two
+     columns, a compact summary (photo beside the product name, the two
+     print facts side by side)
+   Desktop / tablet only (>= 768px); phones keep their own layout.
+   ============================================================ */
+@media (width >= 768px) {
+  :root {
+    --rf-gutter: clamp(16px, 4.5vw - 10px, 72px); /* PDP --page-gutter */
+    --rf-gap: clamp(24px, 4vw, 64px); /* PDP column gap */
+  }
+
+  /* fluid width, like the PDP content */
+  .req-title,
+  .req-body {
+    width: min(1461px, 100% - 2 * var(--rf-gutter));
+  }
+  .progress {
+    width: 100%;
+  }
+  .req-grid {
+    gap: var(--rf-gap);
+  }
+  .summary {
+    width: clamp(358px, 28%, 420px);
+  }
+  .send-btn {
+    width: 100%;
+  }
+
+  /* ---------- form: shorter ---------- */
+  .form-card {
+    gap: 22px;
+  }
+  .f-details {
+    min-height: 0;
+    gap: 14px;
+  }
+  /* logo | deadline side by side; comments full width under them */
+  .f-extra {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 16px 32px;
+    align-items: start;
+  }
+  .f-extra > .f-comments {
+    grid-column: 1 / -1;
+  }
+  .f-when-row {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .f-when-right {
+    width: 100%;
+  }
+  /* email | phone, business type | company name, then salutation + names */
+  .f-fields {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 12px 24px;
+  }
+  .f-fields > .f-group16 {
+    display: contents;
+  }
+  .f-fields > .f-field:first-child {
+    order: 1;
+  }
+  .f-fields > .f-field:last-child {
+    order: 2;
+  }
+  .f-fields .f-field.is-biz {
+    order: 3;
+  }
+  .f-fields > .f-group16 > .f-field:not(.is-biz) {
+    order: 4;
+  }
+  .f-fields > .f-row {
+    order: 5;
+    grid-column: 1 / -1;
+  }
+  .f-field.is-biz .rd-group,
+  .f-field.is-biz > div {
+    flex-wrap: wrap;
+    row-gap: 6px;
+  }
+  .f-textarea {
+    height: 56px;
+  }
+
+  /* ---------- summary: compact ---------- */
+  .summary-panel {
+    gap: 14px;
+  }
+  .summary-title {
+    padding-top: 0;
+  }
+  .summary-main {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: 14px 16px;
+    align-items: center;
+  }
+  .summary-main > :not(.summary-img):not(.summary-block) {
+    grid-column: 1 / -1;
+  }
+  .summary-img {
+    width: 96px;
+    height: 96px;
+  }
+  .summary-specs {
+    gap: 14px;
+  }
+  .summary-selects {
+    gap: 10px;
+  }
+  /* print position | printing in, side by side */
+  .summary-specs .summary-specs {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 14px 16px;
+  }
+  .summary {
+    gap: 14px;
+  }
+}
+
+/* title and progress bar on one row (from 1280px; narrower screens stack) */
+@media (width >= 1280px) {
+  :root {
+    --rf-title-w: 340px;
+  }
+  .req-title {
+    position: relative;
+    z-index: 1;
+  }
+  .req-body {
+    margin-top: -63px; /* title row 53px + the 10px gap */
+  }
+  .req-top {
+    margin-left: var(--rf-title-w);
+  }
+  .back-btn {
+    left: calc(-69px - var(--rf-title-w));
+  }
+}
+
+/* tighter spacing so the form also fits a 1080p laptop at 125% display
+   scaling (~1536 x 730 window) at 100% */
+@media (width >= 768px) {
+  .req-body {
+    gap: 16px;
+  }
+  .form-card {
+    padding: 20px 24px;
+    gap: 18px;
+  }
+  .f-fields {
+    row-gap: 10px;
+  }
+  .f-extra {
+    row-gap: 12px;
+  }
+  .f-textarea {
+    height: 44px;
+  }
+}
+
+/* short windows (under 800px tall, e.g. 1080p laptops at 125%): a little
+   less air so the whole form still fits */
+@media (width >= 768px) and (height < 800px) {
+  .form-card {
+    padding: 16px 24px;
+    gap: 14px;
+  }
+  .f-details {
+    gap: 10px;
+  }
+  .f-biz {
+    padding: 8px 12px;
+    align-items: center;
+  }
+  .f-extra {
+    row-gap: 10px;
+  }
+}
