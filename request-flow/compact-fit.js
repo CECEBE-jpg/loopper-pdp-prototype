@@ -27,6 +27,8 @@
     // the same content is above the fold in this window.
     document.querySelectorAll(".ty").forEach(function (ty) {
       ty.style.zoom = "";
+      // index / compact: shown at 100% with a fluid layout (fluid.css)
+      if (document.documentElement.hasAttribute("data-req-fluid")) return;
       if (innerWidth < 768 || !ty.offsetParent) return;
       var top = ty.getBoundingClientRect().top + scrollY;
       var z = Math.min(1, (innerHeight - top) / TY_ABOVE_FOLD);

@@ -192,3 +192,49 @@
     row-gap: 10px;
   }
 }
+
+/* ============================================================
+   Confirmation page (desktop) at the PDP's scale too: 100%, no
+   shrinking (compact-fit.js skips .ty here), the same fluid width as
+   the PDP content, and a tighter layout so the intro, the top of
+   "Your request" and the whole "We'd like to know you better" card
+   stay above the fold (the content Figma 1232:21317 shows above it).
+   ============================================================ */
+@media (width >= 768px) {
+  .ty {
+    padding: 16px 0 25px;
+    gap: 20px;
+  }
+  .ty-intro,
+  .ty-row,
+  .ty-help,
+  .ty-reviews {
+    width: min(1461px, 100% - 2 * var(--rf-gutter));
+  }
+  .ty-intro {
+    padding: 18px 48px;
+  }
+  .ty-intro-left {
+    width: auto;
+  }
+  .ty-row {
+    gap: 32px;
+  }
+  .ty-card,
+  .ty-survey {
+    flex: 1 1 0;
+    min-width: 0;
+    width: auto;
+  }
+  .ty-survey {
+    height: auto;
+    padding: 28px 32px;
+    gap: 20px;
+  }
+  .ty-alt {
+    padding-bottom: 0;
+  }
+  .ty-checks {
+    width: 100%;
+  }
+}
