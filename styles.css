@@ -2854,7 +2854,7 @@ body.pos-lightbox-open {
   color: var(--ink);
   margin: 0;
 }
-.col2 > .pdp-section-heading {
+.col1 > .pdp-section-heading {
   margin: 0;
 }
 h3.pcard-title {
@@ -2969,7 +2969,7 @@ h3.pcard-title {
   .description {
     order: 5;
   }
-  .col2 > .pdp-section-heading {
+  .col1 > .pdp-section-heading {
     order: 6;
   }
   .review-rating {
@@ -3778,7 +3778,7 @@ h3.pcard-title {
   }
   /* the tabs already name each panel on screen */
   .description .pdp-section-heading,
-  .col2 > .pdp-section-heading {
+  .col1 > .pdp-section-heading {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -5570,5 +5570,66 @@ body.gal-lightbox-open {
     top: 0;
     width: 32.1px;
     height: 25px;
+  }
+}
+
+/* ===================== EXPERIMENT (branch pdp-experiment) =====================
+   - reviews and comparable products sit in the photo column, under the
+     product details (moved in index.html)
+   - the configurator column is the sticky one instead of the photo column.
+     It always ends 16px above the bottom of the window (script.js sets its
+     max-height), so the orange CTAs and Add to cart are always in view;
+     the steps, delivery time and price scroll inside it, which only
+     happens once open steps make it taller than the window
+   - the green CTAs under Add to cart are gone; the orange ones sit right
+     above it */
+@media (width >= 768px) {
+  .col1 {
+    position: static;
+  }
+  .col2 {
+    position: sticky;
+    top: calc(var(--hd-h, 70px) + 16px);
+    max-height: calc(100vh - var(--hd-h, 70px) - 32px);
+  }
+  .col2 > .configurator-bg {
+    min-height: 0;
+  }
+  /* the scroll box reaches the grey box's edges, so the steps' shadows and
+     the scrollbar sit in its padding instead of being cut off */
+  .cfg-scroll {
+    min-height: 0;
+    margin: -6px -14px;
+    padding: 6px 14px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    display: flex;
+    flex-direction: column;
+    gap: inherit;
+  }
+  .configurator-bg > .cta-top,
+  .configurator-bg > .add-to-cart {
+    flex: none;
+  }
+  /* comparable products in the photo column: room on the left for the
+     "previous" arrow, which sits outside the cards */
+  .col1 > .comparable {
+    padding: 30px 0 0 28px;
+  }
+}
+@media (768px <= width < 1500px) {
+  .cfg-scroll {
+    margin: -6px -20px;
+    padding: 6px 20px;
+  }
+}
+@media (width < 768px) {
+  .cfg-scroll {
+    display: contents;
+  }
+  /* phones: still after the reviews, as before */
+  .col1 > .comparable {
+    order: 10;
   }
 }

@@ -93,7 +93,9 @@ function fitFrame() {
   // the hovered row's "view" link instead (styles.css .pos-preview-above)
   const configurator = document.querySelector(".configurator");
   const room = document.documentElement.clientWidth - configurator.getBoundingClientRect().right;
-  frame.classList.toggle("pos-preview-above", room < POS_PREVIEW_ROOM);
+  // experiment: the steps scroll inside the sticky configurator column, which
+  // would cut off a card beside it, so the card always goes above the row
+  frame.classList.toggle("pos-preview-above", room < POS_PREVIEW_ROOM || !!document.querySelector(".cfg-scroll"));
 }
 
 // above-mode: a row too close to the top of the screen (under the fixed
@@ -104,8 +106,11 @@ document.querySelectorAll(".option-list--position .view-link").forEach((link) =>
     const row = link.closest(".opt-row");
     const card = row.querySelector(".pos-overlay");
     const headerBottom = document.getElementById("hd").getBoundingClientRect().bottom;
+    // experiment: the top of the steps' scroll box clips the card too
+    const scroller = row.closest(".cfg-scroll");
+    const topEdge = scroller ? Math.max(headerBottom, scroller.getBoundingClientRect().top) : headerBottom;
     const need = card.offsetHeight + 12;
-    row.classList.toggle("pos-preview-below", row.getBoundingClientRect().top - headerBottom < need);
+    row.classList.toggle("pos-preview-below", row.getBoundingClientRect().top - topEdge < need);
   });
 });
 
@@ -1983,5 +1988,39 @@ window.addEventListener("load", fitFrame);
   window.addEventListener("resize", fit);
   desktopNav.addEventListener("change", () => requestAnimationFrame(fit));
   if (document.fonts) document.fonts.ready.then(fit);
+  fit();
+})();
+
+/* ---------- experiment: sticky configurator column ----------
+   styles.css makes .col2 sticky under the header. Its height is held to
+   what is left of the window below its top (16px clear of the bottom), so
+   the orange CTAs and Add to cart are always in view — also before the
+   column sticks, when the breadcrumb is still above it. The steps scroll
+   inside .cfg-scroll when they don't fit. */
+(() => {
+  const col2 = document.querySelector(".col2");
+  if (!col2 || !document.querySelector(".cfg-scroll")) return;
+  const desktop = matchMedia(`(width >= ${DESKTOP_MIN}px)`);
+  let raf = 0;
+  const fit = () => {
+    raf = 0;
+    if (!desktop.matches) {
+      col2.style.removeProperty("max-height");
+      return;
+    }
+    const stickyTop = parseFloat(getComputedStyle(col2).top) || 0;
+    const top = Math.max(col2.getBoundingClientRect().top, stickyTop);
+    col2.style.maxHeight = `${Math.floor(window.innerHeight - top - 16)}px`;
+  };
+  const queue = () => {
+    if (!raf) raf = requestAnimationFrame(fit);
+  };
+  window.addEventListener("scroll", queue, { passive: true });
+  window.addEventListener("resize", queue);
+  desktop.addEventListener("change", queue);
+  // the header compacts / expands after a scroll, moving the sticky top
+  const hd = document.getElementById("hd");
+  if (hd) new ResizeObserver(queue).observe(hd);
+  if (document.fonts) document.fonts.ready.then(queue);
   fit();
 })();

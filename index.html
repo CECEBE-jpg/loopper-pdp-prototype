@@ -364,7 +364,7 @@
     </style>
     <!-- ?v=: raise it after editing the CSS / JS, so phones testing the
          prototype fetch the new files instead of a cached copy -->
-    <link rel="stylesheet" href="styles.css?v=59" />
+    <link rel="stylesheet" href="styles.css?v=60" />
     <link rel="stylesheet" href="nav.css?v=58" />
   </head>
   <body>
@@ -1605,1086 +1605,8 @@
                   </p>
                 </section>
               </div>
-            </div>
 
-            <!-- ---------- COLUMN 2 (531:12945) ---------- -->
-            <div class="col2">
-              <div class="cta-top">
-                <button
-                  class="pdp-btn pdp-btn--orange pdp-btn--design"
-                  data-nav="design"
-                >
-                  <span class="pb-icon">
-                    <img
-                      width="31"
-                      height="31"
-                      class="pb-rest"
-                      src="assets/imgVector.svg"
-                      alt=""
-                    />
-                    <img
-                      width="31"
-                      height="31"
-                      class="pb-hov"
-                      src="assets/pbIconDesignHover.svg"
-                      alt=""
-                    />
-                  </span>
-                  <span class="pb-label">Get free <i>Design</i></span>
-                  <span class="pb-chev">
-                    <img
-                      width="10"
-                      height="17"
-                      class="pb-rest"
-                      src="assets/imgVector144.svg"
-                      alt=""
-                    />
-                    <img
-                      width="12"
-                      height="23"
-                      class="pb-hov"
-                      src="assets/pbChevOrangeHover.svg"
-                      alt=""
-                    />
-                  </span>
-                </button>
-                <button
-                  class="pdp-btn pdp-btn--orange pdp-btn--quote"
-                  data-nav="quote"
-                >
-                  <span class="pb-icon">
-                    <img
-                      width="36"
-                      height="37"
-                      class="pb-rest"
-                      src="assets/imgVector1.svg"
-                      alt=""
-                    />
-                    <img
-                      width="30"
-                      height="31"
-                      class="pb-hov"
-                      src="assets/pbIconQuoteHover.svg"
-                      alt=""
-                    />
-                  </span>
-                  <span class="pb-label">Get free <i>Quote</i></span>
-                  <span class="pb-chev">
-                    <img
-                      width="10"
-                      height="17"
-                      class="pb-rest"
-                      src="assets/imgVector145.svg"
-                      alt=""
-                    />
-                    <img
-                      width="12"
-                      height="23"
-                      class="pb-hov"
-                      src="assets/pbChevOrangeHover.svg"
-                      alt=""
-                    />
-                  </span>
-                </button>
-              </div>
-
-              <div class="configurator-bg">
-                <div class="configurator" id="configurator">
-                  <!-- STEP 1 — Choose color -->
-                  <section class="step" data-step="color" data-open="true">
-                    <button class="step-header" type="button">
-                      <span class="step-label">
-                        <span class="step-num">1</span>
-                        <span class="step-title">Choose the colour</span>
-                        <span class="step-value" data-value-for="color"></span>
-                        <span class="step-error" aria-live="polite"></span>
-                      </span>
-                      <span class="chev"
-                        ><span class="chev-node"
-                          ><img
-                            width="10"
-                            height="17"
-                            src="assets/imgVector142.svg"
-                            alt="" /></span
-                      ></span>
-                    </button>
-                    <div class="step-panel">
-                      <div class="step-panel-inner">
-                        <!-- the article's real colours (live Loopper product
-                             photos); the name sits under each tile, and picking
-                             one swaps the main photo (script.js) -->
-                        <div class="swatch-grid" id="swatch-grid">
-                          <div class="swatch-item">
-                            <button
-                              class="swatch"
-                              type="button"
-                              data-name="Silver"
-                              data-colour="silver"
-                              aria-label="Silver"
-                            >
-                              <img
-                                src="assets/product/swatch-silver.webp"
-                                width="184"
-                                height="184"
-                                loading="lazy"
-                                alt=""
-                              />
-                            </button>
-                            <span class="swatch-name" aria-hidden="true"
-                              >Silver</span
-                            >
-                          </div>
-                          <div class="swatch-item">
-                            <button
-                              class="swatch"
-                              type="button"
-                              data-name="Matte grey"
-                              data-colour="matte-grey"
-                              aria-label="Matte grey"
-                            >
-                              <img
-                                src="assets/product/swatch-matte-grey.webp"
-                                width="184"
-                                height="184"
-                                loading="lazy"
-                                alt=""
-                              />
-                            </button>
-                            <span class="swatch-name" aria-hidden="true"
-                              >Matte grey</span
-                            >
-                          </div>
-                          <div class="swatch-item">
-                            <button
-                              class="swatch"
-                              type="button"
-                              data-name="Dark grey"
-                              data-colour="dark-grey"
-                              aria-label="Dark grey"
-                            >
-                              <img
-                                src="assets/product/swatch-dark-grey.webp"
-                                width="184"
-                                height="184"
-                                loading="lazy"
-                                alt=""
-                              />
-                            </button>
-                            <span class="swatch-name" aria-hidden="true"
-                              >Dark grey</span
-                            >
-                          </div>
-                          <div class="swatch-item">
-                            <button
-                              class="swatch"
-                              type="button"
-                              data-name="Black"
-                              data-colour="black"
-                              aria-label="Black"
-                            >
-                              <img
-                                src="assets/product/swatch-black.webp"
-                                width="184"
-                                height="184"
-                                loading="lazy"
-                                alt=""
-                              />
-                            </button>
-                            <span class="swatch-name" aria-hidden="true"
-                              >Black</span
-                            >
-                          </div>
-                          <div class="swatch-item">
-                            <button
-                              class="swatch"
-                              type="button"
-                              data-name="White"
-                              data-colour="white"
-                              aria-label="White"
-                            >
-                              <img
-                                src="assets/product/swatch-white.webp"
-                                width="184"
-                                height="184"
-                                loading="lazy"
-                                alt=""
-                              />
-                            </button>
-                            <span class="swatch-name" aria-hidden="true"
-                              >White</span
-                            >
-                          </div>
-                          <div class="swatch-item">
-                            <button
-                              class="swatch"
-                              type="button"
-                              data-name="Gold"
-                              data-colour="gold"
-                              aria-label="Gold"
-                            >
-                              <img
-                                src="assets/product/swatch-gold.webp"
-                                width="184"
-                                height="184"
-                                loading="lazy"
-                                alt=""
-                              />
-                            </button>
-                            <span class="swatch-name" aria-hidden="true"
-                              >Gold</span
-                            >
-                          </div>
-                          <div class="swatch-item">
-                            <button
-                              class="swatch"
-                              type="button"
-                              data-name="Blue"
-                              data-colour="blue"
-                              aria-label="Blue"
-                            >
-                              <img
-                                src="assets/product/swatch-blue.webp"
-                                width="184"
-                                height="184"
-                                loading="lazy"
-                                alt=""
-                              />
-                            </button>
-                            <span class="swatch-name" aria-hidden="true"
-                              >Blue</span
-                            >
-                          </div>
-                          <div class="swatch-item">
-                            <button
-                              class="swatch"
-                              type="button"
-                              data-name="Red"
-                              data-colour="red"
-                              aria-label="Red"
-                            >
-                              <img
-                                src="assets/product/swatch-red.webp"
-                                width="184"
-                                height="184"
-                                loading="lazy"
-                                alt=""
-                              />
-                            </button>
-                            <span class="swatch-name" aria-hidden="true"
-                              >Red</span
-                            >
-                          </div>
-                          <div class="swatch-item">
-                            <button
-                              class="swatch"
-                              type="button"
-                              data-name="Lime green"
-                              data-colour="lime-green"
-                              aria-label="Lime green"
-                            >
-                              <img
-                                src="assets/product/swatch-lime-green.webp"
-                                width="184"
-                                height="184"
-                                loading="lazy"
-                                alt=""
-                              />
-                            </button>
-                            <span class="swatch-name" aria-hidden="true"
-                              >Lime green</span
-                            >
-                          </div>
-                        </div>
-                        <div class="multi-select">
-                          <button
-                            class="checkbox"
-                            type="button"
-                            data-multi="color"
-                            aria-label="Choose multiple colours"
-                          >
-                            <img
-                              width="21"
-                              height="21"
-                              src="assets/checkboxActive.svg"
-                              alt=""
-                            />
-                          </button>
-                          <span class="multi-label"
-                            >Choose multiple colours</span
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-
-                  <!-- STEP 2 — Printing position -->
-                  <section class="step" data-step="position">
-                    <button class="step-header" type="button">
-                      <span class="step-label">
-                        <span class="step-num">2</span>
-                        <span class="step-title">Printing position</span>
-                        <span
-                          class="step-value"
-                          data-value-for="position"
-                        ></span>
-                        <span class="step-error" aria-live="polite"></span>
-                      </span>
-                      <span class="chev"
-                        ><span class="chev-node"
-                          ><img
-                            width="10"
-                            height="17"
-                            src="assets/imgVector142.svg"
-                            alt="" /></span
-                      ></span>
-                    </button>
-                    <div class="step-panel">
-                      <div class="step-panel-inner">
-                        <div class="option-list option-list--position">
-                          <button
-                            class="opt-row opt-row--rec"
-                            data-name="Front"
-                          >
-                            <span class="opt-name">Front (30×70 mm)</span>
-                            <span class="opt-rec-group">
-                              <span class="recommended">
-                                <span class="rec-icon">
-                                  <img
-                                    width="9"
-                                    height="10"
-                                    class="rec-a"
-                                    src="assets/imgCheckA.svg"
-                                    alt=""
-                                  />
-                                  <img
-                                    width="4"
-                                    height="5"
-                                    class="rec-b"
-                                    src="assets/imgCheckB.svg"
-                                    alt=""
-                                  />
-                                  <img
-                                    width="9"
-                                    height="10"
-                                    class="rec-a-alt"
-                                    src="assets/recCheckA_099bd3.svg"
-                                    alt=""
-                                  />
-                                  <img
-                                    width="4"
-                                    height="5"
-                                    class="rec-b-alt"
-                                    src="assets/recCheckB_099bd3.svg"
-                                    alt=""
-                                  />
-                                  <img
-                                    width="9"
-                                    height="10"
-                                    class="rec-a-white"
-                                    src="assets/mobile/rec-check-a-white.svg"
-                                    alt=""
-                                  />
-                                  <img
-                                    width="4"
-                                    height="5"
-                                    class="rec-b-white"
-                                    src="assets/mobile/rec-check-b-white.svg"
-                                    alt=""
-                                  />
-                                </span>
-                                <span class="rec-text">Recommended option</span>
-                              </span>
-                              <span class="view-link"
-                                ><img
-                                  width="1"
-                                  height="20"
-                                  class="view-divider"
-                                  src="assets/imgDivider.svg"
-                                  alt=""
-                                />view</span
-                              >
-                            </span>
-                            <span class="pos-overlay"
-                              ><span class="pos-shot" data-pos="Front"
-                                ><img
-                                  class="pos-shot-img"
-                                  src="assets/product/silver.jpg"
-                                  width="500"
-                                  height="500"
-                                  loading="lazy"
-                                  alt=""
-                                /><span class="pos-area"></span
-                                ><span class="pos-label"
-                                  >Front (30×70 mm)</span
-                                ></span
-                              ><span
-                                class="pos-overlay-close"
-                                role="button"
-                                tabindex="0"
-                                aria-label="Close preview"
-                                ><img
-                                  src="assets/mobile/overlay-close.svg"
-                                  width="29"
-                                  height="28"
-                                  alt="" /></span
-                            ></span>
-                          </button>
-                          <button class="opt-row" data-name="Back">
-                            <span class="opt-name">Back (30×70 mm)</span>
-                            <span class="view-link"
-                              ><img
-                                width="1"
-                                height="20"
-                                class="view-divider"
-                                src="assets/imgDivider.svg"
-                                alt=""
-                              />view</span
-                            >
-                            <span class="pos-overlay"
-                              ><span class="pos-shot" data-pos="Back"
-                                ><img
-                                  class="pos-shot-img"
-                                  src="assets/product/silver.jpg"
-                                  width="500"
-                                  height="500"
-                                  loading="lazy"
-                                  alt=""
-                                /><span class="pos-area"></span
-                                ><span class="pos-label"
-                                  >Back (30×70 mm)</span
-                                ></span
-                              ><span
-                                class="pos-overlay-close"
-                                role="button"
-                                tabindex="0"
-                                aria-label="Close preview"
-                                ><img
-                                  src="assets/mobile/overlay-close.svg"
-                                  width="29"
-                                  height="28"
-                                  alt="" /></span
-                            ></span>
-                          </button>
-                          <button class="opt-row" data-name="Lid">
-                            <span class="opt-name">Lid (30×25 mm)</span>
-                            <span class="view-link"
-                              ><img
-                                width="1"
-                                height="20"
-                                class="view-divider"
-                                src="assets/imgDivider.svg"
-                                alt=""
-                              />view</span
-                            >
-                            <span class="pos-overlay"
-                              ><span class="pos-shot" data-pos="Lid"
-                                ><img
-                                  class="pos-shot-img"
-                                  src="assets/product/silver.jpg"
-                                  width="500"
-                                  height="500"
-                                  loading="lazy"
-                                  alt=""
-                                /><span class="pos-area"></span
-                                ><span class="pos-label"
-                                  >Lid (30×25 mm)</span
-                                ></span
-                              ><span
-                                class="pos-overlay-close"
-                                role="button"
-                                tabindex="0"
-                                aria-label="Close preview"
-                                ><img
-                                  src="assets/mobile/overlay-close.svg"
-                                  width="29"
-                                  height="28"
-                                  alt="" /></span
-                            ></span>
-                          </button>
-                          <button class="opt-row" data-name="Full wrap">
-                            <span class="opt-name">Full wrap (220×100 mm)</span>
-                            <span class="view-link"
-                              ><img
-                                width="1"
-                                height="20"
-                                class="view-divider"
-                                src="assets/imgDivider.svg"
-                                alt=""
-                              />view</span
-                            >
-                            <span class="pos-overlay"
-                              ><span class="pos-shot" data-pos="Full wrap"
-                                ><img
-                                  class="pos-shot-img"
-                                  src="assets/product/silver.jpg"
-                                  width="500"
-                                  height="500"
-                                  loading="lazy"
-                                  alt=""
-                                /><span class="pos-area"></span
-                                ><span class="pos-label"
-                                  >Full wrap (220×100 mm)</span
-                                ></span
-                              ><span
-                                class="pos-overlay-close"
-                                role="button"
-                                tabindex="0"
-                                aria-label="Close preview"
-                                ><img
-                                  src="assets/mobile/overlay-close.svg"
-                                  width="29"
-                                  height="28"
-                                  alt="" /></span
-                            ></span>
-                          </button>
-                        </div>
-                        <div class="multi-select">
-                          <button
-                            class="checkbox"
-                            type="button"
-                            data-multi="position"
-                            aria-label="Add extra print position"
-                          >
-                            <img
-                              width="21"
-                              height="21"
-                              src="assets/checkboxActive.svg"
-                              alt=""
-                            />
-                          </button>
-                          <span class="multi-label"
-                            >Add extra print position</span
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-
-                  <!-- STEP 3 — Printing in -->
-                  <section class="step" data-step="printing">
-                    <button class="step-header" type="button">
-                      <span class="step-label">
-                        <span class="step-num">3</span>
-                        <span class="step-title">Printing in</span>
-                        <span
-                          class="step-value"
-                          data-value-for="printing"
-                        ></span>
-                        <!-- error state: replaces the value while a print
-                             position has no colours picked -->
-                        <span class="step-error" aria-live="polite"></span>
-                      </span>
-                      <span class="chev"
-                        ><span class="chev-node"
-                          ><img
-                            width="10"
-                            height="17"
-                            src="assets/imgVector142.svg"
-                            alt="" /></span
-                      ></span>
-                    </button>
-                    <div class="step-panel">
-                      <div class="step-panel-inner">
-                        <div class="printing-group">
-                          <p class="printing-q">
-                            How many colours are in your logo?
-                          </p>
-                          <!-- Print options with a minimum order quantity carry
-                               data-moq + an .opt-moq note after the name; rows
-                               without a minimum get no note. 50 / 100 are
-                               placeholder values until the real MOQs are known. -->
-                          <div class="option-list option-list--printing">
-                            <button
-                              class="opt-row opt-row--rec"
-                              data-name="Full colour"
-                            >
-                              <span class="opt-name opt-name--16"
-                                >Full colour</span
-                              >
-                              <span class="opt-right">
-                                <span class="recommended">
-                                  <span class="rec-icon"
-                                    ><img
-                                      width="9"
-                                      height="10"
-                                      class="rec-a"
-                                      src="assets/imgCheckA.svg"
-                                      alt="" /><img
-                                      width="4"
-                                      height="5"
-                                      class="rec-b"
-                                      src="assets/imgCheckB.svg"
-                                      alt="" /><img
-                                      width="9"
-                                      height="10"
-                                      class="rec-a-white"
-                                      src="assets/mobile/rec-check-a-white.svg"
-                                      alt="" /><img
-                                      width="4"
-                                      height="5"
-                                      class="rec-b-white"
-                                      src="assets/mobile/rec-check-b-white.svg"
-                                      alt=""
-                                  /></span>
-                                  <span class="rec-text"
-                                    >Recommended option</span
-                                  >
-                                </span>
-                                <span class="circles"
-                                  ><img
-                                    width="36"
-                                    height="36"
-                                    class="ellipse"
-                                    src="assets/imgEllipse.png"
-                                    alt=""
-                                /></span>
-                              </span>
-                            </button>
-                            <button class="opt-row" data-name="1 colour">
-                              <span class="opt-name opt-name--16"
-                                >1 colour</span
-                              >
-                              <span class="circles-art"
-                                ><img
-                                  width="98"
-                                  height="18"
-                                  src="assets/circles1.svg"
-                                  alt=""
-                              /></span>
-                            </button>
-                            <button class="opt-row" data-name="2 colours">
-                              <span class="opt-name opt-name--16"
-                                >2 colours</span
-                              >
-                              <span class="circles-art"
-                                ><img
-                                  width="98"
-                                  height="18"
-                                  src="assets/circles2.svg"
-                                  alt=""
-                              /></span>
-                            </button>
-                            <button
-                              class="opt-row"
-                              data-name="3 colours"
-                              data-moq="50"
-                            >
-                              <span class="opt-name opt-name--16"
-                                >3 colours<span class="opt-moq"
-                                  >Min. 50 pcs</span
-                                ></span
-                              >
-                              <span class="circles-art"
-                                ><img
-                                  width="98"
-                                  height="18"
-                                  src="assets/circles3.svg"
-                                  alt=""
-                              /></span>
-                            </button>
-                            <button
-                              class="opt-row"
-                              data-name="4 colours"
-                              data-moq="100"
-                            >
-                              <span class="opt-name opt-name--16"
-                                >4 colours<span class="opt-moq"
-                                  >Min. 100 pcs</span
-                                ></span
-                              >
-                              <span class="circles-art"
-                                ><img
-                                  width="98"
-                                  height="18"
-                                  src="assets/circles4.svg"
-                                  alt=""
-                              /></span>
-                            </button>
-                            <button
-                              class="opt-row opt-row--plain"
-                              data-name="I'll do this later"
-                            >
-                              <span class="opt-name opt-name--16"
-                                >I'll do this later</span
-                              >
-                            </button>
-                          </div>
-                        </div>
-                        <!-- Per-position mode (1884:9849): replaces the group
-                             above once step 2 has two or more positions; one
-                             heading (1885:22185) + options (1884:10961) each,
-                             built from the live selection by script.js -->
-                        <div
-                          class="per-position"
-                          id="per-position"
-                          hidden
-                        ></div>
-                        <div class="multi-select">
-                          <button
-                            class="checkbox"
-                            type="button"
-                            data-multi="printing"
-                            aria-label="Choose multiple colours for printing"
-                          >
-                            <img
-                              width="21"
-                              height="21"
-                              src="assets/checkboxActive.svg"
-                              alt=""
-                            />
-                          </button>
-                          <span class="multi-label"
-                            >Choose multiple colours
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-
-                  <!-- STEP 4 — Choose quantity -->
-                  <section class="step" data-step="quantity">
-                    <button class="step-header" type="button">
-                      <span class="step-label">
-                        <span class="step-num">4</span>
-                        <span class="step-title">Choose quantity</span>
-                        <span
-                          class="step-value"
-                          data-value-for="quantity"
-                        ></span>
-                        <span class="step-price" id="quantity-price"></span>
-                        <!-- error state: replaces value + price while the
-                             custom quantity is under the minimum -->
-                        <span class="step-error" aria-live="polite"></span>
-                      </span>
-                      <span class="chev"
-                        ><span class="chev-node"
-                          ><img
-                            width="10"
-                            height="17"
-                            src="assets/imgVector142.svg"
-                            alt="" /></span
-                      ></span>
-                    </button>
-                    <div class="step-panel">
-                      <div class="step-panel-inner">
-                        <!-- shown while the step 3 print option has a minimum
-                             order quantity (script.js applyQtyMinimum); sits
-                             above the tiers that minimum greys out -->
-                        <p class="qty-moq-note" id="qty-moq-note" hidden></p>
-                        <div class="option-list" id="quantity-list">
-                          <button
-                            class="qty-row"
-                            data-qty="25"
-                            data-price="7.99"
-                          >
-                            <span class="qty-left"
-                              ><span>25</span><span>pieces</span></span
-                            >
-                            <span class="qty-right"
-                              ><span class="qty-price"
-                                ><span>£ 7.99</span><span>p.p</span></span
-                              ></span
-                            >
-                          </button>
-                          <button
-                            class="qty-row"
-                            data-qty="50"
-                            data-price="7.59"
-                            data-save="5"
-                          >
-                            <span class="qty-left"
-                              ><span>50</span><span>pieces</span></span
-                            >
-                            <span class="qty-right"
-                              ><span class="save-badge">Save -5%</span
-                              ><span class="qty-price"
-                                ><span>£ 7.59</span><span>p.p</span></span
-                              ></span
-                            >
-                          </button>
-                          <button
-                            class="qty-row"
-                            data-qty="100"
-                            data-price="7.19"
-                            data-save="10"
-                          >
-                            <span class="qty-left"
-                              ><span>100</span><span>pieces</span></span
-                            >
-                            <span class="qty-right"
-                              ><span class="save-badge">Save -10%</span
-                              ><span class="qty-price"
-                                ><span>£ 7.19</span><span>p.p</span></span
-                              ></span
-                            >
-                          </button>
-                          <button
-                            class="qty-row"
-                            data-qty="250"
-                            data-price="6.01"
-                            data-save="25"
-                          >
-                            <span class="qty-left"
-                              ><span>250</span><span>pieces</span></span
-                            >
-                            <span class="qty-right"
-                              ><span class="save-badge">Save -25%</span
-                              ><span class="qty-price"
-                                ><span>£ 6.01</span><span>p.p</span></span
-                              ></span
-                            >
-                          </button>
-                          <button
-                            class="qty-row"
-                            data-qty="500"
-                            data-price="5.67"
-                            data-save="29"
-                          >
-                            <span class="qty-left"
-                              ><span>500</span><span>pieces</span></span
-                            >
-                            <span class="qty-right"
-                              ><span class="save-badge">Save -29%</span
-                              ><span class="qty-price"
-                                ><span>£ 5.67</span><span>p.p</span></span
-                              ></span
-                            >
-                          </button>
-                          <button
-                            class="qty-row"
-                            data-qty="1000"
-                            data-price="5.35"
-                            data-save="33"
-                          >
-                            <span class="qty-left"
-                              ><span>1000</span><span>pieces</span></span
-                            >
-                            <span class="qty-right"
-                              ><span class="save-badge">Save -33%</span
-                              ><span class="qty-price"
-                                ><span>£ 5.35</span><span>p.p</span></span
-                              ></span
-                            >
-                          </button>
-                          <button
-                            class="qty-row"
-                            data-qty="2500"
-                            data-price="4.99"
-                            data-save="38"
-                          >
-                            <span class="qty-left"
-                              ><span>2500</span><span>pieces</span></span
-                            >
-                            <span class="qty-right"
-                              ><span class="save-badge">Save -38%</span
-                              ><span class="qty-price"
-                                ><span>£ 4.99</span><span>p.p</span></span
-                              ></span
-                            >
-                          </button>
-                          <button
-                            class="qty-row"
-                            data-qty="5000"
-                            data-price="4.65"
-                            data-save="42"
-                          >
-                            <span class="qty-left"
-                              ><span>5000</span><span>pieces</span></span
-                            >
-                            <span class="qty-right"
-                              ><span class="save-badge">Save -42%</span
-                              ><span class="qty-price"
-                                ><span>£ 4.65</span><span>p.p</span></span
-                              ></span
-                            >
-                          </button>
-                          <div class="qty-row qty-row--custom">
-                            <span class="qty-custom-label"
-                              >Custom quantity</span
-                            >
-                            <input
-                              class="qty-custom-input"
-                              id="qty-custom"
-                              aria-label="Custom quantity"
-                              type="number"
-                              min="25"
-                              value="0"
-                              aria-describedby="qty-min-note"
-                            />
-                          </div>
-                        </div>
-                        <!-- 1353:5937 — sits outside the option list, so the
-                             panel's own 10px column gap spaces it. Doubles as
-                             the error message when a custom quantity under 25
-                             is committed (aria-live so it gets announced). -->
-                        <p
-                          class="qty-min-note"
-                          id="qty-min-note"
-                          aria-live="polite"
-                        >
-                          Minimum order quantity is at least 25 pieces
-                        </p>
-                      </div>
-                    </div>
-                  </section>
-
-                  <!-- STEP 5 — Choose quantity per color (529:12566)
-                       Only rendered once "Choose multiple colors" is ticked in
-                       step 1 and at least one swatch is picked; the rows are
-                       built from the live selection, so the markup starts empty. -->
-                  <section
-                    class="step step--per-color"
-                    data-step="percolor"
-                    hidden
-                  >
-                    <button class="step-header" type="button">
-                      <span class="step-label">
-                        <span class="step-num">5</span>
-                        <span class="step-title">Divide colours</span>
-                        <span
-                          class="step-value"
-                          data-value-for="percolor"
-                        ></span>
-                        <!-- error state: replaces the value while colours
-                             are left undivided (script.js validatePerColor) -->
-                        <span class="step-error" aria-live="polite"></span>
-                      </span>
-                      <span class="chev"
-                        ><span class="chev-node"
-                          ><img
-                            width="10"
-                            height="17"
-                            src="assets/imgVector142.svg"
-                            alt="" /></span
-                      ></span>
-                    </button>
-                    <div class="step-panel">
-                      <div class="step-panel-inner">
-                        <div class="per-color">
-                          <!-- 1460:7413 — mobile / tablet only -->
-                          <p class="per-color-q">
-                            Choose the quantity per colour
-                          </p>
-                          <div class="per-color-grid" id="per-color-grid"></div>
-                          <p class="per-color-hint" id="per-color-hint"></p>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-                </div>
-
-                <!-- Estimated delivery (687:12714) -->
-                <div class="delivery-bar">
-                  <div class="delivery-left">
-                    <img
-                      width="22"
-                      height="22"
-                      class="icon-22"
-                      src="assets/imgIcons.svg"
-                      alt=""
-                    /><span>Estimated delivery time</span>
-                  </div>
-                  <div class="delivery-date">30th of August 2026</div>
-                </div>
-
-                <!-- Price block (658:11867) -->
-                <div class="price-block">
-                  <div class="price-row">
-                    <div class="price-label">Price p.p.</div>
-                    <div class="price-right">
-                      <span class="discount-badge" id="discount-badge"
-                        >-25%</span
-                      >
-                      <span class="price-old" id="price-old">7.99</span>
-                      <span class="price-new" id="price-new">£ 6.01</span>
-                    </div>
-                  </div>
-                  <div class="price-row">
-                    <div class="price-label">Total price</div>
-                    <div class="price-right">
-                      <span class="price-old" id="total-old">1,997.25</span>
-                      <span class="total-new" id="total-new">£ 1,502.50</span>
-                    </div>
-                  </div>
-                  <div class="price-row price-row--vat">
-                    <span>Prices excl. 21% VAT.</span>
-                    <button
-                      class="underline price-details-toggle"
-                      type="button"
-                      aria-expanded="false"
-                      aria-controls="price-details"
-                    >
-                      View price details
-                    </button>
-                  </div>
-                  <!-- filled by updatePriceDetails() in script.js -->
-                  <dl class="price-details" id="price-details" hidden></dl>
-                </div>
-
-                <!-- Add to cart (539:16974) -->
-                <button class="add-to-cart" type="button">
-                  <span>Add to cart</span>
-                  <span class="cart-icons">
-                    <img
-                      width="33"
-                      height="26"
-                      class="cart-icon"
-                      src="assets/imgGroup1.svg"
-                      alt=""
-                    />
-                    <img
-                      width="14"
-                      height="14"
-                      class="cart-plus"
-                      src="assets/imgFrame1321315908.svg"
-                      alt=""
-                    />
-                  </span>
-                </button>
-
-                <!-- CTA bottom (687:12592) -->
-                <div class="cta-bottom">
-                  <button class="pdp-btn pdp-btn--outline" data-nav="design">
-                    <span class="pb-label">Get free <i>Design</i></span>
-                    <span class="pb-chev">
-                      <img
-                        width="10"
-                        height="17"
-                        class="pb-rest"
-                        src="assets/imgVector146.svg"
-                        alt=""
-                      />
-                      <img
-                        width="12"
-                        height="23"
-                        class="pb-hov"
-                        src="assets/pbChevWhiteHover.svg"
-                        alt=""
-                      />
-                    </span>
-                  </button>
-                  <button class="pdp-btn pdp-btn--outline" data-nav="quote">
-                    <span class="pb-label">Get free <i>Quote</i></span>
-                    <span class="pb-chev">
-                      <img
-                        width="10"
-                        height="17"
-                        class="pb-rest"
-                        src="assets/imgVector146.svg"
-                        alt=""
-                      />
-                      <img
-                        width="12"
-                        height="23"
-                        class="pb-hov"
-                        src="assets/pbChevWhiteHover.svg"
-                        alt=""
-                      />
-                    </span>
-                  </button>
-                </div>
-              </div>
-
+              <!-- experiment: reviews and comparable products in the photo column -->
               <h2 class="pdp-section-heading">
                 Reviews for Thermos bottle | Stainless steel | 500 ml
               </h2>
@@ -2781,236 +1703,1296 @@
                 </div>
               </div>
               <div class="m-dots" id="review-dots" aria-hidden="true"></div>
+
+              <!-- ---------- Comparable products (531:13024) ---------- -->
+              <section class="comparable" aria-labelledby="comparable-heading">
+                <h2 id="comparable-heading">Comparable products</h2>
+                <div
+                  class="comparable-row"
+                  role="region"
+                  aria-roledescription="carousel"
+                  aria-labelledby="comparable-heading"
+                >
+                  <!-- out of flow, mirrored into the left gutter: hidden at the
+                       start, so the resting layout is exactly the design -->
+                  <button
+                    class="card-arrow card-arrow--prev"
+                    id="card-prev"
+                    type="button"
+                    aria-controls="card-track"
+                    aria-label="Previous products"
+                    disabled
+                  >
+                    <img
+                      width="14"
+                      height="52"
+                      loading="lazy"
+                      decoding="async"
+                      src="assets/imgContainer.svg"
+                      alt=""
+                    />
+                  </button>
+                  <div
+                    class="card-track"
+                    id="card-track"
+                    tabindex="0"
+                    aria-label="Products, use the arrow keys to scroll"
+                  >
+                    <div
+                      class="slide"
+                      role="group"
+                      aria-roledescription="slide"
+                      aria-label="1 of 5"
+                    >
+                      <div class="pcard">
+                        <div class="pcard-img">
+                          img
+                          <div class="pcard-pill">Fast delivery</div>
+                          <div class="pcard-thumbs">
+                            <i></i><i></i><i></i><i></i>
+                          </div>
+                        </div>
+                        <h3 class="pcard-title">
+                          <a
+                            href="/personalized-water-bottles/thermos-bottles/thermos-bottle-stainless-steel-750-ml-cup-lid"
+                            >Thermos bottle | Stainless steel |<br />750 ml |
+                            With cup lid</a
+                          >
+                        </h3>
+                        <div class="pcard-meta">
+                          📦 from 25 pieces<br />📅 Delivered in 7 working days
+                        </div>
+                        <div class="pcard-price">11.08 per piece</div>
+                        <div class="pcard-allin">
+                          All-in price p.p for 250 pieces
+                        </div>
+                        <button class="pcard-btn" type="button">
+                          Free quote
+                        </button>
+                        <div class="pcard-delivery">
+                          Ordered today, delivered in 7 working days
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="slide"
+                      role="group"
+                      aria-roledescription="slide"
+                      aria-label="2 of 5"
+                    >
+                      <div class="pcard">
+                        <div class="pcard-img">
+                          img
+                          <div class="pcard-pill">Fast delivery</div>
+                          <div class="pcard-thumbs">
+                            <i></i><i></i><i></i><i></i>
+                          </div>
+                        </div>
+                        <h3 class="pcard-title">
+                          <a
+                            href="/personalized-water-bottles/thermos-bottles/thermos-bottle-copper-insulated-500-ml"
+                            >Thermos bottle | Copper insulated |<br />500 ml |
+                            Screw cap</a
+                          >
+                        </h3>
+                        <div class="pcard-meta">
+                          📦 from 25 pieces<br />📅 Delivered in 7 working days
+                        </div>
+                        <div class="pcard-price">9.45 per piece</div>
+                        <div class="pcard-allin">
+                          All-in price p.p for 250 pieces
+                        </div>
+                        <button class="pcard-btn" type="button">
+                          Free quote
+                        </button>
+                        <div class="pcard-delivery">
+                          Ordered today, delivered in 7 working days
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="slide"
+                      role="group"
+                      aria-roledescription="slide"
+                      aria-label="3 of 5"
+                    >
+                      <div class="pcard">
+                        <div class="pcard-img">
+                          img
+                          <div class="pcard-pill">Fast delivery</div>
+                          <div class="pcard-thumbs">
+                            <i></i><i></i><i></i><i></i>
+                          </div>
+                        </div>
+                        <h3 class="pcard-title">
+                          <a
+                            href="/personalized-water-bottles/thermos-bottles/thermos-flask-stainless-steel-1-l"
+                            >Thermos flask | Stainless steel |<br />1 L | Wide
+                            mouth</a
+                          >
+                        </h3>
+                        <div class="pcard-meta">
+                          📦 from 25 pieces<br />📅 Delivered in 7 working days
+                        </div>
+                        <div class="pcard-price">14.20 per piece</div>
+                        <div class="pcard-allin">
+                          All-in price p.p for 250 pieces
+                        </div>
+                        <button class="pcard-btn" type="button">
+                          Free quote
+                        </button>
+                        <div class="pcard-delivery">
+                          Ordered today, delivered in 7 working days
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="slide"
+                      role="group"
+                      aria-roledescription="slide"
+                      aria-label="4 of 5"
+                    >
+                      <div class="pcard">
+                        <div class="pcard-img">
+                          img
+                          <div class="pcard-pill">Fast delivery</div>
+                          <div class="pcard-thumbs">
+                            <i></i><i></i><i></i><i></i>
+                          </div>
+                        </div>
+                        <h3 class="pcard-title">
+                          <a
+                            href="/personalized-water-bottles/tritan-water-bottles/water-bottle-tritan-650-ml"
+                            >Water bottle | Tritan |<br />650 ml | Sport cap</a
+                          >
+                        </h3>
+                        <div class="pcard-meta">
+                          📦 from 25 pieces<br />📅 Delivered in 7 working days
+                        </div>
+                        <div class="pcard-price">4.87 per piece</div>
+                        <div class="pcard-allin">
+                          All-in price p.p for 250 pieces
+                        </div>
+                        <button class="pcard-btn" type="button">
+                          Free quote
+                        </button>
+                        <div class="pcard-delivery">
+                          Ordered today, delivered in 7 working days
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="slide"
+                      role="group"
+                      aria-roledescription="slide"
+                      aria-label="5 of 5"
+                    >
+                      <div class="pcard">
+                        <div class="pcard-img">
+                          img
+                          <div class="pcard-pill">Fast delivery</div>
+                          <div class="pcard-thumbs">
+                            <i></i><i></i><i></i><i></i>
+                          </div>
+                        </div>
+                        <h3 class="pcard-title">
+                          <a
+                            href="/personalized-mugs/thermos-mugs/thermos-mug-double-walled-350-ml"
+                            >Thermos mug | Double walled |<br />350 ml | Leak
+                            proof</a
+                          >
+                        </h3>
+                        <div class="pcard-meta">
+                          📦 from 25 pieces<br />📅 Delivered in 7 working days
+                        </div>
+                        <div class="pcard-price">8.12 per piece</div>
+                        <div class="pcard-allin">
+                          All-in price p.p for 250 pieces
+                        </div>
+                        <button class="pcard-btn" type="button">
+                          Free quote
+                        </button>
+                        <div class="pcard-delivery">
+                          Ordered today, delivered in 7 working days
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    class="card-arrow card-arrow--next"
+                    id="card-next"
+                    type="button"
+                    aria-controls="card-track"
+                    aria-label="Next products"
+                  >
+                    <img
+                      width="14"
+                      height="52"
+                      loading="lazy"
+                      decoding="async"
+                      src="assets/imgContainer.svg"
+                      alt=""
+                    />
+                  </button>
+                  <p
+                    class="visually-hidden"
+                    id="card-status"
+                    aria-live="polite"
+                  ></p>
+                </div>
+              </section>
+            </div>
+
+            <!-- ---------- COLUMN 2 (531:12945) ---------- -->
+            <div class="col2">
+              <div class="configurator-bg">
+                <!-- experiment: steps, delivery and price scroll inside the sticky
+                     column; the CTAs below stay in view -->
+                <div class="cfg-scroll">
+                  <div class="configurator" id="configurator">
+                    <!-- STEP 1 — Choose color -->
+                    <section class="step" data-step="color" data-open="true">
+                      <button class="step-header" type="button">
+                        <span class="step-label">
+                          <span class="step-num">1</span>
+                          <span class="step-title">Choose the colour</span>
+                          <span
+                            class="step-value"
+                            data-value-for="color"
+                          ></span>
+                          <span class="step-error" aria-live="polite"></span>
+                        </span>
+                        <span class="chev"
+                          ><span class="chev-node"
+                            ><img
+                              width="10"
+                              height="17"
+                              src="assets/imgVector142.svg"
+                              alt="" /></span
+                        ></span>
+                      </button>
+                      <div class="step-panel">
+                        <div class="step-panel-inner">
+                          <!-- the article's real colours (live Loopper product
+                               photos); the name sits under each tile, and picking
+                               one swaps the main photo (script.js) -->
+                          <div class="swatch-grid" id="swatch-grid">
+                            <div class="swatch-item">
+                              <button
+                                class="swatch"
+                                type="button"
+                                data-name="Silver"
+                                data-colour="silver"
+                                aria-label="Silver"
+                              >
+                                <img
+                                  src="assets/product/swatch-silver.webp"
+                                  width="184"
+                                  height="184"
+                                  loading="lazy"
+                                  alt=""
+                                />
+                              </button>
+                              <span class="swatch-name" aria-hidden="true"
+                                >Silver</span
+                              >
+                            </div>
+                            <div class="swatch-item">
+                              <button
+                                class="swatch"
+                                type="button"
+                                data-name="Matte grey"
+                                data-colour="matte-grey"
+                                aria-label="Matte grey"
+                              >
+                                <img
+                                  src="assets/product/swatch-matte-grey.webp"
+                                  width="184"
+                                  height="184"
+                                  loading="lazy"
+                                  alt=""
+                                />
+                              </button>
+                              <span class="swatch-name" aria-hidden="true"
+                                >Matte grey</span
+                              >
+                            </div>
+                            <div class="swatch-item">
+                              <button
+                                class="swatch"
+                                type="button"
+                                data-name="Dark grey"
+                                data-colour="dark-grey"
+                                aria-label="Dark grey"
+                              >
+                                <img
+                                  src="assets/product/swatch-dark-grey.webp"
+                                  width="184"
+                                  height="184"
+                                  loading="lazy"
+                                  alt=""
+                                />
+                              </button>
+                              <span class="swatch-name" aria-hidden="true"
+                                >Dark grey</span
+                              >
+                            </div>
+                            <div class="swatch-item">
+                              <button
+                                class="swatch"
+                                type="button"
+                                data-name="Black"
+                                data-colour="black"
+                                aria-label="Black"
+                              >
+                                <img
+                                  src="assets/product/swatch-black.webp"
+                                  width="184"
+                                  height="184"
+                                  loading="lazy"
+                                  alt=""
+                                />
+                              </button>
+                              <span class="swatch-name" aria-hidden="true"
+                                >Black</span
+                              >
+                            </div>
+                            <div class="swatch-item">
+                              <button
+                                class="swatch"
+                                type="button"
+                                data-name="White"
+                                data-colour="white"
+                                aria-label="White"
+                              >
+                                <img
+                                  src="assets/product/swatch-white.webp"
+                                  width="184"
+                                  height="184"
+                                  loading="lazy"
+                                  alt=""
+                                />
+                              </button>
+                              <span class="swatch-name" aria-hidden="true"
+                                >White</span
+                              >
+                            </div>
+                            <div class="swatch-item">
+                              <button
+                                class="swatch"
+                                type="button"
+                                data-name="Gold"
+                                data-colour="gold"
+                                aria-label="Gold"
+                              >
+                                <img
+                                  src="assets/product/swatch-gold.webp"
+                                  width="184"
+                                  height="184"
+                                  loading="lazy"
+                                  alt=""
+                                />
+                              </button>
+                              <span class="swatch-name" aria-hidden="true"
+                                >Gold</span
+                              >
+                            </div>
+                            <div class="swatch-item">
+                              <button
+                                class="swatch"
+                                type="button"
+                                data-name="Blue"
+                                data-colour="blue"
+                                aria-label="Blue"
+                              >
+                                <img
+                                  src="assets/product/swatch-blue.webp"
+                                  width="184"
+                                  height="184"
+                                  loading="lazy"
+                                  alt=""
+                                />
+                              </button>
+                              <span class="swatch-name" aria-hidden="true"
+                                >Blue</span
+                              >
+                            </div>
+                            <div class="swatch-item">
+                              <button
+                                class="swatch"
+                                type="button"
+                                data-name="Red"
+                                data-colour="red"
+                                aria-label="Red"
+                              >
+                                <img
+                                  src="assets/product/swatch-red.webp"
+                                  width="184"
+                                  height="184"
+                                  loading="lazy"
+                                  alt=""
+                                />
+                              </button>
+                              <span class="swatch-name" aria-hidden="true"
+                                >Red</span
+                              >
+                            </div>
+                            <div class="swatch-item">
+                              <button
+                                class="swatch"
+                                type="button"
+                                data-name="Lime green"
+                                data-colour="lime-green"
+                                aria-label="Lime green"
+                              >
+                                <img
+                                  src="assets/product/swatch-lime-green.webp"
+                                  width="184"
+                                  height="184"
+                                  loading="lazy"
+                                  alt=""
+                                />
+                              </button>
+                              <span class="swatch-name" aria-hidden="true"
+                                >Lime green</span
+                              >
+                            </div>
+                          </div>
+                          <div class="multi-select">
+                            <button
+                              class="checkbox"
+                              type="button"
+                              data-multi="color"
+                              aria-label="Choose multiple colours"
+                            >
+                              <img
+                                width="21"
+                                height="21"
+                                src="assets/checkboxActive.svg"
+                                alt=""
+                              />
+                            </button>
+                            <span class="multi-label"
+                              >Choose multiple colours</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+
+                    <!-- STEP 2 — Printing position -->
+                    <section class="step" data-step="position">
+                      <button class="step-header" type="button">
+                        <span class="step-label">
+                          <span class="step-num">2</span>
+                          <span class="step-title">Printing position</span>
+                          <span
+                            class="step-value"
+                            data-value-for="position"
+                          ></span>
+                          <span class="step-error" aria-live="polite"></span>
+                        </span>
+                        <span class="chev"
+                          ><span class="chev-node"
+                            ><img
+                              width="10"
+                              height="17"
+                              src="assets/imgVector142.svg"
+                              alt="" /></span
+                        ></span>
+                      </button>
+                      <div class="step-panel">
+                        <div class="step-panel-inner">
+                          <div class="option-list option-list--position">
+                            <button
+                              class="opt-row opt-row--rec"
+                              data-name="Front"
+                            >
+                              <span class="opt-name">Front (30×70 mm)</span>
+                              <span class="opt-rec-group">
+                                <span class="recommended">
+                                  <span class="rec-icon">
+                                    <img
+                                      width="9"
+                                      height="10"
+                                      class="rec-a"
+                                      src="assets/imgCheckA.svg"
+                                      alt=""
+                                    />
+                                    <img
+                                      width="4"
+                                      height="5"
+                                      class="rec-b"
+                                      src="assets/imgCheckB.svg"
+                                      alt=""
+                                    />
+                                    <img
+                                      width="9"
+                                      height="10"
+                                      class="rec-a-alt"
+                                      src="assets/recCheckA_099bd3.svg"
+                                      alt=""
+                                    />
+                                    <img
+                                      width="4"
+                                      height="5"
+                                      class="rec-b-alt"
+                                      src="assets/recCheckB_099bd3.svg"
+                                      alt=""
+                                    />
+                                    <img
+                                      width="9"
+                                      height="10"
+                                      class="rec-a-white"
+                                      src="assets/mobile/rec-check-a-white.svg"
+                                      alt=""
+                                    />
+                                    <img
+                                      width="4"
+                                      height="5"
+                                      class="rec-b-white"
+                                      src="assets/mobile/rec-check-b-white.svg"
+                                      alt=""
+                                    />
+                                  </span>
+                                  <span class="rec-text"
+                                    >Recommended option</span
+                                  >
+                                </span>
+                                <span class="view-link"
+                                  ><img
+                                    width="1"
+                                    height="20"
+                                    class="view-divider"
+                                    src="assets/imgDivider.svg"
+                                    alt=""
+                                  />view</span
+                                >
+                              </span>
+                              <span class="pos-overlay"
+                                ><span class="pos-shot" data-pos="Front"
+                                  ><img
+                                    class="pos-shot-img"
+                                    src="assets/product/silver.jpg"
+                                    width="500"
+                                    height="500"
+                                    loading="lazy"
+                                    alt=""
+                                  /><span class="pos-area"></span
+                                  ><span class="pos-label"
+                                    >Front (30×70 mm)</span
+                                  ></span
+                                ><span
+                                  class="pos-overlay-close"
+                                  role="button"
+                                  tabindex="0"
+                                  aria-label="Close preview"
+                                  ><img
+                                    src="assets/mobile/overlay-close.svg"
+                                    width="29"
+                                    height="28"
+                                    alt="" /></span
+                              ></span>
+                            </button>
+                            <button class="opt-row" data-name="Back">
+                              <span class="opt-name">Back (30×70 mm)</span>
+                              <span class="view-link"
+                                ><img
+                                  width="1"
+                                  height="20"
+                                  class="view-divider"
+                                  src="assets/imgDivider.svg"
+                                  alt=""
+                                />view</span
+                              >
+                              <span class="pos-overlay"
+                                ><span class="pos-shot" data-pos="Back"
+                                  ><img
+                                    class="pos-shot-img"
+                                    src="assets/product/silver.jpg"
+                                    width="500"
+                                    height="500"
+                                    loading="lazy"
+                                    alt=""
+                                  /><span class="pos-area"></span
+                                  ><span class="pos-label"
+                                    >Back (30×70 mm)</span
+                                  ></span
+                                ><span
+                                  class="pos-overlay-close"
+                                  role="button"
+                                  tabindex="0"
+                                  aria-label="Close preview"
+                                  ><img
+                                    src="assets/mobile/overlay-close.svg"
+                                    width="29"
+                                    height="28"
+                                    alt="" /></span
+                              ></span>
+                            </button>
+                            <button class="opt-row" data-name="Lid">
+                              <span class="opt-name">Lid (30×25 mm)</span>
+                              <span class="view-link"
+                                ><img
+                                  width="1"
+                                  height="20"
+                                  class="view-divider"
+                                  src="assets/imgDivider.svg"
+                                  alt=""
+                                />view</span
+                              >
+                              <span class="pos-overlay"
+                                ><span class="pos-shot" data-pos="Lid"
+                                  ><img
+                                    class="pos-shot-img"
+                                    src="assets/product/silver.jpg"
+                                    width="500"
+                                    height="500"
+                                    loading="lazy"
+                                    alt=""
+                                  /><span class="pos-area"></span
+                                  ><span class="pos-label"
+                                    >Lid (30×25 mm)</span
+                                  ></span
+                                ><span
+                                  class="pos-overlay-close"
+                                  role="button"
+                                  tabindex="0"
+                                  aria-label="Close preview"
+                                  ><img
+                                    src="assets/mobile/overlay-close.svg"
+                                    width="29"
+                                    height="28"
+                                    alt="" /></span
+                              ></span>
+                            </button>
+                            <button class="opt-row" data-name="Full wrap">
+                              <span class="opt-name"
+                                >Full wrap (220×100 mm)</span
+                              >
+                              <span class="view-link"
+                                ><img
+                                  width="1"
+                                  height="20"
+                                  class="view-divider"
+                                  src="assets/imgDivider.svg"
+                                  alt=""
+                                />view</span
+                              >
+                              <span class="pos-overlay"
+                                ><span class="pos-shot" data-pos="Full wrap"
+                                  ><img
+                                    class="pos-shot-img"
+                                    src="assets/product/silver.jpg"
+                                    width="500"
+                                    height="500"
+                                    loading="lazy"
+                                    alt=""
+                                  /><span class="pos-area"></span
+                                  ><span class="pos-label"
+                                    >Full wrap (220×100 mm)</span
+                                  ></span
+                                ><span
+                                  class="pos-overlay-close"
+                                  role="button"
+                                  tabindex="0"
+                                  aria-label="Close preview"
+                                  ><img
+                                    src="assets/mobile/overlay-close.svg"
+                                    width="29"
+                                    height="28"
+                                    alt="" /></span
+                              ></span>
+                            </button>
+                          </div>
+                          <div class="multi-select">
+                            <button
+                              class="checkbox"
+                              type="button"
+                              data-multi="position"
+                              aria-label="Add extra print position"
+                            >
+                              <img
+                                width="21"
+                                height="21"
+                                src="assets/checkboxActive.svg"
+                                alt=""
+                              />
+                            </button>
+                            <span class="multi-label"
+                              >Add extra print position</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+
+                    <!-- STEP 3 — Printing in -->
+                    <section class="step" data-step="printing">
+                      <button class="step-header" type="button">
+                        <span class="step-label">
+                          <span class="step-num">3</span>
+                          <span class="step-title">Printing in</span>
+                          <span
+                            class="step-value"
+                            data-value-for="printing"
+                          ></span>
+                          <!-- error state: replaces the value while a print
+                               position has no colours picked -->
+                          <span class="step-error" aria-live="polite"></span>
+                        </span>
+                        <span class="chev"
+                          ><span class="chev-node"
+                            ><img
+                              width="10"
+                              height="17"
+                              src="assets/imgVector142.svg"
+                              alt="" /></span
+                        ></span>
+                      </button>
+                      <div class="step-panel">
+                        <div class="step-panel-inner">
+                          <div class="printing-group">
+                            <p class="printing-q">
+                              How many colours are in your logo?
+                            </p>
+                            <!-- Print options with a minimum order quantity carry
+                                 data-moq + an .opt-moq note after the name; rows
+                                 without a minimum get no note. 50 / 100 are
+                                 placeholder values until the real MOQs are known. -->
+                            <div class="option-list option-list--printing">
+                              <button
+                                class="opt-row opt-row--rec"
+                                data-name="Full colour"
+                              >
+                                <span class="opt-name opt-name--16"
+                                  >Full colour</span
+                                >
+                                <span class="opt-right">
+                                  <span class="recommended">
+                                    <span class="rec-icon"
+                                      ><img
+                                        width="9"
+                                        height="10"
+                                        class="rec-a"
+                                        src="assets/imgCheckA.svg"
+                                        alt="" /><img
+                                        width="4"
+                                        height="5"
+                                        class="rec-b"
+                                        src="assets/imgCheckB.svg"
+                                        alt="" /><img
+                                        width="9"
+                                        height="10"
+                                        class="rec-a-white"
+                                        src="assets/mobile/rec-check-a-white.svg"
+                                        alt="" /><img
+                                        width="4"
+                                        height="5"
+                                        class="rec-b-white"
+                                        src="assets/mobile/rec-check-b-white.svg"
+                                        alt=""
+                                    /></span>
+                                    <span class="rec-text"
+                                      >Recommended option</span
+                                    >
+                                  </span>
+                                  <span class="circles"
+                                    ><img
+                                      width="36"
+                                      height="36"
+                                      class="ellipse"
+                                      src="assets/imgEllipse.png"
+                                      alt=""
+                                  /></span>
+                                </span>
+                              </button>
+                              <button class="opt-row" data-name="1 colour">
+                                <span class="opt-name opt-name--16"
+                                  >1 colour</span
+                                >
+                                <span class="circles-art"
+                                  ><img
+                                    width="98"
+                                    height="18"
+                                    src="assets/circles1.svg"
+                                    alt=""
+                                /></span>
+                              </button>
+                              <button class="opt-row" data-name="2 colours">
+                                <span class="opt-name opt-name--16"
+                                  >2 colours</span
+                                >
+                                <span class="circles-art"
+                                  ><img
+                                    width="98"
+                                    height="18"
+                                    src="assets/circles2.svg"
+                                    alt=""
+                                /></span>
+                              </button>
+                              <button
+                                class="opt-row"
+                                data-name="3 colours"
+                                data-moq="50"
+                              >
+                                <span class="opt-name opt-name--16"
+                                  >3 colours<span class="opt-moq"
+                                    >Min. 50 pcs</span
+                                  ></span
+                                >
+                                <span class="circles-art"
+                                  ><img
+                                    width="98"
+                                    height="18"
+                                    src="assets/circles3.svg"
+                                    alt=""
+                                /></span>
+                              </button>
+                              <button
+                                class="opt-row"
+                                data-name="4 colours"
+                                data-moq="100"
+                              >
+                                <span class="opt-name opt-name--16"
+                                  >4 colours<span class="opt-moq"
+                                    >Min. 100 pcs</span
+                                  ></span
+                                >
+                                <span class="circles-art"
+                                  ><img
+                                    width="98"
+                                    height="18"
+                                    src="assets/circles4.svg"
+                                    alt=""
+                                /></span>
+                              </button>
+                              <button
+                                class="opt-row opt-row--plain"
+                                data-name="I'll do this later"
+                              >
+                                <span class="opt-name opt-name--16"
+                                  >I'll do this later</span
+                                >
+                              </button>
+                            </div>
+                          </div>
+                          <!-- Per-position mode (1884:9849): replaces the group
+                               above once step 2 has two or more positions; one
+                               heading (1885:22185) + options (1884:10961) each,
+                               built from the live selection by script.js -->
+                          <div
+                            class="per-position"
+                            id="per-position"
+                            hidden
+                          ></div>
+                          <div class="multi-select">
+                            <button
+                              class="checkbox"
+                              type="button"
+                              data-multi="printing"
+                              aria-label="Choose multiple colours for printing"
+                            >
+                              <img
+                                width="21"
+                                height="21"
+                                src="assets/checkboxActive.svg"
+                                alt=""
+                              />
+                            </button>
+                            <span class="multi-label"
+                              >Choose multiple colours
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+
+                    <!-- STEP 4 — Choose quantity -->
+                    <section class="step" data-step="quantity">
+                      <button class="step-header" type="button">
+                        <span class="step-label">
+                          <span class="step-num">4</span>
+                          <span class="step-title">Choose quantity</span>
+                          <span
+                            class="step-value"
+                            data-value-for="quantity"
+                          ></span>
+                          <span class="step-price" id="quantity-price"></span>
+                          <!-- error state: replaces value + price while the
+                               custom quantity is under the minimum -->
+                          <span class="step-error" aria-live="polite"></span>
+                        </span>
+                        <span class="chev"
+                          ><span class="chev-node"
+                            ><img
+                              width="10"
+                              height="17"
+                              src="assets/imgVector142.svg"
+                              alt="" /></span
+                        ></span>
+                      </button>
+                      <div class="step-panel">
+                        <div class="step-panel-inner">
+                          <!-- shown while the step 3 print option has a minimum
+                               order quantity (script.js applyQtyMinimum); sits
+                               above the tiers that minimum greys out -->
+                          <p class="qty-moq-note" id="qty-moq-note" hidden></p>
+                          <div class="option-list" id="quantity-list">
+                            <button
+                              class="qty-row"
+                              data-qty="25"
+                              data-price="7.99"
+                            >
+                              <span class="qty-left"
+                                ><span>25</span><span>pieces</span></span
+                              >
+                              <span class="qty-right"
+                                ><span class="qty-price"
+                                  ><span>£ 7.99</span><span>p.p</span></span
+                                ></span
+                              >
+                            </button>
+                            <button
+                              class="qty-row"
+                              data-qty="50"
+                              data-price="7.59"
+                              data-save="5"
+                            >
+                              <span class="qty-left"
+                                ><span>50</span><span>pieces</span></span
+                              >
+                              <span class="qty-right"
+                                ><span class="save-badge">Save -5%</span
+                                ><span class="qty-price"
+                                  ><span>£ 7.59</span><span>p.p</span></span
+                                ></span
+                              >
+                            </button>
+                            <button
+                              class="qty-row"
+                              data-qty="100"
+                              data-price="7.19"
+                              data-save="10"
+                            >
+                              <span class="qty-left"
+                                ><span>100</span><span>pieces</span></span
+                              >
+                              <span class="qty-right"
+                                ><span class="save-badge">Save -10%</span
+                                ><span class="qty-price"
+                                  ><span>£ 7.19</span><span>p.p</span></span
+                                ></span
+                              >
+                            </button>
+                            <button
+                              class="qty-row"
+                              data-qty="250"
+                              data-price="6.01"
+                              data-save="25"
+                            >
+                              <span class="qty-left"
+                                ><span>250</span><span>pieces</span></span
+                              >
+                              <span class="qty-right"
+                                ><span class="save-badge">Save -25%</span
+                                ><span class="qty-price"
+                                  ><span>£ 6.01</span><span>p.p</span></span
+                                ></span
+                              >
+                            </button>
+                            <button
+                              class="qty-row"
+                              data-qty="500"
+                              data-price="5.67"
+                              data-save="29"
+                            >
+                              <span class="qty-left"
+                                ><span>500</span><span>pieces</span></span
+                              >
+                              <span class="qty-right"
+                                ><span class="save-badge">Save -29%</span
+                                ><span class="qty-price"
+                                  ><span>£ 5.67</span><span>p.p</span></span
+                                ></span
+                              >
+                            </button>
+                            <button
+                              class="qty-row"
+                              data-qty="1000"
+                              data-price="5.35"
+                              data-save="33"
+                            >
+                              <span class="qty-left"
+                                ><span>1000</span><span>pieces</span></span
+                              >
+                              <span class="qty-right"
+                                ><span class="save-badge">Save -33%</span
+                                ><span class="qty-price"
+                                  ><span>£ 5.35</span><span>p.p</span></span
+                                ></span
+                              >
+                            </button>
+                            <button
+                              class="qty-row"
+                              data-qty="2500"
+                              data-price="4.99"
+                              data-save="38"
+                            >
+                              <span class="qty-left"
+                                ><span>2500</span><span>pieces</span></span
+                              >
+                              <span class="qty-right"
+                                ><span class="save-badge">Save -38%</span
+                                ><span class="qty-price"
+                                  ><span>£ 4.99</span><span>p.p</span></span
+                                ></span
+                              >
+                            </button>
+                            <button
+                              class="qty-row"
+                              data-qty="5000"
+                              data-price="4.65"
+                              data-save="42"
+                            >
+                              <span class="qty-left"
+                                ><span>5000</span><span>pieces</span></span
+                              >
+                              <span class="qty-right"
+                                ><span class="save-badge">Save -42%</span
+                                ><span class="qty-price"
+                                  ><span>£ 4.65</span><span>p.p</span></span
+                                ></span
+                              >
+                            </button>
+                            <div class="qty-row qty-row--custom">
+                              <span class="qty-custom-label"
+                                >Custom quantity</span
+                              >
+                              <input
+                                class="qty-custom-input"
+                                id="qty-custom"
+                                aria-label="Custom quantity"
+                                type="number"
+                                min="25"
+                                value="0"
+                                aria-describedby="qty-min-note"
+                              />
+                            </div>
+                          </div>
+                          <!-- 1353:5937 — sits outside the option list, so the
+                               panel's own 10px column gap spaces it. Doubles as
+                               the error message when a custom quantity under 25
+                               is committed (aria-live so it gets announced). -->
+                          <p
+                            class="qty-min-note"
+                            id="qty-min-note"
+                            aria-live="polite"
+                          >
+                            Minimum order quantity is at least 25 pieces
+                          </p>
+                        </div>
+                      </div>
+                    </section>
+
+                    <!-- STEP 5 — Choose quantity per color (529:12566)
+                         Only rendered once "Choose multiple colors" is ticked in
+                         step 1 and at least one swatch is picked; the rows are
+                         built from the live selection, so the markup starts empty. -->
+                    <section
+                      class="step step--per-color"
+                      data-step="percolor"
+                      hidden
+                    >
+                      <button class="step-header" type="button">
+                        <span class="step-label">
+                          <span class="step-num">5</span>
+                          <span class="step-title">Divide colours</span>
+                          <span
+                            class="step-value"
+                            data-value-for="percolor"
+                          ></span>
+                          <!-- error state: replaces the value while colours
+                               are left undivided (script.js validatePerColor) -->
+                          <span class="step-error" aria-live="polite"></span>
+                        </span>
+                        <span class="chev"
+                          ><span class="chev-node"
+                            ><img
+                              width="10"
+                              height="17"
+                              src="assets/imgVector142.svg"
+                              alt="" /></span
+                        ></span>
+                      </button>
+                      <div class="step-panel">
+                        <div class="step-panel-inner">
+                          <div class="per-color">
+                            <!-- 1460:7413 — mobile / tablet only -->
+                            <p class="per-color-q">
+                              Choose the quantity per colour
+                            </p>
+                            <div
+                              class="per-color-grid"
+                              id="per-color-grid"
+                            ></div>
+                            <p class="per-color-hint" id="per-color-hint"></p>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+
+                  <!-- Estimated delivery (687:12714) -->
+                  <div class="delivery-bar">
+                    <div class="delivery-left">
+                      <img
+                        width="22"
+                        height="22"
+                        class="icon-22"
+                        src="assets/imgIcons.svg"
+                        alt=""
+                      /><span>Estimated delivery time</span>
+                    </div>
+                    <div class="delivery-date">30th of August 2026</div>
+                  </div>
+
+                  <!-- Price block (658:11867) -->
+                  <div class="price-block">
+                    <div class="price-row">
+                      <div class="price-label">Price p.p.</div>
+                      <div class="price-right">
+                        <span class="discount-badge" id="discount-badge"
+                          >-25%</span
+                        >
+                        <span class="price-old" id="price-old">7.99</span>
+                        <span class="price-new" id="price-new">£ 6.01</span>
+                      </div>
+                    </div>
+                    <div class="price-row">
+                      <div class="price-label">Total price</div>
+                      <div class="price-right">
+                        <span class="price-old" id="total-old">1,997.25</span>
+                        <span class="total-new" id="total-new">£ 1,502.50</span>
+                      </div>
+                    </div>
+                    <div class="price-row price-row--vat">
+                      <span>Prices excl. 21% VAT.</span>
+                      <button
+                        class="underline price-details-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="price-details"
+                      >
+                        View price details
+                      </button>
+                    </div>
+                    <!-- filled by updatePriceDetails() in script.js -->
+                    <dl class="price-details" id="price-details" hidden></dl>
+                  </div>
+                </div>
+                <!-- orange CTAs above the cart button (experiment) -->
+                <div class="cta-top">
+                  <button
+                    class="pdp-btn pdp-btn--orange pdp-btn--design"
+                    data-nav="design"
+                  >
+                    <span class="pb-icon">
+                      <img
+                        width="31"
+                        height="31"
+                        class="pb-rest"
+                        src="assets/imgVector.svg"
+                        alt=""
+                      />
+                      <img
+                        width="31"
+                        height="31"
+                        class="pb-hov"
+                        src="assets/pbIconDesignHover.svg"
+                        alt=""
+                      />
+                    </span>
+                    <span class="pb-label">Get free <i>Design</i></span>
+                    <span class="pb-chev">
+                      <img
+                        width="10"
+                        height="17"
+                        class="pb-rest"
+                        src="assets/imgVector144.svg"
+                        alt=""
+                      />
+                      <img
+                        width="12"
+                        height="23"
+                        class="pb-hov"
+                        src="assets/pbChevOrangeHover.svg"
+                        alt=""
+                      />
+                    </span>
+                  </button>
+                  <button
+                    class="pdp-btn pdp-btn--orange pdp-btn--quote"
+                    data-nav="quote"
+                  >
+                    <span class="pb-icon">
+                      <img
+                        width="36"
+                        height="37"
+                        class="pb-rest"
+                        src="assets/imgVector1.svg"
+                        alt=""
+                      />
+                      <img
+                        width="30"
+                        height="31"
+                        class="pb-hov"
+                        src="assets/pbIconQuoteHover.svg"
+                        alt=""
+                      />
+                    </span>
+                    <span class="pb-label">Get free <i>Quote</i></span>
+                    <span class="pb-chev">
+                      <img
+                        width="10"
+                        height="17"
+                        class="pb-rest"
+                        src="assets/imgVector145.svg"
+                        alt=""
+                      />
+                      <img
+                        width="12"
+                        height="23"
+                        class="pb-hov"
+                        src="assets/pbChevOrangeHover.svg"
+                        alt=""
+                      />
+                    </span>
+                  </button>
+                </div>
+                <!-- Add to cart (539:16974) -->
+                <button class="add-to-cart" type="button">
+                  <span>Add to cart</span>
+                  <span class="cart-icons">
+                    <img
+                      width="33"
+                      height="26"
+                      class="cart-icon"
+                      src="assets/imgGroup1.svg"
+                      alt=""
+                    />
+                    <img
+                      width="14"
+                      height="14"
+                      class="cart-plus"
+                      src="assets/imgFrame1321315908.svg"
+                      alt=""
+                    />
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
-
-          <!-- ---------- Comparable products (531:13024) ---------- -->
-          <section class="comparable" aria-labelledby="comparable-heading">
-            <h2 id="comparable-heading">Comparable products</h2>
-            <div
-              class="comparable-row"
-              role="region"
-              aria-roledescription="carousel"
-              aria-labelledby="comparable-heading"
-            >
-              <!-- out of flow, mirrored into the left gutter: hidden at the
-                   start, so the resting layout is exactly the design -->
-              <button
-                class="card-arrow card-arrow--prev"
-                id="card-prev"
-                type="button"
-                aria-controls="card-track"
-                aria-label="Previous products"
-                disabled
-              >
-                <img
-                  width="14"
-                  height="52"
-                  loading="lazy"
-                  decoding="async"
-                  src="assets/imgContainer.svg"
-                  alt=""
-                />
-              </button>
-              <div
-                class="card-track"
-                id="card-track"
-                tabindex="0"
-                aria-label="Products, use the arrow keys to scroll"
-              >
-                <div
-                  class="slide"
-                  role="group"
-                  aria-roledescription="slide"
-                  aria-label="1 of 5"
-                >
-                  <div class="pcard">
-                    <div class="pcard-img">
-                      img
-                      <div class="pcard-pill">Fast delivery</div>
-                      <div class="pcard-thumbs">
-                        <i></i><i></i><i></i><i></i>
-                      </div>
-                    </div>
-                    <h3 class="pcard-title">
-                      <a
-                        href="/personalized-water-bottles/thermos-bottles/thermos-bottle-stainless-steel-750-ml-cup-lid"
-                        >Thermos bottle | Stainless steel |<br />750 ml | With
-                        cup lid</a
-                      >
-                    </h3>
-                    <div class="pcard-meta">
-                      📦 from 25 pieces<br />📅 Delivered in 7 working days
-                    </div>
-                    <div class="pcard-price">11.08 per piece</div>
-                    <div class="pcard-allin">
-                      All-in price p.p for 250 pieces
-                    </div>
-                    <button class="pcard-btn" type="button">Free quote</button>
-                    <div class="pcard-delivery">
-                      Ordered today, delivered in 7 working days
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="slide"
-                  role="group"
-                  aria-roledescription="slide"
-                  aria-label="2 of 5"
-                >
-                  <div class="pcard">
-                    <div class="pcard-img">
-                      img
-                      <div class="pcard-pill">Fast delivery</div>
-                      <div class="pcard-thumbs">
-                        <i></i><i></i><i></i><i></i>
-                      </div>
-                    </div>
-                    <h3 class="pcard-title">
-                      <a
-                        href="/personalized-water-bottles/thermos-bottles/thermos-bottle-copper-insulated-500-ml"
-                        >Thermos bottle | Copper insulated |<br />500 ml | Screw
-                        cap</a
-                      >
-                    </h3>
-                    <div class="pcard-meta">
-                      📦 from 25 pieces<br />📅 Delivered in 7 working days
-                    </div>
-                    <div class="pcard-price">9.45 per piece</div>
-                    <div class="pcard-allin">
-                      All-in price p.p for 250 pieces
-                    </div>
-                    <button class="pcard-btn" type="button">Free quote</button>
-                    <div class="pcard-delivery">
-                      Ordered today, delivered in 7 working days
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="slide"
-                  role="group"
-                  aria-roledescription="slide"
-                  aria-label="3 of 5"
-                >
-                  <div class="pcard">
-                    <div class="pcard-img">
-                      img
-                      <div class="pcard-pill">Fast delivery</div>
-                      <div class="pcard-thumbs">
-                        <i></i><i></i><i></i><i></i>
-                      </div>
-                    </div>
-                    <h3 class="pcard-title">
-                      <a
-                        href="/personalized-water-bottles/thermos-bottles/thermos-flask-stainless-steel-1-l"
-                        >Thermos flask | Stainless steel |<br />1 L | Wide
-                        mouth</a
-                      >
-                    </h3>
-                    <div class="pcard-meta">
-                      📦 from 25 pieces<br />📅 Delivered in 7 working days
-                    </div>
-                    <div class="pcard-price">14.20 per piece</div>
-                    <div class="pcard-allin">
-                      All-in price p.p for 250 pieces
-                    </div>
-                    <button class="pcard-btn" type="button">Free quote</button>
-                    <div class="pcard-delivery">
-                      Ordered today, delivered in 7 working days
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="slide"
-                  role="group"
-                  aria-roledescription="slide"
-                  aria-label="4 of 5"
-                >
-                  <div class="pcard">
-                    <div class="pcard-img">
-                      img
-                      <div class="pcard-pill">Fast delivery</div>
-                      <div class="pcard-thumbs">
-                        <i></i><i></i><i></i><i></i>
-                      </div>
-                    </div>
-                    <h3 class="pcard-title">
-                      <a
-                        href="/personalized-water-bottles/tritan-water-bottles/water-bottle-tritan-650-ml"
-                        >Water bottle | Tritan |<br />650 ml | Sport cap</a
-                      >
-                    </h3>
-                    <div class="pcard-meta">
-                      📦 from 25 pieces<br />📅 Delivered in 7 working days
-                    </div>
-                    <div class="pcard-price">4.87 per piece</div>
-                    <div class="pcard-allin">
-                      All-in price p.p for 250 pieces
-                    </div>
-                    <button class="pcard-btn" type="button">Free quote</button>
-                    <div class="pcard-delivery">
-                      Ordered today, delivered in 7 working days
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="slide"
-                  role="group"
-                  aria-roledescription="slide"
-                  aria-label="5 of 5"
-                >
-                  <div class="pcard">
-                    <div class="pcard-img">
-                      img
-                      <div class="pcard-pill">Fast delivery</div>
-                      <div class="pcard-thumbs">
-                        <i></i><i></i><i></i><i></i>
-                      </div>
-                    </div>
-                    <h3 class="pcard-title">
-                      <a
-                        href="/personalized-mugs/thermos-mugs/thermos-mug-double-walled-350-ml"
-                        >Thermos mug | Double walled |<br />350 ml | Leak
-                        proof</a
-                      >
-                    </h3>
-                    <div class="pcard-meta">
-                      📦 from 25 pieces<br />📅 Delivered in 7 working days
-                    </div>
-                    <div class="pcard-price">8.12 per piece</div>
-                    <div class="pcard-allin">
-                      All-in price p.p for 250 pieces
-                    </div>
-                    <button class="pcard-btn" type="button">Free quote</button>
-                    <div class="pcard-delivery">
-                      Ordered today, delivered in 7 working days
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <button
-                class="card-arrow card-arrow--next"
-                id="card-next"
-                type="button"
-                aria-controls="card-track"
-                aria-label="Next products"
-              >
-                <img
-                  width="14"
-                  height="52"
-                  loading="lazy"
-                  decoding="async"
-                  src="assets/imgContainer.svg"
-                  alt=""
-                />
-              </button>
-              <p
-                class="visually-hidden"
-                id="card-status"
-                aria-live="polite"
-              ></p>
-            </div>
-          </section>
         </main>
 
         <!-- ============ FOOTER (687:15227) ============ -->
@@ -3425,6 +3407,6 @@
     <!-- Add to cart confirmation (script.js showToast) -->
     <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
     <script src="nav.js?v=58"></script>
-    <script src="script.js?v=62"></script>
+    <script src="script.js?v=63"></script>
   </body>
 </html>
