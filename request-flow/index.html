@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="fluid.css?v=9" />
     <link rel="stylesheet" href="comparable.css?v=1" />
     <link rel="stylesheet" href="form-figma.css?v=7" />
+    <link rel="stylesheet" href="form-a11y.css?v=1" />
   </head>
   <body data-screen="pdp">
     <!-- ===================== HEADER (top section) ===================== -->
@@ -1145,6 +1146,7 @@
                             inputmode="numeric"
                             placeholder="DD-MM-YY"
                             aria-label="Deadline date"
+                            aria-describedby="when-d-hint"
                             data-deadline="when-d"
                           />
                           <img
@@ -1154,19 +1156,31 @@
                             alt=""
                           />
                         </label>
+                        <span class="vh" id="when-d-hint"
+                          >Format: day-month-year, for example 24-12-26</span
+                        >
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="f-details">
                   <p class="f-h">My details</p>
+                  <p class="f-note">
+                    Fields marked <span aria-hidden="true">*</span
+                    ><span class="vh">with an asterisk</span> are required
+                  </p>
                   <div class="f-fields">
                     <div class="f-field">
-                      <label class="f-label" for="d-email">Email*</label>
+                      <label class="f-label" for="d-email"
+                        >Email<span class="req-star" aria-hidden="true"
+                          >*</span
+                        ></label
+                      >
                       <input
                         class="f-input"
                         id="d-email"
                         name="email"
+                        required
                         type="email"
                         placeholder="e.g. name@company.com"
                         autocomplete="email"
@@ -1174,7 +1188,11 @@
                     </div>
                     <div class="f-group16">
                       <div class="f-field is-biz">
-                        <p class="f-label">Business type*</p>
+                        <p class="f-label">
+                          Business type<span class="req-star" aria-hidden="true"
+                            >*</span
+                          >
+                        </p>
                         <div
                           class="f-biz"
                           role="radiogroup"
@@ -1266,25 +1284,33 @@
                       <div class="f-names">
                         <div class="f-field is-grow">
                           <label class="f-label" for="d-first"
-                            >First name*</label
+                            >First name<span class="req-star" aria-hidden="true"
+                              >*</span
+                            ></label
                           >
                           <input
                             class="f-input"
                             id="d-first"
                             name="first"
+                            required
                             type="text"
-                            placeholder="Jane"
+                            placeholder="e.g. Jane"
                             autocomplete="given-name"
                           />
                         </div>
                         <div class="f-field is-grow">
-                          <label class="f-label" for="d-last">Surname*</label>
+                          <label class="f-label" for="d-last"
+                            >Surname<span class="req-star" aria-hidden="true"
+                              >*</span
+                            ></label
+                          >
                           <input
                             class="f-input"
                             id="d-last"
                             name="last"
+                            required
                             type="text"
-                            placeholder="Doe"
+                            placeholder="e.g. Doe"
                             autocomplete="family-name"
                           />
                         </div>
@@ -1341,13 +1367,22 @@
               <form class="form-card" action="#thanks" novalidate>
                 <div class="f-details">
                   <p class="f-h">My details</p>
+                  <p class="f-note">
+                    Fields marked <span aria-hidden="true">*</span
+                    ><span class="vh">with an asterisk</span> are required
+                  </p>
                   <div class="f-fields">
                     <div class="f-field">
-                      <label class="f-label" for="q-email">Email*</label>
+                      <label class="f-label" for="q-email"
+                        >Email<span class="req-star" aria-hidden="true"
+                          >*</span
+                        ></label
+                      >
                       <input
                         class="f-input"
                         id="q-email"
                         name="email"
+                        required
                         type="email"
                         placeholder="e.g. name@company.com"
                         autocomplete="email"
@@ -1355,7 +1390,11 @@
                     </div>
                     <div class="f-group16">
                       <div class="f-field is-biz">
-                        <p class="f-label">Business type*</p>
+                        <p class="f-label">
+                          Business type<span class="req-star" aria-hidden="true"
+                            >*</span
+                          >
+                        </p>
                         <div
                           class="f-biz"
                           role="radiogroup"
@@ -1447,25 +1486,33 @@
                       <div class="f-names">
                         <div class="f-field is-grow">
                           <label class="f-label" for="q-first"
-                            >First name*</label
+                            >First name<span class="req-star" aria-hidden="true"
+                              >*</span
+                            ></label
                           >
                           <input
                             class="f-input"
                             id="q-first"
                             name="first"
+                            required
                             type="text"
-                            placeholder="Jane"
+                            placeholder="e.g. Jane"
                             autocomplete="given-name"
                           />
                         </div>
                         <div class="f-field is-grow">
-                          <label class="f-label" for="q-last">Surname*</label>
+                          <label class="f-label" for="q-last"
+                            >Surname<span class="req-star" aria-hidden="true"
+                              >*</span
+                            ></label
+                          >
                           <input
                             class="f-input"
                             id="q-last"
                             name="last"
+                            required
                             type="text"
-                            placeholder="Doe"
+                            placeholder="e.g. Doe"
                             autocomplete="family-name"
                           />
                         </div>
@@ -1524,6 +1571,7 @@
                             inputmode="numeric"
                             placeholder="DD-MM-YY"
                             aria-label="Deadline date"
+                            aria-describedby="when-q-hint"
                             data-deadline="when-q"
                           />
                           <img
@@ -1533,6 +1581,9 @@
                             alt=""
                           />
                         </label>
+                        <span class="vh" id="when-q-hint"
+                          >Format: day-month-year, for example 24-12-26</span
+                        >
                       </div>
                     </div>
                   </div>
@@ -1713,18 +1764,27 @@
             <div class="mbox">
               <p class="mbox-h is-big">My details</p>
               <div class="mf-field">
-                <label class="mf-label" for="m-email">Email*</label>
+                <label class="mf-label" for="m-email"
+                  >Email<span class="req-star" aria-hidden="true"
+                    >*</span
+                  ></label
+                >
                 <input
                   class="mf-input"
                   id="m-email"
                   name="email"
+                  required
                   type="email"
                   placeholder="e.g. name@company.com"
                   autocomplete="email"
                 />
               </div>
               <div class="mf-field is-group">
-                <p class="mf-label">Business type*</p>
+                <p class="mf-label">
+                  Business type<span class="req-star" aria-hidden="true"
+                    >*</span
+                  >
+                </p>
                 <div
                   class="mf-cards"
                   role="radiogroup"
@@ -1811,22 +1871,32 @@
                 </div>
               </div>
               <div class="mf-field">
-                <label class="mf-label" for="m-first">First name*</label>
+                <label class="mf-label" for="m-first"
+                  >First name<span class="req-star" aria-hidden="true"
+                    >*</span
+                  ></label
+                >
                 <input
                   class="mf-input"
                   id="m-first"
                   name="first"
+                  required
                   type="text"
                   placeholder="First Name"
                   autocomplete="given-name"
                 />
               </div>
               <div class="mf-field">
-                <label class="mf-label" for="m-last">Surname*</label>
+                <label class="mf-label" for="m-last"
+                  >Surname<span class="req-star" aria-hidden="true"
+                    >*</span
+                  ></label
+                >
                 <input
                   class="mf-input"
                   id="m-last"
                   name="last"
+                  required
                   type="text"
                   placeholder="Surname"
                   autocomplete="family-name"
@@ -2015,7 +2085,9 @@
                 /></label>
                 <button class="mlogo-text" type="button">Add text</button>
               </div>
-              <p class="mlogo-later">You can also upload your logo later</p>
+              <p class="mlogo-later" aria-live="polite">
+                You can also upload your logo later
+              </p>
             </div>
 
             <button class="send-btn" type="submit">
@@ -4161,9 +4233,11 @@
             <img data-upload-icon width="18.5" height="18.5" alt="" />
             <input class="vh" type="file" accept="image/*,.pdf,.ai,.eps,.svg" />
           </label>
-          <button class="logo-text" type="button">Add tekst</button>
+          <button class="logo-text" type="button">Add text</button>
         </div>
-        <p class="logo-later">You can also upload your logo later</p>
+        <p class="logo-later" aria-live="polite">
+          You can also upload your logo later
+        </p>
       </div>
     </template>
 
@@ -4773,5 +4847,6 @@
     <script src="pdp-header.js?v=2"></script>
     <script src="compact-fit.js?v=8"></script>
     <script src="comparable.js?v=1"></script>
+    <script src="form-a11y.js?v=1"></script>
   </body>
 </html>

@@ -978,7 +978,7 @@
           ")";
         opener.textContent = opener.classList.contains("mlogo-text")
           ? "Edit text"
-          : "Edit tekst";
+          : "Edit text";
         close();
       });
   })();

@@ -1,0 +1,110 @@
+/* Request form accessibility (WCAG 2.2 AA), loaded after form-figma.css.
+   - control boundaries at least 3:1 against white (1.4.11): fields, the
+     date field, the salutation box, summary dropdowns and empty radio
+     rings in #8f8f8f (3.2:1) instead of #c3c3c3 (1.75:1) / #a6a6a6 (2.4:1)
+   - example text (placeholders) at least 4.5:1: #757575 (4.6:1) instead of
+     #bbb (1.9:1)
+   - field labels and the delivery question 13px instead of 12px
+   - errors: red text + "!" icon under the field (not colour alone), red
+     field border; #c4141b is 6.2:1 on white
+   - "Fields marked * are required" note, logo "Remove" button */
+
+/* ---------- contrast ---------- */
+.f-input::placeholder,
+.f-textarea::placeholder,
+.f-date input::placeholder,
+.mf-input::placeholder,
+.mf-textarea::placeholder {
+  color: #757575;
+}
+@media (min-width: 768px) {
+  .req .f-input,
+  .req .f-textarea,
+  .req .f-date,
+  .req .f-sal-box,
+  .req .s-select,
+  .req .s-select.is-plain {
+    border-color: #8f8f8f;
+  }
+  .req .rd-box,
+  .req .rd.is-when .rd-box {
+    box-shadow: inset 0 0 0 1px #8f8f8f;
+  }
+  .req .rd input:checked + .rd-box {
+    box-shadow: none;
+  }
+
+  /* ---------- readable label size ---------- */
+  .req .f-label,
+  .req .f-q {
+    font-size: 13px;
+  }
+
+  /* ---------- "Fields marked * are required" ---------- */
+  .req .f-note {
+    margin-bottom: -8px; /* sits close to the fields it explains */
+    font-size: 12px;
+    color: #555;
+  }
+  /* My details: label column spans the note, the fields and comments */
+  .req .f-details > .f-h {
+    grid-row: 1 / span 2;
+  }
+  .req .f-details:has(> .f-comments) > .f-h {
+    grid-row: 1 / span 3;
+  }
+
+  /* ---------- logo: remove the chosen file ---------- */
+  .req .logo-remove {
+    align-self: center;
+    margin-top: 2px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #1764a7;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .req .logo-remove:hover {
+    color: #0f4a7d;
+  }
+  .req .logo-remove:focus-visible {
+    outline: 2px solid #1f8ceb;
+    outline-offset: 2px;
+  }
+}
+
+/* ---------- errors (desktop and mobile) ---------- */
+.f-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 4px 0 0;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  color: #c4141b;
+}
+.f-error-icon {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #c4141b;
+  color: #fff;
+  font-size: 11px;
+  line-height: 16px;
+  text-align: center;
+}
+.f-input[aria-invalid="true"],
+.mf-input[aria-invalid="true"] {
+  border-color: #c4141b !important;
+  box-shadow: 0 0 0 1px #c4141b;
+}
+.f-input[aria-invalid="true"]:focus,
+.mf-input[aria-invalid="true"]:focus {
+  box-shadow:
+    0 0 0 1px #c4141b,
+    0 0 0 4px rgba(196, 20, 27, 0.18);
+}
