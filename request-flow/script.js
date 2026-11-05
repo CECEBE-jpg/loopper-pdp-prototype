@@ -247,6 +247,10 @@
 
   function route() {
     var key = location.hash.replace("#", "") || "pdp";
+    // Figma capture links (#figmacapture=...) show the screen named on <html
+    // data-capture-screen> instead of redirecting to the PDP
+    if (/^figmacapture=/.test(key))
+      key = document.documentElement.dataset.captureScreen || "design";
     // This copy lives inside the PDP prototype repo: every "product page"
     // link goes back to the real PDP instead of the old #pdp mock screen.
     if (key === "pdp" || !ROUTES[key]) {
