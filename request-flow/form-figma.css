@@ -349,16 +349,17 @@
     gap: 15.899px 15px; /* fields to comments 15.9px; label column 15px */
   }
 
-  /* My logo / Delivery: fields 7.95px right of the label */
+  /* My logo / Delivery: fields 15px right of the label */
   .req .f-logo {
-    gap: 0 7.95px;
+    gap: 0 15px;
   }
   .req .f-when {
-    gap: 8px 7.95px;
+    gap: 8px 15px;
   }
   /* Delivery: the question above the radios */
   .req .f-q {
-    font-size: 14px;
+    height: 19px; /* fixed 19px text box in Figma */
+    font-size: 12px;
     font-weight: 700;
     color: #707070;
   }
@@ -438,7 +439,7 @@
     gap: 6.36px;
   }
   .req .f-label {
-    font-size: 14px;
+    font-size: 12px; /* Figma 22:27: field labels 12px */
   }
   .req .f-input {
     height: 30.209px;
