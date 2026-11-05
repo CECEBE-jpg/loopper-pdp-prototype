@@ -1,0 +1,436 @@
+/* ============================================================
+   Request form (desktop) — Figma "Request form – scaling playground
+   (1536×830)", node 2:3 (file HO7RkXhphe4qpQwdbcDEuv), drawn at 100%
+   for a 1536 × 830 laptop browser window.
+   - header: the page title sits in the main bar next to the logo; only
+     the phone number stays on the right (no quote / account / cart)
+   - 1012px content column: 45px progress bar, then the request summary
+     (328px) and the form (671px), 13px apart
+   - compact form: logo buttons on one row, deadline radio + date on one
+     row, email | phone side by side, 30px fields, 13–16px text
+   Sizes are the Figma values. type-scale.js is no longer loaded on the
+   pages that use this file (the design sets every text size itself).
+   Loaded after styles.css / compact.css / fluid.css, so it wins over them.
+   ============================================================ */
+
+/* ---------- header (request form screens, desktop bar) ---------- */
+.hdr-title {
+  display: none;
+}
+@media (min-width: 992px) {
+  body[data-screen="design"] .bar .bar-in,
+  body[data-screen="quote"] .bar .bar-in {
+    position: relative;
+    height: 60px;
+    padding: 10px 43px 0;
+  }
+  body[data-screen="design"] .d-logo,
+  body[data-screen="quote"] .d-logo {
+    width: 143px;
+    height: 31.051px;
+  }
+  /* title lines up with the 1012px content column */
+  body[data-screen="design"] .hdr-title.is-design,
+  body[data-screen="quote"] .hdr-title.is-quote {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    width: 1012px;
+    height: 50px;
+    margin: 0 0 0 -506px;
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 32px;
+    color: #003e4d;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  /* only the phone number on the right */
+  body[data-screen="design"] .hd .act:not(.act-phone),
+  body[data-screen="quote"] .hd .act:not(.act-phone) {
+    display: none;
+  }
+  body[data-screen="design"] .act-phone,
+  body[data-screen="quote"] .act-phone {
+    gap: 6px;
+  }
+  body[data-screen="design"] .act-phone .ph-num,
+  body[data-screen="quote"] .act-phone .ph-num {
+    color: #727272;
+  }
+  /* the page's own h1 stays for screen readers; the bar shows the title */
+  .req-title {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+@media (min-width: 768px) {
+  /* ---------- page column ---------- */
+  .req {
+    padding: 3px 0 16px; /* content starts 3px under the 96px header */
+  }
+  .req-body {
+    width: 1012px;
+    gap: 20px;
+  }
+
+  /* ---------- progress bar (2:10): three 45px steps, 8px apart ---------- */
+  .req-top,
+  .progress,
+  .steps {
+    height: 45px;
+  }
+  .progress {
+    left: 0;
+    right: 0;
+    width: auto;
+  }
+  .step,
+  .step.is-1,
+  .step.is-2,
+  .step.is-3 {
+    padding: 12px 14px;
+    border-width: 1px;
+    gap: 10px;
+    font-size: 15px;
+    line-height: 21.6px;
+  }
+  .step.is-1 .step-circle,
+  .step.is-2 .step-circle,
+  .step.is-3::before {
+    width: 22.25px;
+    height: 22.25px;
+    border-radius: 11.125px;
+  }
+  .step.is-1 .step-circle {
+    background-size: 22.25px 22.25px;
+  }
+  .step.is-2 {
+    border: 1px solid var(--green);
+  }
+  .step.is-2 .step-circle {
+    font-size: 12.837px;
+    line-height: 15.404px;
+  }
+  .step.is-3::before {
+    border-width: 0.856px;
+    font-size: 12.837px;
+    line-height: 15.404px;
+  }
+  .back-btn {
+    top: 0;
+  }
+
+  /* ---------- summary (328px) | form (671px) ---------- */
+  .req-grid {
+    gap: 13px;
+  }
+
+  /* request summary card (2:31) */
+  .summary {
+    width: 328px;
+    filter: none;
+  }
+  .summary-panel {
+    padding: 18.324px;
+    border: 0.916px solid #e3e3e3;
+    border-radius: 10.994px;
+    gap: 15px;
+    filter: drop-shadow(0 6px 9.5px rgba(0, 0, 0, 0.25));
+  }
+  .summary-title {
+    padding-top: 0;
+    font-size: 16.492px;
+    line-height: normal;
+  }
+  /* product name with a small photo on its right, then the selects */
+  .summary-main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 55.76px;
+    column-gap: 14px;
+    row-gap: 13.743px;
+    align-items: center;
+  }
+  .summary-img {
+    grid-column: 2;
+    grid-row: 1;
+    width: 55.76px;
+    height: 55.76px;
+    border: 0.5px solid #919191;
+    border-radius: 9.16px;
+  }
+  .summary-block {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .summary-specs {
+    grid-column: 1 / -1;
+    gap: 10px;
+  }
+  /* the statics block sits inside the selects block: 20px between them */
+  .summary-specs > .summary-specs {
+    margin-top: 10px;
+  }
+  .s-label {
+    padding-bottom: 4.581px;
+    font-size: 13px;
+    color: #767676;
+  }
+  .s-value {
+    font-size: 13.743px;
+  }
+  .summary-selects {
+    gap: 10px;
+  }
+  .s-field {
+    height: 62px;
+  }
+  .s-select,
+  .s-select.is-plain {
+    height: 38px;
+    padding: 0 10.994px;
+    border: 0.916px solid #c3c3c3;
+    border-radius: 9.162px;
+    font-size: 14px;
+  }
+  .s-select-val {
+    height: 26.57px;
+    gap: 4.581px;
+  }
+  .s-select .chev {
+    zoom: 0.916;
+  }
+  .s-static {
+    height: 43.061px;
+  }
+  .s-static p:last-child,
+  .s-lines p {
+    font-size: 14px;
+  }
+  .s-field.is-extra {
+    margin-top: -5px; /* 5px between the selects of one product */
+  }
+  .summary-actions {
+    grid-column: 1 / -1;
+    gap: 10.078px;
+    padding-top: 7.33px;
+    border-top-width: 0.916px;
+  }
+  /* a closed dropdown list is invisible but still made the page taller
+     than the 830px window (scrollbar): collapse it once it has faded out */
+  .sdd-panel {
+    max-height: 0;
+    transition:
+      opacity 300ms ease-out,
+      transform 300ms ease-out,
+      visibility 0s linear 300ms,
+      max-height 0s linear 300ms;
+  }
+  .sdd.is-open .sdd-panel {
+    max-height: 2000px;
+    transition:
+      opacity 300ms ease-out,
+      transform 300ms ease-out;
+  }
+  .s-action {
+    height: 39.397px;
+    padding: 0 14.659px;
+    border-radius: 10.078px;
+    gap: 7.407px;
+    font-size: 12px;
+  }
+  .s-action.is-edit img {
+    width: 17.11px;
+    height: 16.426px;
+  }
+  .s-action:not(.is-edit) img {
+    width: 16.041px;
+    height: 16.597px;
+  }
+
+  /* form card (2:91) */
+  .form-card {
+    padding: 19.079px;
+    border: 0.795px solid #e3e3e3;
+    border-radius: 9.54px;
+    gap: 15px;
+    filter: drop-shadow(0.795px 4.77px 7.552px rgba(0, 0, 0, 0.17));
+  }
+  .req .f-h {
+    font-size: 16px;
+  }
+  .req .f-extra {
+    gap: 11.925px;
+  }
+  .req .f-details {
+    min-height: 0;
+    gap: 15px;
+  }
+
+  /* My logo */
+  .req .f-logo,
+  .req .f-when {
+    gap: 7.95px;
+  }
+  .req .logo-up {
+    align-items: stretch;
+    gap: 3.975px;
+  }
+  .req .logo-btns {
+    height: 34.184px;
+    gap: 11.925px;
+  }
+  .req .logo-upload {
+    height: 34.184px;
+    border-radius: 7.95px;
+    gap: 15.899px;
+    font-size: 13px;
+  }
+  .req .logo-upload img {
+    width: 14.707px;
+    height: 14.707px;
+  }
+  .req .logo-text {
+    border-width: 2.385px;
+    border-radius: 7.95px;
+    font-size: 13px;
+  }
+  .req .logo-later {
+    font-weight: 400;
+    text-align: left;
+  }
+
+  /* When do you need your products? */
+  .req .f-when-right {
+    width: 410px;
+    gap: 14.309px;
+  }
+  .req .f-date {
+    height: 30.209px;
+    padding: 0 9.54px;
+    border-width: 0.795px;
+    border-radius: 7.95px;
+    gap: 6.36px;
+  }
+  .req .f-date img {
+    width: 12.719px;
+    height: 12.719px;
+  }
+
+  /* My details: email | phone, then business type + company name, then
+     salutation + names, then comments */
+  .req .f-fields {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 7.95px;
+  }
+  .req .f-fields > .f-field:first-child {
+    order: 1;
+  }
+  .req .f-fields > .f-field:last-child {
+    order: 2;
+  }
+  .req .f-fields > .f-group16 {
+    order: 3;
+    grid-column: 1 / -1;
+    gap: 12.719px;
+  }
+  .req .f-fields > .f-row {
+    order: 4;
+    grid-column: 1 / -1;
+    gap: 12.719px;
+  }
+  .req .f-field {
+    gap: 4.77px;
+  }
+  .req .f-field.is-biz {
+    gap: 6.36px;
+  }
+  .req .f-label {
+    font-size: 14px;
+  }
+  .req .f-input {
+    height: 30.209px;
+    padding: 0 9.54px;
+    border-width: 0.795px;
+    border-radius: 7.95px;
+    font-size: 13px;
+  }
+  .req .f-biz {
+    align-items: center;
+    padding: 9.54px;
+    border: 0.795px solid #e3e3e3;
+    border-radius: 7.95px;
+  }
+  .req .f-sal {
+    height: auto;
+  }
+  .req .f-sal-box {
+    height: 30.209px;
+    padding: 0 9.54px;
+    border-width: 0.795px;
+    border-radius: 7.95px;
+    gap: 19.079px;
+  }
+  .req .f-sal-box .rd {
+    gap: 6.36px;
+  }
+  .req .f-names {
+    gap: 12.719px;
+  }
+  .req .f-comments {
+    gap: 7.95px;
+    margin-top: 0.899px; /* 15.899px under the salutation row */
+  }
+  .req .f-textarea {
+    height: 39px;
+    padding: 9.54px;
+    border-width: 0.795px;
+    border-radius: 7.95px;
+    font-size: 13px;
+  }
+
+  /* radios: 14.3px circle; empty ones get the grey #a6a6a6 ring the
+     design gives the business-type radios */
+  .req .rd {
+    gap: 7.95px;
+    font-size: 13px;
+  }
+  .req .rd-box {
+    width: 14.309px;
+    height: 14.309px;
+    border-radius: 7.155px;
+    box-shadow: inset 0 0 0 0.795px #a6a6a6;
+  }
+  .req .rd.is-when .rd-box {
+    box-shadow: inset 0 0 0 0.795px #a6a6a6;
+  }
+  .req .rd input:checked + .rd-box {
+    box-shadow: none;
+  }
+  .req .rd-box img {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Send Request (2:181) */
+  .req .send-btn {
+    width: 100%;
+    height: 46px;
+    padding: 0 14.928px;
+    border-radius: 11.925px;
+    gap: 7.95px;
+    font-size: 15px;
+  }
+  .req .send-btn img {
+    width: 15.539px;
+    height: 15.539px;
+  }
+}
