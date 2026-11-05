@@ -108,6 +108,9 @@
   .steps {
     height: 45px;
   }
+  .steps {
+    gap: 13px; /* same gap as summary | form below */
+  }
   .progress {
     left: 0;
     right: 0;
@@ -164,7 +167,7 @@
     border: 0.916px solid #e3e3e3;
     border-radius: 10.994px;
     gap: 15px;
-    filter: drop-shadow(0 6px 9.5px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 6px 9.5px rgba(0, 0, 0, 0.1));
   }
   .summary-title {
     padding-top: 0;
@@ -282,7 +285,7 @@
     border: 0.795px solid #e3e3e3;
     border-radius: 9.54px;
     gap: 15px;
-    filter: drop-shadow(0.795px 4.77px 7.552px rgba(0, 0, 0, 0.17));
+    filter: drop-shadow(0.795px 4.77px 7.552px rgba(0, 0, 0, 0.1));
   }
   .req .f-h {
     font-size: 16px;
@@ -325,7 +328,7 @@
   }
   .req .logo-later {
     font-weight: 400;
-    text-align: left;
+    text-align: center;
   }
 
   /* When do you need your products? */
@@ -350,7 +353,7 @@
   .req .f-fields {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 7.95px;
+    gap: 7.95px 12px; /* email | phone 12px apart */
   }
   .req .f-fields > .f-field:first-child {
     order: 1;
