@@ -23,6 +23,9 @@
   els.forEach(function (el, i) {
     var px = sizes[i];
     if (!px) return; // font-size 0 (icon-only elements) stays 0
+    // progress step labels are set to the PDP CTA size (18px) in
+    // compact.css; only their number circles follow the rule
+    if (el.closest(".progress .step") && !el.closest(".step-circle")) return;
     el.style.fontSize = Math.round(next(px) * 100) / 100 + "px";
   });
 })();

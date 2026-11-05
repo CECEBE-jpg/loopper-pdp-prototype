@@ -46,8 +46,8 @@
   border: 0.8px solid #909499;
   border-radius: 10px;
   background: #fff;
-  font-size: 14px;
-  line-height: 20.3px;
+  font-size: 18px; /* same as the PDP CTA labels */
+  line-height: 1.2;
   font-weight: 700;
   color: #6c7783;
   text-align: left;
@@ -97,7 +97,7 @@
   border: 1.6px solid #c7d0d9;
   border-radius: 13px;
   box-sizing: border-box;
-  font-size: 13px;
+  font-size: 15px; /* matches the "2" circle on the main page */
   font-weight: 800;
   color: #7b8794;
 }
