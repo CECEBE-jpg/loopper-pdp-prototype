@@ -56,9 +56,9 @@
     position: absolute;
     top: 10px;
     left: 50%;
-    width: 1012px;
+    width: 990px;
     height: 50px;
-    margin: 0 0 0 -506px;
+    margin: 0 0 0 -493px; /* 4px in from the 994px content column */
     display: flex;
     align-items: center;
     font-size: 22px;
@@ -98,7 +98,7 @@
     padding: 3px 0 16px; /* content starts 3px under the 96px header */
   }
   .req-body {
-    width: 1012px;
+    width: 994px;
     gap: 20px;
   }
 
@@ -159,7 +159,7 @@
 
   /* request summary card (2:31) */
   .summary {
-    width: 328px;
+    width: 322.67px;
     filter: none;
   }
   .summary-panel {
@@ -284,24 +284,63 @@
     padding: 19.079px;
     border: 0.795px solid #e3e3e3;
     border-radius: 9.54px;
-    gap: 15px;
+    gap: 24px;
     filter: drop-shadow(0.795px 4.77px 7.552px rgba(0, 0, 0, 0.1));
   }
+  /* Figma 22:115: every section is a row, an 88px label column on the
+     left (14px bold #555) and the fields on the right */
   .req .f-h {
-    font-size: 16px;
+    font-size: 14px;
+    color: #555;
   }
   .req .f-extra {
-    gap: 11.925px;
+    gap: 24px;
+  }
+  .req .f-logo,
+  .req .f-when,
+  .req .f-details {
+    display: grid;
+    grid-template-columns: 88px minmax(0, 1fr);
+    align-items: start;
+  }
+  .req .f-logo > .f-h,
+  .req .f-when > .f-h,
+  .req .f-details > .f-h {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  /* Delivery (question + radios) and My details (fields + comments) have
+     two rows on the right */
+  .req .f-when > .f-h,
+  .req .f-details:has(> .f-comments) > .f-h {
+    grid-row: 1 / span 2;
+  }
+  /* Free Quote: comments come after Delivery, in the fields column */
+  .req .f-extra > .f-comments {
+    margin-left: 103px; /* 88px label column + 15px */
+  }
+  .req .f-logo > :not(.f-h),
+  .req .f-when > :not(.f-h),
+  .req .f-details > :not(.f-h) {
+    grid-column: 2;
   }
   .req .f-details {
     min-height: 0;
-    gap: 15px;
+    gap: 15.899px 15px; /* fields to comments 15.9px; label column 15px */
   }
 
-  /* My logo */
-  .req .f-logo,
+  /* My logo / Delivery: fields 7.95px right of the label */
+  .req .f-logo {
+    gap: 0 7.95px;
+  }
   .req .f-when {
-    gap: 7.95px;
+    gap: 8px 7.95px;
+  }
+  /* Delivery: the question above the radios */
+  .req .f-q {
+    font-size: 14px;
+    font-weight: 700;
+    color: #707070;
   }
   .req .logo-up {
     align-items: stretch;
@@ -328,12 +367,13 @@
   }
   .req .logo-later {
     font-weight: 400;
+    color: #656565;
     text-align: center;
   }
 
   /* When do you need your products? */
   .req .f-when-right {
-    width: 410px;
+    width: 318px;
     gap: 14.309px;
   }
   .req .f-date {
@@ -411,7 +451,6 @@
   }
   .req .f-comments {
     gap: 7.95px;
-    margin-top: 0.899px; /* 15.899px under the salutation row */
   }
   .req .f-textarea {
     height: 39px;
@@ -434,7 +473,7 @@
     box-shadow: inset 0 0 0 0.795px #a6a6a6;
   }
   .req .rd.is-when .rd-box {
-    box-shadow: inset 0 0 0 0.795px #a6a6a6;
+    box-shadow: inset 0 0 0 1px #8f8f8f; /* Figma 22:137 */
   }
   .req .rd input:checked + .rd-box {
     box-shadow: none;
