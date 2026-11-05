@@ -136,6 +136,26 @@
   .step.is-1 .step-circle {
     background-size: 22.25px 22.25px;
   }
+  /* "Choose your product" is one link (back to the product): the whole
+     box reacts on hover, the text is never underlined */
+  .step.is-1 {
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+  }
+  .step.is-1:hover .step-label {
+    text-decoration: none;
+  }
+  .step.is-1:hover {
+    background: #dcf3e2;
+    border-color: #b9e2c4;
+  }
+  .step.is-1:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 2px;
+  }
   .step.is-2 {
     border: 1px solid var(--green);
   }
