@@ -7,7 +7,7 @@
    - field labels and the delivery question 13px instead of 12px
    - errors: red text + "!" icon under the field (not colour alone), red
      field border; #c4141b is 6.2:1 on white
-   - "Fields marked * are required" note, logo "Remove" button */
+   - logo "Remove" button */
 
 /* ---------- contrast ---------- */
 .f-input::placeholder,
@@ -38,20 +38,6 @@
   .req .f-label,
   .req .f-q {
     font-size: 13px;
-  }
-
-  /* ---------- "Fields marked * are required" ---------- */
-  .req .f-note {
-    margin-bottom: -8px; /* sits close to the fields it explains */
-    font-size: 12px;
-    color: #555;
-  }
-  /* My details: label column spans the note, the fields and comments */
-  .req .f-details > .f-h {
-    grid-row: 1 / span 2;
-  }
-  .req .f-details:has(> .f-comments) > .f-h {
-    grid-row: 1 / span 3;
   }
 
   /* ---------- logo: remove the chosen file ---------- */
