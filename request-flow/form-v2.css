@@ -215,3 +215,110 @@
     gap: 28px;
   }
 }
+
+/* Request summary in the same style as the v2 fields: Color and Quantity
+   have their label inside a 50px box (like Salutation), the other labels
+   are sentence case and quiet, buttons get the same corners */
+@media (min-width: 768px) {
+  .req .summary-panel {
+    border-radius: var(--fv2-radius);
+  }
+  .req .s-label {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--fv2-label);
+    text-transform: none;
+  }
+  .req .s-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--fv2-ink);
+  }
+  .req .summary-img {
+    border-color: #d9d9d9;
+    border-radius: var(--fv2-radius);
+  }
+
+  /* dropdowns */
+  .req .s-field {
+    position: relative;
+    height: auto;
+    gap: 0;
+    justify-content: flex-start;
+  }
+  .req .s-field > .s-label {
+    position: absolute;
+    left: 14px;
+    top: 7px;
+    z-index: 1;
+    padding: 0;
+    font-size: 11.5px;
+    line-height: 14px;
+    pointer-events: none;
+  }
+  .req .s-select,
+  .req .s-select.is-plain {
+    position: relative;
+    height: var(--fv2-h);
+    padding: 20px 34px 4px 14px;
+    border: 1px solid #8f8f8f;
+    border-radius: var(--fv2-radius);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--fv2-ink);
+  }
+  .req .s-select:focus-visible {
+    border-color: var(--fv2-ink);
+    box-shadow: inset 0 0 0 1px var(--fv2-ink);
+    outline: none;
+  }
+  .req .s-select-val {
+    height: 20px;
+    gap: 6px;
+  }
+  .req .s-swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+  }
+  .req .s-select .chev {
+    position: absolute;
+    right: 15px;
+    top: calc(50% - 3px);
+  }
+  /* several colours: one label, the next selects without it */
+  .req .s-field.is-extra .s-select {
+    padding-top: 4px;
+  }
+  /* the open list covers the whole field */
+  .req .sdd-panel {
+    top: 0;
+    border-radius: var(--fv2-radius);
+  }
+
+  /* print position / printing in */
+  .req .s-static {
+    height: auto;
+    gap: 2px;
+  }
+  .req .s-static p:last-child,
+  .req .s-lines p {
+    font-weight: 600;
+    color: var(--fv2-ink);
+  }
+
+  /* edit / remove / add extra */
+  .req .summary-actions {
+    border-top-color: #d9d9d9;
+  }
+  .req .s-action {
+    height: 42px;
+    border-radius: var(--fv2-radius);
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .req .add-extra {
+    border-radius: var(--fv2-radius);
+    font-weight: 600;
+  }
+}
