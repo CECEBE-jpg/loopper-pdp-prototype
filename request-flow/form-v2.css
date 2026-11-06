@@ -555,3 +555,11 @@
     text-align: center;
   }
 }
+
+/* Logo note and delivery question: same size */
+@media (min-width: 768px) {
+  .req .logo-later,
+  .req .f-q {
+    font-size: 13px;
+  }
+}
