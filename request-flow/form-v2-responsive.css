@@ -1,0 +1,385 @@
+/* ============================================================
+   form-v2.html only: the v2 desktop design on tablets and phones.
+   Loaded last, after form-v2.css.
+   Tablet (768-1179px): the page may be narrower than the old 1250px
+   minimum; title back on the page, summary above the form, full width.
+   Phone (<768px, the separate .mrq form): same fields as desktop: floating
+   labels, 50px rounded fields, labels inside the radio boxes, 10px gaps,
+   pill button. Inputs stay 16px so iPhones don't zoom in on focus.
+   ============================================================ */
+html {
+  min-width: 0;
+}
+
+/* wide enough for the two columns, not yet for title + logo side by side */
+@media (min-width: 992px) {
+  body[data-screen="design"] .hdr-title.is-design,
+  body[data-screen="quote"] .hdr-title.is-quote {
+    left: max(205px, 50% - 493px);
+    margin: 0;
+  }
+}
+
+/* ---------- tablet ---------- */
+@media (min-width: 768px) and (max-width: 1179.98px) {
+  /* the form scrolls here; compact-fit.js must not shrink it */
+  .req {
+    zoom: 1 !important;
+    padding: 16px 24px 32px;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .req-body {
+    width: 100%;
+    max-width: 880px;
+    margin: 0 auto;
+    gap: 16px;
+  }
+
+  /* header: logo and phone only, title on the page */
+  body[data-screen="design"] .hdr-title,
+  body[data-screen="quote"] .hdr-title {
+    display: none !important;
+  }
+  body[data-screen="design"] .hd .search,
+  body[data-screen="quote"] .hd .search,
+  body[data-screen="design"] .hd .burger,
+  body[data-screen="quote"] .hd .burger {
+    display: none;
+  }
+  body[data-screen="design"] .hd .act:not(.act-phone),
+  body[data-screen="quote"] .hd .act:not(.act-phone) {
+    display: none;
+  }
+  body[data-screen="design"] .bar .bar-in,
+  body[data-screen="quote"] .bar .bar-in {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    padding: 0 24px;
+  }
+  body[data-screen="design"] .bar .logo,
+  body[data-screen="quote"] .bar .logo {
+    margin: 0;
+  }
+  body[data-screen="design"] .actions,
+  body[data-screen="quote"] .actions {
+    width: auto;
+    height: auto;
+    margin: 0;
+  }
+  .req-title {
+    position: static;
+    width: 100%;
+    max-width: 880px;
+    height: auto;
+    margin: 0 auto;
+    overflow: visible;
+    clip-path: none;
+    font-size: 22px;
+    line-height: 32px;
+    color: #003e4d;
+  }
+
+  /* back arrow in line with the steps */
+  .req-top {
+    padding-left: 56px;
+  }
+  .progress {
+    left: 56px;
+  }
+  .back-btn {
+    left: 0;
+  }
+  .steps {
+    gap: 8px;
+  }
+  .step,
+  .step.is-1,
+  .step.is-2,
+  .step.is-3 {
+    min-width: 0;
+    padding: 8px 10px;
+    gap: 6px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  /* summary above the form, in two columns inside */
+  .req-grid {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+  .summary {
+    width: 100%;
+  }
+  .form-card {
+    flex: none;
+    width: 100%;
+  }
+  .summary-selects {
+    flex-direction: row;
+  }
+  .summary-selects > .s-field {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .summary-specs > .summary-specs {
+    flex-direction: row;
+  }
+  .summary-specs > .summary-specs > .s-static {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .req .fcc-panel {
+    max-width: 100%;
+  }
+}
+
+/* ---------- phone ---------- */
+@media (max-width: 767.98px) {
+  /* header: logo and phone only, like desktop */
+  body[data-screen="design"] .mhdr-icon:not(.mhdr-phone),
+  body[data-screen="quote"] .mhdr-icon:not(.mhdr-phone) {
+    display: none;
+  }
+
+  body[data-screen="design"] .mhdr-icons,
+  body[data-screen="quote"] .mhdr-icons {
+    width: auto;
+    margin-left: auto;
+    justify-content: flex-end;
+  }
+
+  /* boxes */
+  .mrq .mbox,
+  .mrq .rsm {
+    padding: 16px;
+    border: 1px solid #e3e3e3;
+    border-radius: 10px;
+    filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.1));
+  }
+  .mrq .mbox {
+    gap: 10px;
+  }
+  .mrq .mbox.is-when {
+    gap: 8px;
+  }
+  .mrq .mbox-h,
+  .mrq .mbox-h.is-big {
+    font-size: 14px;
+    color: #555;
+  }
+  .mrq .f-q {
+    font-size: 13px;
+    font-weight: 700;
+    color: #707070;
+  }
+
+  /* first name | surname side by side, the rest full width */
+  .mrq .mbox:has(#m-first) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .mrq .mbox:has(#m-first) > * {
+    grid-column: 1 / -1;
+  }
+  .mrq .mbox > .mf-field:has(#m-first),
+  .mrq .mbox > .mf-field:has(#m-last) {
+    grid-column: span 1;
+  }
+
+  /* fields with a floating label */
+  .mrq .mf-field {
+    position: relative;
+    gap: 0;
+  }
+  .mrq .mf-field:has(.mf-input) > .mf-label {
+    position: absolute;
+    left: 14px;
+    top: 15px;
+    z-index: 1;
+    max-width: calc(100% - 28px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #5f6368;
+    pointer-events: none;
+    transition:
+      top 0.15s ease,
+      font-size 0.15s ease;
+  }
+  .mrq .mf-field:has(.mf-input:focus) > .mf-label,
+  .mrq .mf-field:has(.mf-input:not(:placeholder-shown)) > .mf-label {
+    top: 7px;
+    font-size: 11.5px;
+    line-height: 14px;
+  }
+  .mrq .mf-field:has(.mf-input[aria-invalid="true"]) > .mf-label {
+    color: #c4141b;
+  }
+  .mrq .mf-input {
+    height: 50px;
+    padding: 20px 14px 4px;
+    border: 1px solid #8f8f8f;
+    border-radius: 10px;
+    font-size: 16px;
+    color: #1c1c1e;
+  }
+  .mrq textarea.mf-input {
+    height: 76px;
+    padding: 25px 14px 8px;
+    scrollbar-width: none;
+  }
+  .mrq .mf-input::placeholder {
+    color: transparent;
+  }
+  .mrq .mf-input:focus::placeholder {
+    color: #757575;
+  }
+  .mrq .mf-input:focus {
+    border-color: #1c1c1e;
+    box-shadow: inset 0 0 0 1px #1c1c1e;
+  }
+
+  /* phone: country box, label beside it */
+  .mrq .f-phone {
+    height: 50px;
+  }
+  .mrq .f-phone:focus-within {
+    border-color: #1c1c1e;
+    box-shadow: inset 0 0 0 1px #1c1c1e;
+  }
+  .mrq .mf-field:has(.f-phone) > .mf-label {
+    left: 98px;
+    max-width: calc(100% - 110px);
+  }
+  .mrq .f-phone .mf-input {
+    height: 100%;
+    padding: 20px 12px 4px;
+  }
+
+  /* radios: label inside one box, like desktop */
+  .mrq .mf-field:has(.mf-cards) > .mf-label {
+    position: absolute;
+    left: 14px;
+    top: 7px;
+    z-index: 1;
+    font-size: 11.5px;
+    font-weight: 400;
+    line-height: 14px;
+    color: #5f6368;
+  }
+  .mrq .mf-cards,
+  .mrq .mf-cards.is-row {
+    min-height: 50px;
+    padding: 23px 14px 7px;
+    border: 1px solid #8f8f8f;
+    border-radius: 10px;
+    background: #fff;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px 12px;
+  }
+  .mrq .mf-cards.is-row {
+    justify-content: flex-start;
+    gap: 8px 24px;
+  }
+  .mrq .mf-cards .mrc,
+  .mrq .mf-cards:not(.is-row) .mrc,
+  .mrq .dl .mrc {
+    flex: none;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    gap: 8px;
+    font-size: 14px;
+  }
+  .mrq .mf-cards .mrc:has(input:checked),
+  .mrq .dl .mrc:has(input:checked) {
+    box-shadow: none;
+  }
+  .mrq .rd-box {
+    box-shadow: inset 0 0 0 1px #8f8f8f;
+  }
+  .mrq .mrc input:checked + .rd-box {
+    box-shadow: none;
+  }
+
+  /* delivery */
+  .mrq .dl {
+    gap: 8px;
+  }
+  .mrq .dl-date {
+    height: 50px;
+    border-color: #8f8f8f;
+    border-radius: 10px;
+  }
+
+  /* logo */
+  .mrq .mlogo-upload,
+  .mrq .mlogo-text {
+    border-radius: 10px;
+  }
+  .mrq .mlogo-later {
+    font-size: 13px;
+    font-weight: 400;
+    color: #656565;
+  }
+
+  /* summary: Color and Quantity with the label inside the field */
+  .mrq .rsm-details {
+    gap: 10px;
+  }
+  .mrq .rsm-field:has(> .rsm-select) {
+    position: relative;
+    gap: 0;
+  }
+  .mrq .rsm-label {
+    font-size: 12px;
+    font-weight: 400;
+    color: #5f6368;
+    text-transform: none;
+  }
+  .mrq .rsm-field:has(> .rsm-select) > .rsm-label {
+    position: absolute;
+    left: 14px;
+    top: 7px;
+    z-index: 1;
+    font-size: 11.5px;
+    line-height: 14px;
+    pointer-events: none;
+  }
+  .mrq .rsm-select {
+    height: 50px;
+    padding: 20px 14px 4px;
+    border: 1px solid #8f8f8f;
+    border-radius: 10px;
+    font-weight: 600;
+    color: #1c1c1e;
+  }
+  .mrq .rsm-field:has(.rsm-select + .rsm-select) .rsm-select + .rsm-select {
+    padding-top: 4px;
+  }
+  .mrq .rsm-value {
+    font-weight: 600;
+    color: #1c1c1e;
+  }
+
+  /* send */
+  .mrq .send-btn {
+    height: 50px;
+    border-radius: 25px;
+  }
+  .mrq .send-btn:hover {
+    background: #23963e;
+  }
+}

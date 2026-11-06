@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="form-a11y.css?v=2" />
     <link rel="stylesheet" href="form-phone.css?v=2" />
     <link rel="stylesheet" href="form-v2.css?v=20" />
+    <link rel="stylesheet" href="form-v2-responsive.css?v=2" />
   </head>
   <body data-screen="pdp">
     <!-- ===================== HEADER (top section) ===================== -->
@@ -1918,14 +1919,11 @@
             </div>
 
             <div class="mbox is-when">
-              <p class="mbox-h">When do you need your products?</p>
+              <p class="mbox-h">Delivery</p>
+              <p class="f-q" id="m-when-q">When do you need this product?</p>
               <!-- Deadline section form mobile: Figma component set 1357:7968
                    ASAP 1357:7865 / deadline + date field 1357:7967 / date picker open 1357:8301 -->
-              <div
-                class="dl"
-                role="radiogroup"
-                aria-label="When do you need your products?"
-              >
+              <div class="dl" role="radiogroup" aria-labelledby="m-when-q">
                 <label class="mrc"
                   ><input
                     type="radio"
