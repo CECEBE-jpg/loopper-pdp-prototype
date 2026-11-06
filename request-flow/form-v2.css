@@ -189,3 +189,29 @@
     box-shadow: inset 0 0 0 1px var(--fv2-ink);
   }
 }
+
+/* Business type: same as Salutation, label inside the box, same height */
+@media (min-width: 768px) {
+  .req .f-field.is-biz {
+    position: relative;
+    gap: 0;
+  }
+  .req .f-field.is-biz > .f-label {
+    position: absolute;
+    left: 14px;
+    top: 7px;
+    z-index: 1;
+    font-size: 11.5px;
+    font-weight: 400;
+    line-height: 14px;
+    color: var(--fv2-label);
+  }
+  .req .f-biz {
+    height: var(--fv2-h);
+    padding: 18px 14px 0;
+    border-color: #8f8f8f;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 28px;
+  }
+}
