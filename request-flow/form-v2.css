@@ -537,3 +537,21 @@
     gap: 0;
   }
 }
+
+/* Calendar days: number dead centre in its square, in every state */
+@media (min-width: 768px) {
+  .fdp-row > span {
+    display: block;
+    min-width: 0;
+  }
+  .fdp-day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    text-align: center;
+  }
+}
