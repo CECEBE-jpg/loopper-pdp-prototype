@@ -563,3 +563,11 @@
     font-size: 13px;
   }
 }
+
+/* Country list: left edge under the country box and its arrow */
+@media (min-width: 768px) {
+  .req .fcc-panel {
+    left: 0;
+    right: auto;
+  }
+}

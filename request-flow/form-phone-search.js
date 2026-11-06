@@ -253,7 +253,9 @@
       render();
       list.scrollTop = 0;
       if (items[active]) items[active].el.scrollIntoView({ block: "nearest" });
-      search.focus();
+      search.focus({ preventScroll: true });
+      // the whole list in view when it would run past the window
+      panel.scrollIntoView({ block: "nearest" });
     }
     function close(focusTo) {
       if (panel.hidden) return;
