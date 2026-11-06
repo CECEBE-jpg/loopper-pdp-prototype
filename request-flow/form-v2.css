@@ -596,3 +596,29 @@
     outline-offset: 2px;
   }
 }
+
+/* Summary chevrons (closed and in the open list): same size as the phone
+   country box chevron, 9 x 5px */
+@media (min-width: 768px) {
+  .req .s-select .chev,
+  .req .sdd-chev .chev {
+    zoom: 1;
+    width: 9px;
+    height: 5px;
+  }
+  .req .s-select .chev {
+    top: calc(50% - 2.5px);
+  }
+  .req .s-select .chev-node,
+  .req .sdd-chev .chev-node {
+    width: 5px;
+    height: 9px;
+  }
+  .req .s-select .chev-node img,
+  .req .sdd-chev .chev-node img {
+    left: 0;
+    top: 0;
+    width: 5px;
+    height: 9px;
+  }
+}
