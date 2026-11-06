@@ -29,6 +29,8 @@
     { c: "us", name: "United States", code: "+1", eg: "201 555 0123" },
   ];
 
+  window.loopperPhoneCountries = COUNTRIES; // example numbers for form-phone-search.js
+
   document.querySelectorAll('input[type="tel"][name="phone"]').forEach(function (input) {
     var wrap = document.createElement("div");
     wrap.className = "f-phone";
