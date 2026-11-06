@@ -571,3 +571,28 @@
     right: auto;
   }
 }
+
+/* Send Request hover: only a slightly darker green; no growing button,
+   border or moving arrow */
+@media (min-width: 768px) {
+  .req .form-card .send-btn,
+  .req .form-card .send-btn:hover {
+    height: 50px;
+    border-radius: 25px;
+    box-shadow: none;
+    transition: background-color 0.15s ease;
+  }
+  .req .form-card .send-btn:hover {
+    background: #23963e;
+  }
+  .req .form-card .send-btn img,
+  .req .form-card .send-btn:hover img {
+    content: normal;
+    transform: none;
+    transition: none;
+  }
+  .req .form-card .send-btn:focus-visible {
+    outline: 2px solid var(--fv2-ink);
+    outline-offset: 2px;
+  }
+}
