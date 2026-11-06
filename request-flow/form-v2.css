@@ -622,3 +622,12 @@
     height: 9px;
   }
 }
+
+/* Deadline field: bigger calendar icon */
+@media (min-width: 768px) {
+  .req .f-date img {
+    flex: none;
+    width: 18px;
+    height: 18px;
+  }
+}
