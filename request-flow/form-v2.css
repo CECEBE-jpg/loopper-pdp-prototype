@@ -517,3 +517,23 @@
     outline-offset: 1px;
   }
 }
+
+/* Every gap between the My details fields is 10px, across and down */
+@media (min-width: 768px) {
+  .req .f-details {
+    gap: 10px 15px;
+  }
+  .req .f-fields {
+    gap: 10px;
+  }
+  .req .f-fields > .f-group16,
+  .req .f-fields > .f-row,
+  .req .f-names {
+    gap: 10px;
+  }
+  /* Business type: options spread evenly over the box */
+  .req .f-biz {
+    justify-content: space-between;
+    gap: 0;
+  }
+}
