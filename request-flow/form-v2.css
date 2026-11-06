@@ -416,3 +416,104 @@
     order: 4;
   }
 }
+
+/* Deadline calendar (form-date-picker.js): same look as the dropdowns */
+@media (min-width: 768px) {
+  .req .f-when-right {
+    position: relative;
+  }
+  .fdp {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    z-index: 30;
+    width: 290px;
+    padding: 12px;
+    border: 1px solid var(--field-line);
+    border-radius: var(--fv2-radius);
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+  .fdp[hidden] {
+    display: none;
+  }
+  .fdp-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--field-line);
+  }
+  .fdp-month {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--fv2-ink);
+  }
+  .fdp-nav {
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .fdp-nav img {
+    width: 6px;
+    height: 11px;
+  }
+  .fdp-nav.is-prev img {
+    transform: rotate(180deg);
+  }
+  .fdp-nav:hover:not(:disabled) {
+    background: #f1f1f1;
+  }
+  .fdp-nav:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+  .fdp-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    margin-top: 2px;
+  }
+  .fdp-row.is-head {
+    margin-top: 8px;
+    font-size: 12px;
+    text-align: center;
+    color: var(--fv2-label);
+  }
+  .fdp-day {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--fv2-ink);
+    cursor: pointer;
+  }
+  .fdp-day:hover:not(:disabled) {
+    background: #e6f6fa;
+  }
+  .fdp-day:disabled {
+    color: #8a8a8a;
+    text-decoration: line-through;
+    cursor: default;
+  }
+  .fdp-day.is-today {
+    box-shadow: inset 0 0 0 1px #8f8f8f;
+    font-weight: 600;
+  }
+  .fdp-day.is-selected,
+  .fdp-day.is-selected:hover {
+    background: var(--cyan);
+    color: #fff;
+    font-weight: 600;
+    box-shadow: none;
+  }
+  .fdp-day:focus-visible,
+  .fdp-nav:focus-visible {
+    outline: 2px solid var(--fv2-ink);
+    outline-offset: 1px;
+  }
+}
