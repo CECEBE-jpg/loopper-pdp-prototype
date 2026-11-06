@@ -647,6 +647,12 @@
     chev.before(head);
     head.append(headVal, chev);
     function setOpen(open) {
+      // closing with a quantity under the minimum: it is dropped, the
+      // summary keeps the last valid quantity
+      if (!open && custom && custom.getAttribute("aria-invalid") === "true") {
+        custom.value = custom.defaultValue;
+        setMoqError(false);
+      }
       headVal.textContent = current.textContent;
       dd.classList.toggle("is-open", open);
       btn.setAttribute("aria-expanded", String(open));
@@ -714,13 +720,14 @@
       });
     }
     // a typed quantity is saved on Enter and when clicking away (change
-    // fires on both, blur catches anything else); under the minimum nothing
-    // is saved: the list stays open with the error in view
+    // fires on both, blur catches anything else). Under the minimum nothing
+    // is saved: Enter shows the error, clicking away closes the list
     function saveCustom() {
       var n = parseInt(custom.value, 10);
       if (n > 0 && n < moq) {
         setMoqError(true);
-        if (moqNote) moqNote.scrollIntoView({ block: "nearest" });
+        if (moqNote && document.activeElement === custom)
+          moqNote.scrollIntoView({ block: "nearest" });
         return;
       }
       if (n > 0 && current.textContent !== n + " pieces") {
@@ -739,7 +746,6 @@
   });
   document.addEventListener("click", function (e) {
     document.querySelectorAll(".sdd.is-open").forEach(function (dd) {
-      if (dd.querySelector(".sdd-custom.is-invalid")) return;
       if (!dd.contains(e.target)) dd.querySelector(".s-select").click();
     });
   });
