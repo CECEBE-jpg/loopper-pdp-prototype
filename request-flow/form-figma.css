@@ -335,10 +335,6 @@
   .req .f-details:has(> .f-comments) > .f-h {
     grid-row: 1 / span 2;
   }
-  /* Free Quote: comments come after Delivery, in the fields column */
-  .req .f-extra > .f-comments {
-    margin-left: 103px; /* 88px label column + 15px */
-  }
   .req .f-logo > :not(.f-h),
   .req .f-when > :not(.f-h),
   .req .f-details > :not(.f-h) {
