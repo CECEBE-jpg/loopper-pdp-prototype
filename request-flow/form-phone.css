@@ -1,0 +1,80 @@
+/* Phone number with a country code dropdown (form-phone.js).
+   .f-phone draws the field's border; the country box and the input sit
+   inside it, split by a thin line. The transparent <select> covers the
+   country box, so a click anywhere on it opens the list. */
+.f-phone {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  border: 1px solid #8f8f8f;
+  border-radius: 10px;
+  background: #fff;
+  overflow: hidden;
+}
+.f-cc {
+  position: relative;
+  flex: none;
+  width: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border-right: 1px solid #d9d9d9;
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+}
+.f-cc:hover {
+  background: #f6f6f6;
+}
+.f-cc-flag {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+/* the PDP chevron, pointing down */
+.f-cc-chev {
+  flex: none;
+  width: 5px;
+  height: 9px;
+  transform: rotate(90deg);
+}
+.f-cc select {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border: 0;
+  opacity: 0;
+  font-size: 14px;
+  cursor: pointer;
+}
+.f-phone:focus-within {
+  border-color: #1f8ceb;
+  box-shadow: 0 0 0 3px rgba(31, 140, 235, 0.15);
+}
+.f-phone .f-input,
+.f-phone .mf-input {
+  flex: 1 1 0;
+  min-width: 0;
+  border: 0 !important;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none !important;
+}
+
+/* main form: same height and corners as the other fields */
+@media (min-width: 768px) {
+  .req .f-phone {
+    height: 30.209px;
+    border-width: 0.795px;
+    border-radius: 7.95px;
+  }
+  .req .f-phone .f-input {
+    height: 100%;
+    border-radius: 0;
+  }
+}

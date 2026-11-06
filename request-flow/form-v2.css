@@ -149,3 +149,43 @@
     border-radius: 25px;
   }
 }
+
+/* phone with country code: floating label beside the country box */
+@media (min-width: 768px) {
+  .req .f-field:has(.f-phone) {
+    position: relative;
+    gap: 0;
+  }
+  .req .f-phone {
+    height: var(--fv2-h);
+    border: 1px solid #8f8f8f;
+    border-radius: var(--fv2-radius);
+  }
+  .req .f-phone .f-input {
+    padding: 20px 12px 6px;
+  }
+  .req .f-field:has(.f-phone) > .f-label {
+    position: absolute;
+    left: 98px;
+    top: 15px;
+    z-index: 1;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: var(--fv2-label);
+    pointer-events: none;
+    transition:
+      top 0.15s ease,
+      font-size 0.15s ease;
+  }
+  .req .f-field:has(.f-input:focus) > .f-label,
+  .req .f-field:has(.f-phone .f-input:not(:placeholder-shown)) > .f-label {
+    top: 7px;
+    font-size: 11.5px;
+    line-height: 14px;
+  }
+  .req .f-phone:focus-within {
+    border-color: var(--fv2-ink);
+    box-shadow: inset 0 0 0 1px var(--fv2-ink);
+  }
+}

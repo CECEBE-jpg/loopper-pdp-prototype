@@ -342,7 +342,8 @@
         set("email", v("email"));
         set("company", v("company"));
         set("name", name && (sal ? sal.value + " " : "") + name);
-        set("phone", v("phone"));
+        var tel = form.querySelector('[name="phone"]');
+        set("phone", v("phone") && ((tel && tel.dataset.dialCode) ? tel.dataset.dialCode + " " : "") + v("phone"));
         location.hash = "thanks";
       });
     });
