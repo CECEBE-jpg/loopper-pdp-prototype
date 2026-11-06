@@ -322,3 +322,16 @@
     font-weight: 600;
   }
 }
+
+/* Request summary: product photo left, product name right */
+@media (min-width: 768px) {
+  .req .summary-main {
+    grid-template-columns: 55.76px minmax(0, 1fr);
+  }
+  .req .summary-img {
+    grid-column: 1;
+  }
+  .req .summary-block {
+    grid-column: 2;
+  }
+}
