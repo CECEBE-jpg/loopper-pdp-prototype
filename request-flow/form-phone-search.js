@@ -1,4 +1,4 @@
-/* form-v2.html only, desktop: the phone country box opens a searchable list
+/* Desktop request forms: the phone country box opens a searchable list
    styled like the request summary dropdowns, instead of the native list.
    - every country is in the list (Popular first, then A-Z), each with its
      flag and dial code
