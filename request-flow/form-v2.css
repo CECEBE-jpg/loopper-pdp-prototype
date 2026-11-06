@@ -394,3 +394,11 @@
     text-align: left;
   }
 }
+
+/* Phone number under email, both full width */
+@media (min-width: 768px) {
+  .req .f-fields > .f-field:first-child,
+  .req .f-fields > .f-field:last-child {
+    grid-column: 1 / -1;
+  }
+}
