@@ -713,25 +713,33 @@
         if (n === 0 || n >= moq) setMoqError(false);
       });
     }
-    if (custom)
-      custom.addEventListener("change", function () {
-        var n = parseInt(custom.value, 10);
-        if (n > 0 && n < moq) {
-          setMoqError(true);
-          return;
-        }
-        if (n > 0) {
-          dd.querySelectorAll("[role=option]").forEach(function (o) {
-            o.classList.remove("is-selected");
-            o.setAttribute("aria-selected", "false");
-          });
-          current.textContent = n + " pieces";
-          setOpen(false);
-        }
-      });
+    // a typed quantity is saved on Enter and when clicking away (change
+    // fires on both, blur catches anything else); under the minimum nothing
+    // is saved: the list stays open with the error in view
+    function saveCustom() {
+      var n = parseInt(custom.value, 10);
+      if (n > 0 && n < moq) {
+        setMoqError(true);
+        if (moqNote) moqNote.scrollIntoView({ block: "nearest" });
+        return;
+      }
+      if (n > 0 && current.textContent !== n + " pieces") {
+        dd.querySelectorAll("[role=option]").forEach(function (o) {
+          o.classList.remove("is-selected");
+          o.setAttribute("aria-selected", "false");
+        });
+        current.textContent = n + " pieces";
+        setOpen(false);
+      }
+    }
+    if (custom) {
+      custom.addEventListener("change", saveCustom);
+      custom.addEventListener("blur", saveCustom);
+    }
   });
   document.addEventListener("click", function (e) {
     document.querySelectorAll(".sdd.is-open").forEach(function (dd) {
+      if (dd.querySelector(".sdd-custom.is-invalid")) return;
       if (!dd.contains(e.target)) dd.querySelector(".s-select").click();
     });
   });
