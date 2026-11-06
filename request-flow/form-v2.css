@@ -403,7 +403,7 @@
   }
 }
 
-/* My details order: email, business type, company name, salutation, first
+/* My details order: email, business type, company name, salutation | first
    name | surname, phone, comments (also the keyboard order) */
 @media (min-width: 768px) {
   .req .f-fields > .f-group16 {
@@ -411,16 +411,6 @@
   }
   .req .f-fields > .f-row {
     order: 3;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 7.95px;
-  }
-  .req .f-fields > .f-row > .f-sal {
-    align-self: flex-start;
-  }
-  .req .f-fields > .f-row > .f-names {
-    flex: none;
-    width: 100%;
   }
   .req .f-fields > .f-field:last-child {
     order: 4;
