@@ -495,3 +495,28 @@ html {
     color: #5f6368;
   }
 }
+
+/* Phone: the step boxes fill the width of the content, like desktop */
+@media (max-width: 767.98px) {
+  .mrq-stepper .mst {
+    width: 100%;
+    max-width: none;
+    align-self: stretch;
+    justify-self: stretch;
+  }
+}
+
+/* wider phones / small tablets: number beside the label, like desktop */
+@media (min-width: 480px) and (max-width: 767.98px) {
+  .mst-step,
+  .mst-step > a {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 8px;
+    text-align: left;
+  }
+  .mst-step {
+    padding: 11px 12px;
+    font-size: 13px;
+  }
+}
