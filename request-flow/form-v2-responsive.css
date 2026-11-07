@@ -554,3 +554,24 @@ html {
     border-radius: 20px;
   }
 }
+
+/* Phone contrast (WCAG AA): same darker green and blue as desktop */
+@media (max-width: 767.98px) {
+  .mrq .send-btn {
+    background: #1e7e34;
+  }
+  .mrq .send-btn:hover {
+    background: #18692b;
+  }
+  .mrq .mlogo-upload {
+    background: #1a6fc0;
+  }
+  .mrq .mlogo-text {
+    border-color: #1a6fc0;
+    color: #1a6fc0;
+  }
+  .madd {
+    border-color: #1a6fc0;
+    color: #1a6fc0;
+  }
+}

@@ -56,6 +56,7 @@
       '<div class="fdp-grid" role="grid"></div>';
     host.appendChild(panel);
 
+    input.setAttribute("role", "combobox"); // allows aria-expanded on the field
     input.setAttribute("aria-haspopup", "dialog");
     input.setAttribute("aria-expanded", "false");
     input.setAttribute("aria-controls", id);

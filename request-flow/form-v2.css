@@ -639,3 +639,28 @@
     border-radius: 20px;
   }
 }
+
+/* Contrast (WCAG AA 4.5:1 for button text):
+   - Send Request green #1e7e34 (5.1:1 with white) instead of #28a745 (3.1)
+   - logo buttons blue #1a6fc0 (5.1:1) instead of #1f8ceb (3.5) */
+@media (min-width: 768px) {
+  .req .form-card .send-btn {
+    background: #1e7e34;
+  }
+  .req .form-card .send-btn:hover {
+    background: #18692b;
+  }
+  .req .logo-upload {
+    background: #1a6fc0;
+  }
+  .req .logo-upload:hover {
+    background: #155a9c;
+  }
+  .req .logo-text {
+    border-color: #1a6fc0;
+    color: #1a6fc0;
+  }
+  .req .logo-text:hover {
+    background: #f0f6fc;
+  }
+}
