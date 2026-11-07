@@ -520,3 +520,30 @@ html {
     font-size: 13px;
   }
 }
+
+/* Phone: Business type as a tidy list (one option per row, whole row
+   tappable); Salutation in two columns that line up with First name |
+   Surname below. Same boxes as before. */
+@media (max-width: 767.98px) {
+  .mrq .mf-cards:not(.is-row) {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 2px;
+    padding-bottom: 6px;
+  }
+  .mrq .mf-cards:not(.is-row) .mrc {
+    width: 100%;
+    height: 32px;
+  }
+  .mrq .mf-cards.is-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0 31px; /* Mr. starts where the Surname text starts */
+    padding-bottom: 6px;
+  }
+  .mrq .mf-cards.is-row .mrc {
+    width: 100%;
+    height: 32px;
+  }
+}
