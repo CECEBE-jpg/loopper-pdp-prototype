@@ -631,3 +631,11 @@
     height: 18px;
   }
 }
+
+/* Send Request: same corners as the PDP's main CTAs (20px) */
+@media (min-width: 768px) {
+  .req .form-card .send-btn,
+  .req .form-card .send-btn:hover {
+    border-radius: 20px;
+  }
+}

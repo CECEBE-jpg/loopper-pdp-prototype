@@ -547,3 +547,10 @@ html {
     height: 32px;
   }
 }
+
+/* Phone: Send Request with the PDP CTA corners (20px) */
+@media (max-width: 767.98px) {
+  .mrq .send-btn {
+    border-radius: 20px;
+  }
+}
