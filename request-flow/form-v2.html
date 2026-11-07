@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Loopper | Request flow prototype (form v2: floating labels)</title>
+    <title>Loopper | Request flow prototype (previous form)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,8 +19,6 @@
     <link rel="stylesheet" href="form-figma.css?v=8" />
     <link rel="stylesheet" href="form-a11y.css?v=2" />
     <link rel="stylesheet" href="form-phone.css?v=2" />
-    <link rel="stylesheet" href="form-v2.css?v=20" />
-    <link rel="stylesheet" href="form-v2-responsive.css?v=7" />
   </head>
   <body data-screen="pdp">
     <!-- ===================== HEADER (top section) ===================== -->
@@ -1328,7 +1326,9 @@
                     </div>
                   </div>
                   <div class="f-comments">
-                    <label class="f-label" for="d-comments">Comment or discount code?</label>
+                    <label class="f-label" for="d-comments"
+                      >Comment or discount code?</label
+                    >
                     <textarea
                       class="f-textarea"
                       id="d-comments"
@@ -1526,7 +1526,9 @@
                     </div>
                   </div>
                   <div class="f-comments">
-                    <label class="f-label" for="q-comments">Comment or discount code?</label>
+                    <label class="f-label" for="q-comments"
+                      >Comment or discount code?</label
+                    >
                     <textarea
                       class="f-textarea"
                       id="q-comments"
@@ -1618,28 +1620,24 @@
               ><img src="assets/m-back-42.svg" width="42" height="42" alt=""
             /></a>
             <h1>Get your free <br />Quote &amp; Design</h1>
-            <!-- v2: the desktop step boxes, number above the label -->
-            <ol class="mst" aria-label="Progress">
-              <li class="mst-step is-done">
-                <a href="#pdp"
-                  ><span class="mst-ic"
-                    ><img
-                      src="assets/icon-step-done-green.svg"
-                      width="20"
-                      height="20"
-                      alt="" /></span
-                  ><span class="mst-label">Choose your product</span></a
+            <div class="mrq-steps">
+              <div class="mrq-dots" aria-hidden="true">
+                <b>1</b><i></i><b>2</b><i class="is-todo"></i
+                ><img
+                  src="assets/m-step-circle-done.svg"
+                  width="24"
+                  height="24"
+                  alt=""
+                />
+              </div>
+              <div class="mrq-labels">
+                <a href="#pdp">Choose <br />your product</a>
+                <span class="is-current" aria-current="step"
+                  >Your Logo <br />&amp; Information</span
                 >
-              </li>
-              <li class="mst-step is-current" aria-current="step">
-                <span class="mst-n">2</span
-                ><span class="mst-label">Your Logo &amp; Information</span>
-              </li>
-              <li class="mst-step is-todo">
-                <span class="mst-n">3</span
-                ><span class="mst-label">Quote send</span>
-              </li>
-            </ol>
+                <span class="is-todo">Quote send</span>
+              </div>
+            </div>
           </div>
           <form class="mrq-content mrq-form" action="#thanks" novalidate>
             <div class="mrq-top">
@@ -1913,7 +1911,9 @@
                 />
               </div>
               <div class="mf-field">
-                <label class="mf-label" for="m-comments">Comment or discount code?</label>
+                <label class="mf-label" for="m-comments"
+                  >Comment or discount code?</label
+                >
                 <textarea
                   class="mf-input"
                   id="m-comments"
@@ -1923,11 +1923,14 @@
             </div>
 
             <div class="mbox is-when">
-              <p class="mbox-h">Delivery</p>
-              <p class="f-q" id="m-when-q">When do you need this product?</p>
+              <p class="mbox-h">When do you need your products?</p>
               <!-- Deadline section form mobile: Figma component set 1357:7968
                    ASAP 1357:7865 / deadline + date field 1357:7967 / date picker open 1357:8301 -->
-              <div class="dl" role="radiogroup" aria-labelledby="m-when-q">
+              <div
+                class="dl"
+                role="radiogroup"
+                aria-label="When do you need your products?"
+              >
                 <label class="mrc"
                   ><input
                     type="radio"
@@ -4845,7 +4848,6 @@
     <script src="comparable.js?v=1"></script>
     <script src="form-phone.js?v=2"></script>
     <script src="form-phone-search.js?v=4"></script>
-    <script src="form-date-picker.js?v=1"></script>
     <script src="form-a11y.js?v=1"></script>
   </body>
 </html>
