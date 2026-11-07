@@ -383,3 +383,115 @@ html {
     background: #23963e;
   }
 }
+
+/* Phone: progress steps as the desktop boxes, summary header like desktop */
+@media (max-width: 767.98px) {
+  .mst {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    margin: 4px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .mst-step,
+  .mst-step > a {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+  }
+  .mst-step {
+    padding: 9px 6px 10px;
+    border: 1px solid #909499;
+    border-radius: 10px;
+    background: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 15px;
+    color: #6c7783;
+  }
+  .mst-step.is-done {
+    border-color: #e1e7ed;
+    background: #eefaf1;
+    color: #4a5866;
+  }
+  .mst-step.is-current {
+    border-color: var(--green);
+    background: #eefaf1;
+    color: #1c2530;
+  }
+  .mst-ic,
+  .mst-n {
+    width: 20px;
+    height: 20px;
+    flex: none;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    font-size: 11.5px;
+    font-weight: 800;
+    line-height: 1;
+  }
+  .mst-ic img {
+    width: 20px;
+    height: 20px;
+    display: block;
+  }
+  .mst-step.is-current .mst-n {
+    background: var(--green);
+    color: #fff;
+  }
+  .mst-step.is-todo .mst-n {
+    box-shadow: inset 0 0 0 1px #c7d0d9;
+    color: #7b8794;
+  }
+  .mst-step > a:focus-visible {
+    outline: 2px solid #1c1c1e;
+    outline-offset: 4px;
+    border-radius: 6px;
+  }
+
+  /* summary header: title left, small framed photo, "Product" label */
+  .mrq .rsm-head {
+    padding-right: 4px;
+    font-size: 16px;
+    color: #1c1c1e;
+  }
+  .mrq .rsm-row {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    gap: 12px;
+  }
+  .mrq .rsm-row img {
+    width: 56px;
+    height: 56px;
+    padding: 3px;
+    border: 1px solid #d9d9d9;
+    border-radius: 10px;
+    background: #fff;
+    object-fit: contain;
+  }
+  .mrq .rsm-name {
+    width: auto;
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: #1c1c1e;
+  }
+  .mrq .rsm-name::before {
+    content: "Product";
+    display: block;
+    margin-bottom: 2px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #5f6368;
+  }
+}

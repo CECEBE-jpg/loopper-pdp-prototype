@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="form-a11y.css?v=2" />
     <link rel="stylesheet" href="form-phone.css?v=2" />
     <link rel="stylesheet" href="form-v2.css?v=20" />
-    <link rel="stylesheet" href="form-v2-responsive.css?v=2" />
+    <link rel="stylesheet" href="form-v2-responsive.css?v=3" />
   </head>
   <body data-screen="pdp">
     <!-- ===================== HEADER (top section) ===================== -->
@@ -1618,24 +1618,28 @@
               ><img src="assets/m-back-42.svg" width="42" height="42" alt=""
             /></a>
             <h1>Get your free <br />Quote &amp; Design</h1>
-            <div class="mrq-steps">
-              <div class="mrq-dots" aria-hidden="true">
-                <b>1</b><i></i><b>2</b><i class="is-todo"></i
-                ><img
-                  src="assets/m-step-circle-done.svg"
-                  width="24"
-                  height="24"
-                  alt=""
-                />
-              </div>
-              <div class="mrq-labels">
-                <a href="#pdp">Choose <br />your product</a>
-                <span class="is-current" aria-current="step"
-                  >Your Logo <br />&amp; Information</span
+            <!-- v2: the desktop step boxes, number above the label -->
+            <ol class="mst" aria-label="Progress">
+              <li class="mst-step is-done">
+                <a href="#pdp"
+                  ><span class="mst-ic"
+                    ><img
+                      src="assets/icon-step-done-green.svg"
+                      width="20"
+                      height="20"
+                      alt="" /></span
+                  ><span class="mst-label">Choose your product</span></a
                 >
-                <span class="is-todo">Quote send</span>
-              </div>
-            </div>
+              </li>
+              <li class="mst-step is-current" aria-current="step">
+                <span class="mst-n">2</span
+                ><span class="mst-label">Your Logo &amp; Information</span>
+              </li>
+              <li class="mst-step is-todo">
+                <span class="mst-n">3</span
+                ><span class="mst-label">Quote send</span>
+              </li>
+            </ol>
           </div>
           <form class="mrq-content mrq-form" action="#thanks" novalidate>
             <div class="mrq-top">
