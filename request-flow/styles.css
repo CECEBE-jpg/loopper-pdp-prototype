@@ -5788,3 +5788,28 @@ body.tlm-lock {
   grid-row: 2;
   min-height: 0;
 }
+
+/* Confirmation page, "Need help?": text on the left of the card. The photo
+   stays as it is. */
+.ty-help {
+  padding-left: 40px;
+}
+.ty-help-title,
+.ty-help-title h2 {
+  width: auto;
+  text-align: left;
+}
+.mty-help {
+  align-items: stretch;
+}
+.mty-help-content {
+  width: 100%;
+  padding: 0 20px;
+  align-items: flex-start;
+}
+.mty-help-content h2 {
+  text-align: left;
+}
+.mty-help-content .ty-help-list {
+  width: 100%;
+}
