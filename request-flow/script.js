@@ -661,13 +661,33 @@
         !!summary.querySelector(".sdd.is-open"),
       );
     }
+    // a quantity under the minimum: the first click away only shows the
+    // error and keeps the list open; the next one closes it
+    var errorShown = false;
+    function notePress() {
+      errorShown = !!custom && custom.getAttribute("aria-invalid") === "true";
+    }
+    document.addEventListener("mousedown", notePress, true);
+    document.addEventListener("keydown", notePress, true);
+    function holdForError() {
+      if (!custom || errorShown) return false;
+      var n = parseInt(custom.value, 10);
+      if (!(n > 0 && n < moq)) return false;
+      setMoqError(true);
+      if (moqNote) moqNote.scrollIntoView({ block: "nearest" });
+      return true;
+    }
     btn.addEventListener("click", function (e) {
       e.stopPropagation();
       var open = !dd.classList.contains("is-open");
+      if (!open && holdForError()) return;
+      var held = false;
       document.querySelectorAll(".sdd.is-open").forEach(function (o) {
-        if (o !== dd) o.querySelector(".s-select").click();
+        if (o === dd) return;
+        o.querySelector(".s-select").click();
+        if (o.classList.contains("is-open")) held = true;
       });
-      setOpen(open);
+      if (!held) setOpen(open);
     });
     head.addEventListener("click", function () {
       setOpen(false);
@@ -721,7 +741,7 @@
     }
     // a typed quantity is saved on Enter and when clicking away (change
     // fires on both, blur catches anything else). Under the minimum nothing
-    // is saved: Enter shows the error, clicking away closes the list
+    // is saved: the error shows and the list stays open
     function saveCustom() {
       var n = parseInt(custom.value, 10);
       if (n > 0 && n < moq) {

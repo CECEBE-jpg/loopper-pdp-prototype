@@ -209,6 +209,25 @@
       }
       if (opener) opener.focus();
     }
+    // a quantity under the minimum: the first attempt to leave only shows
+    // the error; the next one closes the sheet
+    var errorShown = false;
+    function notePress() {
+      errorShown = !!custom && custom.getAttribute("aria-invalid") === "true";
+    }
+    panel.addEventListener("pointerdown", notePress, true);
+    panel.addEventListener("keydown", notePress, true);
+    function tryClose() {
+      if (custom && !errorShown) {
+        var n = parseInt(custom.value, 10);
+        if (n > 0 && n < moq) {
+          setMoqError(true);
+          note.scrollIntoView({ block: "nearest" });
+          return;
+        }
+      }
+      close();
+    }
     function setText(value) {
       var node = textNode(opener);
       if (node) node.textContent = value;
@@ -252,9 +271,9 @@
         close();
       });
     });
-    panel.querySelector(".fcc-sheet-x").addEventListener("click", close);
+    panel.querySelector(".fcc-sheet-x").addEventListener("click", tryClose);
     panel.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") close();
+      if (e.key === "Escape") tryClose();
     });
 
     if (custom) {
