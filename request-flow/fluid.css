@@ -131,3 +131,115 @@
     padding-bottom: 40px;
   }
 }
+
+/* ============================================================
+   Confirmation page on tablets and small laptop windows.
+   Under 1250px the design no longer fits as drawn: everything shrinks
+   with the window instead of running past it. Under 1180px the survey
+   moves below "Your request" (same breakpoint as the request form).
+   ============================================================ */
+@media (width >= 768px) and (width < 1250px) {
+  /* divider lines follow the card width (the artwork has a fixed length) */
+  .ty .hr img {
+    display: none;
+  }
+  .ty .hr {
+    border-top: 1px solid #c3c3c3;
+  }
+  .ty .hr:has(img[src*="divider-1"]),
+  .ty .hr:has(img[src*="divider-2"]) {
+    border-top-color: #28a745;
+  }
+  .ty .hr:has(img[src*="divider-3"]) {
+    border-top-color: #ababab;
+  }
+  .ty .hr:has(img[src*="divider-5"]) {
+    border-top-color: #e2e2e2;
+  }
+
+  /* survey: questions wrap, the dropdowns keep their size */
+  .ty-survey h2 {
+    width: auto;
+  }
+  .ty-q {
+    align-items: center;
+    gap: 12px;
+    white-space: normal;
+  }
+  .ty-q > p {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .ty-q > .ty-dd {
+    flex: none;
+  }
+
+  /* Need help: text keeps its width, the photo takes what is left */
+  .ty-help-content {
+    flex: none;
+  }
+  .ty-help-photo {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+    margin-left: 24px;
+  }
+}
+
+@media (width >= 768px) and (width < 1180px) {
+  .ty-intro {
+    padding: 24px 28px;
+  }
+  .ty-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .ty-card,
+  .ty-survey {
+    flex: none;
+    width: auto;
+  }
+  .ty-kv dd {
+    width: auto;
+  }
+}
+
+/* Confirmation page footer on tablets: link columns in one row, the
+   contact and newsletter blocks below them */
+@media (width >= 768px) and (width < 1180px) {
+  body[data-screen="thanks"] .ftr-cols {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 32px 24px;
+  }
+  body[data-screen="thanks"] .ftr-col {
+    width: auto;
+    min-width: 0;
+  }
+  body[data-screen="thanks"] .ftr-col.is-actions {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    gap: 40px;
+  }
+  body[data-screen="thanks"] .ftr-col.is-actions > .ftr-group {
+    flex: 1 1 0;
+    min-width: 0;
+    width: auto;
+  }
+}
+@media (width >= 768px) and (width < 992px) {
+  body[data-screen="thanks"] .actions {
+    gap: 8px;
+  }
+}
+
+/* Confirmation page header: only the categories that fit, never half a word */
+@media (width >= 768px) and (width < 1400px) {
+  body[data-screen="thanks"] .hdr-links {
+    flex: 1 1 0;
+    min-width: 0;
+    height: 29px;
+    flex-wrap: wrap;
+    overflow: hidden;
+  }
+}
