@@ -5744,3 +5744,25 @@ body.tlm-lock {
 .tlm-fontfile:has(.tlm-fontfile-file:not([hidden])) .tlm-fontfile-btn {
   display: none;
 }
+
+/* Confirmation page, product details: values of more than one line sit
+   under their label, each line starting at the same left edge. On phones
+   Print position and Printing in always do, so every product looks alike. */
+.ty-pd > div:has(dd br) {
+  display: block;
+}
+.ty-pd > div:has(dd br) dd {
+  margin-left: 0;
+  text-align: left;
+}
+@media (max-width: 767.98px) {
+  .ty-pd > div:nth-child(3),
+  .ty-pd > div:nth-child(4) {
+    display: block;
+  }
+  .ty-pd > div:nth-child(3) dd,
+  .ty-pd > div:nth-child(4) dd {
+    margin-left: 0;
+    text-align: left;
+  }
+}
