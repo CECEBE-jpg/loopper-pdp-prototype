@@ -557,13 +557,13 @@ html {
   }
 }
 
-/* Phone contrast (WCAG AA): same darker green and blue as desktop */
+/* Phone: same green and blue as desktop */
 @media (max-width: 767.98px) {
   .mrq .send-btn {
-    background: #1e7e34;
+    background: #28a745; /* same green as the PDP add to cart button */
   }
   .mrq .send-btn:hover {
-    background: #18692b;
+    background: #23963e;
   }
   .mrq .mlogo-upload {
     background: #1a6fc0;
