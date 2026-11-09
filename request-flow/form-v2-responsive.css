@@ -36,7 +36,7 @@ html {
     gap: 16px;
   }
 
-  /* header: logo and phone only, title on the page */
+  /* header: logo, phone and offer icon, title on the page */
   body[data-screen="design"] .hdr-title,
   body[data-screen="quote"] .hdr-title {
     display: none !important;
@@ -47,8 +47,8 @@ html {
   body[data-screen="quote"] .hd .burger {
     display: none;
   }
-  body[data-screen="design"] .hd .act:not(.act-phone),
-  body[data-screen="quote"] .hd .act:not(.act-phone) {
+  body[data-screen="design"] .hd .act:not(.act-phone):not(.act-quote),
+  body[data-screen="quote"] .hd .act:not(.act-phone):not(.act-quote) {
     display: none;
   }
   body[data-screen="design"] .bar .bar-in,
@@ -68,6 +68,7 @@ html {
     width: auto;
     height: auto;
     margin: 0;
+    gap: 18px;
   }
   .req-title {
     position: static;
@@ -140,9 +141,9 @@ html {
 
 /* ---------- phone ---------- */
 @media (max-width: 767.98px) {
-  /* header: logo and phone only, like desktop */
-  body[data-screen="design"] .mhdr-icon:not(.mhdr-phone),
-  body[data-screen="quote"] .mhdr-icon:not(.mhdr-phone) {
+  /* header: logo, phone and offer icon, like desktop */
+  body[data-screen="design"] .mhdr-icon:not(.mhdr-phone):not(.mhdr-quote),
+  body[data-screen="quote"] .mhdr-icon:not(.mhdr-phone):not(.mhdr-quote) {
     display: none;
   }
 
@@ -151,6 +152,7 @@ html {
     width: auto;
     margin-left: auto;
     justify-content: flex-end;
+    gap: 20px;
   }
 
   /* boxes */

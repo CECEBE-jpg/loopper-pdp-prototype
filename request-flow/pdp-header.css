@@ -36,8 +36,20 @@
   margin: 0;
   font-size: 11px;
 }
-body[data-screen="thanks"] .act-quote .hdr-badge {
+body[data-screen="thanks"] .act-quote .hdr-badge,
+body[data-screen="design"] .act-quote .hdr-badge,
+body[data-screen="quote"] .act-quote .hdr-badge {
   display: flex;
+}
+/* phone header: same notification on the offer icon */
+.mhdr-quote .hdr-badge {
+  display: flex;
+  left: auto;
+  right: -9px;
+  top: -9px;
+  width: 18px;
+  height: 18px;
+  font-size: 10px;
 }
 
 /* the form screens had no search field: keep its space, hide the field */

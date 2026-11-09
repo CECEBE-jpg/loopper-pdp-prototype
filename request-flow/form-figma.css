@@ -68,9 +68,9 @@
     white-space: nowrap;
     pointer-events: none;
   }
-  /* only the phone number on the right */
-  body[data-screen="design"] .hd .act:not(.act-phone),
-  body[data-screen="quote"] .hd .act:not(.act-phone) {
+  /* only the phone number and the offer icon on the right */
+  body[data-screen="design"] .hd .act:not(.act-phone):not(.act-quote),
+  body[data-screen="quote"] .hd .act:not(.act-phone):not(.act-quote) {
     display: none;
   }
   body[data-screen="design"] .act-phone,
