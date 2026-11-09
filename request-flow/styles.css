@@ -5813,3 +5813,14 @@ body.tlm-lock {
 .mty-help-content .ty-help-list {
   width: 100%;
 }
+
+/* Phone confirmation page: account and shopping buttons under the survey */
+.ty-btns.mty-btns {
+  flex-direction: column;
+  gap: 12px;
+}
+.mty-btns .pill.is-outline,
+.mty-btns .pill.is-solid {
+  width: 100%;
+  height: 54px;
+}
