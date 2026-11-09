@@ -1,5 +1,6 @@
-/* Desktop request forms: the phone country box opens a searchable list
-   styled like the request summary dropdowns, instead of the native list.
+/* Request forms: the phone country box opens a searchable list styled like
+   the request summary dropdowns, instead of the native list. On the phone
+   form the same list opens as a full-screen sheet with bigger rows.
    - every country is in the list (Popular first, then A-Z), each with its
      flag and dial code
    - search by country name, by common name (UK, Holland, USA) or by code
@@ -8,8 +9,7 @@
      entered by hand
    - keyboard: the search box is a combobox; arrows move, Enter chooses, Esc
      closes; screen readers hear how many results there are
-   Runs after form-phone.js and replaces its native select. The phone-sized
-   form keeps the native list: it is the better picker on a phone. */
+   Runs after form-phone.js and replaces its native select. */
 (function () {
   "use strict";
 
@@ -85,11 +85,12 @@
   });
 
   var uid = 0;
-  document.querySelectorAll(".req .f-phone").forEach(function (wrap) {
+  document.querySelectorAll(".req .f-phone, .mrq .f-phone").forEach(function (wrap) {
     var input = wrap.querySelector('input[type="tel"]');
     var box = wrap.querySelector(".f-cc");
-    var field = wrap.closest(".f-field");
+    var field = wrap.closest(".f-field, .mf-field");
     if (!input || !box || !field) return;
+    var isSheet = !!wrap.closest(".mrq");
     var native = box.querySelector("select");
     if (native) native.remove();
 
@@ -106,14 +107,26 @@
     panel.className = "fcc-panel";
     panel.id = id + "-panel";
     panel.hidden = true;
+    if (isSheet) {
+      panel.classList.add("is-sheet");
+      panel.setAttribute("role", "dialog");
+      panel.setAttribute("aria-modal", "true");
+      panel.setAttribute("aria-labelledby", id + "-title");
+      panel.tabIndex = -1;
+    }
     panel.innerHTML =
+      (isSheet
+        ? '<div class="fcc-sheet-head"><h2 class="fcc-sheet-title" id="' + id + '-title">Country code</h2>' +
+          '<button class="fcc-sheet-x" type="button" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>'
+        : "") +
       '<div class="fcc-search-wrap"><input class="fcc-search" type="text" role="combobox" ' +
       'aria-expanded="true" aria-autocomplete="list" autocomplete="off" spellcheck="false" ' +
       'aria-controls="' + id + '-list" aria-label="Search by country or code" ' +
       'placeholder="Search country or code" /></div>' +
       '<div class="fcc-list" id="' + id + '-list" role="listbox" aria-label="Country code"></div>' +
       '<p class="fcc-status vh" aria-live="polite"></p>';
-    field.appendChild(panel);
+    // the sheet covers the screen, so it can't sit inside the scaled form
+    (isSheet ? document.body : field).appendChild(panel);
 
     var search = panel.querySelector(".fcc-search");
     var list = panel.querySelector(".fcc-list");
@@ -253,6 +266,12 @@
       render();
       list.scrollTop = 0;
       if (items[active]) items[active].el.scrollIntoView({ block: "nearest" });
+      if (isSheet) {
+        // no keyboard until the search box is tapped: the list stays in view
+        document.body.classList.add("fcc-lock");
+        panel.focus({ preventScroll: true });
+        return;
+      }
       search.focus({ preventScroll: true });
       // the whole list in view when it would run past the window
       panel.scrollIntoView({ block: "nearest" });
@@ -262,6 +281,7 @@
       panel.hidden = true;
       button.setAttribute("aria-expanded", "false");
       box.classList.remove("is-open");
+      document.body.classList.remove("fcc-lock");
       if (focusTo) focusTo.focus();
     }
     function choose(country) {
@@ -274,6 +294,14 @@
       else close(button);
     });
     search.addEventListener("input", render);
+    if (isSheet) {
+      panel.querySelector(".fcc-sheet-x").addEventListener("click", function () {
+        close(button);
+      });
+      panel.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") close(button);
+      });
+    }
     search.addEventListener("keydown", function (e) {
       if (e.key === "ArrowDown" || e.key === "ArrowUp") {
         e.preventDefault();
