@@ -5766,3 +5766,41 @@ body.tlm-lock {
     text-align: left;
   }
 }
+
+/* Confirmation page, product details: photo left of the product title, same
+   size and thin outline as the Request summary photo; details below both */
+.ty-product,
+.yrq-product {
+  display: grid;
+  grid-template-columns: 55.76px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px 10px;
+}
+.ty-product .ty-product-card,
+.yrq-product .yrq-card {
+  display: contents;
+}
+.ty-product .ty-product-name,
+.yrq-product .yrq-name {
+  grid-column: 2;
+  grid-row: 1;
+  height: auto;
+  white-space: normal;
+}
+.ty-product .ty-product-card > img,
+.yrq-product .yrq-card > img {
+  grid-column: 1;
+  grid-row: 1;
+  box-sizing: border-box;
+  width: 55.76px;
+  height: 55.76px;
+  margin: 0;
+  border: 0.8px solid #d9d9d9;
+  border-radius: 10px;
+}
+.ty-product .ty-pd,
+.yrq-product .ty-pd {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  min-height: 0;
+}
