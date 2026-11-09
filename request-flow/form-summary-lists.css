@@ -1,0 +1,180 @@
+/* Request summary, Color and Quantity: the same list as the phone number
+   country list (form-phone.css). Rows keep their swatch, price and saving.
+   Loaded last. */
+
+/* ---------- panel: desktop and tablet ---------- */
+.summary .sdd .sdd-panel {
+  top: calc(100% + 4px);
+  left: 0;
+  right: auto;
+  align-items: stretch;
+  gap: 0;
+  padding: 0 11px 12px;
+  border: 1px solid #c3c3c3;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transform: none;
+  transition: none;
+}
+.summary .sdd .sdd-panel.is-color {
+  width: 320px;
+}
+.summary .sdd .sdd-panel.is-qty {
+  width: 378px;
+  padding-top: 8px;
+}
+.summary .sdd .sdd-head {
+  display: none;
+}
+.sdd-panel .sdd-list {
+  max-height: 242px;
+  margin-top: 8px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+.sdd-panel.is-qty .sdd-list {
+  max-height: none;
+  margin-top: 0;
+  overflow: visible;
+}
+
+/* ---------- rows ---------- */
+.sdd-list {
+  gap: 0;
+}
+.sdd-list .sdd-color,
+.sdd-list .sdd-qty,
+.sdd-list .sdd-color.is-selected,
+.sdd-list .sdd-qty.is-selected {
+  height: auto;
+  min-height: 36px;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  color: #1c1c1e;
+  cursor: pointer;
+}
+.sdd-list .sdd-color,
+.sdd-list .sdd-color.is-selected {
+  gap: 10px;
+}
+.sdd-list .sdd-color[hidden] {
+  display: none;
+}
+.sdd-list .sdd-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+}
+.sdd-list .sdd-color-name {
+  flex: 1 1 auto;
+  width: auto;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: inherit;
+}
+.sdd-list .sdd-color.is-selected .sdd-color-name,
+.sdd-list .sdd-qty.is-selected {
+  font-weight: 600;
+}
+.sdd-list .sdd-qty-n > span:first-child,
+.sdd-list .sdd-pp > span:first-child {
+  font-weight: 600;
+}
+.sdd-list .sdd-save {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* active row: cyan like the country list */
+.sdd-list .sdd-color.is-active,
+.sdd-list .sdd-qty.is-active,
+.sdd-list .sdd-color:focus-visible,
+.sdd-list .sdd-qty:focus-visible {
+  background: #00aed8;
+  color: #fff;
+  outline: none;
+}
+.sdd-list .is-active .sdd-color-name,
+.sdd-list .sdd-color:focus-visible .sdd-color-name {
+  color: #fff;
+}
+
+/* ---------- custom quantity ---------- */
+.sdd-list .sdd-custom {
+  gap: 12px;
+  height: auto;
+  margin-top: 8px;
+  padding: 10px 8px 0;
+  border: 0;
+  border-top: 1px solid #c3c3c3;
+  font-size: 14px;
+  color: #1c1c1e;
+}
+.sdd-list .sdd-custom input {
+  width: 130px;
+  height: 38px;
+  border: 1px solid #8f8f8f;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1c1c1e;
+}
+.sdd-list .sdd-custom input:focus {
+  border-color: #1c1c1e;
+  box-shadow: inset 0 0 0 1px #1c1c1e;
+}
+.sdd-list .sdd-custom.is-invalid input {
+  border-color: #c4141b;
+  box-shadow: inset 0 0 0 1px #c4141b;
+}
+.sdd-list .sdd-moq {
+  margin: 6px 0 0;
+  padding: 0 8px;
+  font-size: 12px;
+  line-height: 16px;
+  color: #5f6368;
+}
+.sdd-list .sdd-moq.is-error {
+  font-weight: 600;
+  color: #c4141b;
+}
+.sdd-list .fcc-none[hidden] {
+  display: none;
+}
+
+/* tablet: Quantity sits in the right half, so its list opens leftwards */
+@media (min-width: 768px) and (max-width: 1179.98px) {
+  .summary .sdd[data-kind="qty"] .sdd-panel {
+    left: auto;
+    right: 0;
+  }
+}
+
+/* ---------- phone sheet ---------- */
+.fsum-sheet .sdd-list {
+  flex: 1 1 0;
+  width: 100%;
+  min-height: 0;
+  padding-bottom: 16px;
+}
+.fsum-sheet .sdd-list .sdd-color,
+.fsum-sheet .sdd-list .sdd-qty {
+  min-height: 48px;
+  font-size: 15px;
+}
+.fsum-sheet .sdd-list .sdd-color-name {
+  font-size: 15px;
+}
+.fsum-sheet .sdd-list .sdd-custom {
+  flex: none;
+}
+.fsum-sheet .sdd-list .sdd-custom input {
+  height: 48px;
+  font-size: 16px; /* iPhones don't zoom in */
+}
