@@ -5657,3 +5657,90 @@ body.tlm-lock {
   color: #d0191c;
   outline: none;
 }
+
+/* Text logo modal: own font upload row under "Font" (same as the offer page) */
+.tlm-fontfile {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.tlm-fontfile-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 42px;
+  padding: 6px 14px;
+  border: 1px dashed #b6c2d2;
+  border-radius: 10px;
+  background: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  color: #333;
+  text-align: left;
+  cursor: pointer;
+}
+.tlm-fontfile-btn:hover {
+  border-color: var(--cyan);
+  background: #f2fbfe;
+}
+.tlm-fontfile-btn:focus-visible,
+.tlm-fontfile-remove:focus-visible {
+  outline: 2px solid #1c1c1e;
+  outline-offset: 2px;
+}
+.tlm-fontfile-btn small {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  color: #757575;
+}
+.tlm-fontfile-plus {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--cyan);
+}
+.tlm-fontfile-file {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #effae6;
+  font-size: 13px;
+  color: #333;
+}
+.tlm-fontfile-file[hidden] {
+  display: none;
+}
+.tlm-fontfile-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tlm-fontfile-remove {
+  min-height: 24px;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  color: #00799a;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.tlm-fontfile-hint {
+  margin: 0;
+  font-size: 12px;
+  line-height: 16px;
+  color: #757575;
+}
+.tlm-fontfile:has(.tlm-fontfile-file:not([hidden])) .tlm-fontfile-btn {
+  display: none;
+}

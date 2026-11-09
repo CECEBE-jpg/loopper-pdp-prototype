@@ -774,6 +774,11 @@
     var fontDd = modal.querySelector('.tlm-dd[data-kind="font"]');
     var pmsDd = modal.querySelector('.tlm-dd[data-kind="pms"]');
     var state = { family: "", font: "", color: "", pms: "" };
+    var fontFile = modal.querySelector("#tlm-fontfile");
+    var fontFileBtn = modal.querySelector(".tlm-fontfile-btn");
+    var fontFileChip = modal.querySelector(".tlm-fontfile-file");
+    var fontFileName = modal.querySelector(".tlm-fontfile-name");
+    var ownFontCount = 0;
     var opener = null;
     var closeTimer = null;
     var saved = {};
@@ -820,8 +825,63 @@
       );
     });
 
+    // Own font upload: load the file as a web font so the preview and the
+    // Font field use it
+    function clearOwnFont() {
+      if (!fontFile) return; // pages without the upload row
+      fontFile.value = "";
+      fontFileChip.hidden = true;
+      fontFileName.textContent = "";
+    }
+    function setOwnFont(fileLabel, font, family) {
+      fontFileName.textContent = fileLabel;
+      fontFileChip.hidden = false;
+      state.font = font;
+      state.family = family;
+      var val = fontDd.querySelector(".tlm-dd-val");
+      val.textContent = font;
+      val.style.fontFamily = family;
+      fontDd.classList.add("has-value");
+      fontDd.classList.remove("is-invalid");
+      fontDd.querySelectorAll(".tlm-font").forEach(function (o) {
+        o.classList.remove("is-active");
+        o.setAttribute("aria-selected", "false");
+      });
+      render();
+    }
+    if (fontFile) fontFileBtn.addEventListener("click", function () {
+      fontFile.click();
+    });
+    if (fontFile) fontFile.addEventListener("change", function () {
+      var f = fontFile.files[0];
+      if (!f) return;
+      var font = "Your font: " + f.name.replace(/\.[^.]+$/, "");
+      var family = "TlmOwnFont" + ++ownFontCount;
+      f.arrayBuffer()
+        .then(function (buf) {
+          return new FontFace(family, buf).load();
+        })
+        .then(function (face) {
+          document.fonts.add(face);
+          setOwnFont(f.name, font, "'" + family + "'");
+        })
+        .catch(function () {
+          // not readable in the browser: keep the file for our designers,
+          // the preview stays in the default font
+          setOwnFont(f.name + " (we'll check this file)", font, "");
+        });
+    });
+    if (fontFile) modal
+      .querySelector(".tlm-fontfile-remove")
+      .addEventListener("click", function () {
+        clearOwnFont();
+        fontDd.querySelector('.tlm-font[data-value=""]').click();
+        fontFileBtn.focus();
+      });
+
     fontDd.querySelectorAll(".tlm-font").forEach(function (opt) {
       opt.addEventListener("click", function () {
+        clearOwnFont(); // picking a font from the list replaces the uploaded one
         fontDd.querySelectorAll(".tlm-font").forEach(function (o) {
           var on = o === opt;
           o.classList.toggle("is-active", on);
@@ -884,9 +944,12 @@
       modal.querySelector("#tlm-remarks").value = data.remarks || "";
       own.value = data.own || "";
       var fontOpt = fontDd.querySelector(
-        '.tlm-font[data-value="' + (data.font || "") + '"]',
+        '.tlm-font[data-value="' +
+          (data.ownFile ? "" : data.font || "") +
+          '"]',
       );
       fontOpt.click();
+      if (data.ownFile) setOwnFont(data.ownFile, data.font, data.family);
       var sw =
         data.pmsSwatch &&
         pmsDd.querySelector(
@@ -977,6 +1040,9 @@
         saved[opener.dataset.tlmFor] = {
           text: t,
           font: state.font,
+          family: state.family,
+          ownFile:
+            fontFile && !fontFileChip.hidden ? fontFileName.textContent : "",
           pmsSwatch: sel ? sel.dataset.value : "",
           own: own.value.trim(),
           remarks: modal.querySelector("#tlm-remarks").value,

@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Arimo&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=25" />
+    <link rel="stylesheet" href="styles.css?v=26" />
     <link rel="stylesheet" href="nav.css?v=2" />
     <link rel="stylesheet" href="pdp-header.css?v=3" />
     <link rel="stylesheet" href="compact.css?v=5" />
@@ -4435,6 +4435,39 @@
             </div>
           </div>
           <div class="tlm-row">
+            <span class="tlm-label" id="tlm-fontfile-l">Own font:</span>
+            <div
+              class="tlm-fontfile"
+              role="group"
+              aria-labelledby="tlm-fontfile-l"
+            >
+              <input
+                type="file"
+                id="tlm-fontfile"
+                accept=".ttf,.otf,.woff,.woff2"
+                hidden
+              />
+              <button type="button" class="tlm-fontfile-btn">
+                <span class="tlm-fontfile-plus" aria-hidden="true">+</span>
+                <span
+                  >Upload your font file<small
+                    >TTF, OTF, WOFF or WOFF2</small
+                  ></span
+                >
+              </button>
+              <p class="tlm-fontfile-file" hidden>
+                <span class="tlm-fontfile-name"></span>
+                <button type="button" class="tlm-fontfile-remove">
+                  Remove
+                </button>
+              </p>
+              <p class="tlm-fontfile-hint">
+                Have your own brand font? Upload it and we use it for your text
+                logo.
+              </p>
+            </div>
+          </div>
+          <div class="tlm-row">
             <span class="tlm-label" id="tlm-pms-l">PMS/Color:</span>
             <div class="tlm-stack">
               <div class="tlm-dd" data-kind="pms">
@@ -4845,7 +4878,7 @@
         </div>
       </div>
     </div>
-    <script src="script.js?v=28"></script>
+    <script src="script.js?v=29"></script>
     <script src="pdp-header.js?v=2"></script>
     <script src="compact-fit.js?v=8"></script>
     <script src="comparable.js?v=1"></script>
