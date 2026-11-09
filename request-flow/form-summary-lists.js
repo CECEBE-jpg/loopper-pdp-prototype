@@ -1,13 +1,24 @@
 /* Request summary, Color and Quantity: the same list style as the phone
    number country list (form-phone.css).
    Desktop and tablet: script.js keeps opening and choosing; this adds the
-   search box for colours, the active row and the keyboard.
+   active row, the keyboard, and (only when the list does not fit in one
+   view) the search box for colours and the scrollbar.
    Phone: the two summary buttons open the same lists as a full-screen sheet.
    Runs after script.js. */
 (function () {
   "use strict";
 
   var SEARCH_LABEL = "Search color";
+
+  // search and scrollbar only when not every option fits in one view
+  function fitPanel(panel, list, isSheet) {
+    panel.classList.remove("is-long");
+    var long = isSheet
+      ? list.scrollHeight > list.clientHeight + 1
+      : panel.getBoundingClientRect().height > window.innerHeight - 24;
+    panel.classList.toggle("is-long", long);
+    return long;
+  }
 
   function setActive(rows, row, scroll) {
     rows().forEach(function (r) {
@@ -57,6 +68,8 @@
       if (row) setActive(rows, row, false);
     });
     function onKey(e) {
+      if (e.target.closest(".sdd-custom")) return; // typing a quantity
+      var typing = search && document.activeElement === search;
       var all = rows();
       var index = all.indexOf(list.querySelector(".is-active"));
       if (e.key === "ArrowDown" || e.key === "ArrowUp") {
@@ -65,14 +78,15 @@
         var step = e.key === "ArrowDown" ? 1 : -1;
         var next = all[(index + step + all.length) % all.length];
         setActive(rows, next, true);
-        if (!search) next.focus();
-      } else if (e.key === "Enter" && search) {
+        if (!typing) next.focus();
+      } else if (e.key === "Enter" && typing) {
         e.preventDefault(); // never sends the form from here
         if (all[index]) all[index].click();
       }
     }
-    (search || list).addEventListener("keydown", onKey);
+    list.addEventListener("keydown", onKey);
     if (search) {
+      search.addEventListener("keydown", onKey);
       search.addEventListener("input", function () {
         filter(list, search.value);
         var first = rows()[0];
@@ -104,8 +118,10 @@
         filter(list, "");
       }
       var selected = list.querySelector(".is-selected") || rows()[0];
+      var long = fitPanel(panel, list, false);
       setActive(rows, selected, true);
-      (search || selected).focus({ preventScroll: true });
+      (search && long ? search : selected).focus({ preventScroll: true });
+      panel.scrollIntoView({ block: "nearest" });
     });
     dd.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && dd.classList.contains("is-open")) {
@@ -216,6 +232,7 @@
       panel.style.width = document.documentElement.clientWidth + "px";
       panel.hidden = false;
       document.body.classList.add("fcc-lock");
+      fitPanel(panel, list, true);
       setActive(rows, selected, true);
       panel.focus({ preventScroll: true }); // no keyboard until search is tapped
     }

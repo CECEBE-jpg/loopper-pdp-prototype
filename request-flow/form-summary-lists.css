@@ -27,16 +27,22 @@
   display: none;
 }
 .sdd-panel .sdd-list {
+  margin-top: 11px;
+}
+.sdd-panel.is-qty .sdd-list {
+  margin-top: 0;
+}
+/* search and scrollbar only when the options don't fit in one view */
+.sdd-panel:not(.is-long) .fcc-search-wrap,
+.fsum-sheet:not(.is-long) .fcc-search-wrap {
+  display: none;
+}
+.sdd-panel.is-long .sdd-list {
   max-height: 242px;
   margin-top: 8px;
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-width: thin;
-}
-.sdd-panel.is-qty .sdd-list {
-  max-height: none;
-  margin-top: 0;
-  overflow: visible;
 }
 
 /* ---------- rows ---------- */
