@@ -433,8 +433,50 @@ button {
   display: flex;
   gap: 10px;
   margin: 0;
-  padding: 0;
+  padding: 0 0 14px;
   list-style: none;
+  /* more techniques than fit: the row scrolls sideways with a slim pill
+     scrollbar in the card palette (#cdcdcd card border, cyan on hover) */
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+}
+/* Firefox only: in Chrome the standard properties would replace the pill
+   below with the default bar (arrow buttons) */
+@supports (-moz-appearance: none) {
+  .print-cards {
+    scrollbar-width: thin;
+    scrollbar-color: #cdcdcd #f0f0f0;
+  }
+  .print-cards:hover {
+    scrollbar-color: var(--cyan) #f0f0f0;
+  }
+}
+.print-cards::-webkit-scrollbar {
+  height: 6px;
+}
+.print-cards::-webkit-scrollbar-button {
+  display: none;
+}
+.print-cards::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 15px;
+}
+.print-cards::-webkit-scrollbar-thumb {
+  background: #cdcdcd;
+  border-radius: 15px;
+}
+.print-cards::-webkit-scrollbar-thumb:hover {
+  background: var(--cyan);
+}
+.print-card {
+  scroll-snap-align: start;
+}
+/* the last card's tooltip opens leftwards so it never widens the scroll */
+.print-card:last-child .info-tip {
+  left: auto;
+  right: 2px;
 }
 .print-card {
   width: 206.667px;
