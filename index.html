@@ -461,6 +461,17 @@
           display: none;
         }
       }
+      /* Experiment: the two CTAs stacked, Free design & quote above Add to cart */
+      .cx-row.cx-stack {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .cx-stack .cx-quote,
+      .cx-stack .add-to-cart {
+        flex: none;
+        width: 100%;
+        max-width: none;
+      }
     </style>
   </head>
   <body>
@@ -2717,28 +2728,29 @@
                   <dl class="price-details" id="price-details" hidden></dl>
                 </div>
 
-                <!-- Experiment: Add to cart as a square, Free design & quote next to it -->
-                <div class="cx-row">
-                  <button class="add-to-cart cx-cart" type="button" aria-label="Add to cart">
-                  <span class="cart-icons">
-                    <img
-                      width="33"
-                      height="26"
-                      class="cart-icon"
-                      src="assets/imgGroup1.svg"
-                      alt=""
-                    />
-                    <img
-                      width="14"
-                      height="14"
-                      class="cart-plus"
-                      src="assets/imgFrame1321315908.svg"
-                      alt=""
-                    />
-                  </span>
-                  </button>
+                <!-- Experiment: Free design & quote on top, Add to cart (as on the live PDP) below -->
+                <div class="cx-row cx-stack">
                   <button class="cx-quote" type="button" data-nav="quote">
                     Free design &amp; quote
+                  </button>
+                  <button class="add-to-cart" type="button">
+                    <span>Add to cart</span>
+                    <span class="cart-icons">
+                      <img
+                        width="33"
+                        height="26"
+                        class="cart-icon"
+                        src="assets/imgGroup1.svg"
+                        alt=""
+                      />
+                      <img
+                        width="14"
+                        height="14"
+                        class="cart-plus"
+                        src="assets/imgFrame1321315908.svg"
+                        alt=""
+                      />
+                    </span>
                   </button>
                 </div>
               </div>
