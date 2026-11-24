@@ -461,15 +461,16 @@
           display: none;
         }
       }
-      /* Experiment: the two CTAs stacked, Free design & quote above Add to cart */
+      /* Experiment: the two CTAs side by side, Free design & quote (left) and Add to cart (right) */
       .cx-row.cx-stack {
-        flex-direction: column;
-        gap: 10px;
+        flex-direction: row;
+        gap: 12px;
       }
       .cx-stack .cx-quote,
       .cx-stack .add-to-cart {
-        flex: none;
-        width: 100%;
+        flex: 1 1 0;
+        width: auto;
+        min-width: 0;
         max-width: none;
       }
     </style>
@@ -2728,7 +2729,7 @@
                   <dl class="price-details" id="price-details" hidden></dl>
                 </div>
 
-                <!-- Experiment: Free design & quote on top, Add to cart (as on the live PDP) below -->
+                <!-- Experiment: Free design & quote (left) and Add to cart (as on the live PDP, right) -->
                 <div class="cx-row cx-stack">
                   <button class="cx-quote" type="button" data-nav="quote">
                     Free design &amp; quote
