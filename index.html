@@ -366,6 +366,83 @@
          prototype fetch the new files instead of a cached copy -->
     <link rel="stylesheet" href="styles.css?v=61" />
     <link rel="stylesheet" href="nav.css?v=58" />
+    <style>
+      /* ===== Experiment: Design and quote CTA combined ===== */
+      .cx-quote {
+        flex: 1 1 auto;
+        min-width: 0;
+        height: 53px;
+        padding: 0 20px;
+        border: 0;
+        border-radius: 20px;
+        background: var(--orange);
+        font: inherit;
+        font-size: 22px;
+        line-height: 20px;
+        font-weight: 700;
+        color: #fff;
+        white-space: nowrap;
+        cursor: pointer;
+        box-shadow: inset 0 0 0 4px rgba(253, 126, 20, 0);
+        transition:
+          background-color var(--motion),
+          box-shadow var(--motion),
+          color var(--motion);
+      }
+      .cx-quote:hover {
+        background: #fff;
+        box-shadow: inset 0 0 0 4px var(--orange);
+        color: var(--orange);
+      }
+      .cx-quote:focus-visible,
+      .cx-cart:focus-visible {
+        outline: 2px solid #1c2530;
+        outline-offset: 2px;
+      }
+      .cx-top .cx-quote {
+        width: 100%;
+      }
+      .cx-row {
+        display: flex;
+        gap: 12px;
+        width: 100%;
+        max-width: 715px;
+      }
+      .add-to-cart.cx-cart {
+        position: relative;
+        flex: 0 0 84px;
+        width: 84px;
+        max-width: none;
+        height: 53px;
+        padding: 0;
+        gap: 0;
+        justify-content: center;
+      }
+      .cx-cart .cart-icons {
+        position: relative;
+        width: 34px;
+        height: 28px;
+      }
+      .cx-cart .cart-icon {
+        width: 34px;
+        height: auto;
+      }
+      .cx-cart .cart-plus {
+        position: absolute;
+        top: -3px;
+        right: -10px;
+        width: 13px;
+        height: 13px;
+      }
+      @media (width < 768px) {
+        .m-buybar-actions .m-btn-cart {
+          order: 0;
+        }
+        .m-buybar-actions .m-btn-quote {
+          order: 1;
+        }
+      }
+    </style>
   </head>
   <body>
     <!-- ============ NAVIGATION MENU ============
@@ -1687,82 +1764,10 @@
 
             <!-- ---------- COLUMN 2 (531:12945) ---------- -->
             <div class="col2">
-              <div class="cta-top">
-                <button
-                  class="pdp-btn pdp-btn--orange pdp-btn--design"
-                  data-nav="design"
-                >
-                  <span class="pb-icon">
-                    <img
-                      width="31"
-                      height="31"
-                      class="pb-rest"
-                      src="assets/imgVector.svg"
-                      alt=""
-                    />
-                    <img
-                      width="31"
-                      height="31"
-                      class="pb-hov"
-                      src="assets/pbIconDesignHover.svg"
-                      alt=""
-                    />
-                  </span>
-                  <span class="pb-label">Get free <i>Design</i></span>
-                  <span class="pb-chev">
-                    <img
-                      width="10"
-                      height="17"
-                      class="pb-rest"
-                      src="assets/imgVector144.svg"
-                      alt=""
-                    />
-                    <img
-                      width="12"
-                      height="23"
-                      class="pb-hov"
-                      src="assets/pbChevOrangeHover.svg"
-                      alt=""
-                    />
-                  </span>
-                </button>
-                <button
-                  class="pdp-btn pdp-btn--orange pdp-btn--quote"
-                  data-nav="quote"
-                >
-                  <span class="pb-icon">
-                    <img
-                      width="36"
-                      height="37"
-                      class="pb-rest"
-                      src="assets/imgVector1.svg"
-                      alt=""
-                    />
-                    <img
-                      width="30"
-                      height="31"
-                      class="pb-hov"
-                      src="assets/pbIconQuoteHover.svg"
-                      alt=""
-                    />
-                  </span>
-                  <span class="pb-label">Get free <i>Quote</i></span>
-                  <span class="pb-chev">
-                    <img
-                      width="10"
-                      height="17"
-                      class="pb-rest"
-                      src="assets/imgVector145.svg"
-                      alt=""
-                    />
-                    <img
-                      width="12"
-                      height="23"
-                      class="pb-hov"
-                      src="assets/pbChevOrangeHover.svg"
-                      alt=""
-                    />
-                  </span>
+              <!-- Experiment: Free design and Free quote combined in one CTA -->
+              <div class="cta-top cx-top">
+                <button class="cx-quote" type="button" data-nav="quote">
+                  Free design &amp; quote
                 </button>
               </div>
 
@@ -2699,9 +2704,9 @@
                   <dl class="price-details" id="price-details" hidden></dl>
                 </div>
 
-                <!-- Add to cart (539:16974) -->
-                <button class="add-to-cart" type="button">
-                  <span>Add to cart</span>
+                <!-- Experiment: Add to cart as a square, Free design & quote next to it -->
+                <div class="cx-row">
+                  <button class="add-to-cart cx-cart" type="button" aria-label="Add to cart">
                   <span class="cart-icons">
                     <img
                       width="33"
@@ -2718,47 +2723,9 @@
                       alt=""
                     />
                   </span>
-                </button>
-
-                <!-- CTA bottom (687:12592) -->
-                <div class="cta-bottom">
-                  <button class="pdp-btn pdp-btn--outline" data-nav="design">
-                    <span class="pb-label">Get free <i>Design</i></span>
-                    <span class="pb-chev">
-                      <img
-                        width="10"
-                        height="17"
-                        class="pb-rest"
-                        src="assets/imgVector146.svg"
-                        alt=""
-                      />
-                      <img
-                        width="12"
-                        height="23"
-                        class="pb-hov"
-                        src="assets/pbChevWhiteHover.svg"
-                        alt=""
-                      />
-                    </span>
                   </button>
-                  <button class="pdp-btn pdp-btn--outline" data-nav="quote">
-                    <span class="pb-label">Get free <i>Quote</i></span>
-                    <span class="pb-chev">
-                      <img
-                        width="10"
-                        height="17"
-                        class="pb-rest"
-                        src="assets/imgVector146.svg"
-                        alt=""
-                      />
-                      <img
-                        width="12"
-                        height="23"
-                        class="pb-hov"
-                        src="assets/pbChevWhiteHover.svg"
-                        alt=""
-                      />
-                    </span>
+                  <button class="cx-quote" type="button" data-nav="quote">
+                    Free design &amp; quote
                   </button>
                 </div>
               </div>
@@ -3370,9 +3337,6 @@
         </div>
         <!-- 831:20037 — PDP-Button mobile, Variant3 (no arrow) + Add to cart -->
         <div class="m-buybar-actions">
-          <button class="m-btn-quote" type="button" data-nav="quote">
-            <span>Free <i>Quote &amp; Design</i></span>
-          </button>
           <button class="m-btn-cart" type="button" aria-label="Add to cart">
             <span class="m-cart-icon">
               <img src="assets/imgGroup1.svg" width="33" height="26" alt="" />
@@ -3384,6 +3348,9 @@
               height="14"
               alt=""
             />
+          </button>
+          <button class="m-btn-quote" type="button" data-nav="quote">
+            <span>Free design &amp; quote</span>
           </button>
         </div>
       </div>
