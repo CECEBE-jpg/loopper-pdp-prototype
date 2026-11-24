@@ -442,6 +442,25 @@
           order: 1;
         }
       }
+      /* Experiment: no top CTA; the cart + Free design & quote row sticks to the
+         bottom of the screen while it would otherwise be below the fold */
+      .cx-row {
+        position: sticky;
+        bottom: 0;
+        z-index: 20;
+        padding: 12px 0 14px;
+        background: #f4f4f4;
+        transition: box-shadow 0.2s;
+      }
+      .cx-row.cx-sticky {
+        box-shadow: 0 -8px 16px -8px rgba(0, 0, 0, 0.18);
+      }
+      @media (width < 768px) {
+        /* phones keep their own fixed buy bar with the same two buttons */
+        .cx-row {
+          display: none;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1769,13 +1788,6 @@
 
             <!-- ---------- COLUMN 2 (531:12945) ---------- -->
             <div class="col2">
-              <!-- Experiment: Free design and Free quote combined in one CTA -->
-              <div class="cta-top cx-top">
-                <button class="cx-quote" type="button" data-nav="quote">
-                  Free design &amp; quote
-                </button>
-              </div>
-
               <div class="configurator-bg">
                 <div class="configurator" id="configurator">
                   <!-- STEP 1 — Choose color -->
@@ -3485,5 +3497,23 @@
     <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
     <script src="nav.js?v=58"></script>
     <script src="script.js?v=62"></script>
+    <script>
+      // Experiment: shadow on the CTA row only while it is stuck to the bottom of the screen
+      (function () {
+        var row = document.querySelector(".cx-row");
+        if (!row) return;
+        function check() {
+          var r = row.getBoundingClientRect();
+          var natural = row.parentElement.getBoundingClientRect().bottom;
+          row.classList.toggle(
+            "cx-sticky",
+            r.bottom >= innerHeight - 1 && natural > innerHeight + 1,
+          );
+        }
+        addEventListener("scroll", check, { passive: true });
+        addEventListener("resize", check);
+        check();
+      })();
+    </script>
   </body>
 </html>
